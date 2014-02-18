@@ -74,7 +74,7 @@ public abstract class Graph {
 	/**
 	 * Save changes
 	 */
-	public abstract void commit(); 
+	//public abstract void commit(); 
 	
 	/**
 	 * Destructor
