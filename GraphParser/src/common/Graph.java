@@ -13,27 +13,27 @@ import common.exceptions.UnvalidArc;
  * @author alessandro
  *
  */
-public abstract class Graph {
+public abstract class Graph<N extends Node, A extends Arc> {
 
 	/**
 	 * @param node_id, the node identifier
 	 * @return the node with the selected id
 	 * @throws NodeNotFound exception in case the node is not found
 	 */
-	public abstract Node getNode(int node_id) throws NodeNotFound;
+	public abstract N getNode(int node_id) throws NodeNotFound;
 	
 	/**
 	 * @throws UnvalidNodeException
 	 * @param node the node to be inserted in the graph
 	 */
-	public abstract void putNode(Node node);
+	public abstract void putNode(N node);
 	
 	/**
 	 * @param node_id the id of the node 
 	 * @return the set of arcs outgoing from the node with the specified id
 	 * @throws NodeNotFound exception in case the node is not found
 	 */
-	public abstract Set<Arc> getAllOutgoingArcs(int node_id) throws NodeNotFound;
+	public abstract Set<A> getAllOutgoingArcs(int node_id) throws NodeNotFound;
 	
 	/**
 	 * 
@@ -41,7 +41,7 @@ public abstract class Graph {
 	 * @return the set of arcs outgoing from the node specified
 	 * @throws NodeNotFound exception in case the node is not found
 	 */
-	public abstract Set<Arc> getAllOutgoingArcs(Node n) throws NodeNotFound;
+	public abstract Set<A> getAllOutgoingArcs(Node n) throws NodeNotFound;
 	
 	/**
 	 * @param start_node the id of starting node
@@ -49,7 +49,7 @@ public abstract class Graph {
 	 * @return the retrieved arc
 	 * @throws ArcNotFound in case the arc specified doesn't exist
 	 */
-	public abstract Arc getArc(int start_node, int dest_node) throws ArcNotFound;
+	public abstract A getArc(int start_node, int dest_node) throws ArcNotFound;
 	
 	/**
 	 * @param start_node the starting node
@@ -57,20 +57,20 @@ public abstract class Graph {
 	 * @return the retrieved arc
 	 * @throws ArcNotFound in case the arc specified doesn't exist
 	 */
-	public abstract Arc getArc(Node start_node, Node dest_node) throws ArcNotFound;
+	public abstract A getArc(N start_node, N dest_node) throws ArcNotFound;
 	
 	/**
 	 * @param arc the arc to be added
 	 * @throws UnvalidArc in case the arc is not valid
 	 */
-	public abstract void addArc(Arc arc) throws UnvalidArc; 
+	public abstract void addArc(A arc) throws UnvalidArc; 
 	
 	/**
 	 * Removes all the arcs for which p doesn't hold
 	 * @param p the predicate 
 	 * @return a new graph.
 	 */
-	public abstract Graph cutArcs(Predicate<Arc> p);
+	public abstract Graph<N, A> cutArcs(Predicate<A> p);
 	/**
 	 * Save changes
 	 */
