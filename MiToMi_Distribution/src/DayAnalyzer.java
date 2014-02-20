@@ -17,11 +17,15 @@ public class DayAnalyzer {
 	
 	double periodSum = 0;
 	
+	// 0: print only final statistics
+	// 1: print also discovered arcs, aggredated by periods
+	int verbose = 0;
+
 	Scanner s;		
 	Arc currentArc = null, lastArc = null;
 	Date d;
 	
-	
+	private String result = "";
 	
 	/* ***************** CONSTANTS  ****************** */
 	
@@ -49,6 +53,17 @@ public class DayAnalyzer {
 		s = scan;
 	}
 	
+	public void setVerbose(int verbose) {
+		this.verbose = verbose;
+	}
+	
+	public String getResult() {
+		return result;
+	}
+	
+	public void appendResultLine (String s) {
+		result = result + "\n" + s;
+	}
 	
 	/* ************** ANALYSING METHODS **************** */
 	
@@ -73,13 +88,13 @@ public class DayAnalyzer {
 	}
 	
 	public void Analyse () {
-		System.out.println("\t == Analyze day " + d.toString());
+		appendResultLine("== Analyze day " + d.toString());
 		
 		// First arc is to be examined alone (no previous arc)
 		if(! s.hasNextLine()) return; 
 		readArc();
 		updateWith(currentArc.getStrength());
-		
+			
 		// Load second arc so that we have a couple of them
 		if(! s.hasNextLine()) return; 
 		readArc();
@@ -115,13 +130,15 @@ public class DayAnalyzer {
 				} else {
 					// file is finished. Update then close
 					updateWith(periodSum);
-					System.out.println("Arc " + currentArc.prettyHeadTail() + ", Period " + periodId + " Sum: " + periodSum);
+					if(verbose > 0)
+						appendResultLine(currentArc.prettyHeadTail() + "\t\t" + periodId + "\t" + periodSum);
 					break;
 				}
 				
 				// in both cases of having consumed or not more than 1 line, update values 
 				updateWith(periodSum);
-				System.out.println("Arc " + currentArc.prettyHeadTail() + ", Period " + periodId + " Sum: " + periodSum);
+				if(verbose > 0)
+					appendResultLine(currentArc.prettyHeadTail() + "\t\t" + periodId + "\t" + periodSum);
 				
 			}
 			
@@ -129,12 +146,12 @@ public class DayAnalyzer {
 			if (s.hasNextLine()) readArc();
 		}
 		
-		System.out.println("\n\nrecords:" + this.records);
-		System.out.println("periods:" + periods);
-		System.out.println("mean:" + this.dayMean);
-		System.out.println("variance:" + ((records > 1) ? dayM2 /(records-1) : 0));
-		System.out.println("min:" + minStrength);
-		System.out.println("max:" + maxStrength);
+		appendResultLine("\n\trecords:" + this.records);
+		appendResultLine("\tperiods:" + periods);
+		appendResultLine("\tmean:" + this.dayMean);
+		appendResultLine("\tvariance:" + ((records > 1) ? dayM2 /(records-1) : 0));
+		appendResultLine("\tmin:" + minStrength);
+		appendResultLine("\tmax:" + maxStrength);
 		
 		
 	}

@@ -1,48 +1,45 @@
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Scanner;
+import java.util.Iterator;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 public class AggregatedStatistics {
 	
-	public static void main(String[] args) {
+	static int POOL_SIZE = 1;
+	
+	public static void main(String[] args) throws InterruptedException, ExecutionException {
 		
-		Scanner s;
-		DayAnalyzer an;
+		ExecutorService pool =  Executors.newFixedThreadPool(POOL_SIZE);
+		ArrayList<Future<String>> res = new ArrayList<Future<String>>();
+		Date start = new Date();
 		
 		// for each file in command arguments
 		for(String filename : args){
-			
-			// open file
-			try{
-				s = new Scanner(new BufferedReader(new InputStreamReader(new FileInputStream(filename))));
-			} catch (Exception e){
-				// handle exception
-				System.out.println("FileNotFound");
-				return;
-			}
-			
-			System.out.println("== Using file: " + filename);
-			String[] dateString = filename.split("-");
-			String testDate = dateString[3].substring(0, 2) + "-" + dateString[2] + "-" + dateString[1] + ",00:00:00 AM";
-			DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy,HH:mm:ss aaa");
-			Date date = null;
-			try {
-				date = formatter.parse(testDate);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			an = new DayAnalyzer(s, date);
-			an.Analyse();
-			
+			Callable<String> c  = new DayAnalyzeWorker(filename);
+			Future<String> f = pool.submit(c); 
+			res.add(f);
 		}
-		System.out.println("== Finished ==");
+		
+		pool.shutdown();
+		try {
+			pool.awaitTermination(20, TimeUnit.SECONDS);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Iterator<Future<String>> it = res.iterator();
+		while(it.hasNext()){
+			System.out.println(it.next().get() + "\n");
+		}
+		
+		Date end = new Date();
+		System.out.println("== Finished in " + ((end.getTime() - start.getTime())/1000) + " seconds ==");
 		
 	}
 
