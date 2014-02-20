@@ -41,7 +41,7 @@ public abstract class Graph<N extends Node, A extends Arc> {
 	 * @return the set of arcs outgoing from the node specified
 	 * @throws NodeNotFound exception in case the node is not found
 	 */
-	public abstract Set<A> getAllOutgoingArcs(Node n) throws NodeNotFound;
+	public abstract Set<A> getAllOutgoingArcs(N n) throws NodeNotFound;
 	
 	/**
 	 * @param start_node the id of starting node
@@ -83,4 +83,6 @@ public abstract class Graph<N extends Node, A extends Arc> {
 	
 	
 	protected abstract void finalize();
+
+	
 }
