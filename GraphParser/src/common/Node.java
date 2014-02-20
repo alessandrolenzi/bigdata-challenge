@@ -7,6 +7,7 @@ import java.util.TreeSet;
  * @author alessandro
  *
  */
+
 public class Node implements Comparable {
 	private TreeSet<Arc> arcs = new TreeSet<Arc>();
 	private int identifier;

@@ -171,6 +171,7 @@ public class BufferedGraph<N extends Node, A extends Arc> extends Graph<N, A> {
 			}
 			if (found) return nodes.get(node_id);
 			
+			
 		} catch (IOException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | UnvalidFileFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

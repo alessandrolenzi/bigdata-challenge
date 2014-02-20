@@ -28,6 +28,7 @@ public abstract class Graph<N extends Node, A extends Arc> {
 	 */
 	public abstract void putNode(N node);
 	
+	
 	/**
 	 * @param node_id the id of the node 
 	 * @return the set of arcs outgoing from the node with the specified id

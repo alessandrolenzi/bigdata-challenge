@@ -6,6 +6,7 @@ public class Arc implements Comparable {
 	private double weight;
 	public Arc(int start, int destval, double w){starting_node=start;destination_node=destval;weight=w;}
 	
+	
 	public int getStartNode_id(){return starting_node;}
 	public int getEndNode_id(){return destination_node;}
 	public double getWeight(){return weight;}

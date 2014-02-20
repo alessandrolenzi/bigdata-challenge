@@ -15,6 +15,7 @@ public class GenerateGraph {
 	 * @param args[3] = maximum arc weight
 	 * @param args[4] = output file (not mandatory)
 	 */
+	
 	public static void main(String[] args) {
 		int nodes = Integer.parseInt(args[0]);
 		int max_arcs = Integer.parseInt(args[1]);
