@@ -1,13 +1,17 @@
 package actual;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.RandomAccessFile;
 import java.nio.BufferUnderflowException;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.Scanner;
 
 public class CustomReader implements Iterator<String>{
 	private RandomAccessFile file;
@@ -41,13 +45,13 @@ public class CustomReader implements Iterator<String>{
 		buffer = file.getChannel().map(FileChannel.MapMode.READ_ONLY, 0, Math.min(buffer_memory, file.length()));
 		lastScannedPosition = bufferMemory = usedMemory = Math.min(buffer_memory, file.length());
 		pageNumber = page_number;
-		page = new byte[pageNumber*pageSize];
+		page = new byte[pageSize];
 		
 	}
 	
 	/** Fetches a new page.*/
 	private void fetchPage() throws BufferUnderflowException{
-		if (buffer.remaining() < pageNumber*pageSize) {
+		if (buffer.remaining() < pageSize) {
 			currentPageSize = buffer.remaining();
 			buffer.get(page, 0, currentPageSize);
 		} else { buffer.get(page); currentPageSize = pageSize;}
@@ -62,6 +66,7 @@ public class CustomReader implements Iterator<String>{
 	 */
 	public String nextToken() throws BufferEndedException {
 		boolean found = false;
+		if (closed) return null;
 		/* Automatically elaborate new chunks from the buffer and return tokens.*/
 		if (lastDelimiterPosition >= currentPageSize) {
 			try {
@@ -72,7 +77,7 @@ public class CustomReader implements Iterator<String>{
 		/** TODO: add parametric delimiters.*/
 		for (; lastDelimiterPosition < currentPageSize; lastDelimiterPosition++) {
 			char c = (char) page[lastDelimiterPosition];
-			if (c == '\t' || c == ':' || c == '\n'){
+			if (c=='\t' || c == ':' || c == '\n'){
 				found = true; lastDelimiter=c;break;
 			}
 		}
@@ -111,6 +116,7 @@ public class CustomReader implements Iterator<String>{
 	}	
 	/** Return a number of pages in string format*/
 	public String nextPages() throws BufferEndedException {
+		if (closed) return null;
 		fetchPage();
 		return new String(page);
 	}
@@ -120,9 +126,11 @@ public class CustomReader implements Iterator<String>{
 	 * @throws IOException if the file is finished. 
 	 */
 	public void loadNext() throws IOException {
+		if (closed) throw new IOException("Buffer closed.");
 		if (file.length() <= lastScannedPosition) throw new IOException();
-		buffer = file.getChannel().map(FileChannel.MapMode.READ_ONLY, lastScannedPosition, Math.min(pageNumber*pageSize, file.length() - lastScannedPosition));
-		lastScannedPosition += Math.min(pageNumber*pageSize, file.length() - lastScannedPosition);
+		long toExpand = Math.min(pageNumber*pageSize, file.length() - lastScannedPosition);
+		buffer = file.getChannel().map(FileChannel.MapMode.READ_ONLY, lastScannedPosition, toExpand);
+		lastScannedPosition += toExpand;
 		start = 0; lastDelimiterPosition = 0;
 		fetchPage();
 	}
@@ -133,11 +141,18 @@ public class CustomReader implements Iterator<String>{
 	
 	public boolean bufferFinished(){return buffer.hasRemaining();}
 	
-	public boolean fileEnded(){return ended && !buffer.hasRemaining();}
-
+	public long usedMemory(){if(closed) return 0L; return usedMemory;}
+	
+	
+	public boolean fileEnded() throws IOException{return !buffer.hasRemaining() && file.length() <= lastScannedPosition;}
+	
 	@Override
 	public boolean hasNext() {
-		return fileEnded();
+		try {
+			return fileEnded();
+		} catch (IOException e) {
+			return true;
+		}
 	}
 	
 	@Override
@@ -153,26 +168,58 @@ public class CustomReader implements Iterator<String>{
 	 * The remove operation is not supported.
 	 */
 	@Override
-	public void remove() {//Do nothing
-		
+	public void remove() {/** Does nothing*/}
+	/**
+	 * Frees the memory. 
+	 */
+	private boolean closed;
+	public void close() {
+		closed = true;
+		buffer.clear();
+		buffer = null;
+		page = null;
+		start = 0; lastDelimiterPosition = 0; 
+		lastScannedPosition=0;
 	}
 	
-	public static void main(String args[]) throws BufferEndedException {
-		CustomReader cr = null;;
+	public void finalize() {
+		close();
+	}
+	
+	public static void main(String args[]) throws BufferEndedException, IOException {
+		CustomReader cr = null;
+		if (args.length > 1) {
 		try {
-			cr = new CustomReader(args[0], 4096, 1, new char[]{'\n'});
-		
+			
+			cr = new CustomReader(args[0], 1024*1024*10L, 1024, new char[]{'\n'});
+			
 			while(!cr.fileEnded()) {
 				try {
-					System.out.println(cr.nextToken()+cr.getLastDelimiter());
+					cr.nextToken();
 				} catch (BufferEndedException e) {
-					if(!cr.fileEnded())cr.loadNext();
+					cr.loadNext();
 				}
 			}
+
+			
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+			return;
+		} 
+		Scanner sc = null;
+		try {
+			
+			sc = new Scanner(new BufferedReader(new InputStreamReader(new FileInputStream(args[0]))));
+		
+			
+		} catch (FileNotFoundException e) {
+			
+			e.printStackTrace();
+		}
+		while (sc.hasNext()) {
+			sc.next();
 		}
 	}
 }
