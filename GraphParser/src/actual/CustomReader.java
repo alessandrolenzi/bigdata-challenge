@@ -59,39 +59,54 @@ public class CustomReader implements Iterator<String>{
 		start = 0;
 	}
 	
+	
+	private String foundToken() {
+		
+		/** Add eventually dangling parts, re-allign the starting and ending position for the
+		 * scanner, reset the remainder, return the retrieved token.
+		 * */
+		line.append(new String(Arrays.copyOfRange(page, start, lastDelimiterPosition)));
+		start = lastDelimiterPosition+1; lastDelimiterPosition++;
+		String newline = line.toString();
+		line = new StringBuffer();
+		return newline;
+	}
+		
 	/**
 	 * Returns the next string 
 	 * @return the token
 	 * @throws BufferEndedException in case the buffer is ended
 	 */
 	public String nextToken() throws BufferEndedException {
-		boolean found = false;
-		if (closed) return null;
+		
+		//boolean found = false;
+		//if (closed) return null;
 		/* Automatically elaborate new chunks from the buffer and return tokens.*/
 		if (lastDelimiterPosition >= currentPageSize) {
 			try {
 				fetchPage();
 			} catch(BufferUnderflowException exc) {throw new BufferEndedException("");}
 		}
-		
+
 		/** TODO: add parametric delimiters.*/
 		for (; lastDelimiterPosition < currentPageSize; lastDelimiterPosition++) {
 			char c = (char) page[lastDelimiterPosition];
 			if (c=='\t' || c == ':' || c == '\n'){
-				found = true; lastDelimiter=c;break;
+				lastDelimiter=c; return foundToken();
 			}
 		}
-		
+
+		/*
 		if (found) {
 			/** Add eventually dangling parts, re-allign the starting and ending position for the
 			 * scanner, reset the remainder, return the retrieved token.
-			 * */
+			 * 
 			line.append(new String(Arrays.copyOfRange(page, start, lastDelimiterPosition)));
 			start = lastDelimiterPosition+1; lastDelimiterPosition++;
 			String newline = line.toString();
 			line = new StringBuffer();
 			return newline;
-		}
+		}*/
 		/**
 		 * This occurs when the "analyzed" page ends before finding a delimiter token. 
 		 * The unreturned part is saved somewhere in memory, start is left untouched, lastDelimiter
@@ -104,13 +119,7 @@ public class CustomReader implements Iterator<String>{
 		if (buffer.hasRemaining()) return nextToken();
 		/*Buffer is ended in this case.*/
 		start = 0; lastDelimiterPosition = 0;
-		/**Manage EOF
-		try {
-			if (file.length() <= lastScannedPosition) ended = true;
-		} catch (IOException e) {
-			throw new BufferEndedException("Reached end of file"); //create new exception for this case
-		}
-		*/
+
 		if (line.length() > 0 && ended){ String lastRes = line.toString(); line = new StringBuffer(); return lastRes;}
 		//Finally:
 		throw new BufferEndedException(line.toString());
@@ -164,7 +173,12 @@ public class CustomReader implements Iterator<String>{
 		try {
 			return nextToken();
 		} catch (BufferEndedException e) {
-			return null;
+			try {
+				loadNext();
+				return nextToken();
+			} catch (IOException | BufferEndedException e1) {
+				return null;
+			}
 		}
 	}
 
@@ -193,22 +207,28 @@ public class CustomReader implements Iterator<String>{
 	public static void main(String args[]) throws BufferEndedException, IOException {
 		CustomReader cr = null;
 		if (args.length > 1) {
+			int i = 0;
+			StringBuffer strbuf = new StringBuffer();
 		try {
 			
 			cr = new CustomReader(args[0], 1024*1024*10L, 1024, new char[]{'\n'});
 		
 			while(!cr.fileEnded()) {
 				try {
-					System.out.print(cr.nextToken()+cr.getLastDelimiter());
+					//System.out.print(cr.nextToken());
+					//System.out.print(cr.lastDelimiter);
+					strbuf.append(cr.nextToken()); strbuf.append(cr.getLastDelimiter());
+					i++;
+					if (i % 1000000 == 0) {String line = strbuf.toString(); System.out.print(line); strbuf = new StringBuffer();}
 				}	catch (BufferEndedException e) {
 					cr.loadNext();
 				}
 			}
+			if (strbuf.length() > 0) System.out.print(strbuf.toString());
 			//System.out.println("OK");
 			
 			
 		} catch (IOException e) {
-			System.err.println(cr.fileEnded());
 			e.printStackTrace();
 			
 		}
