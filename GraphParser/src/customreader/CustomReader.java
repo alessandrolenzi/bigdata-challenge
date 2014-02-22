@@ -14,6 +14,7 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 public class CustomReader implements Iterator<String>{
+	
 	private RandomAccessFile file;
 	private long bufferMemory = 0;
 	private long usedMemory = 0;
