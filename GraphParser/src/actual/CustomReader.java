@@ -104,12 +104,13 @@ public class CustomReader implements Iterator<String>{
 		if (buffer.hasRemaining()) return nextToken();
 		/*Buffer is ended in this case.*/
 		start = 0; lastDelimiterPosition = 0;
-		/**Manage EOF*/
+		/**Manage EOF
 		try {
 			if (file.length() <= lastScannedPosition) ended = true;
 		} catch (IOException e) {
 			throw new BufferEndedException("Reached end of file"); //create new exception for this case
 		}
+		*/
 		if (line.length() > 0 && ended){ String lastRes = line.toString(); line = new StringBuffer(); return lastRes;}
 		//Finally:
 		throw new BufferEndedException(line.toString());
@@ -127,12 +128,15 @@ public class CustomReader implements Iterator<String>{
 	 */
 	public void loadNext() throws IOException {
 		if (closed) throw new IOException("Buffer closed.");
-		if (file.length() <= lastScannedPosition) throw new IOException();
+		if (file.length() <= lastScannedPosition) 
+			if(!ended){ended=true; return;}
+			else throw new IOException("Finished");
 		long toExpand = Math.min(pageNumber*pageSize, file.length() - lastScannedPosition);
 		buffer = file.getChannel().map(FileChannel.MapMode.READ_ONLY, lastScannedPosition, toExpand);
 		lastScannedPosition += toExpand;
 		start = 0; lastDelimiterPosition = 0;
 		fetchPage();
+		
 	}
 	
 	public char getLastDelimiter(){return lastDelimiter;}
@@ -144,7 +148,7 @@ public class CustomReader implements Iterator<String>{
 	public long usedMemory(){if(closed) return 0L; return usedMemory;}
 	
 	
-	public boolean fileEnded() throws IOException{return !buffer.hasRemaining() && file.length() <= lastScannedPosition;}
+	public boolean fileEnded() throws IOException{return ended && !buffer.hasRemaining() && file.length() <= lastScannedPosition;}
 	
 	@Override
 	public boolean hasNext() {
@@ -192,19 +196,21 @@ public class CustomReader implements Iterator<String>{
 		try {
 			
 			cr = new CustomReader(args[0], 1024*1024*10L, 1024, new char[]{'\n'});
-			
+		
 			while(!cr.fileEnded()) {
 				try {
-					cr.nextToken();
-				} catch (BufferEndedException e) {
+					System.out.print(cr.nextToken()+cr.getLastDelimiter());
+				}	catch (BufferEndedException e) {
 					cr.loadNext();
 				}
 			}
-
+			//System.out.println("OK");
 			
 			
 		} catch (IOException e) {
+			System.err.println(cr.fileEnded());
 			e.printStackTrace();
+			
 		}
 			return;
 		} 
@@ -212,7 +218,7 @@ public class CustomReader implements Iterator<String>{
 		try {
 			
 			sc = new Scanner(new BufferedReader(new InputStreamReader(new FileInputStream(args[0]))));
-		
+			
 			
 		} catch (FileNotFoundException e) {
 			
