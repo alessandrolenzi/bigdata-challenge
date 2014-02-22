@@ -36,6 +36,10 @@ public class Arc {
 			Strength = strength;
 		}
 
+		public int getPeriodId(long initialTime, long aggregationPeriod){
+			return (int) ((this.getTimestamp() - initialTime) / aggregationPeriod);
+		}
+		
 		public Arc(String s) {
 			String[] tokens = s.split("\t");
 			this.setTimestamp(Long.parseLong(tokens[0]));

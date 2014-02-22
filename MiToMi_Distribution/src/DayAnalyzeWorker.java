@@ -12,9 +12,16 @@ public class DayAnalyzeWorker implements Callable<String> {
 
 		String filename;
 		String result;
+		public enum JobType {ANALYSIS, SPLIT};
+		JobType job;
 		
-		public DayAnalyzeWorker (String filename) {
+		public DayAnalyzeWorker (String filename, JobType t) {
 			this.filename = filename;
+			this.setJob(t);
+		}
+		
+		public void setJob(JobType t){
+			job = t;
 		}
 		
 
@@ -42,8 +49,14 @@ public class DayAnalyzeWorker implements Callable<String> {
 				e.printStackTrace();
 			}
 						
-			an = new DayAnalyzer(s, date);
-			an.Analyse();
+			if(job == JobType.ANALYSIS){
+				an = new DayStatistics(s, date);
+				an.Analyse();				
+			} else {
+				an = new DaySplitter(s, date, (filename.split("."))[0] + "-");
+				an.Analyse();				
+			}
+
 			
 			return "== Using file: " + filename + " " + an.getResult();
 		}

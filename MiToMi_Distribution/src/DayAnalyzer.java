@@ -5,7 +5,7 @@ import java.util.Scanner;
 // TODO cosa fare di ore vuote?
 
 
-public class DayAnalyzer {
+public abstract class DayAnalyzer {
 
 	/* ************* CLASS FIELDS ******** */
 	
@@ -25,7 +25,7 @@ public class DayAnalyzer {
 	Arc currentArc = null, lastArc = null;
 	Date d;
 	
-	private String result = "";
+	protected String result = "";
 	
 	/* ***************** CONSTANTS  ****************** */
 	
@@ -61,9 +61,7 @@ public class DayAnalyzer {
 		return result;
 	}
 	
-	public void appendResultLine (String s) {
-		result = result + "\n" + s;
-	}
+	protected abstract void appendResultLine (String s);
 	
 	/* ************** ANALYSING METHODS **************** */
 	
@@ -81,11 +79,8 @@ public class DayAnalyzer {
 		// System.out.println(n);
 	}
 	
-	private void updateWith(double v){
-		double delta = v - dayMean;
-		dayMean += delta/records;
-		dayM2 += delta*(v - dayMean);
-	}
+	
+	public abstract void updateWith(double v, int periodId, Arc curr);
 	
 	public void Analyse () {
 		appendResultLine("== Analyze day " + d.toString());
@@ -93,7 +88,8 @@ public class DayAnalyzer {
 		// First arc is to be examined alone (no previous arc)
 		if(! s.hasNextLine()) return; 
 		readArc();
-		updateWith(currentArc.getStrength());
+		periods++;
+		updateWith(currentArc.getStrength(), (int) (currentArc.getTimestamp() - initialTime) / aggregationPeriod, currentArc);
 			
 		// Load second arc so that we have a couple of them
 		if(! s.hasNextLine()) return; 
@@ -108,14 +104,14 @@ public class DayAnalyzer {
 				// keep track of number of found periods, so to evaluate the "compression" rate
 				// against the total number of records
 				periods++;
-				periodId = (int) ((currentArc.getTimestamp() - initialTime) / aggregationPeriod);			
+				periodId = currentArc.getPeriodId(initialTime, aggregationPeriod);			
 				
 				// periodSum is the accumulator over the period
 				this.periodSum = currentArc.getStrength();
 				
 				if(s.hasNextLine()){
 					// consume a new arc. If it has same (source,dest) and is within the same period
-					// then aggregate to the previous. Else this arc is evaluated in a new iteration of this
+					// then aggregate to the previous. Else this arc is Analyzerevaluated in a new iteration of this
 					// loop (its strenght is counted in the assignment right above
 					readArc();
 					
@@ -129,31 +125,28 @@ public class DayAnalyzer {
 						}
 				} else {
 					// file is finished. Update then close
-					updateWith(periodSum);
+					updateWith(periodSum, periodId, currentArc);
 					if(verbose > 0)
 						appendResultLine(currentArc.prettyHeadTail() + "\t\t" + periodId + "\t" + periodSum);
 					break;
 				}
 				
 				// in both cases of having consumed or not more than 1 line, update values 
-				updateWith(periodSum);
+				updateWith(periodSum, periodId, currentArc);
 				if(verbose > 0)
 					appendResultLine(currentArc.prettyHeadTail() + "\t\t" + periodId + "\t" + periodSum);
 				
 			}
 			
-			updateWith(currentArc.getStrength());
+			updateWith(periodSum, currentArc.getPeriodId(initialTime, aggregationPeriod), currentArc);
 			if (s.hasNextLine()) readArc();
 		}
 		
-		appendResultLine("\n\trecords:" + this.records);
-		appendResultLine("\tperiods:" + periods);
-		appendResultLine("\tmean:" + this.dayMean);
-		appendResultLine("\tvariance:" + ((records > 1) ? dayM2 /(records-1) : 0));
-		appendResultLine("\tmin:" + minStrength);
-		appendResultLine("\tmax:" + maxStrength);
+		finish();
 		
 		
 	}
+
+	protected abstract void finish();
 	
 }
