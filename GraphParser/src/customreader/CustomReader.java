@@ -20,6 +20,7 @@ public class CustomReader implements Iterator<String>{
 	private long usedMemory = 0;
 	private MappedByteBuffer buffer;
 	private int currentPageSize = 4096;
+	private long currentStart = 0;
 	private int pageSize = 4096;
 	private int pageNumber = 1;
 	private byte[] page;
@@ -29,6 +30,7 @@ public class CustomReader implements Iterator<String>{
 	private char lastDelimiter;
 	private boolean ended = false;
 	private long lastScannedPosition = 0L;
+	private byte[] delimiters;
 	
 	/**
 	 * CustomReader: a customized scanner exploiting the MemoryByteBuffer from java.nio
@@ -47,7 +49,18 @@ public class CustomReader implements Iterator<String>{
 		lastScannedPosition = bufferMemory = usedMemory = Math.min(bufferMemory, file.length());
 		pageNumber = page_number;
 		page = new byte[pageSize];
-		
+		this.setDelimiters(delimiters);
+	}
+	
+	private boolean isDelimiter(byte b) {
+		for(byte delimiter: delimiters) {
+			if (b == delimiter) return true;
+		}
+		return false;
+	}
+	
+	public void setDelimiters(char[] delimiters) {
+		this.delimiters = new String(delimiters).getBytes();
 	}
 	
 	/** Fetches a new page.*/
@@ -91,9 +104,8 @@ public class CustomReader implements Iterator<String>{
 
 		/** TODO: add parametric delimiters.*/
 		for (; lastDelimiterPosition < currentPageSize; lastDelimiterPosition++) {
-			char c = (char) page[lastDelimiterPosition];
-			if (c=='\t' || c == ':' || c == '\n'){
-				lastDelimiter=c; return foundToken();
+			if (isDelimiter(page[lastDelimiterPosition])){
+				lastDelimiter=(char)page[lastDelimiterPosition]; return foundToken();
 			}
 		}
 
@@ -153,7 +165,7 @@ public class CustomReader implements Iterator<String>{
 	
 	public boolean lineEnded() {return lastDelimiter == '\n';}
 	
-	public boolean bufferFinished(){return buffer.hasRemaining();}
+	public boolean bufferFinished(){return !buffer.hasRemaining();}
 	
 	public long usedMemory(){if(closed) return 0L; return usedMemory;}
 	
@@ -188,9 +200,37 @@ public class CustomReader implements Iterator<String>{
 	 */
 	@Override
 	public void remove() {/** Does nothing*/}
+	
+	/**
+	 * Restarts the reader from the given position.
+	 * @param position the offset in byte from which the reading re-starts.
+	 * @throws IOException in case the position is not available
+	 */
+	public void loadAt(long position) throws IOException {
+		if(position < 0) position = 0;
+		lastScannedPosition = position;
+		ended = false;
+		lastDelimiter = '\0';
+		loadNext();
+		
+	}
+	
+	public long fileLength() {
+		try {
+			return file.length();
+		} catch (IOException e) {
+			return 0;
+		}
+	}
+	
+	public long currentPosition() {
+		return lastScannedPosition-buffer.capacity()+lastDelimiterPosition;
+	}
+	
+	
 	/**
 	 * Frees the memory. 
-	 */
+	 */	
 	private boolean closed;
 	public void close() {
 		closed = true;

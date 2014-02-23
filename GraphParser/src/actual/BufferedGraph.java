@@ -8,6 +8,9 @@ import java.util.Set;
 import java.util.TreeMap;
 import net.sourceforge.sizeof.SizeOf;
 
+import DiskIndex.DiskIndex;
+import DiskIndex.DiskIndex.Interval;
+
 import com.google.common.base.Predicate;
 
 import common.Arc;
@@ -16,6 +19,8 @@ import common.Node;
 import common.exceptions.ArcNotFound;
 import common.exceptions.NodeNotFound;
 import common.exceptions.UnvalidArc;
+import customreader.BufferEndedException;
+import customreader.CustomReader;
 
 public class BufferedGraph<N extends Node, A extends Arc> extends Graph<N, A> {
 	protected String file_name;
@@ -28,40 +33,49 @@ public class BufferedGraph<N extends Node, A extends Arc> extends Graph<N, A> {
 	private long bufferMemory = 0;
 	private long usedMemory = 0;
 	private CustomReader reader;
+	private DiskIndex index;
+	
 	public BufferedGraph(String str, long max_memory, Class<? extends N> node_class, Class<? extends A> arc_class) throws NoSuchMethodException, SecurityException, IOException {
 		file_name = str;
 		NConstructor = node_class.getConstructor(int.class);
 		AConstructor = arc_class.getConstructor(int.class, int.class, double.class);
 		nodes = new TreeMap<Integer, N>();
 		bufferMemory = max_memory;
-		reader = new CustomReader(str, max_memory, 4, new char[]{'\n', ':', '\t'});				
+		reader = new CustomReader(str, 1024*4096, 1024, new char[]{'\n', ':', '\t'});
+		index = new DiskIndex();
+		index.put(0, 0L);
+		index.put(Integer.MAX_VALUE, reader.fileLength());
 	}
 	
+	private boolean newpageBeginning = true;
 	
 	public void load() throws IOException, UnvalidFileFormatException {
-		try {
-			int count = 0;
-			String nodeId;
+		String nodeId = "";
+		long nodePosition = 0l;
+		try {			
 			try {
-				while((nodeId=reader.nextToken()) != null && usedMemory < bufferMemory) {
-					parseNode(nodeId);
-					count++;
-					return;
+				while(!reader.fileEnded()  && usedMemory < bufferMemory) {
+					//nodePosition = reader.currentPosition();
+					nodeId = reader.nextToken();
+					index.put(Integer.parseInt(nodeId.trim()), Math.max(0l,reader.currentPosition()-1));
+					if (newpageBeginning) {
+						newpageBeginning = false;
+					}
+					parseNode(nodeId, true);
 				}
+				
 			} catch (BufferEndedException e) {
-				e.printStackTrace();
-				System.exit(0);
+				//index.put(Integer.parseInt(nodeId.trim()), reader.currentPosition());
 			}
-			
-			System.out.println(count+"/"+usedMemory);
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException exc){ 
 			exc.printStackTrace();
 		}
+		
 	}
 	
-	private void parseNode(String nodeId) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, UnvalidFileFormatException, IOException, BufferEndedException{
+	private void parseNode(String nodeId, boolean b) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, UnvalidFileFormatException, IOException, BufferEndedException{
 		try {
-			N node = this.nodeFactory(Integer.parseInt("0"));
+			N node = this.nodeFactory(Integer.parseInt(nodeId.trim()));
 			
 			while(reader.getLastDelimiter() != '\n') {
 				int dest_id=0; double weight=0;
@@ -72,7 +86,9 @@ public class BufferedGraph<N extends Node, A extends Arc> extends Graph<N, A> {
 					which = true;
 					weight = Double.parseDouble(reader.nextToken());					
 				} catch (BufferEndedException buffer_ended) {
+					if(!b) return;
 					reader.loadNext();
+					newpageBeginning = true;
 					if(which) {//exception has been thrown while getting the arc weight
 						weight = Double.parseDouble(reader.nextToken());
 					} else {
@@ -93,15 +109,120 @@ public class BufferedGraph<N extends Node, A extends Arc> extends Graph<N, A> {
 			throw new UnvalidFileFormatException("Unvalid file format");
 		}
 	}
-
+	
+	private void advanceUntilNL() throws BufferEndedException {	while (reader.getLastDelimiter()!='\n') reader.nextToken();}
 
 	@Override
 	public N getNode(int node_id) throws NodeNotFound {
-	/*	if (node_id > 0 && node_id >= minLoadedId && node_id <= maxLoadedId) {
-			N retrieved = nodes.get(node_id);
-			if (retrieved != null) return retrieved;
-			throw new NodeNotFound("Node with id "+node_id+" not found");
+		N retrieved = nodes.get(node_id);
+		if (retrieved != null) return retrieved;
+		Interval<Long> searchInterval = index.getDiskInterval(node_id);		
+		long beginning = searchInterval.beginning;
+		long end = searchInterval.end;
+		int prevn = index.floor(node_id);
+		int nextn = index.ceiling(node_id);
+		//Start a blinded binary search on the searchInterval on disk.
+		long mid = (beginning+end)>>1 ;
+		
+		boolean found = false;
+		boolean donotindex = false;
+		long oldmid = -1000;
+		try {
+			while(!found) {
+				if (mid == oldmid) throw new NodeNotFound("Node doesn't exist");
+				oldmid = mid;
+				//System.out.print("Searching in "+mid+",with b:"+beginning+"("+prevn+") and e:"+end+"("+nextn+")");
+				reader.loadAt(mid);
+				//Get id of the first node loaded here.
+			
+				this.advanceUntilNL();
+				long curPos = reader.currentPosition();
+				String foundNode = reader.nextToken();
+				int foundNodeId = Integer.parseInt(foundNode);
+				index.put(foundNodeId, Math.max(0l, curPos-1));
+				if (foundNodeId > node_id){
+					/*System.out.println("Search on the left");
+					System.out.println("LastN:"+foundNodeId+";Beginning:"+beginning+"; END:"+end+"; SearchPoint:"+mid);
+					try {
+						System.in.read();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}*/
+					end = mid;
+					mid = (beginning+end)>>1;
+					continue; //search on the left.
+				}
+				int curNodeID = Integer.MIN_VALUE;
+				boolean loading = false;
+				if (foundNodeId == node_id) {
+					/*System.out.println("Immediately found!");*/
+					found = true;
+					loading = true;
+					curNodeID = foundNodeId;
+					try {
+						parseNode(foundNode, false);
+					} catch (InstantiationException | IllegalAccessException
+							| IllegalArgumentException
+							| InvocationTargetException
+							| UnvalidFileFormatException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						throw new NodeNotFound("Error in processing");
+					}
+				} else {
+					//System.out.println("Search right");
+					this.advanceUntilNL();
+				}/*		
+				try {
+					System.in.read();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}*/
+			//Scan the portion of the buffer, since now it is loaded.
+		
+			
+			int count = 0;
+			try{
+			while (!reader.bufferFinished() && usedMemory <= 2*bufferMemory) {
+				curNodeID = Integer.parseInt(reader.nextToken());
+				if (curNodeID < node_id) {this.advanceUntilNL(); continue;}
+				if (curNodeID == node_id) {loading = true; found = true;}
+				if (loading) {count++;
+					try {
+						parseNode(curNodeID+"", false);
+					} catch (InstantiationException | IllegalAccessException
+							| IllegalArgumentException
+							| InvocationTargetException
+							| UnvalidFileFormatException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}} catch(BufferEndedException not_found) {
+				//System.out.println("All scanned without finding.");
+			}
+			if (found) return nodes.get(node_id);
+			//Search right.
+			if (curNodeID < node_id) {
+				beginning = mid;
+				mid = (beginning+end)>>1;
+				//System.out.println("LastN:"+curNodeID+";Beginning:"+beginning+"; END:"+end+"; SearchPoint:"+mid);
+				//System.out.println("Start searching at.."+mid);
+				continue;
+			}
 		}
+	} catch(BufferEndedException | IOException unvalid_position) {
+		unvalid_position.printStackTrace();
+		return null;
+	}
+	//1. load file
+	//2. scan it
+	//3. save beginning and end of lowest chunk inside the index, if they were not present.
+	//4. if not found, goto 1
+	
+	/*	
 		try {
 			long beginning = file.getFilePointer();
 			long end = file.length();
@@ -205,6 +326,14 @@ public class BufferedGraph<N extends Node, A extends Arc> extends Graph<N, A> {
 	private N nodeFactory(int i) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, UnvalidFileFormatException{
 		return NConstructor.newInstance(i);
 
+	}
+	
+	public void verifyFirst(long position) throws BufferEndedException, IOException {
+		reader.loadAt(position);
+		this.advanceUntilNL();
+		String foundNode = reader.nextToken();
+		int foundNodeId = Integer.parseInt(foundNode);
+		System.out.println(foundNodeId);
 	}
 
 }
