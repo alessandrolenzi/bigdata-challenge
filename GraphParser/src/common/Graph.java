@@ -71,7 +71,7 @@ public abstract class Graph<N extends Node, A extends Arc> {
 	 * @param p the predicate 
 	 * @return a new graph.
 	 */
-	public abstract Graph<N, A> cutArcs(Predicate<A> p);
+	public abstract void cutArcs(Predicate<A> p);
 	/**
 	 * Save changes
 	 */
