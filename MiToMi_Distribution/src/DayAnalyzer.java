@@ -1,19 +1,31 @@
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 // TODO usare seconds o milliseconds?
 // TODO cosa fare di ore vuote?
 
 
-public abstract class DayAnalyzer {
+public class DayAnalyzer {
 
 	/* ************* CLASS FIELDS ******** */
 	
 	long initialTime, timestamp;
 	
-	double minStrength = Double.MAX_VALUE, maxStrength = Double.MIN_VALUE;
-	double dayMean = 0, dayM2 = 0;
-	int records = 0, periods = 0, periodId = 0;
+	List<Writer> outFiles;
+	String filename;
+	
+	/* double minStrength = Double.MAX_VALUE, maxStrength = Double.MIN_VALUE;
+	double dayMean = 0, dayM2 = 0;*/
+	int records = 0; //, periods = 0, periodId = 0;
+	Statistics stat = null;
 	
 	double periodSum = 0;
 	
@@ -47,10 +59,25 @@ public abstract class DayAnalyzer {
 	/** Constructor
 	 * 	
 	 * */
-	public DayAnalyzer (Scanner scan, Date date){
+	public DayAnalyzer (Scanner scan, Date date, String filename){
 		this.initialTime = date.getTime();
 		d = date;
 		s = scan;
+		
+		this.filename = filename; 
+		long periodsNumber = this.millisecondsInADay / this.aggregationPeriod;
+		outFiles = new ArrayList<Writer>((int) periodsNumber);
+		for(int i = 1; i <= periodsNumber; i++){
+			FileOutputStream f = null;
+			try {
+				f = new FileOutputStream(filename + String.valueOf(i));
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			outFiles.add(new BufferedWriter(new OutputStreamWriter(f)));
+		}
+		
 	}
 	
 	public void setVerbose(int verbose) {
@@ -61,7 +88,9 @@ public abstract class DayAnalyzer {
 		return result;
 	}
 	
-	protected abstract void appendResultLine (String s);
+	protected void appendResultLine (String s){
+		result = result + "\n" + s;
+	}
 	
 	/* ************** ANALYSING METHODS **************** */
 	
@@ -71,82 +100,109 @@ public abstract class DayAnalyzer {
 		this.currentArc = new Arc(n);
 		records++;
 		
-		if(currentArc.getStrength() < minStrength)
-			minStrength = currentArc.getStrength();
-		if(currentArc.getStrength() > maxStrength)
-			maxStrength = currentArc.getStrength();
-		
 		// System.out.println(n);
 	}
 	
 	
-	public abstract void updateWith(double v, int periodId, Arc curr);
+	public void endPeriod(double value, int periodId){
+		try {
+			outFiles.get(periodId).write(String.format("\t%d:%s", currentArc.getDestId(),value));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		stat.update(value);
+	}
+	// 
+	private void endSource() {
+		for(Writer f : outFiles){
+			try {
+				f.write(String.format("\n%d", currentArc.getSourceId()));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
+	private void initSource() {
+		for(Writer f : outFiles){
+			try {
+				f.write(String.format("%d", currentArc.getSourceId()));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
+	public void endArc(){
+		
+	}
 	
 	public void Analyse () {
 		appendResultLine("== Analyze day " + d.toString());
 		
+		stat = new Statistics();
+		
 		// First arc is to be examined alone (no previous arc)
 		if(! s.hasNextLine()) return; 
 		readArc();
-		periods++;
-		updateWith(currentArc.getStrength(), (int) (currentArc.getTimestamp() - initialTime) / aggregationPeriod, currentArc);
-			
-		// Load second arc so that we have a couple of them
-		if(! s.hasNextLine()) return; 
-		readArc();
+		this.periodSum = currentArc.getStrength();
+		initSource();
 		
 		while(s.hasNextLine()){
+			readArc();
+			if(currentArc.getSourceId() == lastArc.getSourceId()){
+				// same source node
 			
-			periodId = 0;
-			
-			// look for same source-destination in arcs
-			while(currentArc.getSourceId() == lastArc.getSourceId() && currentArc.getDestId() == lastArc.getDestId()){
-				// keep track of number of found periods, so to evaluate the "compression" rate
-				// against the total number of records
-				periods++;
-				periodId = currentArc.getPeriodId(initialTime, aggregationPeriod);			
-				
-				// periodSum is the accumulator over the period
-				this.periodSum = currentArc.getStrength();
-				
-				if(s.hasNextLine()){
-					// consume a new arc. If it has same (source,dest) and is within the same period
-					// then aggregate to the previous. Else this arc is Analyzerevaluated in a new iteration of this
-					// loop (its strenght is counted in the assignment right above
-					readArc();
-					
-					// should check if we switched (source,dest) couple
-					if(currentArc.getSourceId() == lastArc.getSourceId() && currentArc.getDestId() == lastArc.getDestId())
-						// consume all the arcs with timestamp in the same period 
-						while(currentArc.getTimestamp() / aggregationPeriod == lastArc.getTimestamp() / aggregationPeriod){
+				   if (currentArc.getDestId() == lastArc.getDestId()){
+					   // same source and dest
+					   if(currentArc.getTimestamp() / aggregationPeriod == lastArc.getTimestamp() / aggregationPeriod){
+							// same source and dest and same period -> sum
 							this.periodSum += currentArc.getStrength();
-							if(s.hasNextLine()) readArc();
-							else break;
-						}
-				} else {
-					// file is finished. Update then close
-					updateWith(periodSum, periodId, currentArc);
-					if(verbose > 0)
-						appendResultLine(currentArc.prettyHeadTail() + "\t\t" + periodId + "\t" + periodSum);
-					break;
+					   } else {
+						   // same source and dest, different period
+						   endPeriod(periodSum, lastArc.getPeriodId(initialTime, aggregationPeriod));
+						   this.periodSum = currentArc.getStrength();
+						   /* if(verbose > 0)
+								appendResultLine(lastArc.prettyHeadTail() + "\t\t" + 
+												 lastArc.getPeriodId(initialTime, aggregationPeriod) + 
+												 "\t" + 
+												 periodSum); */
+					   }
+				   } else {
+					   // same source, different dest
+					   endArc();
 				}
-				
-				// in both cases of having consumed or not more than 1 line, update values 
-				updateWith(periodSum, periodId, currentArc);
-				if(verbose > 0)
-					appendResultLine(currentArc.prettyHeadTail() + "\t\t" + periodId + "\t" + periodSum);
-				
+			} else {
+				// different source
+				endSource();
+				// appendResultLine("endSource");
 			}
-			
-			updateWith(periodSum, currentArc.getPeriodId(initialTime, aggregationPeriod), currentArc);
-			if (s.hasNextLine()) readArc();
 		}
+		endPeriod(periodSum, currentArc.getPeriodId(initialTime, aggregationPeriod));
 		
 		finish();
 		
 		
-	}
+	}	
 
-	protected abstract void finish();
+	protected void finish(){
+		
+		appendResultLine("\n\trecords:" + this.records);
+		appendResultLine(stat.prettyPrinted());
+		
+		for(int i = 0; i < (this.millisecondsInADay) / (aggregationPeriod); i++){
+			try {
+				outFiles.get(i).write("\n");
+				outFiles.get(i).flush(); 
+			} catch (IOException e) { e.printStackTrace(); }
+		}
+		appendResultLine("\n Parsed day. Output files are named " + filename + "<Id>");
+		
+	}
 	
 }
