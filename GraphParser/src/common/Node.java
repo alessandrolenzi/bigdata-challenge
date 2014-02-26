@@ -36,6 +36,8 @@ public class Node<A extends Arc> implements Comparable {
 	}
 	
 	public Set<A> getArcs(Predicate<? super A> predicate) {
-		return Sets.filter(arcs, predicate);
+		if (arcs != null && predicate != null) return Sets.filter(arcs, predicate);
+		if (predicate == null) return arcs; 
+		return null;
 	}
 }

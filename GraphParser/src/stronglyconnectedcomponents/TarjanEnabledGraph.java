@@ -10,6 +10,7 @@ import common.Arc;
 import common.exceptions.NodeNotFound;
 
 import actual.BufferedGraph;
+import actual.UnvalidFileFormatException;
 
 public class TarjanEnabledGraph extends BufferedGraph<TarjanNode, Arc> {
 	
@@ -17,12 +18,14 @@ public class TarjanEnabledGraph extends BufferedGraph<TarjanNode, Arc> {
 	private int index = 0;
 	private Stack<TarjanNode> stack = new Stack<TarjanNode>();
 	
-	/** Constructor with fixed nodes and arcs class */
-	public TarjanEnabledGraph(String str, long max_memory) throws NoSuchMethodException, SecurityException, IOException {
+	/** Constructor with fixed nodes and arcs class 
+	 * @throws UnvalidFileFormatException */
+	public TarjanEnabledGraph(String str, long max_memory) throws NoSuchMethodException, SecurityException, IOException, UnvalidFileFormatException {
 		super(str, max_memory, TarjanNode.class, Arc.class);
+		load();
 	}
 	
-	private boolean isIndexed(int node_id) { return indexedNodes.cardinality() >= node_id && indexedNodes.get(node_id) == true;}
+	private boolean isIndexed(int node_id) { return node_id >= 0 && indexedNodes.size() >= node_id && indexedNodes.get(node_id) == true;}
 	
 	/**
 	 * Returns the node with the requested id if found and the node doesn't belong to a SCC
@@ -31,7 +34,7 @@ public class TarjanEnabledGraph extends BufferedGraph<TarjanNode, Arc> {
 	 * @throws NodeNotFound in case the node doesn't exist or is already indexed.
 	 */
 	public TarjanNode getIfNotAssigned(int node_id) throws NodeNotFound {
-		if (isIndexed(node_id)) return this.getNode(node_id);
+		if (isIndexed(node_id)) return super.getNode(node_id);
 		throw new NodeNotFound("Node is indexed"); //Replace with indexed
 	}
 	
@@ -40,26 +43,32 @@ public class TarjanEnabledGraph extends BufferedGraph<TarjanNode, Arc> {
 	 * @param node_id
 	 * @return
 	 * @throws NodeNotFound
+	 * @throws IOException 
 	 */
 	public Set<Integer> findStronglyConnectedComponent(int node_id) throws NodeNotFound {
-		if (isIndexed(node_id)) return null; 
-		TarjanNode first = this.getNode(node_id);
+		if (isIndexed(node_id)) return null;
+		TarjanNode first = null;
+		first = this.getNode(node_id);
 		first.setIndex(index);
-		first.setLowIndex(index);
+		indexedNodes.set(node_id);
+		first.lowIndex = index;
+		stack.push(first);
+		index++;
 		
 		Set<Arc> outgoing_arcs =  this.getAllOutgoingArcs(node_id);
 		for (Arc current: outgoing_arcs) {
 			try {
 			TarjanNode destination = getNode(current.getEndNode_id()); 
 			if (!isIndexed(current.getEndNode_id())) {
-				findStronglyConnectedComponent(destination.getIndex());
-				first.setLowIndex(destination.getLowIndex());
+				findStronglyConnectedComponent(destination.getId());
+				first.lowIndex = Math.min(first.lowIndex, destination.lowIndex);
 			} else {
-				first.setLowIndex(destination.getIndex());
+				if (stack.contains(destination))
+					first.lowIndex = Math.min(first.lowIndex, destination.getIndex());
 			}
 		
 			} catch (NodeNotFound exc) {
-				//do nothing.
+				//do nothing
 			}
 		}
 		
@@ -70,6 +79,7 @@ public class TarjanEnabledGraph extends BufferedGraph<TarjanNode, Arc> {
 				popped = stack.pop();
 				scc.add(popped.getId());
 			} while(popped != first);
+			return scc;
 		}
 		
 		return null;

@@ -179,7 +179,7 @@ public class BufferedGraph<N extends Node<A>, A extends Arc> extends Graph<N, A>
 					/** Save on disk the nodes following the one just searched*/
 					if (loading) 
 						/** We want to fetch the next block only if the searched node is "involved".*/
-						parseNode(curNodeID+"", (curNodeID == node_id)); 
+							parseNode(curNodeID+"", (curNodeID == node_id));
 				}
 				
 				if (found) return nodes.get(node_id);
@@ -193,7 +193,7 @@ public class BufferedGraph<N extends Node<A>, A extends Arc> extends Graph<N, A>
 			//if not found...
 			throw new NodeNotFound("Node not found");
 		} catch(BufferEndedException | IOException unvalid_position) {
-			unvalid_position.printStackTrace();
+			//unvalid_position.printStackTrace();
 			throw new NodeNotFound("Error.");
 		} catch (InstantiationException | IllegalAccessException
 				| IllegalArgumentException

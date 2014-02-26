@@ -15,6 +15,11 @@ public class Arc implements Comparable {
 
 	@Override
 	public int compareTo(Object o) {
-		return -1;
+		Arc a = (Arc) o;
+		if (this.getStartNode_id() < a.getStartNode_id()) return -1;
+		if (this.getStartNode_id() > a.getStartNode_id()) return 1;
+		if (this.getEndNode_id() < a.getEndNode_id()) return -1;
+		if (this.getEndNode_id() > a.getEndNode_id()) return 1;
+		return 0;
 	}
 }

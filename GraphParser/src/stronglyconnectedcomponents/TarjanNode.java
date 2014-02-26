@@ -5,7 +5,7 @@ import common.Node;
 
 public class TarjanNode extends Node<Arc>{
 	private int index = -1; /** Index of the node*/
-	private int lowIndex = Integer.MAX_VALUE;
+	public int lowIndex = Integer.MAX_VALUE;
 	public TarjanNode(int nodeval) {super(nodeval);}
 	/** Index management*/
 	public boolean isIndexed() { return index != -1;}
@@ -18,5 +18,9 @@ public class TarjanNode extends Node<Arc>{
 		return lowIndex;
 	}
 	
+	public boolean equals(Object o) {
+		TarjanNode conf = (TarjanNode) o;
+		return (conf.getId() == this.getId());
+	}
 	
 }
