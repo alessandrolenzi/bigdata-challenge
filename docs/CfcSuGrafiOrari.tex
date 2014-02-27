@@ -1,0 +1,56 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\author{Michele Carignani, Alessandro Lenzi}
+\title{Analisi aggregata per ore}
+\begin{document}
+
+\maketitle
+
+\section{Generazione dei grafi orari}
+
+Per prima cosa i dati sono stati aggregati per ora. I dati originali del dataset \verb!MItoMI! sono nel formato:
+\begin{verbatim}
+timestamp \t SourceId \t DestId \t Stregth
+\end{verbatim}
+e sono stati suddivisi in 24 files (uno per ogni ora) e aggregati, per cui
+ogni file contiene (al massimo\footnote{poichè certi nodi possono non avere chiamate in uscita
+in una certa fascia oraria.}) un record per ogni nodo nel formato:
+\begin{verbatim}
+\SourceId \t DestId:Strength [\t DestId:Strength]
+\end{verbatim}
+
+A questo punto i pesi sugli archi (sopra chiamati \verb!Strength!) sono stati riscalati rispetto alla somma
+dei valori della stella uscente di un nodo, ovvero:
+$$ sumStrength_i = \sum_{j \in FS(i)} Strength_{ij} $$
+$$ scaledStrength_{ij} = \frac{Strength_{ij}}{sumStrength_i} $$
+
+\section{Ricerca delle componenti fortemente connesse}
+
+\section{Risultati}
+
+\subsection{Statistiche}
+
+\subsection{Componenti Fortemente Connesse}
+
+\begin{figure}[h]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline 
+Fascia Oraria & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 &  \\ 
+\hline 
+Numero CFC & • & • \\ 
+\hline 
+Dimensioni CF & • & • \\ 
+\hline 
+\end{tabular} 
+\caption{CFC scoperte con taglio AVG = 0.00291}
+\end{center}
+\end{figure}
+
+\end{document}
