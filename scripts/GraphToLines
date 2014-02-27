@@ -1,0 +1,13 @@
+#!/bin/bash
+# Takes a graph file of format
+#   Source \t Dest:Val \Dest:Val ..
+#   Source \t Dest:Val \Dest:Val ..
+# and returns a file of format
+#   Source \t Dest \t Val
+#   Source \t Dest \t Val
+# writes the result to stdoutput
+
+(($# != 1 ) && echo -e "Usage: GraphToLines file\nWrites result to stdout"
+
+sed 's/\t/\n*\t/g' $1 | tr ":" "\t" | awk '/^[0-9]*$/ {source=$1}
+/\*/ {print source, "\t", $2, "\t", $3}'
