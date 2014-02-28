@@ -22,13 +22,14 @@ e sono stati suddivisi in 24 files (uno per ogni ora) e aggregati, per cui
 ogni file contiene (al massimo\footnote{poichè certi nodi possono non avere chiamate in uscita
 in una certa fascia oraria.}) un record per ogni nodo nel formato:
 \begin{verbatim}
-\SourceId \t DestId:Strength [\t DestId:Strength]
+SourceId \t DestId:Strength [\t DestId:Strength]
 \end{verbatim}
 
 A questo punto i pesi sugli archi (sopra chiamati \verb!Strength!) sono stati riscalati rispetto alla somma
-dei valori della stella uscente di un nodo, ovvero:
+dei valori della stella uscente di un nodo, ottenendo la probabilità di transire dal nodo $i$ al 
+nodo $j$, ovvero:
 $$ sumStrength_i = \sum_{j \in FS(i)} Strength_{ij} $$
-$$ scaledStrength_{ij} = \frac{Strength_{ij}}{sumStrength_i} $$
+$$ probability_{ij} = \frac{Strength_{ij}}{sumStrength_i} $$
 
 \section{Ricerca delle componenti fortemente connesse}
 
@@ -36,7 +37,25 @@ $$ scaledStrength_{ij} = \frac{Strength_{ij}}{sumStrength_i} $$
 
 \subsection{Statistiche}
 
+Per ogni ora, delle probabilità (totale non per nodi di partenza)
+ media delle probabilità (totale)
+ $$ MeanProb_{h} = \sum_{(i,j) \in Edges_h} \frac{probability_{i,j}}{|Edges_h|} $$
+ variance
+ min
+ max
+ cardinalità archi
+
 \subsection{Componenti Fortemente Connesse}
+
+\subsubsection{Taglio 1}
+
+
+
+\subsubsection{Taglio 2}
+
+\subsubsection{Taglio 1}
+
+
 
 \begin{figure}[h]
 \begin{center}
