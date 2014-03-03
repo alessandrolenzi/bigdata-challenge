@@ -13,7 +13,7 @@ import common.exceptions.UnvalidArc;
  * @author alessandro
  *
  */
-public abstract class Graph<N extends Node, A extends Arc> {
+public interface Graph<N extends Node<A>, A extends Arc> {
 
 	/**
 	 * @param node_id, the node identifier
@@ -83,7 +83,7 @@ public abstract class Graph<N extends Node, A extends Arc> {
 	public abstract void close();
 	
 	
-	protected abstract void finalize();
+	public abstract void finalize();
 
 	
 }

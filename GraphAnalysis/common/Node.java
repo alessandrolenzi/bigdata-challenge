@@ -1,5 +1,10 @@
 package common;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -12,8 +17,7 @@ import com.google.common.collect.Sets;
  *
  */
 
-@SuppressWarnings("rawtypes")
-public class Node<A extends Arc> implements Comparable {
+public class Node<A extends Arc> implements Comparable<Node<A>> {
 	private TreeSet<A> arcs = new TreeSet<A>();
 	private int identifier;
 	public Node(int nodeval) {identifier=nodeval;}
@@ -21,12 +25,8 @@ public class Node<A extends Arc> implements Comparable {
 	public void putArc(A a){arcs.add(a);}
 	
 	@Override
-	@SuppressWarnings("unchecked")
-	public int compareTo(Object o) { //Comparator for ordering.
-		Node<A> compared = (Node<A>) o;
-		if (this.getId() < compared.getId()) return -1;
-		if (this.getId() > compared.getId()) return 1;
-		return 0;
+	public int compareTo(Node<A> compared) { //Comparator for ordering.
+		return Integer.compare(this.getId(), compared.getId());
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -35,9 +35,15 @@ public class Node<A extends Arc> implements Comparable {
 		return false;
 	}
 	
-	public Set<A> getArcs(Predicate<? super A> predicate) {
+	public Set<A> getArcs(Predicate<A> predicate) {
 		if (arcs != null && predicate != null) return Sets.filter(arcs, predicate);
 		if (predicate == null) return arcs; 
 		return null;
+	}
+	public Set<A> getArcs(Predicate<A> predicate, Comparator<A> comparator) {
+		@SuppressWarnings("unchecked")
+		List<A> arcs_unordered = (List<A>) Arrays.asList(this.getArcs(predicate).toArray(new Arc[]{}));
+		Collections.sort(arcs_unordered, comparator);
+		return new HashSet<A>(arcs_unordered);
 	}
 }

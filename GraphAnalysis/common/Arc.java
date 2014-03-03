@@ -1,6 +1,6 @@
 package common;
 
-public class Arc implements Comparable {
+public class Arc implements Comparable<Arc> {
 	private int starting_node;
 	private int destination_node;
 	private double weight;
@@ -14,8 +14,8 @@ public class Arc implements Comparable {
 	public void setWeight(double d){weight = d;}
 
 	@Override
-	public int compareTo(Object o) {
-		Arc a = (Arc) o;
+	public int compareTo(Arc a) {
+		
 		if (this.getStartNode_id() < a.getStartNode_id()) return -1;
 		if (this.getStartNode_id() > a.getStartNode_id()) return 1;
 		if (this.getEndNode_id() < a.getEndNode_id()) return -1;
