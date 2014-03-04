@@ -47,7 +47,7 @@ public class RescaleArcWeights {
 		
 		FileReader f = null;
 		Writer w, t;
-		
+		Statistics stat = new Statistics();
 		
 		try {
 			f = new FileReader(args[0]);
@@ -141,6 +141,7 @@ public class RescaleArcWeights {
 			if(tok.contains(":")){
 				String[] vals = tok.split(":");
 				double scaled = Double.parseDouble(vals[1]) / sum;
+				stat.update(scaled);
 				try {
 					w.write(String.format("\t%s:%f", vals[0], scaled));
 				} catch (IOException e) {
@@ -165,16 +166,21 @@ public class RescaleArcWeights {
 			}
 		}
 		
+		
 		try {
 			w.flush();
 			w.close();
 			f.close();
+			sT.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		System.out.println("finished");
+		String[] k = args[0].split("\\.");
+		String[] v = k[0].split("/");
+		System.out.println(v[v.length - 1] + "\t" + stat.asRecord());
+		
 	}
 
 }

@@ -17,13 +17,15 @@ static int MAX_POOL_SIZE = 8;
 
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
 		
+		
+		if(args.length < 1 || args[0].equals("-h")) {
+			printUsage(args);
+			return;
+		}
+		
 		ExecutorService pool =  Executors.newFixedThreadPool(Math.min(MAX_POOL_SIZE, args.length));
 		ArrayList<Future<String>> res = new ArrayList<Future<String>>();
 		Date start = new Date();
-		
-		if(args.length < 1) {
-			printUsage(args);
-		}
 		
 		// for each file in command arguments
 		for(int i = 0; i < args.length; i++){
@@ -54,8 +56,8 @@ static int MAX_POOL_SIZE = 8;
 	}
 
 	private static void printUsage(String[] args) {
-		System.out.println("Usage: " + args[0] + " file1 [file2 ..]\nAggregates arcs by hours, creates" + 
-				"one file for each our and computes mean and variance over the obtained values." );
+		System.out.println("Usage: java -jar AggregatedCalls.jar file1 [file2 ..]\nAggregates arcs by hours, creates " + 
+				"one file for each hour and computes mean and variance over the obtained values." );
 		
 	}
 

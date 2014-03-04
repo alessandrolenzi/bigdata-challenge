@@ -97,9 +97,9 @@ public class DayCallsWorker implements Callable<String> {
 		
 		String[] dateString = filename.split("-");
 		// filename format is sms-call-internet-mi-2013-11-01.txt
-		day = dateString[7].substring(0, 2);
-		month = dateString[6];
-		year = dateString[5];
+		day = dateString[6].substring(0, 2);
+		month = dateString[5];
+		year = dateString[4];
 		String testDate =  day + "-" + month  + "-" + year + ",00:00:00 AM";
 		DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy,HH:mm:ss aaa");
 		
@@ -132,7 +132,7 @@ public class DayCallsWorker implements Callable<String> {
 				} else {
 					stat.update(periodSum);
 					long periodId = period(lastRec.timestamp);
-					System.out.println(String.format("ts: %d \t dt: %d \t pi: %d", lastRec.timestamp, date.getTime(), periodId));
+					// System.out.println(String.format("ts: %d \t dt: %d \t pi: %d", lastRec.timestamp, date.getTime(), periodId));
 					outFiles.get((int) (periodId)).write(lastRec.SquareId + "\t" + periodSum + "\n");
 					periodSum = currentRec.CallsOut;
 				}
