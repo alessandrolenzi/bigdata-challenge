@@ -1,7 +1,11 @@
 package stronglyconnectedcomponents;
 
+import graph.BufferedGraph;
+import graph.UnvalidFileFormatException;
+
 import java.io.IOException;
 import java.util.BitSet;
+import java.util.Comparator;
 import java.util.Set;
 import java.util.Stack;
 import java.util.TreeSet;
@@ -9,10 +13,8 @@ import java.util.TreeSet;
 import common.Arc;
 import common.exceptions.NodeNotFound;
 
-import actual.BufferedGraph;
-import actual.UnvalidFileFormatException;
 
-public class TarjanEnabledGraph extends BufferedGraph<TarjanNode, Arc> {
+public class TarjanGraph extends BufferedGraph<TarjanNode, Arc> implements CCGraph<TarjanNode, Arc>{
 	
 	private BitSet indexedNodes = new BitSet();
 	private int index = 0;
@@ -20,12 +22,19 @@ public class TarjanEnabledGraph extends BufferedGraph<TarjanNode, Arc> {
 	
 	/** Constructor with fixed nodes and arcs class 
 	 * @throws UnvalidFileFormatException */
-	public TarjanEnabledGraph(String str, long max_memory) throws NoSuchMethodException, SecurityException, IOException, UnvalidFileFormatException {
+	
+	public TarjanGraph(String str, long max_memory) throws NoSuchMethodException, SecurityException, IOException, UnvalidFileFormatException {
 		super(str, max_memory, TarjanNode.class, Arc.class);
 		load();
 	}
 	
-	private boolean isIndexed(int node_id) { return node_id >= 0 && indexedNodes.size() >= node_id && indexedNodes.get(node_id) == true;}
+	public TarjanGraph(String str, long max_memory, Comparator<Arc> arcComparator) throws NoSuchMethodException, SecurityException, IOException, UnvalidFileFormatException {
+		super(str, max_memory, TarjanNode.class, Arc.class);
+		this.setArcOrder(arcComparator);
+		load();
+	}
+	
+	protected boolean isIndexed(int node_id) { return node_id >= 0 && indexedNodes.size() >= node_id && indexedNodes.get(node_id) == true;}
 	
 	/**
 	 * Returns the node with the requested id if found and the node doesn't belong to a SCC
@@ -84,6 +93,4 @@ public class TarjanEnabledGraph extends BufferedGraph<TarjanNode, Arc> {
 		
 		return null;
 	}
-	
-	
 }

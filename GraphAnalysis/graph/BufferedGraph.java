@@ -1,8 +1,9 @@
-package actual;
+package graph;
 
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Comparator;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -11,6 +12,7 @@ import net.sourceforge.sizeof.SizeOf;
 
 import DiskIndex.DiskIndex;
 import DiskIndex.DiskIndex.Interval;
+
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
@@ -25,7 +27,7 @@ import common.exceptions.UnvalidArc;
 import customreader.BufferEndedException;
 import customreader.CustomReader;
 
-public class BufferedGraph<N extends Node<A>, A extends Arc> extends Graph<N, A> {
+public class BufferedGraph<N extends Node<A>, A extends Arc> implements Graph<N, A> {
 	protected String file_name;
 	protected boolean ended = false;
 	protected Map<Integer, N> nodes;
@@ -37,7 +39,8 @@ public class BufferedGraph<N extends Node<A>, A extends Arc> extends Graph<N, A>
 	private long usedMemory = 0;
 	private CustomReader reader;
 	private DiskIndex index;
-	private Predicate<? super A> arc_predicate = null;
+	private Predicate<A> arc_predicate = null;
+	private Comparator<A> arc_comparator = null;
 	
 	public BufferedGraph(String str, long max_memory, Class<? extends N> node_class, Class<? extends A> arc_class) throws NoSuchMethodException, SecurityException, IOException {
 		file_name = str;
@@ -52,7 +55,6 @@ public class BufferedGraph<N extends Node<A>, A extends Arc> extends Graph<N, A>
 		index.put(0, 0L);
 		index.put(Integer.MAX_VALUE, reader.fileLength());
 	}
-	
 	
 	
 	public void load() throws IOException, UnvalidFileFormatException {load(true);}
@@ -210,11 +212,18 @@ public class BufferedGraph<N extends Node<A>, A extends Arc> extends Graph<N, A>
 		return binaryFindNode(node_id);
 	}
 
-
+	public void setArcOrder(Comparator<A> comparator) {
+		arc_comparator = comparator;
+	}
+	
+	public Comparator<A> getArcOrder() {
+		return arc_comparator;
+	}
+	
 	@Override
 	public Set<A> getAllOutgoingArcs(int node_id) throws NodeNotFound {
 		N node = this.getNode(node_id);
-		return node.getArcs(arc_predicate);
+		return getAllOutgoingArcs(node);
 	}
 
 	public void close() {
@@ -223,7 +232,7 @@ public class BufferedGraph<N extends Node<A>, A extends Arc> extends Graph<N, A>
 	}
 
 	@Override
-	protected void finalize() {
+	public void finalize() {
 		// TODO Auto-generated method stub
 		
 	}
@@ -235,9 +244,9 @@ public class BufferedGraph<N extends Node<A>, A extends Arc> extends Graph<N, A>
 	}
 
 	@Override
-	public Set<A> getAllOutgoingArcs(N n) throws NodeNotFound {
-		// TODO Auto-generated method stub
-		return null;
+	public Set<A> getAllOutgoingArcs(N node) throws IllegalArgumentException {
+		if (node == null) throw new IllegalArgumentException("Node is null, cannot find outgoing arcs");
+		return (arc_comparator == null) ? node.getArcs(arc_predicate) : node.getArcs(arc_predicate, arc_comparator);
 	}
 
 	@Override
