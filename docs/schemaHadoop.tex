@@ -1,0 +1,98 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\author{Michele Carignani, Alessandro Lenzi}
+\title{Big Data Challenge\\Clique a Milano\\Schema di implementazione con Hadoop}
+\begin{document}
+\maketitle
+
+\section{Goals}
+\begin{enumerate}
+ \item Split and aggregate MItoMI by hours
+ \item Split and aggregate TelcoMI by hours
+ \item Compute sum of MItoMI hours
+ \item Compute arcs probabilities in MItoMI
+ \item Look for Cliques (SCC? Clustering? WCC?)
+ \item Aggregate Cliques and get statistics 
+ \item Integrarate with other datasets (?)
+ 	\begin{itemize}
+ 		\item Execute same research for cliques on milan but using MI to Provinces dataset
+ 		\item Look for tweets in discovered cliques
+ 		\item look for events in milano today near cliques
+		\item Compare with same analysis on Trento (?)
+	\end{itemize}
+\end{enumerate}
+
+\section{Sub schemas}
+
+\subsection{1, (2?), 3}
+
+\begin{verbatim}
+Mapper<Timestamp, Value, "Day:Hour:Source" , "Dest:Value">
+Reducer<"Day:Hour:Source", iterator<Dest:Value>, "Day:Hour:Source:Sum", "String/List"> 
+\end{verbatim}
+
+\paragraph{Issues}
+\begin{itemize}
+ \item How to split the telco? use same map-reduce with switch on mapper key content or different map
+ reduce? Note: Files are distinct, data is not mixed, so performances should be the same
+ \item is it possible to double pass on the data and compute here the probabilities?
+\end{itemize}
+
+\subsection{4}
+\begin{verbatim}
+Mapper<D:H:S:Sum, Dest:Val, "Day:Hour:Source" , "Dest:Prob">
+no Reducer
+\end{verbatim}
+
+\subsection{5}
+
+\subsection{6}
+
+Come aggregare i dati sulle cricche orarie giorno per giorno?
+\begin{itemize}
+\item Cercare persistenza nella stessa fascia oraria su giorni differenti
+\item Cercare persistenza fra fasce orarie contigue
+\item Cercare clique che si ripetono (non importa se nella stessa fascia oraria)
+\item analisi sulla media: creare una distribuzione media di archi su tutto il periodo
+\item cercare eventi in corrispondenza di clique che appaiono o scompaiono
+\item clusterizzare le clique? cioè cercare cliques simili per zona coperta, dimensione, fascia oraria
+di appartenenza, stesso giorno della settimana etc.
+\item tutte queste cose insieme?
+\end{itemize}
+
+\section{Distributed graphs frameworks}
+\paragraph{Apache Giraph} From \url{https://giraph.apache.org}: ''Apache Giraph is an iterative graph processing system built for high scalability. For example, it is currently used at Facebook to analyze the social graph formed by users and their connections. Giraph originated as the open-source counterpart to Pregel, the graph processing architecture developed at Google and described in a 2010 paper. Both systems are inspired by the \textbf{Bulk Synchronous Parallel} model of distributed computation introduced by Leslie Valiant. Giraph adds several features beyond the basic Pregel model, including master computation, sharded aggregators, edge-oriented input, out-of-core computation, and more. With a steady development cycle and a growing community of users worldwide, Giraph is a natural choice for unleashing the potential of structured datasets at a massive scale. To learn more, consult the User Docs section above.''
+
+\paragraph{GraphX} From \url{http://amplab.github.io/graphx/}: ''GraphX extends the distributed fault-tolerant collections API and interactive console of Spark with a new graph API which leverages recent advances in graph systems (e.g., GraphLab) to enable users to easily and interactively build, transform, and reason about graph structured data at scale.''
+
+\paragraph{Apache Spark} Website \url{http://spark.incubator.apache.org/}: Runs 100x faster then Hadoop, on top of Yarn. ""Apache Spark™ is a fast and general engine for large-scale data processing.""
+
+\paragraph{X-RIME} Website \url{http://xrime.sourceforge.net/}. ''Hadoop based large scale social network analysis''.
+Currently Supported SNA Metrics and Structures:
+\begin{itemize}
+\item vertex degree statistics
+   \item  weakly connected components (WCC)
+   \item  strongly connected components (SCC)
+   \item  bi-connected components (BCC)
+    \item ego-centric network density
+    \item bread first search / single source shortest path (BFS/SSSP)
+    \item K-core
+    \item maximal cliques
+    \item pagerank
+    \item hyperlink-induced topic search (HITS)
+    \item minimal spanning tree (MST)
+    \item grid variant of Fruchterman-Reingold network layout algorithm
+\end{itemize}
+
+\textit{Commento: qui è praticamente tutto già fatto :/}
+
+\paragraph{[PAPER] Efficient graphs analysis with map reduce} \url{http://www.umiacs.umd.edu/~jimmylin/publications/Lin_Schatz_MLG2010.pdf}
+
+
+\end{document}
