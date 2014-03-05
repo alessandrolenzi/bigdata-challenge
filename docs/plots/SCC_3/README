@@ -1,0 +1,3 @@
+In questa cartella le SCC generate visitando i nodi per traffico decrescente e gli archi per probabilità crescente. 
+TarjanSCC.jar è nella cartella per riproducibilità
+

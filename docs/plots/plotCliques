@@ -1,0 +1,12 @@
+do for [f=0:23] {
+    # if (!exists(dir)) dir='dat/'
+    set output dir.f.'.png'
+    set terminal png
+    set view map
+    set key off
+    set xrange [0:100]
+    set yrange [0:100]
+    set zrange [0:200]
+    set title 'Dir '.dir.' hour '.f
+    splot dir.f.'.dat'  using 1:2:3 with points pointtype 5 pointsize 1 palette linewidth 1
+}
