@@ -1,0 +1,2 @@
+#!/bin/bash
+gnuplot -e "dir='$1'" plotData
