@@ -138,12 +138,12 @@ Il taglio con i percentili è stato appunto immaginato per risolvere questo prob
  
 \section{Risultati}
 \subsection{Statistiche}
-Al fine di comprendere quanto fosse effettivamente possibile trovare le CFC, sono state effettuate delle analisi sui pesi degli archi. In questo frangente, il fatto che i pesi degli archi rappresentino in realtà delle probabilità può essere trascurato e si può considerare tale analisi come effettuatasi su una variabile aleatoria (in seguito anche v.a.) $Prob$, rappresentante i pesi degli archi in un certo grafo orario. Visto il dominio applicativo la v.a. è discreta e con valori nell'intervallo $[0,1] \subset \mathbb{Q}$.\footnote{Sappiamo che l'idea di calcolare la probabilità di probabilità può sembrare strana; in ogni caso possiamo pensare che, dal nostro punto di vista, l'esperimento in questione sia il fatto che un arco abbia una certo valore.}
-Si noti che $Prob$ può essere ritenuta a pieno titolo una v.a., poiché:
+Al fine di comprendere quanto fosse effettivamente possibile trovare le CFC, sono state effettuate delle analisi sui pesi degli archi. In questo frangente, il fatto che i pesi degli archi rappresentino in realtà delle probabilità può essere trascurato e si può considerare tale analisi come effettuatasi su un processo stocastico $Prob$ a tempo discreto: fissata una certa ora, abbiamo una diversa variabile aleatoria (in seguito anche v.a.) $Prob(t)$, rappresentante i pesi degli archi in un certo grafo orario. Visto il dominio applicativo la v.a. è discreta e con valori nell'intervallo $[0,1]$.\footnote{Sappiamo che l'idea di calcolare la probabilità di probabilità può sembrare strana; in ogni caso possiamo pensare che, dal nostro punto di vista, l'esperimento in questione sia il fatto che un arco abbia una certo valore.}
+Si noti che $Prob(t)$ può essere ritenuta a pieno titolo una v.a., poiché:
 \begin{enumerate}
-\item $\forall x \in [0,1], \mathbb{P}(Prob = x) = \mathbb{P}(Prob = x^+)$
-\item $\sum_{\substack{x \in [0,1]}}{ \mathbb{P}(Prob = x)} = 1$
-\item $\forall x_1 < x_2 \in [0,1] \Rightarrow \mathbb{P}(Prob \leq x_1) \leq \mathbb{P}(Prob \leq x_2)$ 
+\item $\forall x \in [0,1], \mathbb{P}(Prob(t) = x) = \mathbb{P}(Prob(t) = x^+)$
+\item $\sum_{\substack{x \in [0,1]}}{ \mathbb{P}(Prob(t) = x)} = 1$
+\item $\forall x_1 < x_2 \in [0,1] \Rightarrow \mathbb{P}(Prob(t) \leq x_1) \leq \mathbb{P}(Prob(t) \leq x_2)$ 
 \end{enumerate}
 In fig. \ref{img:probs} sono mostrate alcune statistiche sulla variabile aleatoria di cui sopra.
 \begin{figure}
@@ -153,7 +153,7 @@ In fig. \ref{img:probs} sono mostrate alcune statistiche sulla variabile aleator
 \end{figure}
 Nella figura \emph{(a)} è stato evidenziata la media empirica della v.a. per ogni ora del 15 novembre. Si noti come durante la notte i valori medi siano sensibilmente più alti, a riprova del fatto che il numero di archi nella stella uscente di ogni nodo è minore in tali grafi orari. Tale ipotesi viene suffragata dal grafico mostrato in \emph{e}, in cui viene mostrato il numero di archi totali per ogni grafo orario. 
 
-In \emph{(b)} abbiamo invece scelto di evidenziare la varianza della v.a. $Prob$. Si noti che la varianza è estremamente basse negli orari lavorativi, mostrando come in questo caso i molti archi uscenti mostrati in \emph{(e)} tendano a stabilizzarsi sul valore medio.
+In \emph{(b)} abbiamo invece scelto di evidenziare la varianza della v.a. $Prob(ora)$ nel tempo. Si noti che la varianza è estremamente basse negli orari lavorativi, mostrando come in questo caso i molti archi uscenti mostrati in \emph{(e)} tendano a stabilizzarsi sul valore medio.
 
 In \emph{(c), (d)} mostriamo invece i massimi valori assunti dagli archi su ogni grafo orario. Di particolare interesse è \emph{(c)}, da cui si nota come anche nelle ore di traffico molto elevato esistano dei picchi notevoli nei valori degli archi. I minimi rimangono sempre invece nell'ordine di $10^{-9}$, mostrando comunque un incremento considerevole, seppur in scala, nelle ore notturne.
  
@@ -230,31 +230,33 @@ Si noti in ~\ref{list:scc1_0-005} come la dimensione delle componenti può varia
 \label{list:scc1_0-005}
 \end{figure}
 Il comportamento in questo caso non è quindi stato considerato soddisfacente, visto l'eccessivo sbilanciamento nelle dimensioni delle CFC e la difficoltà di individuarne una logica o dei confini a livello geografico.
-Con tagli maggiori i risultati non si rivelano differenti. In \label{scc1_0-05_night} si può vedere il comportamento notturno e in \label{scc1_0-05_day} quello diurno: 
+Con tagli maggiori i risultati non si rivelano differenti. In \label{scc1_0-05_night} si può vedere il comportamento notturno e in \label{scc1_0-05_day} quello diurno. In questo caso, come è possibile immaginare, le CFC sono mediamente di dimensioni minori (al massimo 718 nodi contro fino a 7971).
 
-Le componenti individuate nel taglio maggiore non sempre sono sottoinsiemi di quelle individuate in precedenza: anzi, ciò avviene in generale di rado e quando la CFC individuata ha come archi a se interna principalmente quelli con probabilità più elevata.
-Come si può vedere nell'algoritmo \ref{pseudotarjan}, infatti, viene svolta una visita di profondità. I nodi inoltre possono essere visitati una sola volta e una sola volta sono considerati come possibili appartenenti a una componente fortemente connessa.
+
+Le componenti individuate nel taglio maggiore non sempre sono sottoinsiemi di quelle individuate in precedenza; infatti, come si può vedere nell'algoritmo \ref{pseudotarjan}, viene svolta una visita di profondità in cui i nodi possono essere visitati una sola volta e dunque una sola volta possono venir considerati come possibili appartenenti a una componente fortemente connessa. 
 
 Dato il grafo senza tagli $G=(V,E)$ e sia $P:V \times V \to [0,1]$ la funzione che assegna un valore di probabilità agli archi, definiamo
-$P_{cut}(u,v) =
+
+$$P_{cut}(u,v) =
 \begin{cases}
 P(u,v) & \text{se } P(u,v) > cut\\
 0 	& \text{altrimenti}
-\end{cases}$
+\end{cases}$$
 
-Sia ora $G_{cut}=(V,E')$ il grafo tagliato, in cui $E' = \{(u,v) \in E : P_{cut}(u,v) > 0\}$. Definiamo ora la CFC ottenuta partendo da un nodo $v \in V$ come $C_{cut}( v ) = W \subseteq V. W \text{ è una CFC in } G_{cut} $. Infine sia $ T_{cut_{dfs}}(v) = T \subseteq V . T \text{ è l'insieme degli archi nell'albero generato dalla visita dfs in } G_{cut} \text{ originata in } v $ e $\alpha_{cut} (v, e) = \{ v_{0}, v_{1}, v_{2}, ... , v_{n-1}, v_{n} = e : \forall i = 0...n-1 . (v_{i}, v{i+1}) \in E' \}  \subseteq T_{cut_{dfs}}$ la sequenza di archi orientati che conduce dal nodo $v$ al nodo $e$.
+Sia ora $G_{cut}=(V,E')$ il grafo tagliato, in cui $E' = \{(u,v) \in E : P_{cut}(u,v) > 0\}$. Definiamo ora la CFC ottenuta partendo da un nodo $v \in V$ come $C_{cut}( v ) = W \subseteq V. W \text{ è una CFC in } G_{cut} $. Infine sia $ T_{cut_{dfs}}(v) = T \subseteq V . T \text{ è l'insieme degli archi nell'albero generato dalla visita dfs in } G_{cut} \text{ originata in } v $ e $\alpha_{cut} (v, w) = \{ v = v_{0}, v_{1}, v_{2}, ... , v_{n-1}, v_{n} = w : \forall i = 0...n-1 . (v_{i}, v{i+1}) \in E' \}  \subseteq T_{cut_{dfs}}( v )$ la sequenza di archi orientati che conduce dal nodo $v$ al nodo $w$.
 
-Sia $a,b \in G . a < b$, dove il $<$ significa che $a$ viene visitato prima di $b$. Supponiamo inoltre che esista $C_{c_{2}}( b )$ con cardinalità maggiore di 1; sia infine $c_{1} < c_{2}$, è possibile trovare un esempio che dimostri che:
+Sia $a,b \in G . a < b$, dove il $<$ significa che $a$ viene visitato prima di $b$. Supponiamo inoltre che esista $C_{c_{2}}( b )$ con cardinalità maggiore di 1; sia infine $c_{1} < c_{2}$, è possibile trovare un esempio per cui: 
 $$
-\exists x \in V . \alpha_{c_{1}}(a, x) \cap C_{c_{2}}( b ) \neq  \varnothing \Rightarrow C_{c_{2}}(b) \neq C_{c_{1}}( b ) \land |C_{c_{2}}(b)| > |C_{c_{1}}(b)|
+\exists x \in V . \alpha_{c_{1}}(a, x) \cap C_{c_{2}}( b ) = K \neq \varnothing \Rightarrow K \subseteq C_{c_{2}}( b ) \land K \nsubseteq C_{c_{1}}( b ) \Rightarrow C_{c_{2}}( b ) \nsubseteq C_{c_{1}}( b )
 $$
+Inoltre, non necessariamente questo è il caso in cui $C_{c_{2}}( b )$ entra a far parte di $C_{c_{1}}( a )$, basti pensare a $K = \{z\} . a \notin T_{{c_{1}}_{dfs}} ( z ) $. Perciò non è possibile ottenere nessuna relazione di inclusione tra CFC generate su diversi tagli.
 
+In poche parole, è possibile utilizzando \ref{pseudotarjan} che un taglio su un valore più basso possa reintrodurre nella ricerca delle CFC un cammino con almeno un arco il cui valore di $P$, contenuto tra $c_{1}$ e $c_{2}$, porti alla rimozione di nodi dalla CFC individuata con un taglio su un valore maggiore. Controintuitivamente, esistono casi in cui $C_{c_{1}}( b )$ potrebbe essere minore\footnote{ per esempio, se si verifica la condizione di cui sopra e nessun arco viene introdotto nella stella uscente di un qualsivoglia arco in $C_{c_2}( b ) $}, non esistere o venire assorbita. Sembra quindi complicato definire una qualsiasi relazione di inclusione tra le CFC generate su diversi tagli.
+Si noti come quanto detto è completamente generale rispetto al tipo di taglio (semplice o sul percentile) e si applichi a qualsiasi ordinamento delle visite dei nodi.
 
-In poche parole, è possibile che un taglio su un valore più basso possa reintrodurre nella ricerca delle CFC un cammino con almeno un arco il cui valore di $P$, contenuto tra $c_{1}$ e $c_{2}$, porti alla rimozione di nodi o addirittura alla disturzione della CFC individuata con un taglio su un valore maggiore. 
+Nel nostro contesto, anche minime variazioni nel taglio possono reintrodurre un gran numero di cammini e questo spiega perché non sempre si possono ritrovare su tagli con valori più bassi tutte le CFC individuate con tagli su valori più alti, che sarebbero intuitivamente più selettivi.
 
-Nel nostro contesto, anche minime variazioni nel taglio possono reintrodurre un gran numero di cammini e questo spiega perché non sempre si possono ritrovare su tagli con valori più bassi tutte le CFC individuate con tagli su valori più alti, che sarebbero intuivitamente più selettivi.
-
-Una possibile soluzione a questo problema potrebbe essere individuare una variazione a \ref{pseudotarjan} per cui una precedente visita di un nodo non lo  escluda successivamente dalla ricerca di ulteriori CFC, \textbf{pur mantenendo le CFC disgiunte}. In questo frangente presumibilmente la relazione di inclusione varrebbe.
+Una possibile soluzione a questo problema potrebbe essere individuare un algoritmo alternativo o una variazione a \ref{pseudotarjan} per cui una precedente visita di un nodo non lo  escluda successivamente dalla ricerca di ulteriori CFC, \textbf{pur mantenendo le CFC disgiunte}. In questo frangente presumibilmente la relazione di inclusione varrebbe più spesso, ma non sarebbe comunque verificata in generale poiché i nodi potrebbero entrare a far parte di CFC differenti in virtù del minor numero di archi esclusi. Tale "contromisura" si limiterebbe semplicemente a evitare il caso in cui una CFC verrebbe distrutta da una semplice esplorazione nella ricerca di un'altra, limitando la variazione negli insiemi di nodi individuati allo spostamento degli stessi da una CFC all'altra e all'inclusione di nuovi nodi.\footnote{Attualmente stiamo implementando questa variazione dell'algoritmo per verificare se i risultati ottenuti sono più soddisfacenti rispetto a quelli visti finora.}
 
 %\subsection{SCC1, taglio 0.05}
 %In questo caso, invece, le dimensioni delle componenti fortemente connesse diminuiscono notevolmente. Si noti, a conferma dell'ipotesi fatta in \ref{scc1_0-005}, come le dimensioni delle CFC calino drasticamente nelle ore di maggior traffico, mentre le ore che hanno un traffico inferiore sono caratterizzate da CFC più ampie.
