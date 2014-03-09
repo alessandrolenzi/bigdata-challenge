@@ -13,6 +13,7 @@ public class WritableArc implements Writable {
 	
 	int sourceNode, destinationNode;
 	double weight;
+	
 
 	/* (non-Javadoc)
 	 * @see org.apache.hadoop.io.Writable#readFields(java.io.DataInput)

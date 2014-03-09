@@ -40,10 +40,10 @@ import org.apache.hadoop.mapreduce.Mapper;
 			Integer k = 0;
 			String[] items = s.split(",", -1);
 			for(String i : items){
-				k = Integer.parseInt(i);
+				k = Integer.parseInt(i.replaceAll("\\s", ""));
 				res.add(k);
 			}
-			return (Integer[])(res.toArray());
+			return res.toArray(new Integer[0]);
 		}
 		
 		/**
@@ -73,11 +73,11 @@ import org.apache.hadoop.mapreduce.Mapper;
 			String p = conf.get("aggregationPeriod"),
 				   mf = conf.get("monthFilter");
 			if(p != null){
-				period = (Long.parseLong(p)) * 10 * 1000;
+				period = (Long.parseLong(p.replaceAll("\\s", ""))) * 10 * 1000;
 			}
 			
 			if(mf != null){
-				monthFilter = (Integer.parseInt(mf));
+				monthFilter = (Integer.parseInt(mf.replaceAll("\\s", "")));
 			}
 			
 			periodFilter = parseIntArray(conf.get("periodFilter"));
