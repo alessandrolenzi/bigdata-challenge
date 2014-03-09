@@ -2,8 +2,15 @@ package aggregated_graphs;
 
 
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
+
+
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Sets;
 
 /**
  * Aggregator: can be used also for complex filters definition.
@@ -11,12 +18,14 @@ import java.util.List;
  *
  */
 public class Aggregator {
-	private List<int[]> supportedWDays;
-	private List<int[]> supportedDays;
-	private List<int[]> supportedMonths;
-	private List<int[]> supportedHours;
-	String identifier = null;
-	int aggregationPeriod;
+	private HashSet<Integer> supportedWDays;
+	private HashSet<Integer> supportedDays;
+	private HashSet<Integer> supportedMonths;
+	private HashSet<Integer> supportedHours;
+	private String identifier = null;
+	private int year = 0;
+	private int aggregationPeriod;
+	private int seconds = 0;
 	/**
 	 * 
 	 * @param s represents a complex criteria expression. Format:
@@ -34,23 +43,48 @@ public class Aggregator {
 	 * W:[list of allowed week days, issued using Calendar.$DAYOFTHEWEEK]
 	 * D:[list of the allowed days]
 	 * M:[list of the allowed months]
+	 * Y:aaaa (no list allowed)
 	 * N:String identifying the criteria
 	 * @param aggregPeriod the aggregation period for translating hours back.
 	 * @throws IllegalArgumentException in case the name for the criteria is not supplied or a criteria has an invalid format
 	 */
 	public Aggregator(String s, int aggregPeriod) throws IllegalArgumentException{
-		supportedWDays = new LinkedList<int[]>();
-		supportedDays = new LinkedList<int[]>();
-		supportedMonths = new LinkedList<int[]>();
-		supportedHours = new LinkedList<int[]>();
+		supportedWDays = new HashSet<Integer>();
+		supportedDays = new HashSet<Integer>();
+		supportedMonths = new HashSet<Integer>();
+		supportedHours = new HashSet<Integer>();
 		String[] criteria = s.split(";");
 		aggregationPeriod = aggregPeriod;
 		for (String c: criteria) parseCriteria(c);
 		if (identifier == null) throw new IllegalArgumentException("Please provide a name for this aggregator");
-			
+		if (supportedMonths.size() == 0) critIntervals(Calendar.JANUARY+"-"+Calendar.DECEMBER, supportedMonths);
+		if (supportedDays.size() == 0)  critIntervals("1-31", supportedDays);
+		if (supportedWDays.size() == 0) critIntervals(Calendar.SUNDAY+"-"+Calendar.SATURDAY, supportedWDays);
+		if (supportedHours.size() == 0) critIntervals("0-23", supportedHours);
+		/** Calculate total seconds in the aggregation */
+		seconds = 3600 * supportedHours.size() * calculateValidDays();
 	}
 	
-	private void critIntervals(String string, List<int[]> l) {
+	private int calculateValidDays() {
+		int totalDays = 0;
+		Set<List<Integer>> allDays = Sets.cartesianProduct(ImmutableList.of(ImmutableSet.copyOf(supportedDays), ImmutableSet.copyOf(supportedMonths)));
+		Calendar cal = Calendar.getInstance();
+		cal.setLenient(false);
+		for (List<Integer> day: allDays) {
+			cal.set(year, day.get(0), day.get(1));
+			try {
+				int day_of_week = cal.get(Calendar.DAY_OF_WEEK);		
+				for (int weekday: supportedWDays)
+					if (weekday == day_of_week) totalDays++;
+			} catch (ArrayIndexOutOfBoundsException exc) {
+				//do nothing. Just go on and skip
+			}
+		}
+		return totalDays;
+	}
+
+
+	private void critIntervals(String string, Set<Integer> l) {
 		if (string.contains(",")) { /**	List of accepted values */
 			String[] singletons = string.split(",");
 			for(String s: singletons) critIntervals(s, l);
@@ -58,11 +92,13 @@ public class Aggregator {
 		}
 		if (string.contains("-")) { /** Interval */
 			String[] interval = string.split("-");
-			l.add(new int[] {Integer.parseInt(interval[0], Integer.parseInt(interval[1]))});
+			for (int i = Integer.parseInt(interval[0]); i <= Integer.parseInt(interval[1]); i++) {
+				l.add(i);
+			}
 			return;
 		}
 		/** Singleton */
-		l.add(new int[]{Integer.parseInt(string)});
+		l.add(Integer.parseInt(string));
 	}
 	
 	private void parseCriteria(String criteria) {
@@ -72,6 +108,7 @@ public class Aggregator {
 		case "W": critIntervals(record[1], supportedWDays); return;
 		case "D": critIntervals(record[1], supportedDays); return;
 		case "M": critIntervals(record[1], supportedMonths); return;
+		case "Y": year = Integer.parseInt(record[1]); return;
 		case "N": identifier = record[0]; return;
 		default: throw new IllegalArgumentException("The string \""+criteria+"\" is not a valid criteria");
 		}
@@ -90,26 +127,26 @@ public class Aggregator {
 		int hour = getHourFromPeriod(Integer.parseInt(fields[3]));
 		boolean respected = false;
 		/** Check criteria from most restrictive to least restrictive */
-		for (int[] allowedMonths: supportedMonths) {
-			respected = respected || checkCriteria(allowedMonths, month); 
+		for (int allowedMonths: supportedMonths) {
+			respected = respected || allowedMonths == month; 
 		}
 		if (!respected && supportedMonths.size() > 0) return false;
 		respected = false;
-		for (int[] allowedWeekDays: supportedWDays) {
+		for (int allowedWeekDay: supportedWDays) {
 			Calendar c = Calendar.getInstance();
 			c.set(year, month, day);
 			int day_of_week = c.get(Calendar.DAY_OF_WEEK);
-			respected = respected || checkCriteria(allowedWeekDays, day_of_week);
+			respected = respected || allowedWeekDay == day_of_week;
 		}
 		if (!respected && supportedWDays.size() > 0) return false;
 		respected = false;
-		for(int[] allowedDays : supportedDays) {
-			respected = respected || checkCriteria(allowedDays, day);
+		for(int allowedDays : supportedDays) {
+			respected = respected || allowedDays == day;
 		}
 		if (!respected && supportedDays.size() > 0) return false;
 		respected = false;
-		for (int[] allowedHours : supportedHours) {
-			respected = respected || checkCriteria(allowedHours, hour);
+		for (int allowedHours : supportedHours) {
+			respected = respected || allowedHours == hour;
 		}
 		return true;
 		
@@ -122,5 +159,9 @@ public class Aggregator {
 	
 	public String getIdentifier() {
 		return identifier;
+	}
+	
+	public int getTotalSeconds() {
+		return seconds;
 	}
 }

@@ -26,11 +26,11 @@ public class AverageGraph extends Mapper<Text, Text, Text, Text> {
 			aggregatorsList.add(new Aggregator(a, Integer.parseInt(conf.get("aggregationPeriod"))*10));		
 	}
 	
-	public String getEquivalenceClass(Text k) {
+	public String getAggregatorKey(Text k) {
 		String key = k.toString();
 		String src = key.split("-")[3];
 		for (Aggregator a: aggregatorsList)
-			if (a.respects(key)) return a.getIdentifier()+":"+src;
+			if (a.respects(key)) return a.getIdentifier()+":"+src+":"+(a.getTotalSeconds() / 600);
 		return "DEFAULT";
 	}
 	
@@ -38,10 +38,10 @@ public class AverageGraph extends Mapper<Text, Text, Text, Text> {
 			throws IOException, InterruptedException {
 		if (!initialized) initializeAggregator(context);
 		String arcProb[] = arc.toString().split(":");
-		String id = getEquivalenceClass(key)+":"+arcProb[0];
+		String id = getAggregatorKey(key)+":"+arcProb[0];
 		context.write(new Text(id), new Text(arcProb[1]));
 		/** Writes down something like:
-		 * aggregationName:source:destination, probability*/
+		 * aggregationName:aggregationSize(in slots of 10 minutes):source:destination, probability*/
 	}
 	
 

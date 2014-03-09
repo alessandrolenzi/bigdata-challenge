@@ -46,7 +46,6 @@ import org.apache.hadoop.mapreduce.Reducer;
         	Text newKey = new Text(key.toString() + "-" + sum);
         	ArcTail at;
         	double prob;
-        	
         	Iterator<ArcTail> lit = l.iterator();
         	while(lit.hasNext()){
         		at = lit.next();
@@ -54,4 +53,11 @@ import org.apache.hadoop.mapreduce.Reducer;
         		context.write(newKey, new Text(at.dest + ":" + prob));
         	}
         }
+        /**
+         * Con questa procedura, servono due modi differenti per fare il merge allo step successivo:
+         * infatti se l'aggregation period è > 10min, ci sono duplicati per lo stesso arco.
+         * Allora la probabilità di andare da a a b non sarà la media, ma la somma. 
+         * Serve insomma uno step ulteriore di map reduce. A meno che non si emendi direttamente qua.
+         * Per ora lascio così e faccio un'altro step di map reduce intermedio.
+         */
     }
