@@ -13,7 +13,6 @@ public class Utils {
 	 * @param filename the name of a file (format [anything]-yyyy-MM-dd.[ext])
 	 * @return Date of the first millisecond of the day specified in the filename
 	 */
-	@SuppressWarnings("unused")
 	public static Date dateFromFileName (String filename){
 
 		String[] split = filename.split("-",-1);
@@ -41,7 +40,6 @@ public class Utils {
 		return (Integer[])(res.toArray());
 	}
 	 
-	@SuppressWarnings("unused")
 	public static String datestringFromFilename (String filename) {
 			String[] split = filename.split("-",-1);
 			return split[1] + "-" + split[2] + "-" + split[3];
