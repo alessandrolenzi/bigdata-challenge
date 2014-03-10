@@ -24,7 +24,6 @@ public class Aggregator {
 	private HashSet<Integer> supportedHours;
 	private String identifier = null;
 	private int year = 0;
-	private int aggregationPeriod;
 	private int seconds = 0;
 	/**
 	 * 
@@ -48,13 +47,12 @@ public class Aggregator {
 	 * @param aggregPeriod the aggregation period for translating hours back.
 	 * @throws IllegalArgumentException in case the name for the criteria is not supplied or a criteria has an invalid format
 	 */
-	public Aggregator(String s, int aggregPeriod) throws IllegalArgumentException{
+	public Aggregator(String s) throws IllegalArgumentException{
 		supportedWDays = new HashSet<Integer>();
 		supportedDays = new HashSet<Integer>();
 		supportedMonths = new HashSet<Integer>();
 		supportedHours = new HashSet<Integer>();
 		String[] criteria = s.split(";");
-		aggregationPeriod = aggregPeriod;
 		for (String c: criteria) parseCriteria(c);
 		if (identifier == null) throw new IllegalArgumentException("Please provide a name for this aggregator");
 		if (supportedMonths.size() == 0) critIntervals(Calendar.JANUARY+"-"+Calendar.DECEMBER, supportedMonths);
@@ -118,13 +116,14 @@ public class Aggregator {
 		return (criteria.length == 1) ? criteria[0] == value : criteria[0] <= value && criteria[1] >= value;
 	}
 	
+	
 	public boolean respects(String key) {
-		// gets ((day-month-year-periodId-Source-Sum)
+		// gets day-month-year-hour
 		String[] fields = key.split("-");
 		int day = Integer.parseInt(fields[0]);
 		int month = Integer.parseInt(fields[1]);
 		int year = Integer.parseInt(fields[2]);
-		int hour = getHourFromPeriod(Integer.parseInt(fields[3]));
+		int hour = Integer.parseInt(fields[3]);
 		boolean respected = false;
 		/** Check criteria from most restrictive to least restrictive */
 		for (int allowedMonths: supportedMonths) {
@@ -151,14 +150,9 @@ public class Aggregator {
 		return true;
 		
 	}
-
-	private int getHourFromPeriod(int periodId) {
-		int time = periodId * aggregationPeriod;
-		return (int) Math.floor(time/3600);
-	}
 	
 	public String getIdentifier() {
-		return identifier;
+		return identifier+"-"+(getTotalSeconds()/600);
 	}
 	
 	public int getTotalSeconds() {
