@@ -5,3 +5,5 @@ target/
 *.aux
 *.png
 *.tgz
+*.jar
+hadoop*

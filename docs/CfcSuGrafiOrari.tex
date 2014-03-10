@@ -94,7 +94,7 @@ SquareID \t AggregatedCalls
 Inoltre, è stato generato un ulteriore file in cui, per il giorno analizzato, viene mostrato il traffico totale uscente da ogni griglia, sempre nel formato di cui sopra.
 
 I file generati sono stati dunque impiegati al fine della definizione di un ordinamento nella visita.
-Il primo approccio è stato quello di compiere la visita con criteri diversi per ogni ora, per una cui analisi dettagliata si rimanda alla rispettiva sottosezione nel listato sottostante:
+Il primo approccio è stato quello di compiere la visita con criteri diversi per ogni ora. 
 \begin{enumerate}
 \item SCC1, visibile in \ref{SCC1sec} è una visita del grafo con nodi ordinati per \textbf{traffico orario crescente} e con archi della stella uscente selezionati per \textbf{probabilità crescente} 
 \item SCC2 visita i nodi per \textbf{traffico orario decrescente} ordinando gli archi per \textbf{probabilità crescente}
@@ -138,14 +138,14 @@ Il taglio con i percentili è stato appunto immaginato per risolvere questo prob
  
 \section{Risultati}
 \subsection{Statistiche}
-Al fine di comprendere quanto fosse effettivamente possibile trovare le CFC, sono state effettuate delle analisi sui pesi degli archi. In questo frangente, il fatto che i pesi degli archi rappresentino in realtà delle probabilità può essere trascurato e si può considerare tale analisi come effettuatasi su un processo stocastico $Prob$ a tempo discreto: fissata una certa ora, abbiamo una diversa variabile aleatoria (in seguito anche v.a.) $Prob(t)$, rappresentante i pesi degli archi in un certo grafo orario. Visto il dominio applicativo la v.a. è discreta e con valori nell'intervallo $[0,1]$.\footnote{Sappiamo che l'idea di calcolare la probabilità di probabilità può sembrare strana; in ogni caso possiamo pensare che, dal nostro punto di vista, l'esperimento in questione sia il fatto che un arco abbia una certo valore.}
-Si noti che $Prob(t)$ può essere ritenuta a pieno titolo una v.a., poiché:
+Al fine di comprendere quanto fosse effettivamente possibile trovare le CFC, sono state effettuate delle analisi sui pesi degli archi. In questo frangente, il fatto che i pesi degli archi rappresentino in realtà delle probabilità può essere trascurato e si può considerare tale analisi come effettuatasi su un processo stocastico $Prob(x, t)$ a tempo discreto: fissata una certa ora, abbiamo una diversa variabile aleatoria (in seguito anche v.a.) $Prob(x, t)$, rappresentante i pesi degli archi ad una certa ora. Visto il dominio applicativo la v.a. è discreta e con valori nell'intervallo $[0,1]$.\footnote{Sappiamo che l'idea di calcolare la probabilità di probabilità può sembrare strana; in ogni caso possiamo pensare che, dal nostro punto di vista, l'esperimento in questione sia il fatto che un arco abbia una certo valore e per il momento si può astrarre dal fatto che lo stesso sia una probabilità.}
+Si noti che $Prob(t)$, dove $t$ è fissato ad un'ora del giorno, può essere ritenuta a pieno titolo una v.a., poiché:
 \begin{enumerate}
 \item $\forall x \in [0,1], \mathbb{P}(Prob(t) = x) = \mathbb{P}(Prob(t) = x^+)$
 \item $\sum_{\substack{x \in [0,1]}}{ \mathbb{P}(Prob(t) = x)} = 1$
 \item $\forall x_1 < x_2 \in [0,1] \Rightarrow \mathbb{P}(Prob(t) \leq x_1) \leq \mathbb{P}(Prob(t) \leq x_2)$ 
 \end{enumerate}
-In fig. \ref{img:probs} sono mostrate alcune statistiche sulla variabile aleatoria di cui sopra.
+In fig. \ref{img:probs} sono mostrate alcune statistiche sul processo di cui sopra.
 \begin{figure}
  \includegraphics[scale=.6]{img/probs15nov.png}
  \caption{Statistiche sui pesi degli archi, 15 novembre. Sulle ascisse le fascie orarie. Da sinistra a destra e dal basso verso l'alto abbiamo (a)...(e)}
@@ -156,6 +156,8 @@ Nella figura \emph{(a)} è stato evidenziata la media empirica della v.a. per og
 In \emph{(b)} abbiamo invece scelto di evidenziare la varianza della v.a. $Prob(ora)$ nel tempo. Si noti che la varianza è estremamente basse negli orari lavorativi, mostrando come in questo caso i molti archi uscenti mostrati in \emph{(e)} tendano a stabilizzarsi sul valore medio.
 
 In \emph{(c), (d)} mostriamo invece i massimi valori assunti dagli archi su ogni grafo orario. Di particolare interesse è \emph{(c)}, da cui si nota come anche nelle ore di traffico molto elevato esistano dei picchi notevoli nei valori degli archi. I minimi rimangono sempre invece nell'ordine di $10^{-9}$, mostrando comunque un incremento considerevole, seppur in scala, nelle ore notturne.
+
+Come si può vedere, questa analisi - per quanto inizialmente strana - risulta utile per comprendere al meglio il fenomeno studiato.
  
 \subsection{Componenti Fortemente Connesse}
 
@@ -168,7 +170,8 @@ z(x,y) =
 10k, & \text{se $(x,y)$ appartiene alla k-esima CFC trovata.}
 \end{cases}
 $$
-Il valore della funzione $z$ non ha alcun significato: è stato semplicemente utilizzato al fine di assegnare differenti colori a differenti CFC; la costante $10$ è un \emph{numero magico} che consente una differenza cromatica sufficiente a poter individuare differenti CFC in maniera pressoché immediata. Si noti come i grafici disegnino unicamente le celle appartenenti a delle CFC individuate e con cardinalità maggiore di uno e lo facciano nella posizione corretta secondo la griglia di separazione definita nei dataset.
+Il valore della funzione $z$ non ha alcun significato: è stato semplicemente utilizzato al fine di assegnare differenti colori a differenti CFC; la costante $10$ è tale da consentire una differenza cromatica sufficiente a poter individuare differenti CFC in maniera pressoché immediata. Si noti come i grafici disegnino unicamente le celle appartenenti a delle CFC individuate e con cardinalità maggiore di uno e lo facciano nella posizione corretta secondo la griglia di separazione definita nei dataset. Inoltre, attraverso ore diverse capita spesso che, anche quando la stessa CFC si ripete, il colore assegnatogli sia differente.
+Questo è dovuto al fatto che le CFC sono colorate nell'ordine in cui vengono scoperte nel grafo.
 
 \subsubsection{SCC1}\label{scc1_0-005}
 Come esempio per tutti i casi in cui l'ordine di visita dei nodi è indotto dal traffico orario, riportiamo il caso SCC1 con taglio degli archi con probabilità minore o uguale a 0.005.
@@ -230,9 +233,33 @@ Si noti in ~\ref{list:scc1_0-005} come la dimensione delle componenti può varia
 \label{list:scc1_0-005}
 \end{figure}
 Il comportamento in questo caso non è quindi stato considerato soddisfacente, visto l'eccessivo sbilanciamento nelle dimensioni delle CFC e la difficoltà di individuarne una logica o dei confini a livello geografico.
-Con tagli maggiori i risultati non si rivelano differenti. In \label{scc1_0-05_night} si può vedere il comportamento notturno e in \label{scc1_0-05_day} quello diurno. In questo caso, come è possibile immaginare, le CFC sono mediamente di dimensioni minori (al massimo 718 nodi contro fino a 7971).
-
-
+Con tagli maggiori i risultati non si rivelano differenti. In \label{scc1_0-05_night} si può vedere il comportamento notturno e in \label{scc1_0-05_day} quello diurno. In questo caso, come è possibile immaginare, le CFC sono mediamente di dimensioni minori (al massimo 718 nodi contro fino a 7971), ma tendono comunque ad essere molto estese e non ben delimitate dal punto di vista geografico. In \label{scc1_0-05_day} addirittura le CFC sono pressoché scomparse, indice di un taglio eccessivamente alto che ha eliminato buona parte degli archi, come si può vedere in \ref{img:probs}.
+\begin{figure}
+\centering
+\begin{subfigure}[b]{1\textwidth}
+\includegraphics[scale=.3]{./img/stampe/scc1/005/0.png}
+\includegraphics[scale=.3]{./img/stampe/scc1/005/1.png}
+\end{subfigure}
+\begin{subfigure}[b]{1\textwidth}
+\includegraphics[scale=.3]{./img/stampe/scc1/005/2.png}
+\includegraphics[scale=.3]{./img/stampe/scc1/005/3.png}
+\end{subfigure}
+\caption{comportamento nelle ore notturne (0-3) con SCC1 e taglio a 0.05}
+\label{scc1_0-05_night}
+\end{figure}
+\begin{figure}
+\centering
+\begin{subfigure}[b]{1\textwidth}
+\includegraphics[scale=.3]{./img/stampe/scc1/005/12.png}
+\includegraphics[scale=.3]{./img/stampe/scc1/005/13.png}
+\end{subfigure}
+\begin{subfigure}[b]{1\textwidth}
+\includegraphics[scale=.3]{./img/stampe/scc1/005/14.png}
+\includegraphics[scale=.3]{./img/stampe/scc1/005/15.png}
+\end{subfigure}
+\caption{comportamento nelle ore notturne (12-14) con SCC1 e taglio a 0.05}
+\label{scc1_0-05_day}
+\end{figure}
 Le componenti individuate nel taglio maggiore non sempre sono sottoinsiemi di quelle individuate in precedenza; infatti, come si può vedere nell'algoritmo \ref{pseudotarjan}, viene svolta una visita di profondità in cui i nodi possono essere visitati una sola volta e dunque una sola volta possono venir considerati come possibili appartenenti a una componente fortemente connessa. 
 
 Dato il grafo senza tagli $G=(V,E)$ e sia $P:V \times V \to [0,1]$ la funzione che assegna un valore di probabilità agli archi, definiamo
@@ -312,34 +339,49 @@ Una possibile soluzione a questo problema potrebbe essere individuare un algorit
 %%todo: continuare.
 
 \subsubsection{Stable, taglio al 99-esimo percentile}
-
-
+\label{stable3}
+In questo caso, come spiegato in precedenza, il taglio è stato effettuato sul valore soglia del 99-esimo percentile. Si noti come il taglio effettuato è estremamente più accurato rispetto ai precedenti in cui si tagliava semplicemente su un valore assoluto di probabilità: come si può vedere in \ref{img:probs}, infatti, il valore medio, i massimi e i minimi delle probabilità cambiano notevolmente lungo il corso della giornata. 
+Si veda infatti in \ref{scc1_0-05_day} come il taglio elimini buona parte degli archi, eliminando di fatto le CFC nelle ore di maggiore concentrazione dove i valori di probabilità sono molto prossimi alla media. 
+In \ref{stable-99-05} si vedono le CFC individuate; salvo quella in nero alle ore 0, le altre sono tutte geograficamente localizzate, ma hanno una dimensione molto bassa. Le CFC in \ref{stable-99-05} sono state sovrapposte in \ref{stableagg0599}. Si nota che solamente una CFC permane attraverso più ore, ed è pertanto mostrata più scuro. 
+Passando ora alle ore diurne, si veda \ref{stable-99-612}. Le CFC sono di dimensione piuttosto bassa, ma sono più geograficamente sparse. La maggior parte delle CFC sono localizzate in zone periferiche.
+Simili risultati possono essere visti in \ref{stable-99-1217} e \ref{stable-99-1823}. 
 \begin{figure}
 \centering
-
 \begin{subfigure}[b]{1\textwidth}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut99p/0.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut99p/1.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut99p/2.png}
-\end{subfigure}
-
-\begin{subfigure}[b]{1\textwidth}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut99p/3.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut99p/4.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut99p/5.png}
-\end{subfigure}
-
-\begin{subfigure}[b]{1\textwidth}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut99p/6.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut99p/7.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut99p/8.png}
+\includegraphics[scale=.4]{./img/SCC_Stable3/cut99p/0.png}
+\includegraphics[scale=.4]{./img/SCC_Stable3/cut99p/1.png}
 \end{subfigure}
 \begin{subfigure}[b]{1\textwidth}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut99p/9.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut99p/10.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut99p/11.png}
+\includegraphics[scale=.4]{./img/SCC_Stable3/cut99p/2.png}
+\includegraphics[scale=.4]{./img/SCC_Stable3/cut99p/3.png}
 \end{subfigure}
-\caption{Stable, Taglio 99-esimo percentile, h 0-11. Da vedere da sinistra verso destra e dall'alto verso il basso}
+\begin{subfigure}[b]{1\textwidth}
+\includegraphics[scale=.4]{./img/SCC_Stable3/cut99p/4.png}
+\includegraphics[scale=.4]{./img/SCC_Stable3/cut99p/5.png}
+\end{subfigure}
+\caption{Stable, Taglio 99-esimo percentile, h 0-5}
+\label{stable-99-05}
+\end{figure}
+\begin{figure}
+\includegraphics[scale=0.8]{./img/stampe/aggregato05.png}
+\caption{Le ore 0-5 in \ref{stable-99-05} sovrapposte}
+\label{stableagg0599}
+\end{figure}
+\begin{figure}
+\begin{subfigure}[b]{1\textwidth}
+\includegraphics[scale=.4]{./img/SCC_Stable3/cut99p/6.png}
+\includegraphics[scale=.4]{./img/SCC_Stable3/cut99p/7.png}
+\end{subfigure}
+\begin{subfigure}[b]{1\textwidth}
+\includegraphics[scale=.4]{./img/SCC_Stable3/cut99p/8.png}
+\includegraphics[scale=.4]{./img/SCC_Stable3/cut99p/9.png}
+\end{subfigure}
+\begin{subfigure}[b]{1\textwidth}
+\includegraphics[scale=.4]{./img/SCC_Stable3/cut99p/10.png}
+\includegraphics[scale=.4]{./img/SCC_Stable3/cut99p/11.png}
+\end{subfigure}
+\caption{Stable, Taglio 99-esimo percentile, h 6-11.}
+\label{stable-99-612}
 \end{figure}
 
 
@@ -347,154 +389,111 @@ Una possibile soluzione a questo problema potrebbe essere individuare un algorit
 \centering
 
 \begin{subfigure}[b]{1\textwidth}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut99p/12.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut99p/13.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut99p/14.png}
+\includegraphics[scale=.4]{./img/SCC_Stable3/cut99p/12.png}
+\includegraphics[scale=.4]{./img/SCC_Stable3/cut99p/13.png}
+\end{subfigure}
+\begin{subfigure}[b]{1\textwidth}
+\includegraphics[scale=.4]{./img/SCC_Stable3/cut99p/14.png}
+\includegraphics[scale=.4]{./img/SCC_Stable3/cut99p/15.png}
 \end{subfigure}
 
 \begin{subfigure}[b]{1\textwidth}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut99p/15.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut99p/16.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut99p/17.png}
+\includegraphics[scale=.4]{./img/SCC_Stable3/cut99p/16.png}
+\includegraphics[scale=.4]{./img/SCC_Stable3/cut99p/17.png}
 \end{subfigure}
-
-\begin{subfigure}[b]{1\textwidth}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut99p/18.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut99p/19.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut99p/20.png}
-\end{subfigure}
-\begin{subfigure}[b]{1\textwidth}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut99p/21.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut99p/22.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut99p/23.png}
-\end{subfigure}
-\caption{Stable, Taglio 99-esimo percentile, h 12-23. Da vedere da sinistra verso destra e dall'alto verso il basso}
-\end{figure}
-
-
-\subsubsection{Stable, taglio al 95-esimo percentile}
-
-\begin{figure}
-\centering
-\begin{subfigure}[b]{1\textwidth}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut95p/0.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut95p/1.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut95p/2.png}
-\end{subfigure}
-
-\begin{subfigure}[b]{1\textwidth}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut95p/3.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut95p/4.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut95p/5.png}
-\end{subfigure}
-
-\begin{subfigure}[b]{1\textwidth}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut95p/6.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut95p/7.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut95p/8.png}
-\end{subfigure}
-\begin{subfigure}[b]{1\textwidth}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut95p/9.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut95p/10.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut95p/11.png}
-\end{subfigure}
-\caption{Stable, Taglio 95-esimo percentile, h 0-11. Da vedere da sinistra verso destra e dall'alto verso il basso}
+\caption{Stable, Taglio 99-esimo percentile, h 12-17}
+\label{stable-99-1217}
 \end{figure}
 
 \begin{figure}
 \centering
-
 \begin{subfigure}[b]{1\textwidth}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut95p/12.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut95p/13.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut95p/14.png}
-\end{subfigure}
-
-\begin{subfigure}[b]{1\textwidth}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut95p/15.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut95p/16.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut95p/17.png}
-\end{subfigure}
-
-\begin{subfigure}[b]{1\textwidth}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut95p/18.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut95p/19.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut95p/20.png}
+\includegraphics[scale=.4]{./img/SCC_Stable3/cut99p/18.png}
+\includegraphics[scale=.4]{./img/SCC_Stable3/cut99p/19.png}
 \end{subfigure}
 \begin{subfigure}[b]{1\textwidth}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut95p/21.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut95p/22.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut95p/23.png}
+\includegraphics[scale=.4]{./img/SCC_Stable3/cut99p/20.png}
+\includegraphics[scale=.4]{./img/SCC_Stable3/cut99p/21.png}
 \end{subfigure}
-\caption{Stable, Taglio 95-esimo percentile, h 12-23. Da vedere da sinistra verso destra e dall'alto verso il basso}
+\begin{subfigure}[b]{1\textwidth}
+\includegraphics[scale=.4]{./img/SCC_Stable3/cut99p/22.png}
+\includegraphics[scale=.4]{./img/SCC_Stable3/cut99p/23.png}
+\end{subfigure}
+\caption{Stable, Taglio 99-esimo percentile, h 18-23.}
+\label{stable-99-1823}
 \end{figure}
-
-\subsubsection{Stable, taglio al 90-esimo percentile}
-
+\subsection{Stable, altri tagli}
+Sono stati provati diversi altri tagli, di cui si riportano in breve i risultati:
+\begin{enumerate}
+\item 98-esimo percentile: del tutto simile al 99-esimo
+\item 95-esimo percentile: mostra delle CFC leggermente più grandi e in numero minore
+\item 90-esimo percentile: si può vedere in \ref{cut901} e \ref{cut902} a puro scopo esemplificativo che sono decisamente grandi, ritornando a situazioni simili a quelle ottenute con tagli bassi su valori semplici e non sui percentili.
+\end{enumerate}
 \begin{figure}
 \centering
 \begin{subfigure}[b]{1\textwidth}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut90p/0.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut90p/1.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut90p/2.png}
+\includegraphics[scale=.20]{./img/SCC_Stable3/cut90p/0.png}
+\includegraphics[scale=.20]{./img/SCC_Stable3/cut90p/1.png}
+\includegraphics[scale=.20]{./img/SCC_Stable3/cut90p/2.png}
 \end{subfigure}
 
 \begin{subfigure}[b]{1\textwidth}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut90p/3.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut90p/4.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut90p/5.png}
+\includegraphics[scale=.20]{./img/SCC_Stable3/cut90p/3.png}
+\includegraphics[scale=.20]{./img/SCC_Stable3/cut90p/4.png}
+\includegraphics[scale=.20]{./img/SCC_Stable3/cut90p/5.png}
 \end{subfigure}
 
 \begin{subfigure}[b]{1\textwidth}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut90p/6.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut90p/7.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut90p/8.png}
+\includegraphics[scale=.20]{./img/SCC_Stable3/cut90p/6.png}
+\includegraphics[scale=.20]{./img/SCC_Stable3/cut90p/7.png}
+\includegraphics[scale=.20]{./img/SCC_Stable3/cut90p/8.png}
 \end{subfigure}
 \begin{subfigure}[b]{1\textwidth}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut90p/9.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut90p/10.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut90p/11.png}
+\includegraphics[scale=.20]{./img/SCC_Stable3/cut90p/9.png}
+\includegraphics[scale=.20]{./img/SCC_Stable3/cut90p/10.png}
+\includegraphics[scale=.20]{./img/SCC_Stable3/cut90p/11.png}
 \end{subfigure}
 \caption{Stable, Taglio 90-esimo percentile, h 0-11. Da vedere da sinistra verso destra e dall'alto verso il basso}
+\label{cut901}
 \end{figure}
 
 \begin{figure}
 \centering
 
 \begin{subfigure}[b]{1\textwidth}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut90p/12.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut90p/13.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut90p/14.png}
+\includegraphics[scale=.20]{./img/SCC_Stable3/cut90p/12.png}
+\includegraphics[scale=.20]{./img/SCC_Stable3/cut90p/13.png}
+\includegraphics[scale=.20]{./img/SCC_Stable3/cut90p/14.png}
 \end{subfigure}
 
 \begin{subfigure}[b]{1\textwidth}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut90p/15.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut90p/16.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut90p/17.png}
+\includegraphics[scale=.20]{./img/SCC_Stable3/cut90p/15.png}
+\includegraphics[scale=.20]{./img/SCC_Stable3/cut90p/16.png}
+\includegraphics[scale=.20]{./img/SCC_Stable3/cut90p/17.png}
 \end{subfigure}
 
 \begin{subfigure}[b]{1\textwidth}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut90p/18.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut90p/19.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut90p/20.png}
+\includegraphics[scale=.20]{./img/SCC_Stable3/cut90p/18.png}
+\includegraphics[scale=.20]{./img/SCC_Stable3/cut90p/19.png}
+\includegraphics[scale=.20]{./img/SCC_Stable3/cut90p/20.png}
 \end{subfigure}
 \begin{subfigure}[b]{1\textwidth}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut90p/21.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut90p/22.png}
-\includegraphics[scale=.3]{./img/SCC_Stable3/cut90p/23.png}
+\includegraphics[scale=.20]{./img/SCC_Stable3/cut90p/21.png}
+\includegraphics[scale=.20]{./img/SCC_Stable3/cut90p/22.png}
+\includegraphics[scale=.20]{./img/SCC_Stable3/cut90p/23.png}
 \end{subfigure}
 \caption{Stable, Taglio 90-esimo percentile, h 12-23. Da vedere da sinistra verso destra e dall'alto verso il basso}
+\label{cut901}
 \end{figure}
 
 \section{Alcune conclusioni}
 
 \begin{enumerate}
-\item Occorre effettuare tagli con valore molto alto perchè il grafo è inerentemente fortemente connesso.
-\item Le statistiche sulle probabilità degli archi denotano l'effettiva esistenza di square che si chiamano
-più degli altri negli orari non lavorativi.
+\item Occorre effettuare tagli con valore molto alto perchè il grafo è fortemente connesso.
+\item Le statistiche sulle probabilità degli archi denotano l'effettiva esistenza di zone che si chiamano reciprocamente con probabilità notevolmente maggiore rispetto alla media.
 \item La strategia di visita incide molto nella formazione del risultato e probabilmente il problema di
 non considerare mai due volte lo stesso nodo può eliminare delle CFC interessanti.
-\item Il numero di CFC è più basso di quello attesa, tuttavia le CFC sono ben distribuite spazialmente 
+\item Il numero di CFC è più basso di quello atteso, tuttavia le CFC sono abbastanza ben distribuite spazialmente 
 sulla grid; si noti anche come al variare delle fasce orarie variano le zone in cui vengono scoperte
 le CFC.
 \item Sopratutto nelle ore di minor traffico si individuano principalmente CFC che potrebbero essere
@@ -510,10 +509,10 @@ i percentili vengono calcolati per ogni fascia oraria.
 \begin{enumerate}
 \item Implementazione di tutta l'analisi su Hadoop.
 \item Cercare le  componenti debolmente connesse.
-\item Strategie di clustering.
+\item Strategie di clustering (ad esempio Markov Cluster).
 \item Ampliare il periodo analizzato per includere tutti i giorni di novembre e dicembre (da decidere
 come aggregare i risultati giornalieri)
-\item affinare il periodo di aggregazione? (e.g. passare a fasce di 30 min)
+\item affinare il periodo di aggregazione? (e.g. passare a fasce di 30 min, o fasce parametriche)
 \end{enumerate}
 
 \end{document}

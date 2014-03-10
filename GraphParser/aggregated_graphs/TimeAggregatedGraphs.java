@@ -3,6 +3,7 @@ import java.io.IOException;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
@@ -33,28 +34,41 @@ public class TimeAggregatedGraphs {
 			// c.set("periodFilter", "10");
 
 		// 3. select only a subset of day in the month, comma separated
-			conf.set("dayOfMonthFilter", "5, 15, 25, 30");
+			//conf.set("dayOfMonthFilter", "5, 15, 25, 30");
 		
 		// 4. select only a month (10 or 11)
-			conf.set("monthFilter", "11");
-		
+		//	conf.set("monthFilter", "11");
+			conf.set("globalAggregators", "H:7-13;M:11;W:2;Y:2013;N:MondayMorning");
 		// 5. select only a subset of day in the week, comma separated (sunday == 1)
 			// c.set("dayOfWeekArray", "2");
+		
+		Job first =  Job.getInstance(conf, "filter of probability graphs");
+		first.setJarByClass(TimeAggregatedGraphs.class);
+		first.setMapperClass(TimeAggregatedArcsMapper.class);
+		first.setReducerClass(ProbabilitiesReducer.class);
+		first.setOutputKeyClass(Text.class);
+		first.setOutputKeyClass(Text.class);
+		/**
+		 * mISSING FORMATS: CHECK
+		 */
+		FileInputFormat.setInputPaths(first, new Path(args[0]));
+		FileOutputFormat.setOutputPath(first, new Path("intermediate_filter"));
+		
+		Job second = Job.getInstance(conf, "create aggregated probability graphs");
+		second.setJarByClass(TimeAggregatedGraphs.class);
+		second.setMapperClass(AverageGraph.class);
+		second.setReducerClass(MeanReducer.class);
+		second.setOutputKeyClass(Text.class);
+		second.setOutputValueClass(Text.class);
+		FileInputFormat.setInputPaths(second,  new Path("intermediate_filter/*"));
+		FileOutputFormat.setOutputPath(second, new Path(args[1]));
 
+		first.submit();
+		if (first.waitForCompletion(true)) {
+			second.submit();
+		} else System.exit(1);
 		
-		Job j =  Job.getInstance(conf);
-
-		j.setJobName("create aggregated probability graphs");
-		
-		FileInputFormat.setInputPaths(j, new Path(args[0]));
-		FileOutputFormat.setOutputPath(j, new Path(args[1]));
-		
-		j.setMapperClass(TimeAggregatedArcsMapper.class);
-		j.setReducerClass(ProbabilitiesReducer.class);
-		
-		j.setJarByClass(TimeAggregatedGraphs.class);
-		
-		System.exit(j.waitForCompletion(true) ? 0 : 1);
+		System.exit(second.waitForCompletion(true) ? 0 : 1);
 		
 	}
 

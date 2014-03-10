@@ -79,12 +79,12 @@ public class TarjanSCC implements Iterator<Integer>{
 	}
 
 	/**** Loading all information for a certain hour***/
-	private TarjanGraph loadHour(int hour) throws IOException, UnvalidFileFormatException {
+	private ExtendedTarjanGraph loadHour(int hour) throws IOException, UnvalidFileFormatException {
 		this.loadVisitOrder(traffic.getAbsolutePath()+"/"+hour+".traffic", visitOrder);
 		this.loadOutputFiles(hour);
 		try {
 			/** Load the graph*/
-			TarjanGraph graph = new TarjanGraph(this.hour.getAbsolutePath()+"/"+hour+".hr", 1024*1024*1024);
+			ExtendedTarjanGraph graph = new ExtendedTarjanGraph(this.hour.getAbsolutePath()+"/"+hour+".hr", 1024*1024*1024);
 			if(arcOrder != null) graph.setArcOrder(arcOrder);
 			return graph;
 		} catch (NoSuchMethodException e) {
@@ -138,7 +138,7 @@ public class TarjanSCC implements Iterator<Integer>{
 		int currentHour = this.nextHour();
 		//System.err.println("Hour is next scc");
 		if (currentHour == -1) return;
-		TarjanGraph graph = this.loadHour(currentHour);
+		ExtendedTarjanGraph graph = this.loadHour(currentHour);
 		//System.err.println("Graph Loaded");
 		if (graph == null) return;
 		
@@ -154,7 +154,7 @@ public class TarjanSCC implements Iterator<Integer>{
 			//System.err.println("Node:"+currentHour);
 			if (curNodeId == -1) { return;}
 			try {
-				Set<Integer> foundSCC = graph.findStronglyConnectedComponent(curNodeId);
+				Set<Integer> foundSCC = graph.findStronglyConnectedComponentCaller(curNodeId);
 				this.writeFoundInformation(foundSCC, currentHour, curNodeId);
 			} catch (NodeNotFound e) {
 				this.writeErrorLog("Node not found:"+curNodeId);

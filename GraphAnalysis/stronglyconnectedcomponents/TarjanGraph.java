@@ -16,7 +16,7 @@ import common.exceptions.NodeNotFound;
 
 public class TarjanGraph extends BufferedGraph<TarjanNode, Arc> implements CCGraph<TarjanNode, Arc>{
 	
-	private BitSet indexedNodes = new BitSet();
+	protected BitSet indexedNodes = new BitSet();
 	private int index = 0;
 	private Stack<TarjanNode> stack = new Stack<TarjanNode>();
 	

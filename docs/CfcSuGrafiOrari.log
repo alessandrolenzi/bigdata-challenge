@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.11.29)  5 MAR 2014 02:31
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.11.29)  5 MAR 2014 16:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -500,7 +500,19 @@ Package: subcaption 2012/01/12 v1.1d Sub-captions (AR)
 )
 (./CfcSuGrafiOrari.aux
 
+LaTeX Warning: Label `scc1_0-05_day' multiply defined.
+
+
 LaTeX Warning: Label `list:scc1_0-005' multiply defined.
+
+
+LaTeX Warning: Label `scc1_0-05_night' multiply defined.
+
+
+LaTeX Warning: Label `scc1_0-05_day' multiply defined.
+
+
+LaTeX Warning: Label `cut901' multiply defined.
 
 )
 \openout1 = `CfcSuGrafiOrari.aux'.
@@ -584,724 +596,637 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 19.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
-) [1
+)
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
+LaTeX Warning: Reference `SCC1sec' on page 1 undefined on input line 99.
 
-LaTeX Warning: Reference `SCC1sec' on page 3 undefined on input line 99.
+[1
 
-
-LaTeX Warning: Reference `stable3' on page 3 undefined on input line 106.
-
-[3] <img/probs15nov.png, id=103, 743.6583pt x 480.5955pt>
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
+<img/probs15nov.png, id=100, 743.6583pt x 480.5955pt>
 File: img/probs15nov.png Graphic file (type png)
-
-<use img/probs15nov.png>
+ <use img/probs15nov.png>
 Package pdftex.def Info: img/probs15nov.png used on input line 150.
 (pdftex.def)             Requested size: 446.19843pt x 288.35953pt.
- [4 <./img/probs15nov.png>]
 
-LaTeX Warning: Reference `scc1_0-005-day' on page 5 undefined on input line 175
+[4 <./img/probs15nov.png>]
+
+LaTeX Warning: Reference `scc1_0-005-day' on page 5 undefined on input line 178
 .
 
 
-LaTeX Warning: Reference `scc1_0-005-day' on page 5 undefined on input line 176
+LaTeX Warning: Reference `scc1_0-005-day' on page 5 undefined on input line 179
 .
 
 
-LaTeX Warning: Reference `scc1_0-005-day' on page 5 undefined on input line 176
+LaTeX Warning: Reference `scc1_0-005-day' on page 5 undefined on input line 179
 .
 
-<./img/stampe/scc1/0.png, id=119, 481.8pt x 361.35pt>
+<./img/stampe/scc1/0.png, id=116, 481.8pt x 361.35pt>
 File: ./img/stampe/scc1/0.png Graphic file (type png)
 
 <use ./img/stampe/scc1/0.png>
-Package pdftex.def Info: ./img/stampe/scc1/0.png used on input line 180.
+Package pdftex.def Info: ./img/stampe/scc1/0.png used on input line 183.
 (pdftex.def)             Requested size: 240.8994pt x 180.67456pt.
 
-<./img/stampe/scc1/1.png, id=120, 481.8pt x 361.35pt>
+<./img/stampe/scc1/1.png, id=117, 481.8pt x 361.35pt>
 File: ./img/stampe/scc1/1.png Graphic file (type png)
 
 <use ./img/stampe/scc1/1.png>
-Package pdftex.def Info: ./img/stampe/scc1/1.png used on input line 181.
+Package pdftex.def Info: ./img/stampe/scc1/1.png used on input line 184.
 (pdftex.def)             Requested size: 240.8994pt x 180.67456pt.
 
-Overfull \hbox (31.05312pt too wide) in paragraph at lines 180--182
+Overfull \hbox (31.05312pt too wide) in paragraph at lines 183--185
 [][] [] 
  []
 
-<./img/stampe/scc1/2.png, id=121, 481.8pt x 361.35pt>
+<./img/stampe/scc1/2.png, id=118, 481.8pt x 361.35pt>
 File: ./img/stampe/scc1/2.png Graphic file (type png)
 
 <use ./img/stampe/scc1/2.png>
-Package pdftex.def Info: ./img/stampe/scc1/2.png used on input line 184.
+Package pdftex.def Info: ./img/stampe/scc1/2.png used on input line 187.
 (pdftex.def)             Requested size: 240.8994pt x 180.67456pt.
 
-<./img/stampe/scc1/3.png, id=122, 481.8pt x 361.35pt>
+<./img/stampe/scc1/3.png, id=119, 481.8pt x 361.35pt>
 File: ./img/stampe/scc1/3.png Graphic file (type png)
 
 <use ./img/stampe/scc1/3.png>
-Package pdftex.def Info: ./img/stampe/scc1/3.png used on input line 185.
+Package pdftex.def Info: ./img/stampe/scc1/3.png used on input line 188.
 (pdftex.def)             Requested size: 240.8994pt x 180.67456pt.
 
-Overfull \hbox (31.05312pt too wide) in paragraph at lines 184--186
+Overfull \hbox (31.05312pt too wide) in paragraph at lines 187--189
 [][] [] 
  []
 
-<./img/stampe/scc1/12.png, id=123, 481.8pt x 361.35pt>
+<./img/stampe/scc1/12.png, id=120, 481.8pt x 361.35pt>
 File: ./img/stampe/scc1/12.png Graphic file (type png)
 
 <use ./img/stampe/scc1/12.png>
-Package pdftex.def Info: ./img/stampe/scc1/12.png used on input line 193.
+Package pdftex.def Info: ./img/stampe/scc1/12.png used on input line 196.
 (pdftex.def)             Requested size: 240.8994pt x 180.67456pt.
 
-<./img/stampe/scc1/13.png, id=124, 481.8pt x 361.35pt>
+<./img/stampe/scc1/13.png, id=121, 481.8pt x 361.35pt>
 File: ./img/stampe/scc1/13.png Graphic file (type png)
 
 <use ./img/stampe/scc1/13.png>
-Package pdftex.def Info: ./img/stampe/scc1/13.png used on input line 194.
+Package pdftex.def Info: ./img/stampe/scc1/13.png used on input line 197.
 (pdftex.def)             Requested size: 240.8994pt x 180.67456pt.
 
-Overfull \hbox (31.05312pt too wide) in paragraph at lines 193--195
+Overfull \hbox (31.05312pt too wide) in paragraph at lines 196--198
 [][] [] 
  []
 
-<./img/stampe/scc1/14.png, id=125, 481.8pt x 361.35pt>
+<./img/stampe/scc1/14.png, id=122, 481.8pt x 361.35pt>
 File: ./img/stampe/scc1/14.png Graphic file (type png)
 
 <use ./img/stampe/scc1/14.png>
-Package pdftex.def Info: ./img/stampe/scc1/14.png used on input line 197.
+Package pdftex.def Info: ./img/stampe/scc1/14.png used on input line 200.
 (pdftex.def)             Requested size: 240.8994pt x 180.67456pt.
 
-<./img/stampe/scc1/15.png, id=126, 481.8pt x 361.35pt>
+<./img/stampe/scc1/15.png, id=123, 481.8pt x 361.35pt>
 File: ./img/stampe/scc1/15.png Graphic file (type png)
 
 <use ./img/stampe/scc1/15.png>
-Package pdftex.def Info: ./img/stampe/scc1/15.png used on input line 198.
+Package pdftex.def Info: ./img/stampe/scc1/15.png used on input line 201.
 (pdftex.def)             Requested size: 240.8994pt x 180.67456pt.
 
-Overfull \hbox (31.05312pt too wide) in paragraph at lines 197--199
+Overfull \hbox (31.05312pt too wide) in paragraph at lines 200--202
 [][] [] 
  []
 
-[5] [6 <./img/stampe/scc1/0.png> <./img/stampe/scc1/1.png> <./img/stampe/scc1/2
-.png> <./img/stampe/scc1/3.png>] [7 <./img/stampe/scc1/12.png> <./img/stampe/sc
-c1/13.png> <./img/stampe/scc1/14.png> <./img/stampe/scc1/15.png>]
-<./img/SCC_Stable3/cut99p/0.png, id=160, 481.8pt x 361.35pt>
+<./img/stampe/scc1/005/0.png, id=127, 642.4pt x 481.8pt>
+File: ./img/stampe/scc1/005/0.png Graphic file (type png)
+
+<use ./img/stampe/scc1/005/0.png>
+Package pdftex.def Info: ./img/stampe/scc1/005/0.png used on input line 240.
+(pdftex.def)             Requested size: 192.72148pt x 144.5411pt.
+
+<./img/stampe/scc1/005/1.png, id=128, 642.4pt x 481.8pt>
+File: ./img/stampe/scc1/005/1.png Graphic file (type png)
+
+<use ./img/stampe/scc1/005/1.png>
+Package pdftex.def Info: ./img/stampe/scc1/005/1.png used on input line 241.
+(pdftex.def)             Requested size: 192.72148pt x 144.5411pt.
+
+<./img/stampe/scc1/005/2.png, id=129, 642.4pt x 481.8pt>
+File: ./img/stampe/scc1/005/2.png Graphic file (type png)
+
+<use ./img/stampe/scc1/005/2.png>
+Package pdftex.def Info: ./img/stampe/scc1/005/2.png used on input line 244.
+(pdftex.def)             Requested size: 192.72148pt x 144.5411pt.
+
+<./img/stampe/scc1/005/3.png, id=130, 642.4pt x 481.8pt>
+File: ./img/stampe/scc1/005/3.png Graphic file (type png)
+
+<use ./img/stampe/scc1/005/3.png>
+Package pdftex.def Info: ./img/stampe/scc1/005/3.png used on input line 245.
+(pdftex.def)             Requested size: 192.72148pt x 144.5411pt.
+
+<./img/stampe/scc1/005/12.png, id=131, 642.4pt x 481.8pt>
+File: ./img/stampe/scc1/005/12.png Graphic file (type png)
+
+<use ./img/stampe/scc1/005/12.png>
+Package pdftex.def Info: ./img/stampe/scc1/005/12.png used on input line 253.
+(pdftex.def)             Requested size: 192.72148pt x 144.5411pt.
+
+<./img/stampe/scc1/005/13.png, id=132, 642.4pt x 481.8pt>
+File: ./img/stampe/scc1/005/13.png Graphic file (type png)
+
+<use ./img/stampe/scc1/005/13.png>
+Package pdftex.def Info: ./img/stampe/scc1/005/13.png used on input line 254.
+(pdftex.def)             Requested size: 192.72148pt x 144.5411pt.
+
+<./img/stampe/scc1/005/14.png, id=133, 642.4pt x 481.8pt>
+File: ./img/stampe/scc1/005/14.png Graphic file (type png)
+
+<use ./img/stampe/scc1/005/14.png>
+Package pdftex.def Info: ./img/stampe/scc1/005/14.png used on input line 257.
+(pdftex.def)             Requested size: 192.72148pt x 144.5411pt.
+
+<./img/stampe/scc1/005/15.png, id=134, 642.4pt x 481.8pt>
+File: ./img/stampe/scc1/005/15.png Graphic file (type png)
+
+<use ./img/stampe/scc1/005/15.png>
+Package pdftex.def Info: ./img/stampe/scc1/005/15.png used on input line 258.
+(pdftex.def)             Requested size: 192.72148pt x 144.5411pt.
+ [5] [6 <./img/stampe/scc1/0.png> <./img/stampe/scc1/1.png> <./img/stampe/scc1/
+2.png> <./img/stampe/scc1/3.png>] [7 <./img/stampe/scc1/12.png> <./img/stampe/s
+cc1/13.png> <./img/stampe/scc1/14.png> <./img/stampe/scc1/15.png>] [8 <./img/st
+ampe/scc1/005/0.png> <./img/stampe/scc1/005/1.png> <./img/stampe/scc1/005/2.png
+> <./img/stampe/scc1/005/3.png>]
+<./img/SCC_Stable3/cut99p/0.png, id=183, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut99p/0.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut99p/0.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut99p/0.png used on input line 321.
+Package pdftex.def Info: ./img/SCC_Stable3/cut99p/0.png used on input line 351.
 
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 256.95544pt x 192.71658pt.
 
-<./img/SCC_Stable3/cut99p/1.png, id=161, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut99p/1.png, id=184, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut99p/1.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut99p/1.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut99p/1.png used on input line 322.
+Package pdftex.def Info: ./img/SCC_Stable3/cut99p/1.png used on input line 352.
 
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 256.95544pt x 192.71658pt.
 
-<./img/SCC_Stable3/cut99p/2.png, id=162, 481.8pt x 361.35pt>
+Overfull \hbox (63.1652pt too wide) in paragraph at lines 351--353
+[][] [] 
+ []
+
+<./img/SCC_Stable3/cut99p/2.png, id=185, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut99p/2.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut99p/2.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut99p/2.png used on input line 323.
+Package pdftex.def Info: ./img/SCC_Stable3/cut99p/2.png used on input line 355.
 
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 256.95544pt x 192.71658pt.
 
-<./img/SCC_Stable3/cut99p/3.png, id=163, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut99p/3.png, id=186, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut99p/3.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut99p/3.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut99p/3.png used on input line 327.
+Package pdftex.def Info: ./img/SCC_Stable3/cut99p/3.png used on input line 356.
 
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 256.95544pt x 192.71658pt.
 
-<./img/SCC_Stable3/cut99p/4.png, id=164, 481.8pt x 361.35pt>
+Overfull \hbox (63.1652pt too wide) in paragraph at lines 355--357
+[][] [] 
+ []
+
+<./img/SCC_Stable3/cut99p/4.png, id=187, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut99p/4.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut99p/4.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut99p/4.png used on input line 328.
+Package pdftex.def Info: ./img/SCC_Stable3/cut99p/4.png used on input line 359.
 
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 256.95544pt x 192.71658pt.
 
-<./img/SCC_Stable3/cut99p/5.png, id=165, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut99p/5.png, id=188, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut99p/5.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut99p/5.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut99p/5.png used on input line 329.
+Package pdftex.def Info: ./img/SCC_Stable3/cut99p/5.png used on input line 360.
 
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 256.95544pt x 192.71658pt.
 
-<./img/SCC_Stable3/cut99p/6.png, id=166, 481.8pt x 361.35pt>
+Overfull \hbox (63.1652pt too wide) in paragraph at lines 359--361
+[][] [] 
+ []
+
+<./img/stampe/aggregato05.png, id=189, 514.01022pt x 385.71068pt>
+File: ./img/stampe/aggregato05.png Graphic file (type png)
+
+<use ./img/stampe/aggregato05.png>
+Package pdftex.def Info: ./img/stampe/aggregato05.png used on input line 366.
+(pdftex.def)             Requested size: 411.20872pt x 308.56894pt.
+
+<./img/SCC_Stable3/cut99p/6.png, id=192, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut99p/6.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut99p/6.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut99p/6.png used on input line 333.
+Package pdftex.def Info: ./img/SCC_Stable3/cut99p/6.png used on input line 372.
 
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 256.95544pt x 192.71658pt.
 
-<./img/SCC_Stable3/cut99p/7.png, id=167, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut99p/7.png, id=193, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut99p/7.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut99p/7.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut99p/7.png used on input line 334.
+Package pdftex.def Info: ./img/SCC_Stable3/cut99p/7.png used on input line 373.
 
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 256.95544pt x 192.71658pt.
 
-<./img/SCC_Stable3/cut99p/8.png, id=168, 481.8pt x 361.35pt>
+Overfull \hbox (63.1652pt too wide) in paragraph at lines 372--374
+[][] [] 
+ []
+
+<./img/SCC_Stable3/cut99p/8.png, id=194, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut99p/8.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut99p/8.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut99p/8.png used on input line 335.
+Package pdftex.def Info: ./img/SCC_Stable3/cut99p/8.png used on input line 376.
 
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 256.95544pt x 192.71658pt.
 
-<./img/SCC_Stable3/cut99p/9.png, id=169, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut99p/9.png, id=195, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut99p/9.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut99p/9.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut99p/9.png used on input line 338.
+Package pdftex.def Info: ./img/SCC_Stable3/cut99p/9.png used on input line 377.
 
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 256.95544pt x 192.71658pt.
 
-<./img/SCC_Stable3/cut99p/10.png, id=170, 481.8pt x 361.35pt>
+Overfull \hbox (63.1652pt too wide) in paragraph at lines 376--378
+[][] [] 
+ []
+
+<./img/SCC_Stable3/cut99p/10.png, id=196, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut99p/10.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut99p/10.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut99p/10.png used on input line 339
+Package pdftex.def Info: ./img/SCC_Stable3/cut99p/10.png used on input line 380
 .
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 256.95544pt x 192.71658pt.
 
-<./img/SCC_Stable3/cut99p/11.png, id=171, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut99p/11.png, id=197, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut99p/11.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut99p/11.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut99p/11.png used on input line 340
+Package pdftex.def Info: ./img/SCC_Stable3/cut99p/11.png used on input line 381
 .
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 256.95544pt x 192.71658pt.
 
-<./img/SCC_Stable3/cut99p/12.png, id=172, 481.8pt x 361.35pt>
+Overfull \hbox (63.1652pt too wide) in paragraph at lines 380--382
+[][] [] 
+ []
+
+[9 <./img/stampe/scc1/005/12.png> <./img/stampe/scc1/005/13.png> <./img/stampe/
+scc1/005/14.png> <./img/stampe/scc1/005/15.png>]
+<./img/SCC_Stable3/cut99p/12.png, id=212, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut99p/12.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut99p/12.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut99p/12.png used on input line 350
+Package pdftex.def Info: ./img/SCC_Stable3/cut99p/12.png used on input line 392
 .
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 256.95544pt x 192.71658pt.
 
-<./img/SCC_Stable3/cut99p/13.png, id=173, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut99p/13.png, id=213, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut99p/13.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut99p/13.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut99p/13.png used on input line 351
+Package pdftex.def Info: ./img/SCC_Stable3/cut99p/13.png used on input line 393
 .
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 256.95544pt x 192.71658pt.
 
-<./img/SCC_Stable3/cut99p/14.png, id=174, 481.8pt x 361.35pt>
+Overfull \hbox (63.1652pt too wide) in paragraph at lines 392--394
+[][] [] 
+ []
+
+<./img/SCC_Stable3/cut99p/14.png, id=214, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut99p/14.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut99p/14.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut99p/14.png used on input line 352
+Package pdftex.def Info: ./img/SCC_Stable3/cut99p/14.png used on input line 396
 .
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 256.95544pt x 192.71658pt.
 
-<./img/SCC_Stable3/cut99p/15.png, id=175, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut99p/15.png, id=215, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut99p/15.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut99p/15.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut99p/15.png used on input line 356
+Package pdftex.def Info: ./img/SCC_Stable3/cut99p/15.png used on input line 397
 .
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 256.95544pt x 192.71658pt.
 
-<./img/SCC_Stable3/cut99p/16.png, id=176, 481.8pt x 361.35pt>
+Overfull \hbox (63.1652pt too wide) in paragraph at lines 396--398
+[][] [] 
+ []
+
+<./img/SCC_Stable3/cut99p/16.png, id=216, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut99p/16.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut99p/16.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut99p/16.png used on input line 357
+Package pdftex.def Info: ./img/SCC_Stable3/cut99p/16.png used on input line 401
 .
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 256.95544pt x 192.71658pt.
 
-<./img/SCC_Stable3/cut99p/17.png, id=177, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut99p/17.png, id=217, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut99p/17.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut99p/17.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut99p/17.png used on input line 358
+Package pdftex.def Info: ./img/SCC_Stable3/cut99p/17.png used on input line 402
 .
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 256.95544pt x 192.71658pt.
 
-<./img/SCC_Stable3/cut99p/18.png, id=178, 481.8pt x 361.35pt>
+Overfull \hbox (63.1652pt too wide) in paragraph at lines 401--403
+[][] [] 
+ []
+
+<./img/SCC_Stable3/cut99p/18.png, id=218, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut99p/18.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut99p/18.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut99p/18.png used on input line 362
+Package pdftex.def Info: ./img/SCC_Stable3/cut99p/18.png used on input line 411
 .
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 256.95544pt x 192.71658pt.
 
-<./img/SCC_Stable3/cut99p/19.png, id=179, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut99p/19.png, id=219, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut99p/19.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut99p/19.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut99p/19.png used on input line 363
+Package pdftex.def Info: ./img/SCC_Stable3/cut99p/19.png used on input line 412
 .
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 256.95544pt x 192.71658pt.
 
-<./img/SCC_Stable3/cut99p/20.png, id=180, 481.8pt x 361.35pt>
+Overfull \hbox (63.1652pt too wide) in paragraph at lines 411--413
+[][] [] 
+ []
+
+<./img/SCC_Stable3/cut99p/20.png, id=220, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut99p/20.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut99p/20.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut99p/20.png used on input line 364
+Package pdftex.def Info: ./img/SCC_Stable3/cut99p/20.png used on input line 415
 .
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 256.95544pt x 192.71658pt.
 
-<./img/SCC_Stable3/cut99p/21.png, id=181, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut99p/21.png, id=221, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut99p/21.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut99p/21.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut99p/21.png used on input line 367
+Package pdftex.def Info: ./img/SCC_Stable3/cut99p/21.png used on input line 416
 .
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 256.95544pt x 192.71658pt.
 
-<./img/SCC_Stable3/cut99p/22.png, id=182, 481.8pt x 361.35pt>
+Overfull \hbox (63.1652pt too wide) in paragraph at lines 415--417
+[][] [] 
+ []
+
+<./img/SCC_Stable3/cut99p/22.png, id=222, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut99p/22.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut99p/22.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut99p/22.png used on input line 368
+Package pdftex.def Info: ./img/SCC_Stable3/cut99p/22.png used on input line 419
 .
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 256.95544pt x 192.71658pt.
 
-<./img/SCC_Stable3/cut99p/23.png, id=183, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut99p/23.png, id=223, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut99p/23.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut99p/23.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut99p/23.png used on input line 369
+Package pdftex.def Info: ./img/SCC_Stable3/cut99p/23.png used on input line 420
 .
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 256.95544pt x 192.71658pt.
 
-<./img/SCC_Stable3/cut95p/0.png, id=184, 481.8pt x 361.35pt>
-File: ./img/SCC_Stable3/cut95p/0.png Graphic file (type png)
+Overfull \hbox (63.1652pt too wide) in paragraph at lines 419--421
+[][] [] 
+ []
 
-<use ./img/SCC_Stable3/cut95p/0.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut95p/0.png used on input line 380.
 
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+LaTeX Warning: Reference `cut902' on page 10 undefined on input line 430.
 
-<./img/SCC_Stable3/cut95p/1.png, id=185, 481.8pt x 361.35pt>
-File: ./img/SCC_Stable3/cut95p/1.png Graphic file (type png)
-
-<use ./img/SCC_Stable3/cut95p/1.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut95p/1.png used on input line 381.
-
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
-
-<./img/SCC_Stable3/cut95p/2.png, id=186, 481.8pt x 361.35pt>
-File: ./img/SCC_Stable3/cut95p/2.png Graphic file (type png)
-
-<use ./img/SCC_Stable3/cut95p/2.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut95p/2.png used on input line 382.
-
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
-
-<./img/SCC_Stable3/cut95p/3.png, id=187, 481.8pt x 361.35pt>
-File: ./img/SCC_Stable3/cut95p/3.png Graphic file (type png)
-
-<use ./img/SCC_Stable3/cut95p/3.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut95p/3.png used on input line 386.
-
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
-
-<./img/SCC_Stable3/cut95p/4.png, id=188, 481.8pt x 361.35pt>
-File: ./img/SCC_Stable3/cut95p/4.png Graphic file (type png)
-
-<use ./img/SCC_Stable3/cut95p/4.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut95p/4.png used on input line 387.
-
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
-
-<./img/SCC_Stable3/cut95p/5.png, id=189, 481.8pt x 361.35pt>
-File: ./img/SCC_Stable3/cut95p/5.png Graphic file (type png)
-
-<use ./img/SCC_Stable3/cut95p/5.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut95p/5.png used on input line 388.
-
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
-
-<./img/SCC_Stable3/cut95p/6.png, id=190, 481.8pt x 361.35pt>
-File: ./img/SCC_Stable3/cut95p/6.png Graphic file (type png)
-
-<use ./img/SCC_Stable3/cut95p/6.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut95p/6.png used on input line 392.
-
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
-
-<./img/SCC_Stable3/cut95p/7.png, id=191, 481.8pt x 361.35pt>
-File: ./img/SCC_Stable3/cut95p/7.png Graphic file (type png)
-
-<use ./img/SCC_Stable3/cut95p/7.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut95p/7.png used on input line 393.
-
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
-
-<./img/SCC_Stable3/cut95p/8.png, id=192, 481.8pt x 361.35pt>
-File: ./img/SCC_Stable3/cut95p/8.png Graphic file (type png)
-
-<use ./img/SCC_Stable3/cut95p/8.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut95p/8.png used on input line 394.
-
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
-
-<./img/SCC_Stable3/cut95p/9.png, id=193, 481.8pt x 361.35pt>
-File: ./img/SCC_Stable3/cut95p/9.png Graphic file (type png)
-
-<use ./img/SCC_Stable3/cut95p/9.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut95p/9.png used on input line 397.
-
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
-
-<./img/SCC_Stable3/cut95p/10.png, id=194, 481.8pt x 361.35pt>
-File: ./img/SCC_Stable3/cut95p/10.png Graphic file (type png)
-
-<use ./img/SCC_Stable3/cut95p/10.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut95p/10.png used on input line 398
-.
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
-
-<./img/SCC_Stable3/cut95p/11.png, id=195, 481.8pt x 361.35pt>
-File: ./img/SCC_Stable3/cut95p/11.png Graphic file (type png)
-
-<use ./img/SCC_Stable3/cut95p/11.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut95p/11.png used on input line 399
-.
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
-
-<./img/SCC_Stable3/cut95p/12.png, id=196, 481.8pt x 361.35pt>
-File: ./img/SCC_Stable3/cut95p/12.png Graphic file (type png)
-
-<use ./img/SCC_Stable3/cut95p/12.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut95p/12.png used on input line 408
-.
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
-
-<./img/SCC_Stable3/cut95p/13.png, id=197, 481.8pt x 361.35pt>
-File: ./img/SCC_Stable3/cut95p/13.png Graphic file (type png)
-
-<use ./img/SCC_Stable3/cut95p/13.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut95p/13.png used on input line 409
-.
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
-
-<./img/SCC_Stable3/cut95p/14.png, id=198, 481.8pt x 361.35pt>
-File: ./img/SCC_Stable3/cut95p/14.png Graphic file (type png)
-
-<use ./img/SCC_Stable3/cut95p/14.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut95p/14.png used on input line 410
-.
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
-
-<./img/SCC_Stable3/cut95p/15.png, id=199, 481.8pt x 361.35pt>
-File: ./img/SCC_Stable3/cut95p/15.png Graphic file (type png)
-
-<use ./img/SCC_Stable3/cut95p/15.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut95p/15.png used on input line 414
-.
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
-
-<./img/SCC_Stable3/cut95p/16.png, id=200, 481.8pt x 361.35pt>
-File: ./img/SCC_Stable3/cut95p/16.png Graphic file (type png)
-
-<use ./img/SCC_Stable3/cut95p/16.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut95p/16.png used on input line 415
-.
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
-
-<./img/SCC_Stable3/cut95p/17.png, id=201, 481.8pt x 361.35pt>
-File: ./img/SCC_Stable3/cut95p/17.png Graphic file (type png)
-
-<use ./img/SCC_Stable3/cut95p/17.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut95p/17.png used on input line 416
-.
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
-
-<./img/SCC_Stable3/cut95p/18.png, id=202, 481.8pt x 361.35pt>
-File: ./img/SCC_Stable3/cut95p/18.png Graphic file (type png)
-
-<use ./img/SCC_Stable3/cut95p/18.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut95p/18.png used on input line 420
-.
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
-
-<./img/SCC_Stable3/cut95p/19.png, id=203, 481.8pt x 361.35pt>
-File: ./img/SCC_Stable3/cut95p/19.png Graphic file (type png)
-
-<use ./img/SCC_Stable3/cut95p/19.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut95p/19.png used on input line 421
-.
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
-
-<./img/SCC_Stable3/cut95p/20.png, id=204, 481.8pt x 361.35pt>
-File: ./img/SCC_Stable3/cut95p/20.png Graphic file (type png)
-
-<use ./img/SCC_Stable3/cut95p/20.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut95p/20.png used on input line 422
-.
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
-
-<./img/SCC_Stable3/cut95p/21.png, id=205, 481.8pt x 361.35pt>
-File: ./img/SCC_Stable3/cut95p/21.png Graphic file (type png)
-
-<use ./img/SCC_Stable3/cut95p/21.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut95p/21.png used on input line 425
-.
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
-
-<./img/SCC_Stable3/cut95p/22.png, id=206, 481.8pt x 361.35pt>
-File: ./img/SCC_Stable3/cut95p/22.png Graphic file (type png)
-
-<use ./img/SCC_Stable3/cut95p/22.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut95p/22.png used on input line 426
-.
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
-
-<./img/SCC_Stable3/cut95p/23.png, id=207, 481.8pt x 361.35pt>
-File: ./img/SCC_Stable3/cut95p/23.png Graphic file (type png)
-
-<use ./img/SCC_Stable3/cut95p/23.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut95p/23.png used on input line 427
-.
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
-
-<./img/SCC_Stable3/cut90p/0.png, id=208, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut90p/0.png, id=225, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut90p/0.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut90p/0.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut90p/0.png used on input line 437.
+Package pdftex.def Info: ./img/SCC_Stable3/cut90p/0.png used on input line 435.
 
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 128.47772pt x 96.35829pt.
 
-<./img/SCC_Stable3/cut90p/1.png, id=209, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut90p/1.png, id=226, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut90p/1.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut90p/1.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut90p/1.png used on input line 438.
+Package pdftex.def Info: ./img/SCC_Stable3/cut90p/1.png used on input line 436.
 
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 128.47772pt x 96.35829pt.
 
-<./img/SCC_Stable3/cut90p/2.png, id=210, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut90p/2.png, id=227, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut90p/2.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut90p/2.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut90p/2.png used on input line 439.
+Package pdftex.def Info: ./img/SCC_Stable3/cut90p/2.png used on input line 437.
 
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 128.47772pt x 96.35829pt.
 
-<./img/SCC_Stable3/cut90p/3.png, id=211, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut90p/3.png, id=228, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut90p/3.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut90p/3.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut90p/3.png used on input line 443.
+Package pdftex.def Info: ./img/SCC_Stable3/cut90p/3.png used on input line 441.
 
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 128.47772pt x 96.35829pt.
 
-<./img/SCC_Stable3/cut90p/4.png, id=212, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut90p/4.png, id=229, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut90p/4.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut90p/4.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut90p/4.png used on input line 444.
+Package pdftex.def Info: ./img/SCC_Stable3/cut90p/4.png used on input line 442.
 
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 128.47772pt x 96.35829pt.
 
-<./img/SCC_Stable3/cut90p/5.png, id=213, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut90p/5.png, id=230, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut90p/5.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut90p/5.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut90p/5.png used on input line 445.
+Package pdftex.def Info: ./img/SCC_Stable3/cut90p/5.png used on input line 443.
 
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 128.47772pt x 96.35829pt.
 
-<./img/SCC_Stable3/cut90p/6.png, id=214, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut90p/6.png, id=231, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut90p/6.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut90p/6.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut90p/6.png used on input line 449.
+Package pdftex.def Info: ./img/SCC_Stable3/cut90p/6.png used on input line 447.
 
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 128.47772pt x 96.35829pt.
 
-<./img/SCC_Stable3/cut90p/7.png, id=215, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut90p/7.png, id=232, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut90p/7.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut90p/7.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut90p/7.png used on input line 450.
+Package pdftex.def Info: ./img/SCC_Stable3/cut90p/7.png used on input line 448.
 
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 128.47772pt x 96.35829pt.
 
-<./img/SCC_Stable3/cut90p/8.png, id=216, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut90p/8.png, id=233, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut90p/8.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut90p/8.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut90p/8.png used on input line 451.
+Package pdftex.def Info: ./img/SCC_Stable3/cut90p/8.png used on input line 449.
 
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 128.47772pt x 96.35829pt.
 
-<./img/SCC_Stable3/cut90p/9.png, id=217, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut90p/9.png, id=234, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut90p/9.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut90p/9.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut90p/9.png used on input line 454.
+Package pdftex.def Info: ./img/SCC_Stable3/cut90p/9.png used on input line 452.
 
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 128.47772pt x 96.35829pt.
 
-<./img/SCC_Stable3/cut90p/10.png, id=218, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut90p/10.png, id=235, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut90p/10.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut90p/10.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut90p/10.png used on input line 455
+Package pdftex.def Info: ./img/SCC_Stable3/cut90p/10.png used on input line 453
 .
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 128.47772pt x 96.35829pt.
 
-<./img/SCC_Stable3/cut90p/11.png, id=219, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut90p/11.png, id=236, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut90p/11.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut90p/11.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut90p/11.png used on input line 456
+Package pdftex.def Info: ./img/SCC_Stable3/cut90p/11.png used on input line 454
 .
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 128.47772pt x 96.35829pt.
 
-<./img/SCC_Stable3/cut90p/12.png, id=220, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut90p/12.png, id=237, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut90p/12.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut90p/12.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut90p/12.png used on input line 465
+Package pdftex.def Info: ./img/SCC_Stable3/cut90p/12.png used on input line 464
 .
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 128.47772pt x 96.35829pt.
 
-<./img/SCC_Stable3/cut90p/13.png, id=221, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut90p/13.png, id=238, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut90p/13.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut90p/13.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut90p/13.png used on input line 466
+Package pdftex.def Info: ./img/SCC_Stable3/cut90p/13.png used on input line 465
 .
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 128.47772pt x 96.35829pt.
 
-<./img/SCC_Stable3/cut90p/14.png, id=222, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut90p/14.png, id=239, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut90p/14.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut90p/14.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut90p/14.png used on input line 467
+Package pdftex.def Info: ./img/SCC_Stable3/cut90p/14.png used on input line 466
 .
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 128.47772pt x 96.35829pt.
 
-<./img/SCC_Stable3/cut90p/15.png, id=223, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut90p/15.png, id=240, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut90p/15.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut90p/15.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut90p/15.png used on input line 471
+Package pdftex.def Info: ./img/SCC_Stable3/cut90p/15.png used on input line 470
 .
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 128.47772pt x 96.35829pt.
 
-<./img/SCC_Stable3/cut90p/16.png, id=224, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut90p/16.png, id=241, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut90p/16.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut90p/16.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut90p/16.png used on input line 472
+Package pdftex.def Info: ./img/SCC_Stable3/cut90p/16.png used on input line 471
 .
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 128.47772pt x 96.35829pt.
 
-<./img/SCC_Stable3/cut90p/17.png, id=225, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut90p/17.png, id=242, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut90p/17.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut90p/17.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut90p/17.png used on input line 473
+Package pdftex.def Info: ./img/SCC_Stable3/cut90p/17.png used on input line 472
 .
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 128.47772pt x 96.35829pt.
 
-<./img/SCC_Stable3/cut90p/18.png, id=226, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut90p/18.png, id=243, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut90p/18.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut90p/18.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut90p/18.png used on input line 477
+Package pdftex.def Info: ./img/SCC_Stable3/cut90p/18.png used on input line 476
 .
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 128.47772pt x 96.35829pt.
 
-<./img/SCC_Stable3/cut90p/19.png, id=227, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut90p/19.png, id=244, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut90p/19.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut90p/19.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut90p/19.png used on input line 478
+Package pdftex.def Info: ./img/SCC_Stable3/cut90p/19.png used on input line 477
 .
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 128.47772pt x 96.35829pt.
 
-<./img/SCC_Stable3/cut90p/20.png, id=228, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut90p/20.png, id=245, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut90p/20.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut90p/20.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut90p/20.png used on input line 479
+Package pdftex.def Info: ./img/SCC_Stable3/cut90p/20.png used on input line 478
 .
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 128.47772pt x 96.35829pt.
 
-<./img/SCC_Stable3/cut90p/21.png, id=229, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut90p/21.png, id=246, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut90p/21.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut90p/21.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut90p/21.png used on input line 482
+Package pdftex.def Info: ./img/SCC_Stable3/cut90p/21.png used on input line 481
 .
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 128.47772pt x 96.35829pt.
 
-<./img/SCC_Stable3/cut90p/22.png, id=230, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut90p/22.png, id=247, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut90p/22.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut90p/22.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut90p/22.png used on input line 483
+Package pdftex.def Info: ./img/SCC_Stable3/cut90p/22.png used on input line 482
 .
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
+(pdftex.def)             Requested size: 128.47772pt x 96.35829pt.
 
-<./img/SCC_Stable3/cut90p/23.png, id=231, 481.8pt x 361.35pt>
+<./img/SCC_Stable3/cut90p/23.png, id=248, 642.4pt x 481.8pt>
 File: ./img/SCC_Stable3/cut90p/23.png Graphic file (type png)
 
 <use ./img/SCC_Stable3/cut90p/23.png>
-Package pdftex.def Info: ./img/SCC_Stable3/cut90p/23.png used on input line 484
+Package pdftex.def Info: ./img/SCC_Stable3/cut90p/23.png used on input line 483
 .
-(pdftex.def)             Requested size: 144.5411pt x 108.40584pt.
- [8] [9 <./img/SCC_Stable3/cut99p/0.png> <./img/SCC_Stable3/cut99p/1.png> <./im
-g/SCC_Stable3/cut99p/2.png> <./img/SCC_Stable3/cut99p/3.png> <./img/SCC_Stable3
-/cut99p/4.png> <./img/SCC_Stable3/cut99p/5.png> <./img/SCC_Stable3/cut99p/6.png
-> <./img/SCC_Stable3/cut99p/7.png> <./img/SCC_Stable3/cut99p/8.png> <./img/SCC_
-Stable3/cut99p/9.png> <./img/SCC_Stable3/cut99p/10.png> <./img/SCC_Stable3/cut9
-9p/11.png>] [10 <./img/SCC_Stable3/cut99p/12.png> <./img/SCC_Stable3/cut99p/13.
-png> <./img/SCC_Stable3/cut99p/14.png> <./img/SCC_Stable3/cut99p/15.png> <./img
-/SCC_Stable3/cut99p/16.png> <./img/SCC_Stable3/cut99p/17.png> <./img/SCC_Stable
-3/cut99p/18.png> <./img/SCC_Stable3/cut99p/19.png> <./img/SCC_Stable3/cut99p/20
-.png> <./img/SCC_Stable3/cut99p/21.png> <./img/SCC_Stable3/cut99p/22.png> <./im
-g/SCC_Stable3/cut99p/23.png>] [11 <./img/SCC_Stable3/cut95p/0.png> <./img/SCC_S
-table3/cut95p/1.png> <./img/SCC_Stable3/cut95p/2.png> <./img/SCC_Stable3/cut95p
-/3.png> <./img/SCC_Stable3/cut95p/4.png> <./img/SCC_Stable3/cut95p/5.png> <./im
-g/SCC_Stable3/cut95p/6.png> <./img/SCC_Stable3/cut95p/7.png> <./img/SCC_Stable3
-/cut95p/8.png> <./img/SCC_Stable3/cut95p/9.png> <./img/SCC_Stable3/cut95p/10.pn
-g> <./img/SCC_Stable3/cut95p/11.png>]
-[12 <./img/SCC_Stable3/cut95p/12.png> <./img/SCC_Stable3/cut95p/13.png> <./img/
-SCC_Stable3/cut95p/14.png> <./img/SCC_Stable3/cut95p/15.png> <./img/SCC_Stable3
-/cut95p/16.png> <./img/SCC_Stable3/cut95p/17.png> <./img/SCC_Stable3/cut95p/18.
-png> <./img/SCC_Stable3/cut95p/19.png> <./img/SCC_Stable3/cut95p/20.png> <./img
-/SCC_Stable3/cut95p/21.png> <./img/SCC_Stable3/cut95p/22.png> <./img/SCC_Stable
-3/cut95p/23.png>] [13 <./img/SCC_Stable3/cut90p/0.png> <./img/SCC_Stable3/cut90
-p/1.png> <./img/SCC_Stable3/cut90p/2.png> <./img/SCC_Stable3/cut90p/3.png> <./i
-mg/SCC_Stable3/cut90p/4.png> <./img/SCC_Stable3/cut90p/5.png> <./img/SCC_Stable
-3/cut90p/6.png> <./img/SCC_Stable3/cut90p/7.png> <./img/SCC_Stable3/cut90p/8.pn
-g> <./img/SCC_Stable3/cut90p/9.png> <./img/SCC_Stable3/cut90p/10.png> <./img/SC
-C_Stable3/cut90p/11.png>] [14 <./img/SCC_Stable3/cut90p/12.png> <./img/SCC_Stab
-le3/cut90p/13.png> <./img/SCC_Stable3/cut90p/14.png> <./img/SCC_Stable3/cut90p/
-15.png> <./img/SCC_Stable3/cut90p/16.png> <./img/SCC_Stable3/cut90p/17.png> <./
-img/SCC_Stable3/cut90p/18.png> <./img/SCC_Stable3/cut90p/19.png> <./img/SCC_Sta
-ble3/cut90p/20.png> <./img/SCC_Stable3/cut90p/21.png> <./img/SCC_Stable3/cut90p
-/22.png> <./img/SCC_Stable3/cut90p/23.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 519.
- [15]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 519.
- (./CfcSuGrafiOrari.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 519.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 519.
+(pdftex.def)             Requested size: 128.47772pt x 96.35829pt.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 518.
+ [10] [11 <./img/SCC_Stable3/cut99p/0.png> <./img/SCC_Stable3/cut99p/1.png> <./
+img/SCC_Stable3/cut99p/2.png> <./img/SCC_Stable3/cut99p/3.png> <./img/SCC_Stabl
+e3/cut99p/4.png> <./img/SCC_Stable3/cut99p/5.png>] [12 <./img/stampe/aggregato0
+5.png>] [13 <./img/SCC_Stable3/cut99p/6.png> <./img/SCC_Stable3/cut99p/7.png> <
+./img/SCC_Stable3/cut99p/8.png> <./img/SCC_Stable3/cut99p/9.png> <./img/SCC_Sta
+ble3/cut99p/10.png> <./img/SCC_Stable3/cut99p/11.png>] [14 <./img/SCC_Stable3/c
+ut99p/12.png> <./img/SCC_Stable3/cut99p/13.png> <./img/SCC_Stable3/cut99p/14.pn
+g> <./img/SCC_Stable3/cut99p/15.png> <./img/SCC_Stable3/cut99p/16.png> <./img/S
+CC_Stable3/cut99p/17.png>] [15 <./img/SCC_Stable3/cut99p/18.png> <./img/SCC_Sta
+ble3/cut99p/19.png> <./img/SCC_Stable3/cut99p/20.png> <./img/SCC_Stable3/cut99p
+/21.png> <./img/SCC_Stable3/cut99p/22.png> <./img/SCC_Stable3/cut99p/23.png>] [
+16 <./img/SCC_Stable3/cut90p/0.png> <./img/SCC_Stable3/cut90p/1.png> <./img/SCC
+_Stable3/cut90p/2.png> <./img/SCC_Stable3/cut90p/3.png> <./img/SCC_Stable3/cut9
+0p/4.png> <./img/SCC_Stable3/cut90p/5.png> <./img/SCC_Stable3/cut90p/6.png> <./
+img/SCC_Stable3/cut90p/7.png> <./img/SCC_Stable3/cut90p/8.png> <./img/SCC_Stabl
+e3/cut90p/9.png> <./img/SCC_Stable3/cut90p/10.png> <./img/SCC_Stable3/cut90p/11
+.png>] [17 <./img/SCC_Stable3/cut90p/12.png> <./img/SCC_Stable3/cut90p/13.png> 
+<./img/SCC_Stable3/cut90p/14.png> <./img/SCC_Stable3/cut90p/15.png> <./img/SCC_
+Stable3/cut90p/16.png> <./img/SCC_Stable3/cut90p/17.png> <./img/SCC_Stable3/cut
+90p/18.png> <./img/SCC_Stable3/cut90p/19.png> <./img/SCC_Stable3/cut90p/20.png>
+ <./img/SCC_Stable3/cut90p/21.png> <./img/SCC_Stable3/cut90p/22.png> <./img/SCC
+_Stable3/cut90p/23.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 518.
+
+(./CfcSuGrafiOrari.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 518.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 518.
 Package rerunfilecheck Info: File `CfcSuGrafiOrari.out' has not changed.
-(rerunfilecheck)             Checksum: 44957938FF363E602D513DA13F8656D0;843.
+(rerunfilecheck)             Checksum: 9266DFCD083327414AFE5995A0104DD7;718.
 
 
 LaTeX Warning: There were undefined references.
@@ -1309,16 +1234,16 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 519.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 518.
  ) 
 Here is how much of TeX's memory you used:
- 7907 strings out of 495059
- 122640 string characters out of 3182029
- 211108 words of memory out of 3000000
- 10905 multiletter control sequences out of 15000+200000
+ 7862 strings out of 495059
+ 120500 string characters out of 3182029
+ 210822 words of memory out of 3000000
+ 10851 multiletter control sequences out of 15000+200000
  12017 words of font info for 47 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 36i,12n,38p,1030b,423s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 36i,12n,38p,1030b,422s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texl
@@ -1338,10 +1263,10 @@ f-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist
 type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
 /amsfonts/symbols/msbm10.pfb>
-Output written on CfcSuGrafiOrari.pdf (15 pages, 668020 bytes).
+Output written on CfcSuGrafiOrari.pdf (17 pages, 654446 bytes).
 PDF statistics:
- 439 PDF objects out of 1000 (max. 8388607)
- 237 compressed objects within 3 object streams
- 64 named destinations out of 1000 (max. 500000)
- 502 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 433 PDF objects out of 1000 (max. 8388607)
+ 258 compressed objects within 3 object streams
+ 71 named destinations out of 1000 (max. 500000)
+ 419 words of extra memory for PDF output out of 10000 (max. 10000000)
 
