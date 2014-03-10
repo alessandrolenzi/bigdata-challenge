@@ -5,5 +5,13 @@ target/
 *.aux
 *.png
 *.tgz
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 *.jar
 hadoop*
+=======
+.*
+>>>>>>> Stashed changes
+=======
+.*
+>>>>>>> Stashed changes
