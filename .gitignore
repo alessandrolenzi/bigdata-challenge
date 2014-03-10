@@ -7,8 +7,12 @@ target/
 *.tgz
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 *.jar
 hadoop*
+=======
+.*
+>>>>>>> Stashed changes
 =======
 .*
 >>>>>>> Stashed changes
