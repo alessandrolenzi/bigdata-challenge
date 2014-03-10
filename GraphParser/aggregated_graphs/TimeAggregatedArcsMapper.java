@@ -99,18 +99,11 @@ import org.apache.hadoop.mapreduce.Mapper;
 			int m = cal.get(Calendar.MONTH);
 			int y = cal.get(Calendar.YEAR);
 			
-			
-			if(filterWith(dayOfMonthFilter, d) 
-					|| filterWith(dayOfWeekFilter, dw)
-					|| checkMonth(monthFilter, m)){
-				return;
-			}
-			
 			DateFormat form = new SimpleDateFormat("dd-MM-yyyy,HH:mm:ss aaa");
 			String s = ((d < 10) ? "0" : "" ) + d + "-" +
 					   ((m < 10) ? "0" : "" ) + m + "-" +
 					   y + "-" +
-					   ",HH:mm:ss aaa";
+					   ",00:00:00 AM";
 			
 			Date date = null;
 			try {
@@ -125,7 +118,9 @@ import org.apache.hadoop.mapreduce.Mapper;
 			int pId = (int)((timestamp - dayStart ) / period);
 			
 			// Check if we are interested in this period ID
-			if(filterWith(periodFilter, pId)){
+			if(filterWith(periodFilter, pId)filterWith(dayOfMonthFilter, d) 
+				&& filterWith(dayOfWeekFilter, dw)
+				&& checkMonth(monthFilter, m - 1)){
 				return;
 			}
 			

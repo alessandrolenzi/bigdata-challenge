@@ -1,9 +1,0 @@
-#!/bin/bash
-
-if (($# < 1)); then
-    echo "Usage: plotDir dirname\n\tdirname being a directory containing the .cfc files"
-    exit
-fi
-
-./genDir.py $1
-gnuplot -e "dir='$1'" plotCliques

@@ -1,5 +1,0 @@
-In questa cartella i tagli eseguiti visitando il grafo in ordine crescente di traffico uscente,
-selezionando prima gli archi con probabilità maggiore. 
-Il file TarjanSCC.jar è il file utilizzato (per ripetibilità).
-
-
