@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Usage
+
+DIRS=(avg one two)
+
+(( $# < 1)) && { echo "Usage: quanteCricche dir1 dir2 .."; exit 0; }
+
+for i in $@; do
+  # echo -e "\n\n---  Dir $i ---"
+  cd $i
+  for n in `seq 0 23`; do
+   f=$n.cfc
+   CR=`awk '/{/ {alength = split($0,a,","); printf("%d,",alength)}' $f`
+   S=($(tr "," " " <<< $CR))
+   echo -e "${i/taglio/}\th$n\t${#S[@]}\t\t$CR"
+  done
+  cd ..
+done

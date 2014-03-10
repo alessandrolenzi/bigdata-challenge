@@ -1,0 +1,4 @@
+Per generare i plot basta lanciare
+
+./plotDir dirname
+    dove dirname contiene i file .dat generati con plotCliques.py

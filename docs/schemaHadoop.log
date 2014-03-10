@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Arch Linux) (format=pdflatex 2013.9.11)  4 MAR 2014 12:17
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Arch Linux) (format=pdflatex 2013.9.11)  6 MAR 2014 15:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -597,7 +597,7 @@ r17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/sh
 are/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmtt10.pfb>
-Output written on schemaHadoop.pdf (3 pages, 122727 bytes).
+Output written on schemaHadoop.pdf (3 pages, 122910 bytes).
 PDF statistics:
  109 PDF objects out of 1000 (max. 8388607)
  94 compressed objects within 1 object stream
