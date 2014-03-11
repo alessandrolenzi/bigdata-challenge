@@ -106,7 +106,7 @@ public class Aggregator {
 		case "D": critIntervals(record[1], supportedDays); return;
 		case "M": critIntervals(record[1], supportedMonths); return;
 		case "Y": year = Integer.parseInt(record[1]); return;
-		case "N": identifier = record[0]; return;
+		case "N": identifier = record[1]; return;
 		default: throw new IllegalArgumentException("The string \""+criteria+"\" is not a valid criteria");
 		}
 	}	

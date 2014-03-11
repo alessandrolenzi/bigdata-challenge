@@ -1,6 +1,11 @@
 package aggregated_graphs;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
@@ -37,7 +42,7 @@ public class TimeAggregatedGraphs {
        
         // 4. select only a month (10 or 11)
         //    conf.set("monthFilter", "11");
-            conf.set("globalAggregators", "H:7-13;M:11;W:2;Y:2013;N:MondayMorning");
+            conf.set("globalAggregators", "H:7-13;M:11;W:2;D:2;Y:2013;N:0212MondayMorning");
         // 5. select only a subset of day in the week, comma separated (sunday == 1)
             // c.set("dayOfWeekArray", "2");
        
@@ -51,7 +56,10 @@ public class TimeAggregatedGraphs {
          * mISSING FORMATS: CHECK
          */
         FileInputFormat.setInputPaths(first, new Path(args[0]));
-        FileOutputFormat.setOutputPath(first, new Path("intermediate_filter"));
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm");
+        Calendar cal = Calendar.getInstance();
+        Path intermediate =  new Path("/tmp/intermediate_filter"+dateFormat.format(cal.getTime()));
+        FileOutputFormat.setOutputPath(first, intermediate);
        
         Job second = Job.getInstance(conf, "create aggregated probability graphs");
         second.setJarByClass(TimeAggregatedGraphs.class);
@@ -61,16 +69,20 @@ public class TimeAggregatedGraphs {
         second.setReducerClass(ProbabilityReducer.class);
         second.setOutputKeyClass(Text.class);
         second.setOutputValueClass(Text.class);
-        FileInputFormat.setInputPaths(second,  new Path("intermediate_filter"));
-        FileOutputFormat.setOutputPath(second, new Path(args[1]));
+        FileInputFormat.setInputPaths(second,  intermediate);
+        Path output = new Path(args[1]);
+        FileSystem.get(conf).delete(output, true);
+        FileOutputFormat.setOutputPath(second, output);
         
         first.submit();
         if (first.waitForCompletion(true)) {
             second.submit();
         } else System.exit(1);
-       
-        System.exit(second.waitForCompletion(true) ? 0 : 1);
-       
+        
+        boolean success = second.waitForCompletion(true);
+        FileSystem fs = FileSystem.get(conf);
+        fs.delete(intermediate, true);
+        System.exit((success) ? 0 : 1);
     }
 
 }

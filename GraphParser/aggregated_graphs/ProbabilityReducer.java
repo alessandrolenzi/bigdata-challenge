@@ -26,39 +26,44 @@ public class ProbabilityReducer extends Reducer<Text, Text, Text, Text> {
 		out = new MultipleOutputs<Text,Text>(context);
 	}
 	
-	public void reduce(Text aggregation, Iterator<Text> values, Context context)
+	public void reduce(Text aggregation, Iterable<Text> v, Context context)
 	            throws IOException, InterruptedException {
 		/** params
 		 * 0 -> aggregationName
-		 * 1 -> aggregationSize
-		 * 2 -> source
+		 * 1 -> source
 		 */
 		/** value
 		 *  0 -> destination
 		 *  1 -> sum
 		 */
-		String[] params = aggregation.toString().split(":"), vSplit;
-		double sum = 0, w; 
+		String[] params = aggregation.toString().split("-"), vSplit;
+		double sum = 0; 
 		
 		List<ArcTail> al = new LinkedList<ArcTail>();
-		
+		Iterator<Text> values = v.iterator();
 		while(values.hasNext()) {
 			vSplit = values.next().toString().split(":");
-			w = Double.parseDouble(vSplit[1]);
+			double w = Double.parseDouble(vSplit[1]);
 			al.add(new ArcTail(vSplit[0], w));
 			sum += w;
 		}
 		
-		Text newKey = new Text(/* params[0]+":"+ */params[2]);
+		Text newKey = new Text(params[1]);
 		
 		for(ArcTail a : al){
 			Text val = new Text(a.destination +" "+ (a.weight / sum));
-			out.write(newKey, val, params[0]);
+			out.write(newKey, val, generateFileName(aggregation));
 		}		
-		
+		al.clear();
+		al = null;
 		// context.write(new Text(params[0]+":"+params[2]), 
 		//		new Text(params[3]+":"+(sum/Integer.parseInt(params[1]))));
 		
+	}
+	
+	protected String generateFileName(Text key) {
+		String[] val = key.toString().split("-");
+		return val[0]+"-"+val[1];
 	}
 	
 	protected void cleanup(Context context) throws IOException, InterruptedException {
