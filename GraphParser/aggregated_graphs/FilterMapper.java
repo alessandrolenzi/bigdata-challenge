@@ -1,17 +1,12 @@
 package aggregated_graphs;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.io.Writable;
 import org.apache.hadoop.mapreduce.Mapper;
 
 
@@ -20,7 +15,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 	 * @author Michele Carignani
 	 *
 	 */
-	public class TimeAggregatedArcsMapper extends Mapper<LongWritable, Text, Text, Text>{
+	public class FilterMapper extends Mapper<LongWritable, Text, Text, Text>{
 				
 		public void map(LongWritable key, Text line, Context context) 
 				throws IOException, InterruptedException {
@@ -44,7 +39,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 			String[] aggregators = conf.get("globalAggregators").split("\n");
 			List<Aggregator> aggList = new LinkedList<Aggregator>();
 			for(String s :aggregators){
-				aggList.add(new Aggregator(s, 0));
+				aggList.add(new Aggregator(s));
 			}
 			
 			String day = d + "-" + m + "-" + y + "-" + h;

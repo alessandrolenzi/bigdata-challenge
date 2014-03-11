@@ -23,7 +23,7 @@ public class AverageGraph extends Mapper<Text, Text, Text, Text> {
 		String[] aggregators = allAggregators.split("\n");
 		/** Initialize all aggregators, adding them */
 		for(String a: aggregators)
-			aggregatorsList.add(new Aggregator(a, Integer.parseInt(conf.get("aggregationPeriod"))*10));		
+			aggregatorsList.add(new Aggregator(a /* , Integer.parseInt(conf.get("aggregationPeriod"))*10*/));		
 	}
 	
 	public String getAggregatorKey(Text k) {

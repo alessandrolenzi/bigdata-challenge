@@ -7,5 +7,6 @@
 	<classpathentry kind="lib" path="/home/miche/uni/mcsn/pad/lab/hadoop-2.2.0/share/hadoop/mapreduce/hadoop-mapreduce-client-app-2.2.0.jar"/>
 	<classpathentry kind="lib" path="/home/miche/uni/mcsn/pad/lab/hadoop-2.2.0/share/hadoop/mapreduce/hadoop-mapreduce-client-common-2.2.0.jar"/>
 	<classpathentry kind="lib" path="/home/miche/uni/mcsn/pad/lab/hadoop-2.2.0/share/hadoop/mapreduce/hadoop-mapreduce-client-core-2.2.0.jar"/>
+	<classpathentry kind="lib" path="/home/miche/uni/mcsn/pad/lab/project/bigdata-challenge/guava-16.0.1.jar"/>
 	<classpathentry kind="output" path="MiToMi_Distribution/bin"/>
 </classpath>

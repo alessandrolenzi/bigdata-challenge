@@ -1,8 +1,6 @@
 package aggregated_graphs;
 import java.io.IOException;
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
@@ -19,7 +17,6 @@ import org.apache.hadoop.mapreduce.Reducer;
         	// takes ((ID-Num-Source-Dest),(Val))
         	// puts ((ID-Source),(Dest:AvgVal))
         	
-        	int d;
         	double w, sum = 0;
         	String  s;
         	
@@ -34,8 +31,8 @@ import org.apache.hadoop.mapreduce.Reducer;
         	
         	double avg = sum / num;
         	
-        	Text newKey = new Text(splitKey[0] + "-" + splitKey[2]);
-        	Text val = new Text(splitKey[3] + "-" + avg);
+        	Text newKey = new Text(splitKey[0] + ":" + splitKey[2]);
+        	Text val = new Text(splitKey[3] + ":" + avg);
         	context.write(newKey,val);
         	
         }

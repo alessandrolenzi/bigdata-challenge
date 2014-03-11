@@ -3,7 +3,6 @@ package aggregated_graphs;
 
 import java.util.Calendar;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -69,7 +68,7 @@ public class Aggregator {
 		Calendar cal = Calendar.getInstance();
 		cal.setLenient(false);
 		for (List<Integer> day: allDays) {
-			cal.set(year, day.get(0), day.get(1));
+			cal.set(year, day.get(1), day.get(0));
 			try {
 				int day_of_week = cal.get(Calendar.DAY_OF_WEEK);		
 				for (int weekday: supportedWDays)
