@@ -35,7 +35,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 			int h = cal.get(Calendar.HOUR_OF_DAY);
 			int m = cal.get(Calendar.MONTH);
 			int y = cal.get(Calendar.YEAR);
-			
+			/** Initialization of aggregators */
 			String[] aggregators = conf.get("globalAggregators").split("\n");
 			List<Aggregator> aggList = new LinkedList<Aggregator>();
 			for(String s :aggregators){
@@ -46,9 +46,11 @@ import org.apache.hadoop.mapreduce.Mapper;
 			
 			for(Aggregator a : aggList){
 				if(a.respects(day)){
+					/** newKey is PeriodOfId:SourceId:DestId */
 					Text newKey = new Text(a.getIdentifier() + "-" + 
 							record[1].toString() + "-" +
 							record[2].toString());
+					/** val is Strength */
 					Text val = new Text(record[3]);
 					context.write(newKey,val);
 					return;

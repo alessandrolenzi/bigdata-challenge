@@ -56,8 +56,7 @@ public class ProbabilityReducer extends Reducer<Text, Text, Text, Text> {
 		}		
 		al.clear();
 		al = null;
-		// context.write(new Text(params[0]+":"+params[2]), 
-		//		new Text(params[3]+":"+(sum/Integer.parseInt(params[1]))));
+		
 		
 	}
 	

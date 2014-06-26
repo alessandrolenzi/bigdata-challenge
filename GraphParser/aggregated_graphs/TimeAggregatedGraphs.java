@@ -42,6 +42,7 @@ public class TimeAggregatedGraphs {
        
         // 4. select only a month (10 or 11)
         //    conf.set("monthFilter", "11");
+        	/** Monday 2nd of November 2013 from 7 to 13 */
             conf.set("globalAggregators", "H:7-13;M:11;W:2;D:2;Y:2013;N:0212MondayMorning");
         // 5. select only a subset of day in the week, comma separated (sunday == 1)
             // c.set("dayOfWeekArray", "2");
