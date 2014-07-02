@@ -13,7 +13,6 @@ import com.google.common.collect.Sets;
 
 /**
  * Aggregator: can be used also for complex filters definition.
- * @author alessandro
  *
  */
 public class Aggregator {
@@ -65,16 +64,19 @@ public class Aggregator {
 	private int calculateValidDays() {
 		int totalDays = 0;
 		Set<List<Integer>> allDays = Sets.cartesianProduct(ImmutableList.of(ImmutableSet.copyOf(supportedDays), ImmutableSet.copyOf(supportedMonths)));
-		Calendar cal = Calendar.getInstance();
-		cal.setLenient(false);
+		
 		for (List<Integer> day: allDays) {
-			cal.set(year, day.get(1), day.get(0));
 			try {
+				Calendar cal = Calendar.getInstance();
+				cal.setLenient(false);
+				cal.set(year, day.get(1)-1, day.get(0));
 				int day_of_week = cal.get(Calendar.DAY_OF_WEEK);		
 				for (int weekday: supportedWDays)
 					if (weekday == day_of_week) totalDays++;
 			} catch (ArrayIndexOutOfBoundsException exc) {
-				//do nothing. Just go on and skip
+				//d	o nothing. Just go on and skip
+			} catch (IllegalArgumentException ecc) {
+				//just do nothing
 			}
 		}
 		return totalDays;
@@ -151,7 +153,11 @@ public class Aggregator {
 	}
 	
 	public String getIdentifier() {
-		return identifier+"-"+(getTotalSeconds()/600);
+		return identifier;
+	}
+	
+	public int getTotalPeriods(int aggregationSizeSeconds) {
+		return ((Double) Math.floor(getTotalSeconds()/aggregationSizeSeconds)).intValue();
 	}
 	
 	public int getTotalSeconds() {
