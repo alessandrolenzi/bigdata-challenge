@@ -1,0 +1,70 @@
+\section{Data aggregation}
+\label{aggregation}
+
+TimeAggregatedGraphs.java
+
+In order to get more realistic results and to deal with 
+the very high level of noise in the dataset,
+we decided to gather and average the 
+values about a couple of nodes among several 10-minutes periods
+into larger and more interesting time periods 
+(not alway contiguous, e.g. we aggregated all monday
+mornings periods).
+
+In order two achieve this, we developed a two passes map reduce computation executable with the Hadoop einvironment.
+
+Here follows the pseudo-code of the map and reduce operations.
+
+\begin{verbatim}
+FilterMap(key, value):
+// input takes in input all dataset files
+// implementeted in aggregated_graphs.FilterMapper.java
+  d = parse(value)
+  if (d.timestamp belongs_to interesting_period)
+  	k = (interesting_period,d.sourceNode,d.destNode)
+  	v = d.value
+    emit(k, v)
+
+AverageReduce(key,values):
+// implemented in aggregated_graphs.AverageReducer.java
+  sum = count = 0
+  for v in values:
+  	sum += v
+  	count++
+  (id,num,source,dest) = parse(key)
+  avg = sum / num
+  emit((id,source),(dest,value))
+
+
+IdentityMap(key, value):
+  emit(key, value)
+
+ProbabilityReduce(key, values):
+  sum = 0
+  a_list = []
+  for v in values:
+    (dest, weight) = parse(v)
+    sum += weight
+  	a_list.append((dest,weight))
+
+  for a in a_list:
+    emit((key.src, a.dest), a.weight / sum)
+\end{verbatim}
+
+\subsection{Implementation details}
+
+\paragraph{Disk usage}: During the initial executions, our testing environment
+could complete the aggregation of large periods (that means,
+aggregations including many 10-minutes intervals) because of full
+disk utilization.
+
+While passing the filtered edges from the mappers to the reducers
+writing the splits (around 800 file splits produced by
+as many mappers) the disk was filled up.
+
+The solution was to implement a combiner phase to reduce the number
+of edges passed from mappers to reduced by summing the values
+with same key. In order to enlarge the number of edges given in input
+to each combiner we decided to set the minimum size of
+the file splits to 1GB (instead of the 128 MB default size)
+and this reduced the number of mappers of a factor 8.

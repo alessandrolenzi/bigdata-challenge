@@ -1,0 +1,147 @@
+\section{Looking for communities with Markov Clustering}
+\label{mcl}
+
+%% todo: ref to article?
+
+\subsection{Convergency loop}
+
+The matrix is multiplied until by itself until convergence is reached
+or a maximum number of iterations are executed.
+
+The convergence condition is defined as: for all elements in the matrix
+the difference between the new computed value and the value in the last step
+is lower than a certain parameter epsilon.
+
+A further improvement to increase convergence speed was multiplying the
+matrix not by the initial matrix (i.e. generating at each loop the i-th
+power of the matrix) but by the lassst computed matrix instead (i.e generating
+at each loop the fib(i)-th power of the matrix, being fib(x) the function generating
+the Fibonacci sequence).
+
+\subsection{Matrix multiplication}
+
+Matrix multiplication was developed as one or more map reduce computations onto the
+Hadoop framework.
+
+\subsubsection{One step map-reduce}
+
+First basic idea to apply the following one step map reduce computation to calculate
+matrix multiplication:
+
+%% todo: source http://importantfish.com/one-step-matrix-multiplication-with-hadoop/
+\begin{verbatim}
+Map(key, value):
+    // value is ("A", i, j, a_ij) or ("B", j, k, b_jk)
+    if value[0] == "A":
+        i = value[1]
+        j = value[2]
+        a_ij = value[3]
+        for k = 1 to p:
+            emit((i, k), (A, j, a_ij))
+    else:
+        j = value[1]
+        k = value[2]
+        b_jk = value[3]
+        for i = 1 to m:
+            emit((i, k), (B, j, b_jk))
+
+reduce(key, values):
+    // key is (i, k)
+    // values is a list of ("A", j, a_ij) and ("B", j, b_jk)
+    hash_A = {j: a_ij for (x, j, a_ij) in values if x == A}
+    hash_B = {j: b_jk for (x, j, b_jk) in values if x == B}
+    result = 0
+    for j = 1 to n:
+        result += hash_A[j] * hash_B[j]
+    emit(key, result)
+\end{verbatim}
+
+This implementation produced on our test environment a runtime expection
+because of the memory being empty.
+
+In fact, the Mappers writes their output in files but before this is put onto memory
+and, since for every matrix element the mapper emits $N=10^4$ elements, and the elements
+are themselves $10^8$ the total number of couples (key, value) written in memory
+by the mappers to then be written on HSF to be passed to the reducer was $10^12$.
+
+Approximating the couple (key, value) with the size of its biggest component-
+the double precision floating point probability values taking 128 bits on 64 word
+machines - we would have needed a total memory of 128TB, which is much larger than
+our enviroment total memory space.
+
+
+\subsubsection{Two step map-reduce}
+
+So we tried a two step map reduce computation to calculate our matrix multiplication.
+
+%% todo: source http://importantfish.com/two-step-matrix-multiplication-with-hadoop/
+\begin{verbatim}
+map(key, value):
+    // value is ("A", i, j, a_ij) or ("B", j, k, b_jk)
+    if value[0] == "A":
+        i = value[1]
+        j = value[2]
+        a_ij = value[3]
+        emit(j, ("A", i, a_ij))
+    else:
+        j = value[1]
+        k = value[2]
+        b_jk = value[3]
+        emit(j, ("B", k, b_jk))
+ 
+reduce(key, values):
+    // key is j
+    // values is a list of ("A", i, a_ij) and ("B", k, b_jk)
+    list_A = [(i, a_ij) for (M, i, a_ij) in values if M == "A"]
+    list_B = [(k, b_jk) for (M, k, b_jk) in values if M == "B"]
+    for (i, a_ij) in list_A:
+        for (k, b_jk) in list_B:
+            emit((i, k), a_ij*b_jk)
+
+map(key, value):
+    emit(key, value)
+  
+reduce(key, values):
+    result = 0
+    for value in values:
+        result += value
+    emit(key, result)
+
+\end{verbatim}
+
+Was too slow.
+
+\subsubsection{Block-wise}
+
+Cool. very fast.
+
+In order to fasten a bit the mapping completion time of the multiplication
+we used a third strategy to multiplicate the adjancecy matrix.
+
+The matrix is divided in j submatrixes called blocks. We tried different partitioning
+sizes and the best one is dividing the matrix in 25 blocks of 4000 elements each.
+
+Therefore, in order to compute all the elemnts in block i,j we need to give the mapper
+all the blocks in row i  and in column j, thus using 9 blocks instead of 25.
+
+For each block the proper blocks are loaded and the multiplication can be executed.
+The 25 hadoop jobs that compute the multiplication can be run in parallel, thus
+reducing the total completion time.
+
+\paragraph{Splitter module}
+
+\subsubsection{Block with coarser inner computation}
+
+\subsection{Inflation}
+
+After multiplying the matrix by the last precedently computed, we apply a strategy
+called inflation in order to enlarge differences between elements in a row.
+
+For each row, we compute the sum of all r-th powers of its elements.
+Then we recompute the element i,j as
+$$ a_{i,j} = \frac{a_{ij}^r} {\sum_{k=0..N} a_{ik}^r}$$
+
+
+\subsection{Convergency}
+
+Actually, 

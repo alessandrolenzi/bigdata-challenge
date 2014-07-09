@@ -1,0 +1,19 @@
+digraph {
+  label="Blockwise Matrix multiplication"
+  rankdir=LR
+
+   matrix[shape="box", style=rounded, label="Initial \nMI-to-MI \ndataset"];
+   end[shape="box", style=rounded];
+   
+   inflation[shape="box", label="Inflation M'^r"];
+   convergence[shape="box",label="Test Convergence \nand(m'_ij - m_ij < epsilon)"];
+
+   matrix -> splitter;
+   splitter -> multi1;
+   multi1 -> multi2;
+   multi2 -> inflation;
+   inflation -> convergence
+   convergence -> gatherer;
+   convergence -> multi1;
+   gatherer -> end;
+}

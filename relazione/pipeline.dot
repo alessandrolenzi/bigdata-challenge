@@ -1,0 +1,23 @@
+digraph {
+  label="Global computation pipeline"
+  rankdir=LR
+
+   dataset[shape="box", style=rounded, label="Initial \nMI-to-MI \ndataset"];
+   clusters[shape="box", style=rounded];
+   
+   aggregation[
+   	shape="box", 
+   	label="Aggregation, \naverage and \nrescale \nover time period \nM"
+   ];
+   MM[shape="box", label="(Blockwise) \nMatrix \nmultiplication \nM*M"];
+   inflation[shape="box", label="Inflation M'^r"];
+   convergence[shape="box",label="Test Convergence and(m'_ij - m_ij < epsilon)"];
+
+   dataset -> aggregation;
+   aggregation -> MM;
+   MM -> inflation;
+   inflation -> convergence;
+   convergence -> MM;
+   convergence -> visit;
+   visit -> clusters;
+}
