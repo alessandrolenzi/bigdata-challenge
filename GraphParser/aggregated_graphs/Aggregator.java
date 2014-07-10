@@ -60,7 +60,7 @@ public class Aggregator {
 		/** Calculate total seconds in the aggregation */
 		seconds = 3600 * supportedHours.size() * calculateValidDays();
 	}
-	
+
 	private int calculateValidDays() {
 		int totalDays = 0;
 		Set<List<Integer>> allDays = Sets.cartesianProduct(ImmutableList.of(ImmutableSet.copyOf(supportedDays), ImmutableSet.copyOf(supportedMonths)));
@@ -69,14 +69,15 @@ public class Aggregator {
 			try {
 				Calendar cal = Calendar.getInstance();
 				cal.setLenient(false);
-				cal.set(year, day.get(1)-1, day.get(0));
+				cal.set(year, day.get(1), day.get(0));
 				int day_of_week = cal.get(Calendar.DAY_OF_WEEK);		
 				for (int weekday: supportedWDays)
 					if (weekday == day_of_week) totalDays++;
 			} catch (ArrayIndexOutOfBoundsException exc) {
-				//d	o nothing. Just go on and skip
-			} catch (IllegalArgumentException ecc) {
-				//just do nothing
+				//do nothing. Just go on and skip
+			} catch (IllegalArgumentException illegal) {
+				//do nothing also, this means that the date is not valid.
+				//throw new IllegalArgumentException("WTF, i was trying with "+day.get(1)+","+day.get(0));
 			}
 		}
 		return totalDays;
@@ -99,7 +100,7 @@ public class Aggregator {
 		/** Singleton */
 		l.add(Integer.parseInt(string));
 	}
-	
+
 	private void parseCriteria(String criteria) {
 		String[] record = criteria.split(":");
 		switch(record[0]) {
@@ -112,12 +113,12 @@ public class Aggregator {
 		default: throw new IllegalArgumentException("The string \""+criteria+"\" is not a valid criteria");
 		}
 	}	
-	
+
 	public static boolean checkCriteria(int[] criteria, int value) {
 		return (criteria.length == 1) ? criteria[0] == value : criteria[0] <= value && criteria[1] >= value;
 	}
-	
-	
+
+
 	public boolean respects(String key) {
 		// gets day-month-year-hour
 		String[] fields = key.split("-");
@@ -149,17 +150,17 @@ public class Aggregator {
 			respected = respected || allowedHours == hour;
 		}
 		return true;
-		
+
 	}
-	
+
 	public String getIdentifier() {
 		return identifier;
 	}
 	
-	public int getTotalPeriods(int aggregationSizeSeconds) {
-		return ((Double) Math.floor(getTotalSeconds()/aggregationSizeSeconds)).intValue();
+	public int getAggregationLength(int unitSeconds) {
+		return getTotalSeconds()/unitSeconds;
 	}
-	
+
 	public int getTotalSeconds() {
 		return seconds;
 	}

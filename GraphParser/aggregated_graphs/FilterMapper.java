@@ -1,9 +1,6 @@
 package aggregated_graphs;
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.LongWritable;
@@ -44,7 +41,7 @@ public class FilterMapper extends Mapper<LongWritable, Text, Text, DoubleWritabl
 			Aggregator a = new Aggregator(aggregatorDescr);
 			if(a.respects(dayHour)){
 			/** newKey is PeriodId,PeriodDuration,SourceId,DestId */
-			Text newKey = new Text(a.getIdentifier() + ","+a.getTotalPeriods(600)+","+ record[1].toString() + "," +record[2].toString());
+			Text newKey = new Text(a.getIdentifier() +","+a.getAggregationLength(600)+","+ record[1].toString() + "," +record[2].toString());
 			/** val is Strength */
 			DoubleWritable val = new DoubleWritable(Double.parseDouble(record[3]));
 			context.write(newKey,val);
