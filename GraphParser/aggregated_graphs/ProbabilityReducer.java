@@ -7,7 +7,6 @@ import java.util.List;
 import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
-import org.apache.hadoop.mapreduce.Reducer.Context;
 import org.apache.hadoop.mapreduce.lib.output.MultipleOutputs;
 
 
@@ -57,7 +56,6 @@ public class ProbabilityReducer extends Reducer<Text, Text, Text, DoubleWritable
 			al.add(new ArcTail(vSplit[0], w));
 			sum += w;
 		}
-		
 		
 		
 		for(ArcTail a : al){
