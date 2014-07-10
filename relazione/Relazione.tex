@@ -1,4 +1,4 @@
-\documentclass[10pt,a4paper]{article}
+\documentclass[12pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{amsmath}
@@ -6,8 +6,19 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{fullpage}
+\usepackage{hyperref}
+
+\usepackage{titling}
+\newcommand{\subtitle}[1]{%
+  \posttitle{%
+    \par\end{center}
+    \begin{center}\large#1\end{center}
+    \vskip0.5em}%
+}
+
 \author{Michele Carignani, Alessandro Lenzi}
-\title{Cliques over Milan\\project for the course of \\Distributed Enabling Platforms}
+\title{Community discovery in Milan}
+\subtitle{project for the course of Distributed Enabling Platforms}
 
 \makeindex
 
@@ -69,7 +80,7 @@ intial_node = get_initial_node()
 \end{verbatim}
 
 After testing Tarjan's algorithm it was evident that the order of the visit
-was affecting the results of the application.
+was affecting the results of the application	.
 
 The different strategies in choosing the starting node and ordering its forward
 star showed different components.
@@ -91,8 +102,7 @@ of the graph was misleading and prone to noise.
 
 \subsection{Markov Clustering}
 
-Therefore we develop a totally different solution based on Markov Clustering.
-%% todo: reference http://micans.org/mcl/
+We then looked at a diffferent approach: Markov Clustering based on the Markov Clustering Algotirthm by Stijn van Dongen\footnote{\url{http://micans.org/mcl/}}.
 
 The idea was to reduce noise and emphasize relations in a more structured way
 by multiplying the adjancy matrix of the graph by itself until the number of

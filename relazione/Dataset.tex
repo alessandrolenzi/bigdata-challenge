@@ -1,39 +1,34 @@
 \section{Dataset}
 \label{thedataset}
 
-The dataset on which the analysis has been developed is an aggregated log of mobile phone
+\paragraph{The dataset} on which the analysis has been developed is an aggregated log of mobile phone
 calls and short text messages with their geographical source and destination points.
-
-The dataset is composed of several files, each one containing information of one specific day
+The dataset is composed by several textual files, each one containing information of one specific day
 within the observation period of two months (november and december 2013).
 
-%% todo: inserire grid, nodes, edges
+\paragraph{In each file,} a row describes the \textbf{connection strength between two geographical areas} in the Province of Milan (Italy) during a time period of 10 minutes within the day.
+The definition, given by the provider of the dataset, of connection strength between two areas is: a decimal value proportional to the number of calls and sms sent from one area to another one.
 
-In each file, a row describes the connection strength between two geographical areas in the Province of Milan (Italy) during a time period of 10 minutes within the day.
-
-The concept of connection strength between two areas is not formally defined: it is a decimal value proportional to the number of calls and sms sent from one area to another one.
-
-Geographic areas are identified by a logical a grid of $10.000$ squared areas 
-(with area $10.000m^2$) 
+\paragraph{The grid} Geographic areas are identified by a logical a grid of $10.000$ squared areas (with area $10.000m^2$)
 % todo: controllare numero
 identified by an integer number $i \in [0, 9999]$ where the
 $ i / 100 $ and $ i \% 100 $ are respectively the  
 x and y coordinates of the node.
 
-Therefore the format of each line is:
+To give an example, the dataset is compose of $62$ text files, named like \verb!2013-11-01.txt!, containing lines with the format:
 
 \begin{verbatim}
 timestamp \t sourceNode	\t 	destNode
 \end{verbatim}
 
-where timestamp is the time in milliseconds describing the first millisecond of the period described.
+where \verb!timestamp! is the time in milliseconds describing the first millisecond of the period described, \verb!sourceNode! is an integer describing the source and \verb!destNode! is an integer identifying the destination areas of call and messages within the logical grid.
 
-To sum up, the dataset describes a number of directed weighted graphs over
-the nodes of the geopgraphical grid, one for each 10-minutes long interval
-in the 2 months observation period. The total size of the dataset is around 450GB.
-
-%% todo: size of the dataset
+Summing up, the dataset describes several \footnote{precisely there are 8784 graphs, one for each 10-minutes interval within the observation period of 61 days.} \textbf{directed weighted graphs over
+the nodes of the geopgraphical grid}.
+Records where the values is zero are not listed. Each file has a size between
+3 and 6 GBs and the total size of the dataset is around 450GB.
 
 \section{Data distributions analysis}
 \label{ds_analysis}
+
 
