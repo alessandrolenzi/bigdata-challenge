@@ -11,4 +11,9 @@ hadoop*
 *.txt
 *.cfc
 *.zip
-.*
+*.log
+*.gz
+*.toc
+*.idx
+*.out
+*.pdf
