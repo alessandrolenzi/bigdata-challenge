@@ -1,18 +1,16 @@
 \section{Data aggregation}
 \label{aggregation}
+In our model, we dealt with interactions between different nodes in the considered area, rescaling them and considering them as probabilities.
+However, often the little aggregation time lead to very noisy datasets, among which it was difficult to operate achieving meaningful results.
 
-TimeAggregatedGraphs.java
-
-In order to get more realistic results and to deal with 
-the very high level of noise in the dataset,
-we decided to gather and average the 
-values about a couple of nodes among several 10-minutes periods
-into larger and more interesting time periods 
-(not alway contiguous, e.g. we aggregated all monday
+So, to get more realistic results and to deal with the very high level of noise in the dataset,
+we decided to gather and average the strength of interaction between couples of nodes in several 10-minutes periods
+considering a semantically meaningful aggregation in time (not alway contiguous, e.g. we aggregated all monday
 mornings periods).
 
-In order two achieve this, we developed a two passes map reduce computation executable with the Hadoop einvironment.
-
+To achieve this, we developed a procedure composed by two consecutive logical map reduce computations executable with the Hadoop environment.
+The input of the \emph{Time Aggregation} phase is the raw dataset, while the output is a graph of probabilities of interaction between zones of the considered area
+over a certain period of interest.
 Here follows the pseudo-code of the map and reduce operations.
 
 \begin{verbatim}
@@ -35,7 +33,6 @@ AverageReduce(key,values):
   avg = sum / num
   emit((id,source),(dest,value))
 
-
 IdentityMap(key, value):
   emit(key, value)
 
@@ -56,15 +53,21 @@ ProbabilityReduce(key, values):
 \paragraph{Disk usage}: During the initial executions, our testing environment
 could complete the aggregation of large periods (that means,
 aggregations including many 10-minutes intervals) because of full
-disk utilization.
-
+disk utilization. 
 While passing the filtered edges from the mappers to the reducers
 writing the splits (around 800 file splits produced by
 as many mappers) the disk was filled up.
+To overcome this issues, we used several approaches:
+\begin{enumerate}
+\item \textbf{Combiners} a combiner has been defined to shrink the first map output size. The combiner performs a sum over all strengths in the same aggregation period and, of course, with same source and destination. 
+The output of the combiner is a graph for each aggregation period in which the strength is the sum of all strength.
+This solution, for an aggregation with size of n slots, could reduce the output of each map task up to $1/n$ of the original size without the combiner.
+\item \textbf{GZip} another approach that we tried, and thereafter discarded, was to use GZip as compression codec for data going out of the map. From experimental results, we noticed that this approach, altough not providing enough benefits
+to cope with disk utilization issues, slowed down our computation significantly.
+\item \textbf{Change in split size} thanks to the combiner, the biggest is the number of time slots gathered in a single aggregation, the biggest is the shrinking in data. 
+Therefore, we tried to increase the size of the splits to be given to a single map task to exploit this reduction. We progressively increased split size from 128Mb to 1GB and then to contain a single whole file, which was not splittable.
+However, we noticed that this method, while decreasing the efficiency in the cluster utilization (as only fewer processing units could be used together) and in the completion time of this phase, was still not enough to cope with our disk issues.
+\item \textbf{Divide et impera} the latest, and best approach to solve the disk space issue, was to change the logic in the driver. What was previously the first map-reduce phase, has been decomposed into several little map-reduce phases, each one taking a parametric
+chunk of the initial data. This led to benefits from the point of view of disk usage, of completion time and of cluster utilization.
+\end{enumerate}
 
-The solution was to implement a combiner phase to reduce the number
-of edges passed from mappers to reduced by summing the values
-with same key. In order to enlarge the number of edges given in input
-to each combiner we decided to set the minimum size of
-the file splits to 1GB (instead of the 128 MB default size)
-and this reduced the number of mappers of a factor 8.
