@@ -1,0 +1,52 @@
+\section{Model}
+In our model, we started by considering what is a community. In our personal interpretation of this word,
+we defined a community as a set of individuals with close relationship, meaning high probability to interact or to have someone in common with whom they interact.
+
+Since we're dealing with calls, the idea is that a community can be identified by the frequency of calls between members belonging
+to the same community.
+
+The idea behind this approach is that, since we're searching for a community, we don't care about their size (i.e. the probability for an individual to be in a certain "community"), 
+but only the probability that two geographical areas (and thus, in our model, their inhabitants) can be correlated by their calls.
+
+The assumptions that we made are:
+\begin{itemize}
+\item People are related to some zones more strongly, meaning that an individual 
+has an higher probability of staying in certain zones (for example, near his work place or near his home) than in random places
+in the area taken into consideration. This allows to relate calls from certain geographical zones to some people.
+\item People call more often other people belonging to their community.
+\item Is not of major interest who is colling whom, since we only care about the existance of a "binding" between the two individuals.
+\item A person may belong to several communities, however depending on the day and on the time of the call, the probability of communicating with a certain community changes.
+As an example, during work hours it is more probable that calls will be addressed to people related to the working activity, while outside it will involve more probably family and friends.
+\footnote{Similarly, Telco operators have been known to distinguish between business traffic and residential traffic} 
+\end{itemize}
+
+This automatically leads to a model in terms of probability of calls outgoing from a certain zone, thus, assuming $N_{u}$ as the total population considered, we assumed the strength $S_{i,j}$ connecting
+zone $i$ and zone $j$ in our dataset to be
+$$
+S_{i,j}  = P\{call(i,j)\} P\{a\ caller\ is\ in\ i\} N_{u}
+$$
+
+As it is possible to see, using the strengths as an indicator "as they are", even though the $N_{u}$ factor will have no influence, 
+zones with an higher population or with an higher concentration of calls could obfuscate the behaviour of less populated zones, justifying 
+why the probability approach has been followed.
+
+The probability of one call between grid $i$ and grid $j$ can be thus extimated as
+$$
+P_{i,j} = P\{call(i,j\} = \frac{S_{i,j}}{\sum_{j}{}{S_{i,j}}}
+$$
+
+We can think of the initial dataset as composed of several graphs, one for each 10 minutes slots, in which the strengths $S_{i,j}$ are seen as weights of the arcs connecting two zones $S_{i,j}$. 
+However notice that using a single 10 minutes graph is not particularly significative, as noise could change significantly the results.
+
+So, to get more realistic results and to deal with the very high level of noise in the dataset,
+we decided to gather and average the strength of interaction between couples of nodes in several 10-minutes periods
+considering a semantically meaningful aggregation in time (not alway contiguous, e.g. we aggregated all monday
+mornings periods), in which we assumed that the behaviour of commmunities would be more or less the same.
+\label{AVGPG}
+We called these aggregations \emph{average probability graphs}, in which nodes are cells in the grid of our dataset, arcs represent interaction and their weight the average probability that such an interaction is established
+
+To be more formal, let $E$ be the set of arcs of the initial dataset and $E_{id} \subseteq E$ be the set of arcs belonging to aggregation $id$ composed of $k$, then the weight $w_{id}(e)=\widehat{P_{i,j}}$ of an arc $e=(i,j)$ of the average graph for aggregation period $id$ will be 
+$$
+w_{id}(e) = \frac{\sum_{\substack{e' \in E_{id}}} w(e')}{k}
+$$
+
