@@ -48,6 +48,8 @@ Finally \ref{results} will collect results and conclusion of the developed proje
 %% Dataset and analysis
 \input{Dataset.tex}
 
+\input{Idea.tex}
+
 %% How aggregated graphs are generated
 \input{Aggregation.tex}
 
@@ -68,16 +70,8 @@ Defining the communities as connected components onto the graph\footnote{A conne
 in a graph $A = (N,E)$ is a subset of nodes $A' \in A$  s.t. each node in A' is connected to 
 all the other nodes in A' 
 %% todo: more formal definition?
-}, the first idea was to apply Tarjan's algorithm for connected components.
+}, the first idea was to apply Tarjan's algorithm for connected components, whose pseudo code is in \ref{alg:tarjan}.
 %% todo: reference
-
-The algorithm can be described briefly as follows:
-\begin{verbatim}
-findConnectedComponents(node):
-  for n in node.forward_star():
-     
-intial_node = get_initial_node()
-\end{verbatim}
 
 After testing Tarjan's algorithm it was evident that the order of the visit
 was affecting the results of the application	.
@@ -89,7 +83,39 @@ So the next step was to introduce randomization in this choices.
 
 A new problem then showed up: since the graph was extremely connected, the result
 was a unique huge component.
-
+\begin{figure}
+\begin{verbatim}
+input: graph G = (V, E)
+output: set of strongly connected components (sets of vertices)
+index := 0
+S := empty
+for each v in V do
+	if (v.index is undefined) then
+		strongconnect(v)
+		
+function strongconnect(v)
+v.index := index
+v.lowlink := index
+index := index + 1
+S.push(v)
+for each (v, w) in E do
+	if (w.index is undefined) then
+		strongconnect(w)
+		v.lowlink := min(v.lowlink, w.lowlink)
+		else if (w is in S) then
+			v.lowlink := min(v.lowlink, w.index)
+if (v.lowlink = v.index) then
+	start a new strongly connected component
+	do
+		w := S.pop()
+		add w to current strongly connected component
+	until (w = v)
+	output the current strongly connected component
+end function
+\end{verbatim}
+\caption{Tarjan Strongly Connected Components algorithm}
+\label{alg:tarjan}
+\end{figure}
 To try to tackle this issue, we tried to define a treshold over edges weights, discarding all
 edges with weight under the treshold.
 
