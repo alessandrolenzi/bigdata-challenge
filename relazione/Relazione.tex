@@ -65,24 +65,22 @@ As we will see, the second will give the
 expected results, while the first will fail.
 
 \subsection{Tarjan Connected Components algorithm}
-
+%todo: explain cuts
 Defining the communities as connected components onto the graph\footnote{A connected component
 in a graph $A = (N,E)$ is a subset of nodes $A' \in A$  s.t. each node in A' is connected to 
 all the other nodes in A' 
 %% todo: more formal definition?
 }, the first idea was to apply Tarjan's algorithm for connected components, whose pseudo code is in \ref{alg:tarjan}.
-%% todo: reference
 
-After testing Tarjan's algorithm it was evident that the order of the visit
-was affecting the results of the application	.
 
-The different strategies in choosing the starting node and ordering its forward
-star showed different components.
-
-So the next step was to introduce randomization in this choices.
-
-A new problem then showed up: since the graph was extremely connected, the result
-was a unique huge component.
+In our initial approach, a mere visit, ordered on the arc identifier (i.e. \texttt{for i = 0 to 10000 do strongconnect(i)})
+has been performed. This visit, though performed with different cuts over the probability of the arcs, evidenced
+a strong bias of the order of visit on the found strongly connected components.
+As an example, with a cut on probability 0.005, a huge SCC is found, containing almost all nodes. Only few nodes remain
+outside this CFC, and some small aggregations can be found between them.
+So our second step has been achieving a visiting strategy consistent with the effective traffic measured during the day.
+To do so, we used the measurements of the total activity of grids in order to establish a visiting order to be 
+followed during the procedure.
 \begin{figure}
 \begin{verbatim}
 input: graph G = (V, E)
@@ -116,15 +114,87 @@ end function
 \caption{Tarjan Strongly Connected Components algorithm}
 \label{alg:tarjan}
 \end{figure}
-To try to tackle this issue, we tried to define a treshold over edges weights, discarding all
-edges with weight under the treshold.
+We performed the following attempts and different visits on our graph:
+\begin{enumerate}
+\item Nodes visited for increasing outgoing hourly traffic, with arcs selected with increasing probability. 
+\item Nodes visited for decreasing outgoing hourly traffic, with arcs ordered with increasing probability.
+\item Nodes visited for decreasing outgoing hourly traffic, with arcs ordered with decreasing probability.
+\item Nodes visited for increasing outgoing hourly traffic, with arcs ordered with decreasing probability.
+\end{enumerate}
+\begin{figure}
+\centering
+\includegraphics[scale=0.5]{tarjanscc.png}
+\caption{Strongly connected components found with Tarjan Algorithm.From left to right, top to bottom the hours considered are 12, 13, 14, 15.
+The visit has been performed with increasing hourly traffic and arcs selected with increasing probability. 
+The cut has been performed at value 0.05.}
+\label{fig:tarjan1}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[scale=0.6]{tarjanscc2.png}
+\caption{Stronglu connected components found with Tarjan Algorithms. From left to right, top to bottom the hours considered are 0, 1, 2 and 3.
+The visits have been performed with increasing hourly traffic and arcs selected with increasing probability.
+Cut performed at value 0.05}
+\label{fig:tarjan2}
+\end{figure}
 
-This strategy improved the results in terms of number and size of the connected components
-(respectively increased and decreased) but still introducing a "hard coded" treshold (even if
-after analysing the distribution of arcs) was a too strong bias in the research.
+The image \ref{fig:tarjan1} shows the found strongly connected components in the most trafficated hours 
+of the analysis. As it is possible to notice by looking to \ref{fig:analysis}, in fact, during
+these hours arcs values are very concentrated near the mean, and thus most of them will be cutted out, making
+most of the strongly connected components to disappear in the most trafficated hours of the day.
+The results are slightly better in less trafficated hours as shown in \ref{fig:tarjan2}, in which the variance is higher and thus a wider number
+of arcs will "save himself" from the performed cutting.
+In other attempts, we tried to modify the threshold so that it would save more arcs for the computation,
+but we have not been able to find an appropriate threshold leading to a large enough number of clusters
+and with an acceptable size.\\
+In fact, in most cases, a too low threshold led to few huge connected components whilst too high led to few and very small
+connected components.\\
+The approach described above, in our opinion, could not led to the desired results because of two reasons
+\begin{itemize}
+\item First, the visiting order, though more meaningful, was still establishing a bias in the search of the components because
+of the "paths" eliminated by the original Tarjan algorithm
+\item and second, the "static" threshold did not adapted well to changing traffic along the days.
+\end{itemize}
+To overcome this issues, we decided to implement a small variation of the Tarjan SCC algorithm, in which visited nodes not
+becoming part of a strongly connected component could be visited again while searching for others, thus increasing the
+complexity of the algorithm but with the advantage of reducing the visit ordering bias.
+\\
+The other modification that we implemented was that of percentile-based cuts. In this approach, for every hour, the probability
+distribution has been calculated and only arc probabilities in a certain percentile have been held, while the others
+have been cutted as it was done before with a "static" threshold. This allows for a more fine-grained cutting, allowing
+to keep more arcs also in more trafficated hours of the day.
 
-The conclusion to be made was that the global approach of searching communities through visists
-of the graph was misleading and prone to noise.
+\begin{figure}
+\includegraphics[scale=0.8]{tarjan3.png}
+\caption{Strongly connected components found cutting at the 99-th percentile. Hours depicted are, from left to right and from top to bottom, 12-17.}
+\label{fig:tarjan3}
+\end{figure}
+
+In \ref{fig:tarjan3} this modified algorithm has been tried with a cut on the 99-th precentile. In the plot
+for the SCC found in this case, it is possible to see that most of them are geographically localized (as we expected),
+but still their size is very small. \\
+However, only few components were able to "survive" across several hours, and are mostly localized in the outskirts 
+of the city. \\
+Other attempts have been made to find suitable strongly connected components, but also small modification in percentiles
+led either to very noise results (with almost all zones in the same component) or to empty results. 
+From this approach, we understood that
+\begin{enumerate}
+\item Very high cuts are needed, because of the high connectivity degree of the graph
+\item The statistics of arcs probabilities, however, seem to indicate the existance of zones calling themselves significantly more frequently than others.
+\item Visiting strategy has a very strong bias, and probably never considering twice the same arc could lead to eliminate some interesting strongly connected components
+\item The number of components is almost always lower than the expected one, however they are uniformly spreaded along the space taken into consideration
+\item In different hours, the components vary in their positions, possibly indicating different users behaviours in different hours
+\item Specially during hours in which we expected less traffic, components tend to move towards the outskirts, possibly denoting clusters belonging to small towns near Milan
+\item The found components are not stable during consecutive hours but they appear and disappear. In the beginning we thought this was due to the "static" cut, but the reproposition
+of this behaviour with the percentile denotes that the reason must be either a very noisy dataset or high variation in the users behaviours during the day.
+\end{enumerate}
+
+As previously said in Chapter 2, all of this research led us to the conclusion that the best approach was to find a sort of "average behaviour" to analyse and
+to move to a different approach, in which communities are seen as clusters. 
+To do so, we choosed the \emph{Markov Clustering} algorithm, which is known in litterature for the purpose of finding communities in graphs.
+
+
+For a more complete dissertation on what we did using this approach for discovering connected components, we invite you to refer to the attacched file \texttt{CfcSuGrafiOrari.pdf}, in Italian.
 
 \subsection{Markov Clustering}
 
