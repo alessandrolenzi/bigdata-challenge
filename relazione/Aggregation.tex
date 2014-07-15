@@ -70,6 +70,7 @@ Therefore, we tried to increase the size of the splits to be given to a single m
 However, we noticed that this method, while decreasing the efficiency in the cluster utilization (as only fewer processing units could be used together) and in the completion time of this phase, was still not enough to cope with our disk issues.
 \item \textbf{Divide and conquer} the latest, and best approach to solve the disk space issue, was to change the logic in the driver so that what was previously the first map-reduce phase, has been decomposed into several little map-reduce phases, each one taking a parametric number of files of the dataset.
 This partitioning method, in which a partition is processed in parallel and the next partition can be processed only when the previous aggregated graphs have been written on HDFS, can be indeed seen as a generalization of the previous case, but allowing to compute what we called \emph{average graphs} even in a space constrained environment. 
+Sadly, the introduction of this "partitioning" has some drawbacks, since it will make necessary to introduce a sorting phase in the probability reducer, necessary to eliminate duplicates.
 \item \textbf{Other attempts} we also went through several other ways, among which the decommissioning of the nodes (node 0, node 1 and node 2) with less space, trying to avoid to fill the disk completely.
 However, this solution (even impreved using the hadoop balancer) was very slow and, as obvious, led to a severe cluster underutilization that we didn't consider acceptable.
 \end{enumerate}
@@ -87,12 +88,12 @@ Our hypothesis is that, after a certain (cluster-dependant) threshold in the siz
 \hline
 1 File & 2h 20' 45'' \\
 \hline
-5 Files &  1h 22' 55''\\
+5 Files &  1h 11' 38''\\
 \hline
-9 Files & 1h 13' 36'' \\
+9 Files & 1h 19' 50'' \\
 \hline
 \end{tabular}
-\caption{Execution times for generating the average probability graphs with different partition sizes over (about) 56GB of data in 9 files}
+\caption{Execution times for generating the average probability graphs with different partition sizes over (about) 56GB of data in 9 files. 10 reducers have been used.}
 \label{fig:partitioningtimes}
 \end{figure}
 
