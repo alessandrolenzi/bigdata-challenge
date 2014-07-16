@@ -73,8 +73,7 @@ all the other nodes in A'
 }, the first idea was to apply Tarjan's algorithm for connected components, whose pseudo code is in \ref{alg:tarjan}.
 
 
-In our initial approach, a mere visit, ordered on the arc identifier (i.e. \texttt{for i = 0 to 10000 do strongconnect(i)})
-has been performed. This visit, though performed with different cuts over the probability of the arcs, evidenced
+In our initial approach, a mere visit, ordered on the arc identifier (i.e. \texttt{for i = 0 to 10000 do strongconnect(i)}) was performed. This visit, though executed with different cuts over the probability of the arcs, evidenced
 a strong bias of the order of visit on the found strongly connected components.
 As an example, with a cut on probability 0.005, a huge SCC is found, containing almost all nodes. Only few nodes remain
 outside this CFC, and some small aggregations can be found between them.
@@ -149,11 +148,11 @@ but we have not been able to find an appropriate threshold leading to a large en
 and with an acceptable size.\\
 In fact, in most cases, a too low threshold led to few huge connected components whilst too high led to few and very small
 connected components.\\
-The approach described above, in our opinion, could not led to the desired results because of two reasons
+The approach described above, in our opinion, could not lead to the desired results because of two reasons:
 \begin{itemize}
 \item First, the visiting order, though more meaningful, was still establishing a bias in the search of the components because
 of the "paths" eliminated by the original Tarjan algorithm
-\item and second, the "static" threshold did not adapted well to changing traffic along the days.
+\item and second, the "static" threshold did not adapt well to changing traffic along the days.
 \end{itemize}
 To overcome this issues, we decided to implement a small variation of the Tarjan SCC algorithm, in which visited nodes not
 becoming part of a strongly connected component could be visited again while searching for others, thus increasing the
@@ -191,25 +190,36 @@ of this behaviour with the percentile denotes that the reason must be either a v
 
 As previously said in Chapter 2, all of this research led us to the conclusion that the best approach was to find a sort of "average behaviour" to analyse and
 to move to a different approach, in which communities are seen as clusters. 
-To do so, we choosed the \emph{Markov Clustering} algorithm, which is known in litterature for the purpose of finding communities in graphs.
+To do so, we chose the \emph{Markov Clustering} algorithm, which is known in litterature for the purpose of finding communities in graphs.
 
 
 For a more complete dissertation on what we did using this approach for discovering communities, we invite you to refer to the attacched file \texttt{CfcSuGrafiOrari.pdf}, in Italian.
 
 \subsection{Markov Clustering}
 
-We then looked at a diffferent approach: Markov Clustering based on the Markov Clustering Algotirthm by Stijn van Dongen\footnote{\url{http://micans.org/mcl/}}.
+We then looked at a diffferent approach: Markov Clustering based on the Markov Clustering Algorithm by Stijn van Dongen\footnote{\url{http://micans.org/mcl/}}.
 
 The idea was to reduce noise and emphasize relations in a more structured way
 by multiplying the adjancy matrix of the graph by itself until the number of
 non-null elements in each row is very low (reduce the number of edges) and with
 values probability weight close to 1 (taking the most probable connections).
 
-File: MarkovClustering.java
+Therefore, the pseudocode of the algorith is:
+\begin{figure}
+%% todo: add pseudocode
+\begin{verbatim}
+
+\end{verbatim}
+\caption{Markov Clustering pseudocode}
+\end{figure}
+
+%% Todo: explain the idea of flux
 
 \input{MarkovClustering.tex}
 
 \section{Risultati}
 \label{results}
+
+
 
 \end{document}
