@@ -230,29 +230,6 @@ BlockColumnMapper(key, value):
 \label{fig:blockwisemap}
 \end{figure}
 
-In order to fasten the mapping completion time of the multiplication
-we used a third strategy to multiplicate the adjancecy matrix.
-
-The matrix is divided in $n$ submatrixes, from now on called blocks. 
-We tried different partitioning
-sizes and the best one is dividing 
-the matrix in 25 blocks of 4000 elements each.
-This parameter can be passed as input to the splitting module that generates
-the blocks.
-
-Therefore, in order to compute all the elements in block $i$,$j$ we need to feed the mapper
-with all the blocks in row $i$ and in column $j$, thus using 9 blocks instead of 25.
-
-For each block the proper blocks are loaded and the multiplication can be executed.
-The 25 hadoop jobs that compute the multiplication can be run in parallel, thus
-reducing the total completion time.
-
-\subsubsection{Multiplication algorithm with blocks}
-
-\subsubsection{Implementation}
-
-\paragraph{Splitter module}
-
 \begin{figure}
 \begin{verbatim}
 MatrixMultiplicationReducer(key, values):
@@ -332,6 +309,9 @@ returning the index of the n-th block in partition Pi.In the image, the blue blo
 
 After multiplying the matrix by the last precedently computed, we apply a strategy
 called inflation in order to enlarge differences between elements in a row.
+Using the algorithm author words: ''richests get richer, poorests get poorer''.
+In fact our main porpouse is to emphasize strong connections and to hide
+weak ones.
 
 For each row, we compute the sum of all r-th powers of its elements.
 Then we recompute the element i,j as
@@ -340,7 +320,7 @@ $$ a_{i,j} = \frac{a_{ij}^r} {\sum_{k=0..N} a_{ik}^r}$$
 
 \subsection{Convergency}
 
-Actually, 
+
 
 \subsection{Matrix splitter}
 \label{splitter}
@@ -348,5 +328,60 @@ Actually,
 \label{recombiner}
 \subsection{Driver}
 \subsection{Finding clusters}
-%% todo:
+
+By the definition given in the original paper, given a matrix
+multiplied until convergency is reached, the clusters are
+identified as disjoint components in the graph, that means
+a partition of the set of nodes such that there are no edges
+linking two nodes which belong two different subsets in the partition.
+
+In the  final matrix actually, values that are not 0 are 1 or tend to 1
+and since this is stochastic matrix, this means that for each row
+only one value is different from zero.
+
+This, in turn, means that our aim of reduce the graph density toward
+a linear number of edges, w.r.t the number of nodes, were  actually reached.
+
+In this scenario, it is much more probable to discover disjoint compoments
+of the graph, i.e clusters, i.e communities.
+
+We implemented the last module of our application, the DisjointComponentVisit
+class, as a visit
+of the graph able of recognizing the different disjoint componets, which
+defines and uses three main actions:
+\begin{itemize}
+    \item \verb!new_component()! creates a new subset of nodes,
+    \item \verb!merge_components(c1,c2)! merges two subsets into one,
+    \item \verb!add_to(n,c)! add a node to a subset.
+\end{itemize}
+
+The module, cycles over all edges in the result files, looks
+for the components containing the head and the tail of the egde,
+the in case they are the same it continues. If the head and tail
+belong to different component, they are merged into one.
+If one of the two nodes does not belong to any components, it is
+added  to the component of the other one (in case none of them 
+are contained in any components, a new component is created and both
+are added to it).
+
+We used the Java class \verb!java.util.TreeSet! to implement
+the components which assures logarithmic time for
+the operations of adding a new element and testing if an element
+is contained. 
+
+Since the expected result of convergency is that all non-zero edges
+are one, dunring this visit edges with weight values less than $0.9$
+are discarded. This is due becase of the approximention done by
+posing a maximum number of iterations to the convergency loop.
+
+After all components are computed, we generate three files:
+\begin{itemize}
+\item a text file called \verb!clusters.txt! with all the components and
+the list of the nodes within it,
+\item a PNG file called \verb!clusters.png! displaying all the edges and
+\item a PNG file called \verb!patchwork.png! displaying the grid where
+each node is coloured with a different color depending on the cluster it
+is in.
+\end{itemize}
+
 
