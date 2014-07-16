@@ -204,16 +204,38 @@ by multiplying the adjancy matrix of the graph by itself until the number of
 non-null elements in each row is very low (reduce the number of edges) and with
 values probability weight close to 1 (taking the most probable connections).
 
-Therefore, the pseudocode of the algorith is:
+Therefore, the pseudocode of the general algorithm is:
 \begin{figure}
-%% todo: add pseudocode
 \begin{verbatim}
+   G is a graph
+   r = 4
+   set M_1 to be the matrix of random walks on G
 
+   while (change) {
+      M_2 =  M_1 * M_1
+      M_1 =  inflation(M_2)
+      change   = difference(M_1, M_2)
+   }
+
+   set CLUSTERING as the components of M_1
 \end{verbatim}
 \caption{Markov Clustering pseudocode}
 \end{figure}
 
-%% Todo: explain the idea of flux
+The algorithm is based on the assumption that $G$ is a graph
+were edges are weighted with probabilities and the sum
+of all edges exiting a node is 1. Thus the adjacency matrix
+of the graph is stochastic by rows.
+
+The matrix can be therefore seen as the matrix of probabilities
+of transitioning from a state to another state in
+a Markov Process, also called random walk matrix.
+
+The Markovian Clustering Algorithm simulates fluxes within the
+graphs and calculates, with n iterations, the probabilities of going in
+n steps from each node to another one. Taking this simulation to the limit
+(or better, to a appropriate approximation of the limit) identifies
+the most probable destinations of the flux from each node.
 
 \input{MarkovClustering.tex}
 

@@ -313,10 +313,18 @@ Using the algorithm author words: ''richests get richer, poorests get poorer''.
 In fact our main porpouse is to emphasize strong connections and to hide
 weak ones.
 
-For each row, we compute the sum of all r-th powers of its elements.
+The idea is simple: for each row, we compute the sum 
+of all r-th powers of its elements.
 Then we recompute the element i,j as
 $$ a_{i,j} = \frac{a_{ij}^r} {\sum_{k=0..N} a_{ik}^r}$$
 
+Notice that this will ensure that all the rows sums to 1, thus the matrix
+remains stochastic. We decided to use $r$ equal to $4$ to get a bit faster
+convergency time.
+
+Inflation is implemented with a Map-Reduce job in the file Inflation.java,
+using mappers to select rows and the reducer to re-compute elements of each
+row.
 
 \subsection{Convergency}
 The convergency checker is a simple map-reduce job. The mapper takes as input the two matrices, the one 
@@ -337,11 +345,12 @@ However, in these iterations the number of non-converged values is already very 
 represents only the 0.2\% of the total values.
 For this reason, we decided that 20 iterations were enough for our problem.
 
-\subsection{Matrix splitter}
+\subsection{Matrix splitter and recombiner}
 \label{splitter}
-\subsection{Matrix recombiner}
-\label{recombiner}
+
+
 \subsection{Driver}
+<<<<<<< Updated upstream
 The driver for the Markov Clustering algorithm that we implemented is thus composed of several phases.
 It takes as input parameters the following values:
 \begin{enumerate}
@@ -351,6 +360,11 @@ It takes as input parameters the following values:
 \item \textbf{Number of workers}, parameter used to decide how many matrix blocks multiplications should be computed in parallel.
 \end{enumerate}
 Starting from this phase, in the beginning the matrix is pre-processed and divided in blocks. The matrix is replicated on two different directories, that will be fetched in input to the first matrix multiplication phase.
+=======
+
+
+\subsection{Finding clusters}
+>>>>>>> Stashed changes
 
 The matrix multiplication phase works operating on 3 directories. It rotates in modulo 3 wrt to iteration number, taking the first two as input and the last as output folder.
 However, the matrix multiplication writes on a temporary "inflate" directory. It will be the Inflation module responsible for filling the output dir of the phase with the ultimate result.
