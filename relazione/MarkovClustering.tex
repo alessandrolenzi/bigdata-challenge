@@ -319,16 +319,53 @@ $$ a_{i,j} = \frac{a_{ij}^r} {\sum_{k=0..N} a_{ik}^r}$$
 
 
 \subsection{Convergency}
+The convergency checker is a simple map-reduce job. The mapper takes as input the two matrices, the one 
+newly calculated and the one calculated in the previous step. 
+Then it emits the probability for a certain value using as key the coordinates of the probability, which
+in this case are represented by a couple of coordinates, the former referring to the block and the latter to the
+relative position inside the block.
 
+In the reducer, these two values are subtracte and their difference confronted against the threshold. Whenever 
+the difference is bigger than the threshold, a \texttt{Counter}, provided by the Hadoop framework is incremented by one,
+making the job (whose output is always empty) return the number of non converged values.
+Finally the driver checks for the value of this counter as soon as the job finishes, to check if a new convergency iteration
+has to be executed or if the matrix has converged.
 
+For what regards the speed of convergency, we observed that in the beginning values tend to converge very fast, approximately halving at every iteration for the first 10-15 iterations. Thereafter, the number of non-converging values continues to decrease
+but in a more slow fashion, arriving from 16th iteration on to decrease only of an order of 10 values for iteration.
+However, in these iterations the number of non-converged values is already very small, usually about 2000, and thus 
+represents only the 0.2\% of the total values.
+For this reason, we decided that 20 iterations were enough for our problem.
 
 \subsection{Matrix splitter}
 \label{splitter}
 \subsection{Matrix recombiner}
 \label{recombiner}
 \subsection{Driver}
-\subsection{Finding clusters}
+The driver for the Markov Clustering algorithm that we implemented is thus composed of several phases.
+It takes as input parameters the following values:
+\begin{enumerate}
+\item \textbf{Input folder}, containing a probability matrix to be seen as a Markov Chain
+\item \textbf{Output folder}, where the results will be written
+\item \textbf{Maximum number of iterations}, the maximum number of convergency loops to perform before stopping
+\item \textbf{Number of workers}, parameter used to decide how many matrix blocks multiplications should be computed in parallel.
+\end{enumerate}
+Starting from this phase, in the beginning the matrix is pre-processed and divided in blocks. The matrix is replicated on two different directories, that will be fetched in input to the first matrix multiplication phase.
 
+The matrix multiplication phase works operating on 3 directories. It rotates in modulo 3 wrt to iteration number, taking the first two as input and the last as output folder.
+However, the matrix multiplication writes on a temporary "inflate" directory. It will be the Inflation module responsible for filling the output dir of the phase with the ultimate result.
+The convergency phase, instead, as previously explained, doesn't write down any information on the disk but merely exploits hadoop counters to understand the number of non converged values existing in the matrix.
+Finally, when the matrix converges or the number of maximum iterations has been reached, the matrix is recomposed and written in the output directory.
+
+A sketch depicting the behaviour of the whole pipeline that we developed can be seen in fig. \ref{fig:completepipeline}
+\newpage
+\begin{figure}
+\centering
+\includegraphics[scale=0.7]{completepipeline.png}
+\label{fig:completepipeline}
+\end{figure}
+\newpage
+\subsection{Finding clusters}
 By the definition given in the original paper, given a matrix
 multiplied until convergency is reached, the clusters are
 identified as disjoint components in the graph, that means

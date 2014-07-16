@@ -635,7 +635,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="0.49497475"
      inkscape:cx="751.06022"
-     inkscape:cy="386.10734"
+     inkscape:cy="73.948563"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -668,7 +668,10 @@
        height="827.94623"
        ry="21.660694"
        rx="19.994381"
-       id="rect5131" />
+       id="rect5131"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <rect
        style="opacity:0.43402004000000000;fill:#f57900;fill-rule:evenodd;stroke:#ce5c00;stroke-width:4;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
        x="252.75815"
@@ -677,15 +680,24 @@
        height="169.48512"
        ry="20"
        rx="20"
-       id="rect5133" />
+       id="rect5133"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <path
        style="fill:none;stroke:#4e9a06;stroke-width:4;stroke-linecap:round;stroke-linejoin:round"
        inkscape:connector-curvature="0"
        d="M 348.60269,113.9451 349.84304,-6.2585027 371.37466,-36.347933"
-       id="path5041-4-2" />
+       id="path5041-4-2"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <g
        transform="translate(118.17446,44.658337)"
-       id="g4554">
+       id="g4554"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
       <rect
          style="opacity:0.98999999;fill:#555753;stroke:#555753;stroke-width:7.08699989;stroke-linejoin:round;filter:url(#filter4523)"
          height="101.02"
@@ -740,10 +752,16 @@
        style="fill:none;stroke:#4e9a06;stroke-width:4;stroke-linecap:round;stroke-linejoin:round"
        inkscape:connector-curvature="0"
        d="M 219.23577,261.70611 284.55718,160.7925 318.84117,146.87875"
-       id="path5041" />
+       id="path5041"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <g
        transform="matrix(0.33142695,-0.51201424,0.51201424,0.33142695,-153.03281,205.43235)"
-       id="g5025">
+       id="g5025"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
       <path
          style="opacity:0.98999999;fill:#73d216;stroke:#4e9a06;stroke-width:1.89240003;stroke-linejoin:round"
          inkscape:connector-curvature="0"
@@ -764,10 +782,16 @@
        style="fill:none;stroke:#4e9a06;stroke-width:4;stroke-linecap:round;stroke-linejoin:round"
        inkscape:connector-curvature="0"
        d="M 494.1278,262.11357 428.80639,161.19996 394.5224,147.28621"
-       id="path5041-0" />
+       id="path5041-0"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <g
        transform="matrix(-0.33142695,-0.51201424,-0.51201424,0.33142695,866.39638,205.83981)"
-       id="g5025-4">
+       id="g5025-4"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
       <path
          style="opacity:0.98999999;fill:#73d216;stroke:#4e9a06;stroke-width:1.89240003;stroke-linejoin:round"
          inkscape:connector-curvature="0"
@@ -786,7 +810,10 @@
     </g>
     <g
        transform="matrix(0.00629326,-0.60988753,0.60988753,0.00629326,3.9311494,265.44479)"
-       id="g5025-8-0">
+       id="g5025-8-0"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
       <path
          style="opacity:0.98999999;fill:#73d216;stroke:#4e9a06;stroke-width:1.89240003;stroke-linejoin:round"
          inkscape:connector-curvature="0"
@@ -807,10 +834,16 @@
        style="fill:none;stroke:#4e9a06;stroke-width:4;stroke-linecap:round;stroke-linejoin:round"
        inkscape:connector-curvature="0"
        d="M 345.17633,268.42503 346.41668,148.22143 367.9483,118.132"
-       id="path5041-4" />
+       id="path5041-4"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <g
        transform="matrix(0.00629326,-0.60988753,0.60988753,0.00629326,0.5047842,419.92472)"
-       id="g5025-8">
+       id="g5025-8"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
       <path
          style="opacity:0.98999999;fill:#73d216;stroke:#4e9a06;stroke-width:1.89240003;stroke-linejoin:round"
          inkscape:connector-curvature="0"
@@ -834,10 +867,16 @@
        width="193.57001"
        height="42.143002"
        transform="matrix(0.21315248,-0.01925054,0.02896576,0.32072466,306.36335,-192.68563)"
-       id="rect5977-0-4" />
+       id="rect5977-0-4"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <g
        id="g4774"
-       transform="translate(118.17446,118.65834)">
+       transform="translate(118.17446,118.65834)"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
       <rect
          id="rect4776"
          rx="20"
@@ -895,7 +934,10 @@
        width="193.57001"
        height="42.143002"
        transform="matrix(0.19016321,-0.32485252,0.44204115,0.3163982,-54.635606,69.384472)"
-       id="rect5977" />
+       id="rect5977"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <text
        x="-48.62254"
        y="329.77353"
@@ -903,7 +945,10 @@
        xml:space="preserve"
        style="font-size:9.67300034px;text-align:center;text-anchor:middle;opacity:0.65982002;fill:#000000;font-family:DejaVu Sans"
        id="text5979"
-       transform="matrix(0.54339414,-0.8394777,0.8394777,0.54339414,0,0)"><tspan
+       transform="matrix(0.54339414,-0.8394777,0.8394777,0.54339414,0,0)"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          x="-48.62254"
          y="329.77353"
          id="tspan5981">Prob. Graph 1</tspan></text>
@@ -914,7 +959,10 @@
        width="193.57001"
        height="42.143002"
        transform="matrix(0.20857531,0.31334892,-0.47818637,0.25854591,725.97746,1.3268652)"
-       id="rect5977-9" />
+       id="rect5977-9"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <text
        x="415.20245"
        y="-283.15359"
@@ -922,7 +970,10 @@
        xml:space="preserve"
        style="font-size:9.67300034px;text-align:center;text-anchor:middle;opacity:0.65982002;fill:#000000;font-family:DejaVu Sans"
        id="text5979-8"
-       transform="matrix(0.516205,0.85646506,-0.85646506,0.516205,0,0)"><tspan
+       transform="matrix(0.516205,0.85646506,-0.85646506,0.516205,0,0)"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          x="415.20245"
          y="-283.15359"
          id="tspan5981-3">Prob. Graph 1</tspan></text>
@@ -933,7 +984,10 @@
        width="193.57001"
        height="42.143002"
        transform="matrix(0.21315248,-0.01925054,0.02896576,0.32072466,297.2227,21.08001)"
-       id="rect5977-0" />
+       id="rect5977-0"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <text
        x="346.64575"
        y="218.95529"
@@ -941,13 +995,19 @@
        xml:space="preserve"
        style="font-size:9.67300034px;text-align:center;text-anchor:middle;opacity:0.65982002;fill:#000000;font-family:DejaVu Sans"
        id="text5979-6"
-       transform="matrix(0.9999999,4.4450864e-4,-4.4450864e-4,0.9999999,0,0)"><tspan
+       transform="matrix(0.9999999,4.4450864e-4,-4.4450864e-4,0.9999999,0,0)"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          x="346.64575"
          y="218.95529"
          id="tspan5981-5">Prob.Graph i</tspan></text>
     <g
        id="g6082"
-       transform="translate(37.628182,-90.156115)">
+       transform="translate(37.628182,-90.156115)"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
       <path
          transform="matrix(0.61249999,0,0,0.61249999,39.937503,250.95999)"
          d="m 330.71429,170.21933 c 0,3.15591 -2.55838,5.71429 -5.71429,5.71429 -3.15591,0 -5.71429,-2.55838 -5.71429,-5.71429 0,-3.15591 2.55838,-5.71429 5.71429,-5.71429 3.15591,0 5.71429,2.55838 5.71429,5.71429 z"
@@ -988,7 +1048,10 @@
        sodipodi:rx="5.7142859"
        sodipodi:ry="5.7142859"
        d="m 330.71429,170.21933 a 5.7142859,5.7142859 0 1 1 -11.42858,0 5.7142859,5.7142859 0 1 1 11.42858,0 z"
-       transform="matrix(0.61249999,0,0,0.61249999,214.20157,162.20416)" />
+       transform="matrix(0.61249999,0,0,0.61249999,214.20157,162.20416)"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <path
        transform="matrix(0.61249999,0,0,0.61249999,224.20157,162.20416)"
        d="m 330.71429,170.21933 a 5.7142859,5.7142859 0 1 1 -11.42858,0 5.7142859,5.7142859 0 1 1 11.42858,0 z"
@@ -998,7 +1061,10 @@
        sodipodi:cx="325"
        id="path5166-9"
        style="fill:#000000;fill-opacity:1;stroke:none"
-       sodipodi:type="arc" />
+       sodipodi:type="arc"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:none"
@@ -1008,7 +1074,10 @@
        sodipodi:rx="5.7142859"
        sodipodi:ry="5.7142859"
        d="m 330.71429,170.21933 a 5.7142859,5.7142859 0 1 1 -11.42858,0 5.7142859,5.7142859 0 1 1 11.42858,0 z"
-       transform="matrix(0.61249999,0,0,0.61249999,236.20157,162.20416)" />
+       transform="matrix(0.61249999,0,0,0.61249999,236.20157,162.20416)"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <text
        x="355.69138"
        y="5.1855903"
@@ -1016,7 +1085,10 @@
        xml:space="preserve"
        style="font-size:9.67300034px;text-align:center;text-anchor:middle;opacity:0.65982002;fill:#000000;font-family:DejaVu Sans"
        id="text5979-6-7"
-       transform="matrix(0.9999999,4.4450864e-4,-4.4450864e-4,0.9999999,0,0)"><tspan
+       transform="matrix(0.9999999,4.4450864e-4,-4.4450864e-4,0.9999999,0,0)"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          x="355.69138"
          y="5.1855903"
          id="tspan5981-5-1">Dataset</tspan></text>
@@ -1025,10 +1097,16 @@
        d="M 206.4814,384.47494 304.65579,324.2186"
        inkscape:connector-curvature="0"
        style="fill:none;stroke:#4e9a06;stroke-width:4;stroke-linecap:round;stroke-linejoin:round"
-       sodipodi:nodetypes="cc" />
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <g
        transform="translate(40.317323,308.94405)"
-       id="g4554-2">
+       id="g4554-2"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
       <rect
          style="opacity:0.98999999;fill:#555753;stroke:#555753;stroke-width:7.08699989;stroke-linejoin:round;filter:url(#filter4523-1)"
          height="101.02"
@@ -1084,10 +1162,16 @@
        style="fill:none;stroke:#4e9a06;stroke-width:4;stroke-linecap:round;stroke-linejoin:round"
        inkscape:connector-curvature="0"
        d="M 502.64569,390.53586 404.4713,330.27952"
-       id="path5041-9-6-0-9" />
+       id="path5041-9-6-0-9"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <g
        transform="translate(177.17447,308.94405)"
-       id="g4554-0">
+       id="g4554-0"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
       <rect
          style="opacity:0.98999999;fill:#555753;stroke:#555753;stroke-width:7.08699989;stroke-linejoin:round;filter:url(#filter4523-7)"
          height="101.02"
@@ -1144,7 +1228,10 @@
        x="479.97797"
        y="80.219322"
        id="text7031"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          sodipodi:role="line"
          id="tspan7033"
          x="479.97797"
@@ -1157,22 +1244,34 @@
        style="fill:none;stroke:#4e9a06;stroke-width:4;stroke-linecap:round;stroke-linejoin:round"
        inkscape:connector-curvature="0"
        d="M 332.96031,488.38574 219.15446,449.67302 197.29295,419.82241"
-       id="path5041-1" />
+       id="path5041-1"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <path
        sodipodi:nodetypes="cc"
        style="fill:none;stroke:#4e9a06;stroke-width:4.3325696;stroke-linecap:round;stroke-linejoin:round"
        inkscape:connector-curvature="0"
        d="M 361.43584,979.01693 357.79277,685.23888"
-       id="path5041-9-6-0" />
+       id="path5041-9-6-0"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <path
        sodipodi:nodetypes="cc"
        style="fill:none;stroke:#4e9a06;stroke-width:4;stroke-linecap:round;stroke-linejoin:round"
        inkscape:connector-curvature="0"
        d="M 359.10668,707.68509 355.13105,453.93853"
-       id="path5041-9-6" />
+       id="path5041-9-6"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <g
        transform="matrix(-0.57742667,-0.19642008,0.19642008,-0.57742667,369.25864,863.12973)"
-       id="g5025-82">
+       id="g5025-82"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
       <path
          style="opacity:0.98999999;fill:#73d216;stroke:#4e9a06;stroke-width:1.89240003;stroke-linejoin:round"
          inkscape:connector-curvature="0"
@@ -1193,10 +1292,16 @@
        style="fill:none;stroke:#4e9a06;stroke-width:4;stroke-linecap:round;stroke-linejoin:round"
        inkscape:connector-curvature="0"
        d="m 364.51161,487.62338 113.80585,-38.71272 21.86151,-29.85061"
-       id="path5041-1-6" />
+       id="path5041-1-6"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <g
        transform="translate(117.80681,465.28852)"
-       id="g4554-2-5">
+       id="g4554-2-5"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
       <rect
          style="opacity:0.98999999;fill:#555753;stroke:#555753;stroke-width:7.08699989;stroke-linejoin:round;filter:url(#filter4523-1-9)"
          height="101.02"
@@ -1249,7 +1354,10 @@
     </g>
     <g
        transform="translate(118.37824,528.85995)"
-       id="g4554-2-5-6">
+       id="g4554-2-5-6"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
       <rect
          style="opacity:0.98999999;fill:#555753;stroke:#555753;stroke-width:7.08699989;stroke-linejoin:round;filter:url(#filter4523-1-9-4)"
          height="101.02"
@@ -1302,7 +1410,10 @@
     </g>
     <g
        transform="matrix(0.02732527,-0.60930759,-0.60930759,-0.02732527,693.80971,811.54615)"
-       id="g5025-42-2">
+       id="g5025-42-2"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
       <path
          style="opacity:0.98999999;fill:#73d216;stroke:#4e9a06;stroke-width:1.89240003;stroke-linejoin:round"
          inkscape:connector-curvature="0"
@@ -1324,25 +1435,40 @@
        d="m 328.72767,896.60057 -154.98023,0.18684 0.51536,-412.12779 117.24319,0.1529"
        inkscape:connector-curvature="0"
        style="fill:none;stroke:#6b99cc;stroke-width:4.33256960000000024;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;fill-opacity:1"
-       sodipodi:nodetypes="cccc" />
+       sodipodi:nodetypes="cccc"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <path
        id="path5027-8-8"
        d="m 272.94072,474.04901 26.09772,10.30273 -25.66215,11.32675 -0.16578,-8.23225 c -1.26196,-0.26131 -2.21594,-1.28527 -2.24099,-2.52926 -0.0252,-1.25008 0.88644,-2.32991 2.13698,-2.63572 l -0.16578,-8.23225 z"
        inkscape:connector-curvature="0"
-       style="opacity:0.98999999000000005;fill:#29b3d9;stroke:#3b8ca6;stroke-width:1.15421258999999998;stroke-linejoin:round;fill-opacity:1;stroke-opacity:1" />
+       style="opacity:0.98999999000000005;fill:#29b3d9;stroke:#3b8ca6;stroke-width:1.15421258999999998;stroke-linejoin:round;fill-opacity:1;stroke-opacity:1"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <path
        id="path5029-48-5"
        d="m 296.49633,484.43953 c -16.25065,-6.31612 -22.26674,9.98949 -22.26674,9.98949 l 22.26674,-9.98949 z"
        style="fill:url(#linearGradient8649);fill-rule:evenodd"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <path
        id="path5031-35-8"
        d="m 296.47582,484.33014 -22.49824,-8.7769 0.38723,18.62294 22.11101,-9.84604 z"
        inkscape:connector-curvature="0"
-       style="opacity:0.98999999000000005;fill:none;stroke:#58a6ff;stroke-width:1.08297395999999990;stroke-opacity:1" />
+       style="opacity:0.98999999000000005;fill:none;stroke:#58a6ff;stroke-width:1.08297395999999990;stroke-opacity:1"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <g
        transform="translate(118.5211,680.43138)"
-       id="g4554-2-5-6-7">
+       id="g4554-2-5-6-7"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
       <rect
          style="opacity:0.98999999;fill:#555753;stroke:#555753;stroke-width:7.08699989;stroke-linejoin:round;filter:url(#filter4523-1-9-4-3)"
          height="101.02"
@@ -1398,10 +1524,16 @@
        style="fill:none;stroke:#4e9a06;stroke-width:4.3325696;stroke-linecap:round;stroke-linejoin:round"
        inkscape:connector-curvature="0"
        d="M 362.86985,1092.175 360.74201,952.44526"
-       id="path5041-9-6-0-0" />
+       id="path5041-9-6-0-0"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <g
        transform="translate(68.773412,271.87128)"
-       id="g3116">
+       id="g3116"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
       <path
          style="opacity:0.98999999;fill:#555753;stroke:#555753;stroke-width:3.51909995;stroke-linejoin:round;filter:url(#filter4523-53)"
          inkscape:connector-curvature="0"
@@ -1442,7 +1574,10 @@
     </g>
     <g
        id="g7925"
-       transform="translate(-58.588848,-27.274119)">
+       transform="translate(-58.588848,-27.274119)"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
       <image
          inkscape:export-ydpi="87"
          inkscape:export-xdpi="87"
@@ -1473,10 +1608,16 @@
        style="fill:none;stroke:#4e9a06;stroke-width:4;stroke-linecap:round;stroke-linejoin:round"
        inkscape:connector-curvature="0"
        d="m 415.78664,712.58815 c 33.33333,-0.54619 -14.52509,-0.0822 97.9797,-0.62843 l -1.95532,-293.14251"
-       id="path5041-9" />
+       id="path5041-9"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <g
        transform="matrix(0.60988862,0.006187,0.006187,-0.60988862,277.9566,1053.0401)"
-       id="g5025-42">
+       id="g5025-42"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
       <path
          style="opacity:0.98999999;fill:#73d216;stroke:#4e9a06;stroke-width:1.89240003;stroke-linejoin:round"
          inkscape:connector-curvature="0"
@@ -1495,7 +1636,10 @@
     </g>
     <g
        id="g7930"
-       transform="translate(66.670068,-29.294424)">
+       transform="translate(66.670068,-29.294424)"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
       <image
          inkscape:export-ydpi="87"
          inkscape:export-xdpi="87"
@@ -1528,10 +1672,16 @@
        width="193.57001"
        height="42.143002"
        transform="matrix(0.66118593,0,0,0.32203,424.89996,313.03918)"
-       id="rect5977-6" />
+       id="rect5977-6"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <g
        id="g7996"
-       transform="translate(-36.52649,-118.70014)">
+       transform="translate(-36.52649,-118.70014)"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
       <g
          id="g7992">
         <text
@@ -1548,7 +1698,10 @@
     </g>
     <g
        id="g7930-9"
-       transform="translate(-123.23864,197.98991)">
+       transform="translate(-123.23864,197.98991)"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
       <image
          inkscape:export-ydpi="87"
          inkscape:export-xdpi="87"
@@ -1576,7 +1729,10 @@
     </g>
     <g
        id="g7930-9-3"
-       transform="translate(-10.101563,343.45187)">
+       transform="translate(-10.101563,343.45187)"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
       <image
          inkscape:export-ydpi="87"
          inkscape:export-xdpi="87"
@@ -1604,7 +1760,10 @@
     </g>
     <g
        id="g7930-9-3-4"
-       transform="translate(83.842631,346.48232)">
+       transform="translate(83.842631,346.48232)"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
       <image
          inkscape:export-ydpi="87"
          inkscape:export-xdpi="87"
@@ -1636,14 +1795,20 @@
        x="449.49759"
        y="757.31641"
        id="text8105"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          sodipodi:role="line"
          x="449.49759"
          y="757.31641"
          id="tspan8109">-&gt;</tspan></text>
     <g
        id="g7930-9-3-3"
-       transform="translate(-5.5558729,422.74885)">
+       transform="translate(-5.5558729,422.74885)"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
       <image
          inkscape:export-ydpi="87"
          inkscape:export-xdpi="87"
@@ -1671,7 +1836,10 @@
     </g>
     <g
        id="g7930-9-3-4-8"
-       transform="translate(88.388324,425.7793)">
+       transform="translate(88.388324,425.7793)"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
       <image
          inkscape:export-ydpi="87"
          inkscape:export-xdpi="87"
@@ -1703,7 +1871,10 @@
        x="454.04327"
        y="836.61334"
        id="text8105-3"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          sodipodi:role="line"
          x="454.04327"
          y="836.61334"
@@ -1714,7 +1885,10 @@
        x="612.85559"
        y="334.9306"
        id="text7031-3"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          sodipodi:role="line"
          id="tspan7033-3"
          x="612.85559"
@@ -1733,14 +1907,20 @@
        x="377.29196"
        y="950.33679"
        id="text8434"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          sodipodi:role="line"
          id="tspan8436"
          x="377.29196"
          y="950.33679">true</tspan></text>
     <g
        transform="translate(122.07449,978.75332)"
-       id="g4554-2-5-6-7-3">
+       id="g4554-2-5-6-7-3"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
       <rect
          style="opacity:0.98999999;fill:#555753;stroke:#555753;stroke-width:7.08699989;stroke-linejoin:round;filter:url(#filter4523-1-9-4-3-1)"
          height="101.02"
@@ -1793,7 +1973,10 @@
     </g>
     <g
        transform="translate(124.09479,1041.3828)"
-       id="g4554-2-5-6-7-3-7">
+       id="g4554-2-5-6-7-3-7"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
       <rect
          style="opacity:0.98999999;fill:#555753;stroke:#555753;stroke-width:7.08699989;stroke-linejoin:round;filter:url(#filter4523-1-9-4-3-1-5)"
          height="101.02"
@@ -1850,14 +2033,20 @@
        x="189.82854"
        y="843.0694"
        id="text8434-8"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          sodipodi:role="line"
          id="tspan8436-6"
          x="189.82854"
          y="843.0694">false</tspan></text>
     <g
        transform="matrix(0.02732527,-0.60930759,-0.60930759,-0.02732527,698.44979,1259.0494)"
-       id="g5025-42-2-2">
+       id="g5025-42-2-2"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/completepipeline.svg.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
       <path
          style="opacity:0.98999999;fill:#73d216;stroke:#4e9a06;stroke-width:1.89240003;stroke-linejoin:round"
          inkscape:connector-curvature="0"

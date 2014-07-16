@@ -142,8 +142,8 @@ The driver reads the aggregation file, and then saves the aggregation representa
 Then there's an iteration in the files placed inside the input directory, adding files one by one until the size of the partition is met.
 Then a single job is executed, calculating the average graph for the given partition before a new partition is calculated and a new average graph calculation starts. \\
 Finally, when average graphs have been calculated for each partition, the second part takes all these files in input and proceeds to write in the output directory the average probability graph.
-A sketch depicting the driver logic in a dataflow fashion can be found in \ref{fig:aggregated}; the code is available at the following address %todo: insert link.
-
+A sketch depicting the driver logic in a dataflow fashion can be found in \ref{fig:aggregated}; the code is available at the following address \texttt{https://github.com/michele-carignani/hadoop-markov-clustering/tree/master/src/aggregation}.
+In particular, the driver is the file named \texttt{TimeAggregatedGraphs.java}.
 \begin{figure}
 	\centering
     \includegraphics[scale=0.7]{aggregation.png}
