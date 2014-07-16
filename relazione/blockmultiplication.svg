@@ -174,6 +174,135 @@
        y1="578.70001"
        x2="385.62"
        y2="560.48999" />
+    <filter
+       color-interpolation-filters="sRGB"
+       id="filter4523-2"
+       y="-0.13909"
+       width="1.1193"
+       x="-0.059634998"
+       height="1.2782">
+      <feGaussianBlur
+         id="feGaussianBlur4525-8"
+         stdDeviation="6.2650073" />
+    </filter>
+    <linearGradient
+       id="linearGradient4552"
+       x1="315.35999"
+       xlink:href="#linearGradient3696"
+       gradientUnits="userSpaceOnUse"
+       y1="81.648003"
+       gradientTransform="matrix(0.49655,0,0,0.49655,-15.922,-157.42)"
+       x2="145.71001"
+       y2="84.148003" />
+    <linearGradient
+       id="linearGradient3696">
+      <stop
+         id="stop3698"
+         stop-color="#ea8c03"
+         offset="0" />
+      <stop
+         id="stop3700"
+         stop-color="#fcaf3e"
+         offset="1" />
+    </linearGradient>
+    <filter
+       color-interpolation-filters="sRGB"
+       id="filter4523-4-3-8"
+       y="-0.13909"
+       width="1.1193"
+       x="-0.059634998"
+       height="1.2782">
+      <feGaussianBlur
+         id="feGaussianBlur4525-1-9-2"
+         stdDeviation="6.2650073" />
+    </filter>
+    <linearGradient
+       id="linearGradient4617-2-0"
+       x1="315.35999"
+       gradientUnits="userSpaceOnUse"
+       y1="81.648003"
+       gradientTransform="translate(4.0406,139.4)"
+       x2="145.71001"
+       y2="84.148003">
+      <stop
+         id="stop3802-1-7"
+         stop-color="#60b012"
+         offset="0" />
+      <stop
+         id="stop3804-4-4"
+         stop-color="#73d216"
+         offset="1" />
+    </linearGradient>
+    <filter
+       color-interpolation-filters="sRGB"
+       id="filter4523-2-9"
+       y="-0.13909"
+       width="1.1193"
+       x="-0.059634998"
+       height="1.2782">
+      <feGaussianBlur
+         id="feGaussianBlur4525-8-1"
+         stdDeviation="6.2650073" />
+    </filter>
+    <linearGradient
+       id="linearGradient4552-0"
+       x1="315.35999"
+       xlink:href="#linearGradient3696-0"
+       gradientUnits="userSpaceOnUse"
+       y1="81.648003"
+       gradientTransform="matrix(0.49655,0,0,0.49655,-15.922,-157.42)"
+       x2="145.71001"
+       y2="84.148003" />
+    <linearGradient
+       id="linearGradient3696-0">
+      <stop
+         id="stop3698-4"
+         stop-color="#ea8c03"
+         offset="0" />
+      <stop
+         id="stop3700-8"
+         stop-color="#fcaf3e"
+         offset="1" />
+    </linearGradient>
+    <filter
+       color-interpolation-filters="sRGB"
+       id="filter4523-55"
+       y="-0.13909"
+       width="1.1193"
+       x="-0.059634998"
+       height="1.2782">
+      <feGaussianBlur
+         id="feGaussianBlur4525-83"
+         stdDeviation="6.2650073" />
+    </filter>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5003-0"
+       id="linearGradient3502"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-148.57,3.5714)"
+       x1="376.51999"
+       y1="578.70001"
+       x2="385.62"
+       y2="560.48999" />
+    <linearGradient
+       id="linearGradient5003-0"
+       x1="376.51999"
+       gradientUnits="userSpaceOnUse"
+       y1="578.70001"
+       gradientTransform="translate(-148.57,3.5714)"
+       x2="385.62"
+       y2="560.48999">
+      <stop
+         id="stop4966-8"
+         stop-color="#fff"
+         offset="0" />
+      <stop
+         id="stop4968-3"
+         stop-color="#fff"
+         stop-opacity="0"
+         offset="1" />
+    </linearGradient>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -182,9 +311,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.7"
-     inkscape:cx="199.34245"
-     inkscape:cy="546.89482"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="808.40464"
+     inkscape:cy="537.85692"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -211,15 +340,49 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
+    <path
+       style="fill:none;stroke:#4e9a06;stroke-width:4;stroke-linecap:round;stroke-linejoin:round"
+       inkscape:connector-curvature="0"
+       d="m 385.05544,907.50305 0.71429,-93.06712"
+       id="path5041"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
+    <g
+       transform="matrix(0,-0.60992,0.60992,0,42.565166,1061.623)"
+       id="g5025"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
+      <path
+         style="opacity:0.98999999;fill:#73d216;stroke:#4e9a06;stroke-width:1.89240003;stroke-linejoin:round"
+         inkscape:connector-curvature="0"
+         d="m 252.18,544.7 -42.44,17.75 42.44,17.72 v -13.5 c 2.06,-0.47 3.59,-2.18 3.59,-4.22 0,-2.05 -1.53,-3.79 -3.59,-4.25 v -13.5 z"
+         id="path5027" />
+      <path
+         inkscape:connector-curvature="0"
+         style="fill:url(#linearGradient3502);fill-rule:evenodd"
+         d="m 213.91,562.51 c 26.43,-10.89 36.83,15.64 36.83,15.64 l -36.83,-15.64 z"
+         id="path5029" />
+      <path
+         style="opacity:0.98999999;fill:none;stroke:#73d216;stroke-width:1.77559996"
+         inkscape:connector-curvature="0"
+         d="m 213.94,562.33 36.59,-15.13 -0.02,30.54 -36.57,-15.41 z"
+         id="path5031" />
+    </g>
     <rect
-       style="opacity:0.43399999;fill:#729fcf;fill-rule:evenodd;stroke:#3465a4;stroke-width:4;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
-       x="17.5149"
-       y="21.476566"
-       width="716.06"
-       height="725.49164"
-       ry="20"
-       rx="20"
-       id="rect5125" />
+       style="opacity:0.43399999;fill:#729fcf;fill-rule:evenodd;stroke:#3465a4;stroke-width:4.39191246;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       x="17.710857"
+       y="21.672523"
+       width="715.66809"
+       height="875.09973"
+       ry="24.124323"
+       rx="19.989054"
+       id="rect5125"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <rect
        style="fill:#f9f6f9;fill-rule:evenodd;filter:url(#filter4523-5)"
        x="45"
@@ -227,14 +390,20 @@
        width="193.57001"
        height="42.143002"
        transform="matrix(1.261924,0,0,1.7628554,438.28131,-1064.42)"
-       id="rect5971" />
+       id="rect5971"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <text
        x="525.17975"
        y="40.869064"
        font-size="9.673px"
        xml:space="preserve"
        style="font-size:30px;text-align:center;text-anchor:middle;opacity:0.65982002;fill:#000000;font-family:DejaVu Sans"
-       id="text5973"><tspan
+       id="text5973"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          x="525.17975"
          y="40.869064"
          id="tspan5975"
@@ -245,7 +414,10 @@
        xml:space="preserve"
        font-size="9.673px"
        y="43.838608"
-       x="540.04779"><tspan
+       x="540.04779"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          id="tspan4845"
          y="43.838608"
          x="540.04779"
@@ -256,7 +428,10 @@
        font-size="9.673px"
        xml:space="preserve"
        style="font-size:30px;text-align:center;text-anchor:middle;opacity:0.65982002;fill:#000000;font-family:DejaVu Sans"
-       id="text5973-1"><tspan
+       id="text5973-1"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          x="638.39056"
          y="37.200581"
          id="tspan5975-7"
@@ -350,14 +525,20 @@ shGgSUVgE4yehvc5gI8CkJNLsK0hkGmvKnirrgcqmwP4LAA5+TS2OQYus9e2C0HvXQBQz9hXp8tW
 RK5CYII=
 "
        height="65.370544"
-       width="65.370544" />
+       width="65.370544"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <text
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
        x="56.73098"
        y="186.66145"
        id="text4940"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          sodipodi:role="line"
          id="tspan4942"
          x="56.73098"
@@ -368,7 +549,10 @@ RK5CYII=
        y="186.66145"
        x="70.73098"
        style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-       xml:space="preserve"><tspan
+       xml:space="preserve"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          y="186.66145"
          x="70.73098"
          id="tspan4946"
@@ -462,14 +646,20 @@ RK5CYII=
 "
        id="image4948"
        x="99.157387"
-       y="147.89496" />
+       y="147.89496"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <text
        sodipodi:linespacing="125%"
        id="text4950"
        y="188.66145"
        x="120.73099"
        style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-       xml:space="preserve"><tspan
+       xml:space="preserve"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          y="188.66145"
          x="120.73099"
          id="tspan4952"
@@ -480,7 +670,10 @@ RK5CYII=
        x="134.73099"
        y="188.66145"
        id="text4954"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          sodipodi:role="line"
          id="tspan4956"
          x="134.73099"
@@ -574,14 +767,20 @@ shGgSUVgE4yehvc5gI8CkJNLsK0hkGmvKnirrgcqmwP4LAA5+TS2OQYus9e2C0HvXQBQz9hXp8tW
 RK5CYII=
 "
        height="65.370544"
-       width="65.370544" />
+       width="65.370544"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <text
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
        x="220.73099"
        y="188.66145"
        id="text4990"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          sodipodi:role="line"
          id="tspan4992"
          x="220.73099"
@@ -592,7 +791,10 @@ RK5CYII=
        y="188.66145"
        x="234.73099"
        style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-       xml:space="preserve"><tspan
+       xml:space="preserve"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          y="188.66145"
          x="234.73099"
          id="tspan4996"
@@ -686,14 +888,20 @@ RK5CYII=
 "
        id="image4998"
        x="295.15738"
-       y="147.89496" />
+       y="147.89496"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <text
        sodipodi:linespacing="125%"
        id="text5000"
        y="188.66145"
        x="316.73099"
        style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-       xml:space="preserve"><tspan
+       xml:space="preserve"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          y="188.66145"
          x="316.73099"
          id="tspan5002"
@@ -704,41 +912,50 @@ RK5CYII=
        x="330.73099"
        y="188.66145"
        id="text5004"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          sodipodi:role="line"
          id="tspan5006"
          x="330.73099"
          y="188.66145">i,p</tspan></text>
-    <path
-       sodipodi:type="arc"
-       style="fill:#000000;fill-opacity:1;stroke:none"
-       id="path5156"
-       sodipodi:cx="325"
-       sodipodi:cy="170.21933"
-       sodipodi:rx="5.7142859"
-       sodipodi:ry="5.7142859"
-       d="m 330.71429,170.21933 a 5.7142859,5.7142859 0 1 1 -11.42858,0 5.7142859,5.7142859 0 1 1 11.42858,0 z"
-       transform="matrix(0.61249999,0,0,0.61249999,-28.072598,82.402109)" />
-    <path
-       transform="matrix(0.61249999,0,0,0.61249999,-18.072598,82.402109)"
-       d="m 330.71429,170.21933 a 5.7142859,5.7142859 0 1 1 -11.42858,0 5.7142859,5.7142859 0 1 1 11.42858,0 z"
-       sodipodi:ry="5.7142859"
-       sodipodi:rx="5.7142859"
-       sodipodi:cy="170.21933"
-       sodipodi:cx="325"
-       id="path5166"
-       style="fill:#000000;fill-opacity:1;stroke:none"
-       sodipodi:type="arc" />
-    <path
-       sodipodi:type="arc"
-       style="fill:#000000;fill-opacity:1;stroke:none"
-       id="path5168"
-       sodipodi:cx="325"
-       sodipodi:cy="170.21933"
-       sodipodi:rx="5.7142859"
-       sodipodi:ry="5.7142859"
-       d="m 330.71429,170.21933 a 5.7142859,5.7142859 0 1 1 -11.42858,0 5.7142859,5.7142859 0 1 1 11.42858,0 z"
-       transform="matrix(0.61249999,0,0,0.61249999,-6.0725979,82.402109)" />
+    <g
+       id="g6838"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
+      <path
+         transform="matrix(0.61249999,0,0,0.61249999,-28.072598,82.402109)"
+         d="m 330.71429,170.21933 a 5.7142859,5.7142859 0 1 1 -11.42858,0 5.7142859,5.7142859 0 1 1 11.42858,0 z"
+         sodipodi:ry="5.7142859"
+         sodipodi:rx="5.7142859"
+         sodipodi:cy="170.21933"
+         sodipodi:cx="325"
+         id="path5156"
+         style="fill:#000000;fill-opacity:1;stroke:none"
+         sodipodi:type="arc" />
+      <path
+         sodipodi:type="arc"
+         style="fill:#000000;fill-opacity:1;stroke:none"
+         id="path5166"
+         sodipodi:cx="325"
+         sodipodi:cy="170.21933"
+         sodipodi:rx="5.7142859"
+         sodipodi:ry="5.7142859"
+         d="m 330.71429,170.21933 a 5.7142859,5.7142859 0 1 1 -11.42858,0 5.7142859,5.7142859 0 1 1 11.42858,0 z"
+         transform="matrix(0.61249999,0,0,0.61249999,-18.072598,82.402109)" />
+      <path
+         transform="matrix(0.61249999,0,0,0.61249999,-6.0725979,82.402109)"
+         d="m 330.71429,170.21933 a 5.7142859,5.7142859 0 1 1 -11.42858,0 5.7142859,5.7142859 0 1 1 11.42858,0 z"
+         sodipodi:ry="5.7142859"
+         sodipodi:rx="5.7142859"
+         sodipodi:cy="170.21933"
+         sodipodi:cx="325"
+         id="path5168"
+         style="fill:#000000;fill-opacity:1;stroke:none"
+         sodipodi:type="arc" />
+    </g>
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:none"
@@ -748,7 +965,10 @@ RK5CYII=
        sodipodi:rx="5.7142859"
        sodipodi:ry="5.7142859"
        d="m 330.71429,170.21933 a 5.7142859,5.7142859 0 1 1 -11.42858,0 5.7142859,5.7142859 0 1 1 11.42858,0 z"
-       transform="matrix(0.61249999,0,0,0.61249999,71.973114,82.463029)" />
+       transform="matrix(0.61249999,0,0,0.61249999,71.973114,82.463029)"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <path
        transform="matrix(0.61249999,0,0,0.61249999,81.97311,82.463029)"
        d="m 330.71429,170.21933 a 5.7142859,5.7142859 0 1 1 -11.42858,0 5.7142859,5.7142859 0 1 1 11.42858,0 z"
@@ -758,7 +978,10 @@ RK5CYII=
        sodipodi:cx="325"
        id="path5166-9"
        style="fill:#000000;fill-opacity:1;stroke:none"
-       sodipodi:type="arc" />
+       sodipodi:type="arc"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:none"
@@ -768,7 +991,10 @@ RK5CYII=
        sodipodi:rx="5.7142859"
        sodipodi:ry="5.7142859"
        d="m 330.71429,170.21933 a 5.7142859,5.7142859 0 1 1 -11.42858,0 5.7142859,5.7142859 0 1 1 11.42858,0 z"
-       transform="matrix(0.61249999,0,0,0.61249999,93.97311,82.463029)" />
+       transform="matrix(0.61249999,0,0,0.61249999,93.97311,82.463029)"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <image
        width="65.370544"
        height="65.370544"
@@ -858,14 +1084,20 @@ RK5CYII=
 "
        id="image5725"
        x="401.15738"
-       y="145.89496" />
+       y="145.89496"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <text
        sodipodi:linespacing="125%"
        id="text5727"
        y="186.66145"
        x="422.73099"
        style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-       xml:space="preserve"><tspan
+       xml:space="preserve"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          y="186.66145"
          x="422.73099"
          id="tspan5729"
@@ -876,7 +1108,10 @@ RK5CYII=
        x="436.73099"
        y="186.66145"
        id="text5731"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          sodipodi:role="line"
          id="tspan5733"
          x="436.73099"
@@ -970,14 +1205,20 @@ shGgSUVgE4yehvc5gI8CkJNLsK0hkGmvKnirrgcqmwP4LAA5+TS2OQYus9e2C0HvXQBQz9hXp8tW
 RK5CYII=
 "
        height="65.370544"
-       width="65.370544" />
+       width="65.370544"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <text
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
        x="486.73099"
        y="188.66145"
        id="text5737"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          sodipodi:role="line"
          id="tspan5739"
          x="486.73099"
@@ -988,7 +1229,10 @@ RK5CYII=
        y="188.66145"
        x="500.73099"
        style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-       xml:space="preserve"><tspan
+       xml:space="preserve"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          y="188.66145"
          x="500.73099"
          id="tspan5743"
@@ -1082,14 +1326,20 @@ RK5CYII=
 "
        id="image5745"
        x="565.15735"
-       y="147.89496" />
+       y="147.89496"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <text
        sodipodi:linespacing="125%"
        id="text5747"
        y="188.66145"
        x="586.73096"
        style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-       xml:space="preserve"><tspan
+       xml:space="preserve"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          y="188.66145"
          x="586.73096"
          id="tspan5749"
@@ -1100,7 +1350,10 @@ RK5CYII=
        x="600.73096"
        y="188.66145"
        id="text5751"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          sodipodi:role="line"
          id="tspan5753"
          x="600.73096"
@@ -1194,14 +1447,20 @@ shGgSUVgE4yehvc5gI8CkJNLsK0hkGmvKnirrgcqmwP4LAA5+TS2OQYus9e2C0HvXQBQz9hXp8tW
 RK5CYII=
 "
        height="65.370544"
-       width="65.370544" />
+       width="65.370544"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <text
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
        x="682.73096"
        y="188.66145"
        id="text5757"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          sodipodi:role="line"
          id="tspan5759"
          x="682.73096"
@@ -1212,7 +1471,10 @@ RK5CYII=
        y="188.66145"
        x="696.73096"
        style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-       xml:space="preserve"><tspan
+       xml:space="preserve"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          y="188.66145"
          x="696.73096"
          id="tspan5763"
@@ -1226,7 +1488,10 @@ RK5CYII=
        sodipodi:cx="325"
        id="path5765"
        style="fill:#000000;fill-opacity:1;stroke:none"
-       sodipodi:type="arc" />
+       sodipodi:type="arc"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:none"
@@ -1236,7 +1501,10 @@ RK5CYII=
        sodipodi:rx="5.7142859"
        sodipodi:ry="5.7142859"
        d="m 330.71429,170.21933 a 5.7142859,5.7142859 0 1 1 -11.42858,0 5.7142859,5.7142859 0 1 1 11.42858,0 z"
-       transform="matrix(0.61249999,0,0,0.61249999,347.9274,82.402109)" />
+       transform="matrix(0.61249999,0,0,0.61249999,347.9274,82.402109)"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <path
        transform="matrix(0.61249999,0,0,0.61249999,359.9274,82.402109)"
        d="m 330.71429,170.21933 a 5.7142859,5.7142859 0 1 1 -11.42858,0 5.7142859,5.7142859 0 1 1 11.42858,0 z"
@@ -1246,7 +1514,10 @@ RK5CYII=
        sodipodi:cx="325"
        id="path5769"
        style="fill:#000000;fill-opacity:1;stroke:none"
-       sodipodi:type="arc" />
+       sodipodi:type="arc"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <path
        transform="matrix(0.61249999,0,0,0.61249999,437.97311,82.463029)"
        d="m 330.71429,170.21933 a 5.7142859,5.7142859 0 1 1 -11.42858,0 5.7142859,5.7142859 0 1 1 11.42858,0 z"
@@ -1256,7 +1527,10 @@ RK5CYII=
        sodipodi:cx="325"
        id="path5771"
        style="fill:#000000;fill-opacity:1;stroke:none"
-       sodipodi:type="arc" />
+       sodipodi:type="arc"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:none"
@@ -1266,7 +1540,10 @@ RK5CYII=
        sodipodi:rx="5.7142859"
        sodipodi:ry="5.7142859"
        d="m 330.71429,170.21933 a 5.7142859,5.7142859 0 1 1 -11.42858,0 5.7142859,5.7142859 0 1 1 11.42858,0 z"
-       transform="matrix(0.61249999,0,0,0.61249999,447.97311,82.463029)" />
+       transform="matrix(0.61249999,0,0,0.61249999,447.97311,82.463029)"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <path
        transform="matrix(0.61249999,0,0,0.61249999,459.97311,82.463029)"
        d="m 330.71429,170.21933 a 5.7142859,5.7142859 0 1 1 -11.42858,0 5.7142859,5.7142859 0 1 1 11.42858,0 z"
@@ -1276,7 +1553,10 @@ RK5CYII=
        sodipodi:cx="325"
        id="path5775"
        style="fill:#000000;fill-opacity:1;stroke:none"
-       sodipodi:type="arc" />
+       sodipodi:type="arc"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <text
        xml:space="preserve"
        style="font-size:446.27008057px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DilleniaUPC;-inkscape-font-specification:DilleniaUPC"
@@ -1284,7 +1564,10 @@ RK5CYII=
        y="274.01978"
        id="text5796"
        sodipodi:linespacing="125%"
-       transform="matrix(-0.00355137,-0.89631365,1.1156696,-0.00285312,0,0)"><tspan
+       transform="matrix(-0.00355137,-0.89631365,1.1156696,-0.00285312,0,0)"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          sodipodi:role="line"
          id="tspan5798"
          x="-326.24344"
@@ -1296,14 +1579,20 @@ RK5CYII=
        y="595.32556"
        x="-331.14618"
        style="font-size:451.58856201px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DilleniaUPC;-inkscape-font-specification:DilleniaUPC"
-       xml:space="preserve"><tspan
+       xml:space="preserve"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          y="595.32556"
          x="-331.14618"
          id="tspan5802"
          sodipodi:role="line">{</tspan></text>
     <g
        transform="translate(372.6726,312.15958)"
-       id="g4608-8-4">
+       id="g4608-8-4"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
       <rect
          style="opacity:0.98999999;fill:#555753;stroke:#555753;stroke-width:7.08699989;stroke-linejoin:round;filter:url(#filter4523-4-3-5)"
          height="101.02"
@@ -1359,10 +1648,16 @@ RK5CYII=
        inkscape:connector-curvature="0"
        d="M 416.53003,487.9035 554.96856,337.52056"
        id="path5049-5"
-       sodipodi:nodetypes="cc" />
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <g
        transform="matrix(0.37189255,-0.48342357,0.48342357,0.37189255,51.504168,398.8229)"
-       id="g5005-7">
+       id="g5005-7"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
       <path
          style="opacity:0.98999999;fill:#292a28;stroke:#0c0e0e;stroke-width:1.89240003;stroke-linejoin:round"
          inkscape:connector-curvature="0"
@@ -1385,14 +1680,20 @@ RK5CYII=
        xlink:href="data:image/png;base64,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 RK5CYII= "
        id="image5745-1"
        x="546.13214"
-       y="392.37216" />
+       y="392.37216"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <text
        sodipodi:linespacing="125%"
        id="text5747-7"
        y="433.13867"
        x="567.70575"
        style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-       xml:space="preserve"><tspan
+       xml:space="preserve"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          y="433.13867"
          x="567.70575"
          id="tspan5749-0"
@@ -1403,7 +1704,10 @@ RK5CYII=
        x="581.70575"
        y="433.13867"
        id="text5751-2"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          sodipodi:role="line"
          id="tspan5753-0"
          x="581.70575"
@@ -1425,7 +1729,10 @@ RK5CYII=
        x="469.72092"
        y="445.2605"
        id="text6704"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          sodipodi:role="line"
          id="tspan6706"
          x="469.72092"
@@ -1435,16 +1742,25 @@ RK5CYII=
        id="path6708"
        d="M 416.53003,487.9035 554.96856,337.52056"
        inkscape:connector-curvature="0"
-       style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:round;stroke-linejoin:round" />
+       style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:round;stroke-linejoin:round"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <path
        sodipodi:nodetypes="cc"
        id="path6710"
        d="M 338.04441,489.33208 199.60588,338.94914"
        inkscape:connector-curvature="0"
-       style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:round;stroke-linejoin:round" />
+       style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:round;stroke-linejoin:round"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <g
        id="g6712"
-       transform="matrix(-0.37189255,-0.48342357,-0.48342357,0.37189255,703.07027,400.25148)">
+       transform="matrix(-0.37189255,-0.48342357,-0.48342357,0.37189255,703.07027,400.25148)"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
       <path
          id="path6714"
          d="m 252.18,544.7 -42.44,17.75 42.44,17.72 v -13.5 c 2.06,-0.47 3.59,-2.18 3.59,-4.22 0,-2.05 -1.53,-3.79 -3.59,-4.25 v -13.5 z"
@@ -1467,14 +1783,20 @@ RK5CYII=
        id="image6720"
        xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAABHNCSVQICAgIfAhkiAAAEf5JREFU eJztXTuMJEmZ/rIq69HVXf0chpndO+2ya+CcdCcQOGBg4SCwsBAGEgYWFuick5CQcHBAp3POON0Z COu8tc45CS0Y4CCEcJDQMlPTO830dM+je+pdmYFRnVP5+P+IPyIjs7IZPqm1W/E/Iir/P/5XVfcE Sim44je//vXZcDi8t7OzkyUExRcBCOT4AgMTSSYJLKeGwoN6QiqOMV8ssJjPgQCj3cHuB/ffeuvf +/3+nxy22BqCsg5w/6379/b39xN1hBElazRP5hXlVALD005VDtQji6IVLi8v1f5w/yfHJyff979r NWj5U1WN8YOgaHxqjXIY3viBxQ8hTehut0P0e/3g6cXT711eXv4Xt3PT4MkBqAflx/jZ9aI85Sy0 Tr1RefCy+f32Dw6gFHB+fv7tly9f/pvlRluBtwhAhegcR+G1nfH1e+iNXjyr9Id+H7QzAMAn796F Ugpnjx//aDIef4PS0CR4cAC6eNOv6R1EFvI3vNJ0sOGVpwC9QxQj0M5gB71eD6sowqNHpz+fz+df JN5sY+CxBkggqwW4/KxPEcUHrqPxBrcB7xDU3kopHB8fAQDm8zlGo9Evoih633LT2lDaAcxVtjzv m42/2VNGczG4CRud3Dm63S6gFBaLBWbTWfvhg4d/UEoNPR/ECzxHAK6X19HpdKAzcHadoukNX64G KO6RP1O7HSKKIyisnWA8HvdHo9EDAG2dxm2gghSQhtkhXv8fWx/ojL9Zz4Z6YicPNQD/HrJ1ilIK nbCD4d4eFos5VqsVrl5eHZ+env6R07ItVDwHkNH5+kBm/PxamkYb3QZSZ8hGg26vhzAMcXJygvH4 FeI4xvNnz9//y9nZrywPUCkqjACB1jiyvA+SJ7teNGp1dYAu/2/oQQD0ej0sl0vs7+/j5M4dXF1d QSmFi4vLL1xcXPzM04FKw9sgyFQMSuYENr3/xvjcPuXrAB5c/t/Qw7ANpRSCIMD+cIjDo0O8erWO BOdPzr/54sWLH+p2qAsVRQDT7b+haPMqv6Y3Pm14l1mAdChE0VqtNlbRCjuDAcIwxOHBAQa7A0wm E6xWK5ydnf1gPB5/i3sCdaGyQVCGw+r26/M7ZfysUYt7F6OCNCVk+XWOkKcFQYDVKsJgMECv30e3 28XR4SG63Q5msxmWiyVOT0//Zz6ff0l4mEpQ0yCI4DJECL4WKBqf06NLB/YpwBz207RWEGAxnyMM Q+zu7qLT7aLf7+Po6AhBACwWC8xnc4xGo/9frVafpjTWgZrbQJOxpcWiXo5rC8ukgOx5qPF09qxB q4XVaoU4jtHpdLC3t4d2GGIwGOD4+Bir1RKr1QrT6bT18OHD38dxfEQ+nIpRfhLoIiO+/Xm6vjbg ZN1bwaIz5PflnKB1Q0i+b9HtdrG3twcEAfb29nB8fIzJZAwVK0zGk+7o4egjAKHwYN5Q4STQLRXY hX5ujaoZXFw1ox10RKOnm61WC1EUZVZ7vR6SL8/k28Or66vDR6PRRyUPaY2KU0Aauvxpxy9xCF1h mKbbt4F0NMjzKwBxHCP9jasgCNDr9bA3HCIIAhzs7+Po+AjX19eAAl6+vPrHx48f/4bbuQrU6AB5 yFrFPN08KDIXhnRXkP/ROQLtnOnXcRwjiiLkv3LXarXQ7/cx2N1Fu93G4cEBhsM9jMdjxHGMF89f fP7p+fn/UrtWgRpHwQINgnSQplNr8sJQ4nSygo/aL45jACg4AAC0223s7Oygv7ODTqeDw8ND9Ps9 TKdTrFYrXFxcfv358+c/NhzQC2oYBK1fAzbhvyjLydNh3lwYupyBc4L064QnjqJ1DcB86Ta86Qg6 3S56vR4ODw/RagVYLBZYLpc4f/LkX6+vr7/jeGAxtpQCiuHftjagZKSFYZomz/98wUedI0pSgOad 6NrD+XyBs8dn/zmbTr+sUVEaW6wBOKQdQuIVPL95OsjXAKapH7+2/p84jhHF8etUwKHb7WI4HCJo tbC3t4eTkxNMpxPEcYzZbIZHj07/b7lc/pNWSQk00AFoUFW+mV+nR1YD6PXwiKIVALoGyCPfHt75 xCdwfX0FAJhOp8Ho4cPfxnF8x6jIARV8Gli+GLTZF9BFC1lEMO1hzv15vgDRKkIcRZjNZlgsFmRH kEav18MwcYLh8PWMAAAmk2nnwYMHHymlepaHN6KGyVOxWnbP/8IdLdNBHkU7BQgClVun1jZI2sBf fvghWu02AIV2q40wDNHtdtFqtRCGITqdDsJOiE6nizAM0Wq1AKXQ7XSwvz/EeDzG7u4uZtPZcDQa /fmdd955S/gYRKh99KgHfaPdbm5KK+sQtN4gWFvVxuB5nNw5wWc++1moOH5dCMZxBKjN7xqqmxph FUVYLhaYTiZYLJcIsG4VAaDTCbFcLgAoTMaT+x9//PHv3n777X+RncKMhjmADGmD2tYGWR6OOQCg EARsF5fRteHZOMlgsIvBYJCTzztQ+vXG6YIgQBxHWC6XmEymePXqGuPxGGoxx8sXL/+50+l8cPfu 3a+Z36kZt9IBzJBED0kRmLd+PgpQPOWRfJOo2+2i0+ni4GBdG1xcXOL5s2c4P3/y1V6v992Dg4P/ KLvXrekCfIFOB8Hrnxx3jQWtGScnJ/jUe+8hQIDzJ09+ulqtTsrqfOMcII+80YtO0Cy022288+67 aLVb7dNHj/67rL433gESNN3wWSjcu3cPi8XiK1EUHZTR9HcHuEGZP5SxDSilgADti6dPv15Gzxvv AHnD3yZHCNshrq+vP1dGxxvnAGv7Fo2e/OS4xX3/NtAO25jNZqV+8/hv1AE2VqMMnucx6Uiv5fv4 baLdbmM+n/9DGR230gHSRs0bWHJj88MXgsNB11ourbvq6LEeGMWlPh9omAPojOr+NOmwn17P/mxo 2bOVM6h5CuikValuiUPV4QD520SPP73uyBicetCJsdM/hMYKHILYhXwuxeeXlVGl/uaAJweoN/Sl 9wXked4tktDG1/PV8wB8POeGpQAetrmeo2fDvlYDdM5st39zu4kGOoDpVsv5TWGfyv/6OgCgjWl7 ++uPFhy25ABl6gA+CuidQJb/dYaX1gIuraIu/1eJihyA7pfdwqA+7NMPinICis/uDOZagA71ZWcH 1Pl9OYhHByif5+RRgS/4+GqZCvva07z+4dpC3X78ms37rB5brAFs8qAkClCvdfk/oXM/pnSg25db k73PusI/UOs3ghSA4OYrT+X412trOreWPPg8X5rfDdKZgCkduNUGvuE5AtjPAyThUFrhUwWfvO0z nhR0bePXIeTPzI9DlHYAl2OYvJqnm/MsVzDZ5f+0Dq4OkBaG1JqsxqmjNqg4BSgolf5eHR+O1zwU 3ZQKinLZ8A/k00KWpjm9Rf430STFoqTo9V0fVOAAeaMzXFqjQ2NwKvfTerI0FOTsoC9EdRFBUria 9WiP5AwPNYA515srYbojkPa/2RBf3Juu+iXI8pumg2bjU8ZNr+nTRxUpoaIUkI4C9A0H6FueyHOp YCPH3fjibU9oabingPyZ9E6R56Xk7fb1Wx9U8Gkgw2EVBTY8nJzuxm94+UMlN1b3wyMbFaTvpXg+ /Xup+vYDlQ6CTIMe2sA2wxSuxaPDvg+Y0sGabjY+cmt6B8nralQbuIEpCsg/WtXXA9w6n//dWsC0 3o1hdXWA7JwcL3/LfVf+adTcBhbp2byeXeN5iusAn//TPFk+wTtwrgPMzsvL61OXT2fw7ABmgxfp dMHHzQ+KTgCCxjtCwlceMgPb1jC0fEUFAHxMAgU3xJznJfVA9uHJaD7zf1Gn/BxFmiSN0Xx+308F RaDLlya4dXr2zvFSBijmf/cagK8D7M7F84JdJ+cfovPr4SEFKLKf16/RYZ8L80rl/5QMlf/TNGT0 u8wAONnimXW8+lsunROYOyN3eKsBuAItxYF8caerByh9uj2KDpd+QvqhkB1oYZ/Gp0O9uV5wgbdB ELVmTgX6r1xToVQe9im+8ikgQxGnA1OKAMFPv+bWXOGxC6BvtHnNHAkASUoAqLDPj5rdoZsDFHl0 +X67xgcqmAPI6gGpEwC69s/GERK4/B0ItzpAVx8UFcqN7xfe5wDm3J+iEMVe0UBcXbCh8YUgCnv7 ngHQen0YX753GZSvAYx5nl8Dig/HFF51Odd//jfr0M0ddLOANA9tfHPo9+HMXiKAOcTza1R1Xwzt CS9gbv82qaGoI8vnCplRpTxljF/+vVTUBnJrfK6nRr+UznxKoYs92hmKfDJIDErz0by88c0Rgt/H DZ4cgM/9Mieg1inHyNJkVX/+4bn8NTD9E5cafsMru8164/vxgsrbQBcnACQpIdEPcFV/FS0gtY9E v03I39CqNT5Qy6eB9k5AT/0gcATA9MVP/21gfn9OVm7MuowPeHAAVTiQvRMAdA7X6SnKZGVvOIpU b8/PJi3YhHyOn5BpShdAQdezy9bXNN2wR+8Iad40/NcAGU6j4Wl9tsZv1IdByV+3Tq3Aztjmgo93 BF1qIE8rYbKGi3GzdBenKA+PbWBZJ1jTTHnelDLSqPLP/7r2+lK6S+3gAq8pwM4JdDde91vEZkfY nMefQ0hnAVleNx7biFAG5YvAfF1COgFvbMmNljgCzad3CDu4F300n52BfX8KmKCSbwQVnSDhs73x ckdI80l4fUBq9Cyvazog1pszCi4aV+cEgO2NlzjChi/Nm4bfFJDdzyznrw5Y0xpXA8idwDTnd8v/ NG9mpcIUUNzLLLdt4wM1TAKTw9rUBQltLUfvk+bh+Wi5quCjDtjQqzV8gtr+PoBdSljT1nL2+Z/n 9wubziDL75IOdFHCHTX8enhqlU0JXDTI0gH51K8pNUBW1hQVOMeoriso7wDsGejbTacEnj+/kTzs N6UG0Mu63/oGFYH0zQZ0RZ0pGgA+2j5etgr4bQtvySAogd4J6BCviwaJzJrO7prSZesMfmBj9Cy/ 3PAbuQYWgSpjBM4JbjgZg0qch5KjeNP8efivAbL7yuR16aCeW5+G9xTA32rAlBL0cuXyf/rjY3dU VQfYdwUOxyHh4bMAlflv2hFcbrXEEdLylA7mpBKm0rCrAxwNr5G1RSURwOwEQDlH2MindSTYXg0A yOoAd8Pr5F1QSREoTwmALi2k5c060jJ+ZwAbvea9edlyXQGlo0EfBq2hM3yZaJDWn9apOQkh6yMs 2D9wH4bP62lUBOD+7V33aGDO77KoQOuuA3KjA7bh3rcjVDYIco8GwOahmL/4mX8I2/hn4KWGsJ8Z 8MZuVBEImJ0g/1oWzu2rfu7B+HAMl4dua3Rqnyr/hXOvnwVQRqVuv+61ZCOXqV+d/yy8i9HXcvUZ PoG3FADoQ7w/RwCa0gJuzlBYsZR3M3wjagBuFMwZlEoLaT77As/cAq51CVSZdio5Ds7qojoV9zVX VDoIol4na4A+VXBrgtMwZ9xOG1g8Rzkj+04DlQ2CAHN4t3UESofFCR3lysPGmFJepZSXt+R1DuCa 522M7scZqoftDbYyvEfUUgSa8n5+PU+TrFP0umAe/NiHc0l0uHWj4PRrbs1EM0WAqp1CPvSxM66O 1uw5QA4uaUDiCBRdOgWsYwbgGgV09DrmAl4GQb76flPVbzJ4lVNA0x4++W7XJPAG3Hxf2ve7FHq3 KQJIeCWGblwRmB8EAW7tno+qv0kRQCq3jeFPGpV1AenXHJ9pTbouPV/d8NEKanmbOAewaffKGL0p LWAC363grZoE6tq/PD0vl6DMnICip7GtFFC23TPRGzUHkFb96TWdvEnGJgI0pQisaiBUBrXPAbi1 PI2ToWgcj47XFVVGABO9sXMActlz3+86BKJ4q0LZYRDH0/g5gORGl+37XYdAOp0u8BUBJHxVGj5B LXMAimZbAHL6KB0m3qpgu8+2ZwBAzXMAjmaKCpwuSi+FJgyCTLK2hm/MHCAN6RyAo0lzvq1BtzUI Mu3tqysog8q7AG4tT+NkKLmmDYESVNUKcvRGzAGUUuSgx2fVX6YF1O3nAh953kbXrZkD2EzvbKv+ shGgSUVgE4yehvc5gI8CkJNLsK0hkGmvKnirrgcqmwP4LAA5+TS2OQYus9e2C0HvXQBQz9hXp8tW 1hZ1toK+9uVQyR+K3ObYV6d3G6h0PNyEOcCzZ88a0YK9iVBKIQzLmfCvITnNAgXP3E4AAAAASUVO RK5CYII= "
        height="65.370544"
-       width="65.370544" />
+       width="65.370544"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <text
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
        x="206.37355"
        y="434.56726"
        id="text6722"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          sodipodi:role="line"
          id="tspan6724"
          x="206.37355"
@@ -1485,7 +1807,10 @@ RK5CYII=
        y="434.56726"
        x="220.37355"
        style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-       xml:space="preserve"><tspan
+       xml:space="preserve"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          y="434.56726"
          x="220.37355"
          id="tspan6728"
@@ -1496,7 +1821,10 @@ RK5CYII=
        y="446.68909"
        x="108.3887"
        style="font-size:50px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-       xml:space="preserve"><tspan
+       xml:space="preserve"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
          y="446.68909"
          x="108.3887"
          id="tspan6732"
@@ -1506,10 +1834,16 @@ RK5CYII=
        inkscape:connector-curvature="0"
        d="M 338.04441,489.33208 199.60588,338.94914"
        id="path6734"
-       sodipodi:nodetypes="cc" />
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
     <g
        transform="translate(4.1011677,319.30244)"
-       id="g4608-8">
+       id="g4608-8"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
       <rect
          style="opacity:0.98999999;fill:#555753;stroke:#555753;stroke-width:7.08699989;stroke-linejoin:round;filter:url(#filter4523-4-3)"
          height="101.02"
@@ -1560,5 +1894,585 @@ RK5CYII=
            id="rect3796-7" />
       </g>
     </g>
+    <g
+       transform="translate(306.49234,638.5996)"
+       id="g4544"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
+      <rect
+         style="opacity:0.98999999;fill:#555753;stroke:#555753;stroke-width:7.08699989;stroke-linejoin:round;filter:url(#filter4523-2)"
+         height="101.02"
+         x="63.331001"
+         y="46.237"
+         width="245.05"
+         ry="20"
+         transform="matrix(0.49655,0,0,0.49655,-15.922,-157.42)"
+         rx="20"
+         id="rect4507" />
+      <rect
+         style="opacity:0.98999999;fill:url(#linearGradient4552);stroke:#fb9603;stroke-width:3.51909995;stroke-linejoin:round"
+         x="13.525"
+         y="-136.46001"
+         width="121.68"
+         height="50.159"
+         ry="9.9310999"
+         rx="9.9310999"
+         id="rect2383" />
+      <text
+         x="75.088898"
+         y="-115.77437"
+         font-size="9.673px"
+         xml:space="preserve"
+         style="font-size:10px;text-align:center;text-anchor:middle;opacity:0.66861996999999995;fill:#000000;font-family:Arrobatherapy"
+         id="text3734"><tspan
+           style="font-size:10px;font-family:DejaVu Sans"
+           font-size="15.047px"
+           x="75.088898"
+           y="-115.77437"
+           id="tspan3736">Matrix Multiplication</tspan></text>
+      <text
+         x="75.088898"
+         y="-105.77437"
+         font-size="9.673px"
+         xml:space="preserve"
+         style="font-size:10px;text-align:center;text-anchor:middle;opacity:0.66861996999999995;fill:#000000;font-family:Arrobatherapy"
+         id="text6792"><tspan
+           style="font-size:10px;font-family:DejaVu Sans"
+           font-size="15.047px"
+           x="75.088898"
+           y="-105.77437"
+           id="tspan6794">Reduce</tspan></text>
+      <path
+         style="opacity:0.78298998;fill:#ffffff;fill-opacity:0.14370003"
+         inkscape:connector-curvature="0"
+         d="m 15.758,-95.434 c 0.887,3.695 4.147,6.444 8.104,6.444 h 100.09 c 4.64,0 8.37,-3.749 8.37,-8.413 v -28.427 c 0,-2.21 -0.86,-4.2 -2.24,-5.7 -0.22,0.41 -0.12,0.31 -0.41,0.8 -0.67,1.15 -1.54,2.52 -2.63,4.01 -1.1,1.48 -2.42,3.1 -4,4.77 -0.79,0.84 -1.65,1.69 -2.57,2.54 -0.92,0.85 -1.91,1.7 -2.96,2.55 -1.06,0.85 -2.19,1.68 -3.39,2.5 -1.2,0.83 -2.48,1.65 -3.84,2.43 -1.36,0.78 -2.79,1.53 -4.31,2.25 -1.52,0.72 -3.11,1.4 -4.8,2.04 -1.682,0.63 -3.453,1.23 -5.312,1.76 -1.859,0.53 -3.806,1.01 -5.847,1.42 -1.825,0.37 -3.598,0.64 -5.314,0.83 -1.715,0.19 -3.377,0.3 -5,0.35 -1.623,0.05 -3.201,0.03 -4.75,-0.03 -1.548,-0.07 -3.069,-0.17 -4.561,-0.32 -2.984,-0.28 -5.868,-0.69 -8.731,-1.08 -2.863,-0.4 -5.707,-0.78 -8.59,-1.01 -1.442,-0.12 -2.885,-0.2 -4.358,-0.22 -1.473,-0.03 -2.976,-0.01 -4.499,0.09 -1.522,0.1 -3.066,0.28 -4.655,0.54 -1.59,0.25 -3.217,0.59 -4.891,1.04 -1.674,0.45 -3.397,0.99 -5.173,1.67 -1.776,0.67 -3.606,1.48 -5.502,2.41 -1.896,0.93 -3.86,2.003 -5.894,3.228 -0.75,0.452 -1.565,1.033 -2.335,1.528 z"
+         id="path3682" />
+      <rect
+         style="opacity:0.98999999;fill:none;stroke:#fcaf3e;stroke-width:2.22799993;stroke-linejoin:round"
+         x="16.097"
+         y="-134.28999"
+         width="116.89"
+         height="45.806"
+         ry="8.2924004"
+         rx="8.2924004"
+         id="rect3656" />
+    </g>
+    <image
+       y="569.67688"
+       x="352.31473"
+       id="image6720-7"
+       xlink:href="data:image/png;base64,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 RK5CYII= "
+       height="65.370544"
+       width="65.370544"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="370.31693"
+       y="592.94342"
+       id="text6722-0"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
+         sodipodi:role="line"
+         id="tspan6724-4"
+         x="370.31693"
+         y="592.94342">A</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text6726-6"
+       y="592.94342"
+       x="384.31693"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       xml:space="preserve"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
+         y="592.94342"
+         x="384.31693"
+         id="tspan6728-6"
+         sodipodi:role="line">i, k</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text6826"
+       y="622.22913"
+       x="370.31693"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       xml:space="preserve"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
+         y="622.22913"
+         x="370.31693"
+         id="tspan6828"
+         sodipodi:role="line">B</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="384.31693"
+       y="622.22913"
+       id="text6830"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
+         sodipodi:role="line"
+         id="tspan6832"
+         x="384.31693"
+         y="622.22913">k, j</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:15px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="380"
+       y="607.2193"
+       id="text6834"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
+         sodipodi:role="line"
+         id="tspan6836"
+         x="380"
+         y="607.2193">X</tspan></text>
+    <g
+       id="g6843"
+       transform="translate(130,434)"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
+      <path
+         sodipodi:type="arc"
+         style="fill:#000000;fill-opacity:1;stroke:none"
+         id="path6845"
+         sodipodi:cx="325"
+         sodipodi:cy="170.21933"
+         sodipodi:rx="5.7142859"
+         sodipodi:ry="5.7142859"
+         d="m 330.71429,170.21933 c 0,3.15591 -2.55838,5.71429 -5.71429,5.71429 -3.15591,0 -5.71429,-2.55838 -5.71429,-5.71429 0,-3.15591 2.55838,-5.71429 5.71429,-5.71429 3.15591,0 5.71429,2.55838 5.71429,5.71429 z"
+         transform="matrix(0.61249999,0,0,0.61249999,-28.072598,82.402109)" />
+      <path
+         transform="matrix(0.61249999,0,0,0.61249999,-18.072598,82.402109)"
+         d="m 330.71429,170.21933 c 0,3.15591 -2.55838,5.71429 -5.71429,5.71429 -3.15591,0 -5.71429,-2.55838 -5.71429,-5.71429 0,-3.15591 2.55838,-5.71429 5.71429,-5.71429 3.15591,0 5.71429,2.55838 5.71429,5.71429 z"
+         sodipodi:ry="5.7142859"
+         sodipodi:rx="5.7142859"
+         sodipodi:cy="170.21933"
+         sodipodi:cx="325"
+         id="path6847"
+         style="fill:#000000;fill-opacity:1;stroke:none"
+         sodipodi:type="arc" />
+      <path
+         sodipodi:type="arc"
+         style="fill:#000000;fill-opacity:1;stroke:none"
+         id="path6849"
+         sodipodi:cx="325"
+         sodipodi:cy="170.21933"
+         sodipodi:rx="5.7142859"
+         sodipodi:ry="5.7142859"
+         d="m 330.71429,170.21933 c 0,3.15591 -2.55838,5.71429 -5.71429,5.71429 -3.15591,0 -5.71429,-2.55838 -5.71429,-5.71429 0,-3.15591 2.55838,-5.71429 5.71429,-5.71429 3.15591,0 5.71429,2.55838 5.71429,5.71429 z"
+         transform="matrix(0.61249999,0,0,0.61249999,-6.0725979,82.402109)" />
+    </g>
+    <g
+       transform="translate(264,438)"
+       id="g6851"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
+      <path
+         transform="matrix(0.61249999,0,0,0.61249999,-28.072598,82.402109)"
+         d="m 330.71429,170.21933 c 0,3.15591 -2.55838,5.71429 -5.71429,5.71429 -3.15591,0 -5.71429,-2.55838 -5.71429,-5.71429 0,-3.15591 2.55838,-5.71429 5.71429,-5.71429 3.15591,0 5.71429,2.55838 5.71429,5.71429 z"
+         sodipodi:ry="5.7142859"
+         sodipodi:rx="5.7142859"
+         sodipodi:cy="170.21933"
+         sodipodi:cx="325"
+         id="path6853"
+         style="fill:#000000;fill-opacity:1;stroke:none"
+         sodipodi:type="arc" />
+      <path
+         sodipodi:type="arc"
+         style="fill:#000000;fill-opacity:1;stroke:none"
+         id="path6855"
+         sodipodi:cx="325"
+         sodipodi:cy="170.21933"
+         sodipodi:rx="5.7142859"
+         sodipodi:ry="5.7142859"
+         d="m 330.71429,170.21933 c 0,3.15591 -2.55838,5.71429 -5.71429,5.71429 -3.15591,0 -5.71429,-2.55838 -5.71429,-5.71429 0,-3.15591 2.55838,-5.71429 5.71429,-5.71429 3.15591,0 5.71429,2.55838 5.71429,5.71429 z"
+         transform="matrix(0.61249999,0,0,0.61249999,-18.072598,82.402109)" />
+      <path
+         transform="matrix(0.61249999,0,0,0.61249999,-6.0725979,82.402109)"
+         d="m 330.71429,170.21933 c 0,3.15591 -2.55838,5.71429 -5.71429,5.71429 -3.15591,0 -5.71429,-2.55838 -5.71429,-5.71429 0,-3.15591 2.55838,-5.71429 5.71429,-5.71429 3.15591,0 5.71429,2.55838 5.71429,5.71429 z"
+         sodipodi:ry="5.7142859"
+         sodipodi:rx="5.7142859"
+         sodipodi:cy="170.21933"
+         sodipodi:cx="325"
+         id="path6857"
+         style="fill:#000000;fill-opacity:1;stroke:none"
+         sodipodi:type="arc" />
+    </g>
+    <image
+       width="65.370544"
+       height="65.370544"
+       xlink:href="data:image/png;base64,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 RK5CYII= "
+       id="image6859"
+       x="54.314728"
+       y="567.67688"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text6861"
+       y="590.94342"
+       x="72.316933"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       xml:space="preserve"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
+         y="590.94342"
+         x="72.316933"
+         id="tspan6863"
+         sodipodi:role="line">A</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="86.316933"
+       y="590.94342"
+       id="text6865"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
+         sodipodi:role="line"
+         id="tspan6867"
+         x="86.316933"
+         y="590.94342">i, 1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="72.316933"
+       y="620.22913"
+       id="text6869"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
+         sodipodi:role="line"
+         id="tspan6871"
+         x="72.316933"
+         y="620.22913">B</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text6873"
+       y="620.22913"
+       x="86.316933"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       xml:space="preserve"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
+         y="620.22913"
+         x="86.316933"
+         id="tspan6875"
+         sodipodi:role="line">1, j</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text6877"
+       y="605.2193"
+       x="82"
+       style="font-size:15px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       xml:space="preserve"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
+         y="605.2193"
+         x="82"
+         id="tspan6879"
+         sodipodi:role="line">X</tspan></text>
+    <image
+       y="567.67688"
+       x="654.3147"
+       id="image6881"
+       xlink:href="data:image/png;base64,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 RK5CYII= "
+       height="65.370544"
+       width="65.370544"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="672.31689"
+       y="590.94342"
+       id="text6883"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
+         sodipodi:role="line"
+         id="tspan6885"
+         x="672.31689"
+         y="590.94342">A</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text6887"
+       y="590.94342"
+       x="686.31689"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       xml:space="preserve"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
+         y="590.94342"
+         x="686.31689"
+         id="tspan6889"
+         sodipodi:role="line">i, p</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text6891"
+       y="620.22913"
+       x="672.31689"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       xml:space="preserve"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
+         y="620.22913"
+         x="672.31689"
+         id="tspan6893"
+         sodipodi:role="line">B</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="686.31689"
+       y="620.22913"
+       id="text6895"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
+         sodipodi:role="line"
+         id="tspan6897"
+         x="686.31689"
+         y="620.22913">p, j</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:15px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="682"
+       y="605.2193"
+       id="text6899"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
+         sodipodi:role="line"
+         id="tspan6901"
+         x="682"
+         y="605.2193">X</tspan></text>
+    <g
+       transform="translate(190.4072,730.07764)"
+       id="g4608-8-8"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
+      <rect
+         style="opacity:0.98999999;fill:#555753;stroke:#555753;stroke-width:7.08699989;stroke-linejoin:round;filter:url(#filter4523-4-3-8)"
+         height="101.02"
+         x="935.46997"
+         y="47.164001"
+         width="245.05"
+         ry="20"
+         transform="matrix(0.49655,0,0,0.49655,-328.02,-49.726)"
+         rx="20"
+         id="rect4574-6-0" />
+      <g
+         transform="matrix(0.49655,0,0,0.49655,103.04,-118.49)"
+         id="g3786-3-1">
+        <rect
+           style="opacity:0.98999999;fill:url(#linearGradient4617-2-0);stroke:#4e9a06;stroke-width:7.08699989;stroke-linejoin:round"
+           x="63.344002"
+           y="181.61"
+           width="245.05"
+           height="101.02"
+           ry="20"
+           rx="20"
+           id="rect3788-0-3" />
+        <path
+           style="opacity:0.78298998;fill:#ffffff;fill-opacity:0.14370003"
+           inkscape:connector-curvature="0"
+           d="m 67.84,264.67 c 1.784,7.48 8.343,13.05 16.303,13.05 h 201.35 c 9.33,0 16.84,-7.59 16.84,-17.04 V 203.1 c 0,-4.48 -1.73,-8.51 -4.51,-11.55 -0.44,0.83 -0.24,0.63 -0.82,1.63 -1.36,2.32 -3.1,5.09 -5.3,8.1 -2.2,3.02 -4.87,6.29 -8.04,9.67 -1.59,1.69 -3.32,3.42 -5.17,5.14 -1.85,1.73 -3.83,3.46 -5.96,5.17 -2.13,1.72 -4.39,3.41 -6.81,5.08 -2.43,1.67 -5,3.33 -7.73,4.91 -2.73,1.58 -5.62,3.11 -8.67,4.57 -3.05,1.45 -6.26,2.82 -9.65,4.11 -3.39,1.29 -6.95,2.49 -10.69,3.58 -3.74,1.08 -7.66,2.03 -11.76,2.87 -3.67,0.75 -7.24,1.31 -10.69,1.69 -3.45,0.39 -6.8,0.61 -10.06,0.7 -3.27,0.1 -6.44,0.07 -9.56,-0.06 -3.11,-0.13 -6.17,-0.35 -9.17,-0.64 -6.01,-0.58 -11.81,-1.4 -17.57,-2.2 -5.76,-0.8 -11.48,-1.57 -17.28,-2.04 -2.9,-0.24 -5.8,-0.4 -8.77,-0.45 -2.96,-0.05 -5.98,-0.01 -9.05,0.19 -3.06,0.2 -6.16,0.57 -9.36,1.09 -3.2,0.52 -6.47,1.19 -9.84,2.1 -3.37,0.91 -6.833,2.02 -10.406,3.39 -3.574,1.36 -7.255,2.99 -11.069,4.88 -3.814,1.89 -7.766,4.06 -11.857,6.54 -1.509,0.92 -3.148,2.1 -4.698,3.1 z"
+           id="path3790-4-6" />
+        <text
+           x="187.32549"
+           y="243.41519"
+           font-size="19.48px"
+           xml:space="preserve"
+           style="font-size:26.1806469px;text-align:center;text-anchor:middle;opacity:0.65982002;fill:#000000;font-family:Arrobatherapy"
+           id="text3792-7-7"><tspan
+             style="font-size:26.1806469px;font-family:DejaVu Sans"
+             font-size="30.303px"
+             x="187.32549"
+             y="243.41519"
+             id="tspan3794-9-3">Block Sum Map</tspan></text>
+        <rect
+           style="opacity:0.98999999;fill:none;stroke:#73d216;stroke-width:4.48699999;stroke-linejoin:round"
+           x="68.522003"
+           y="185.99001"
+           width="235.41"
+           height="92.248001"
+           ry="16.700001"
+           rx="16.700001"
+           id="rect3796-7-0" />
+      </g>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:650.6640625px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DilleniaUPC;-inkscape-font-specification:DilleniaUPC"
+       x="-1162.9729"
+       y="374.24612"
+       id="text5796-8"
+       sodipodi:linespacing="125%"
+       transform="matrix(-0.00517792,-0.61475344,1.6266519,-0.00195687,0,0)"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
+         sodipodi:role="line"
+         id="tspan5798-5"
+         x="-1162.9729"
+         y="374.24612">{</tspan></text>
+    <rect
+       style="fill:#f9f6f9;fill-rule:evenodd;filter:url(#filter4523-55)"
+       x="45"
+       y="596.65002"
+       width="193.57001"
+       height="42.143002"
+       transform="matrix(0.21402,0,0,0.80462011,354.85087,379.15495)"
+       id="rect5977"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
+    <g
+       transform="translate(311.06377,901.74246)"
+       id="g4544-1"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87">
+      <rect
+         style="opacity:0.98999999;fill:#555753;stroke:#555753;stroke-width:7.08699989;stroke-linejoin:round;filter:url(#filter4523-2-9)"
+         height="101.02"
+         x="63.331001"
+         y="46.237"
+         width="245.05"
+         ry="20"
+         transform="matrix(0.49655,0,0,0.49655,-15.922,-157.42)"
+         rx="20"
+         id="rect4507-3" />
+      <rect
+         style="opacity:0.98999999;fill:url(#linearGradient4552-0);stroke:#fb9603;stroke-width:3.51909995;stroke-linejoin:round"
+         x="13.525"
+         y="-136.46001"
+         width="121.68"
+         height="50.159"
+         ry="9.9310999"
+         rx="9.9310999"
+         id="rect2383-8" />
+      <text
+         x="75.088898"
+         y="-105.77437"
+         font-size="9.673px"
+         xml:space="preserve"
+         style="font-size:12px;text-align:center;text-anchor:middle;opacity:0.66861997;fill:#000000;font-family:Arrobatherapy"
+         id="text3734-5"><tspan
+           style="font-size:12px;font-family:DejaVu Sans"
+           font-size="15.047px"
+           x="75.088898"
+           y="-105.77437"
+           id="tspan3736-3">Block Sum Reduce</tspan></text>
+      <path
+         style="opacity:0.78298998;fill:#ffffff;fill-opacity:0.14370003"
+         inkscape:connector-curvature="0"
+         d="m 15.758,-95.434 c 0.887,3.695 4.147,6.444 8.104,6.444 h 100.09 c 4.64,0 8.37,-3.749 8.37,-8.413 v -28.427 c 0,-2.21 -0.86,-4.2 -2.24,-5.7 -0.22,0.41 -0.12,0.31 -0.41,0.8 -0.67,1.15 -1.54,2.52 -2.63,4.01 -1.1,1.48 -2.42,3.1 -4,4.77 -0.79,0.84 -1.65,1.69 -2.57,2.54 -0.92,0.85 -1.91,1.7 -2.96,2.55 -1.06,0.85 -2.19,1.68 -3.39,2.5 -1.2,0.83 -2.48,1.65 -3.84,2.43 -1.36,0.78 -2.79,1.53 -4.31,2.25 -1.52,0.72 -3.11,1.4 -4.8,2.04 -1.682,0.63 -3.453,1.23 -5.312,1.76 -1.859,0.53 -3.806,1.01 -5.847,1.42 -1.825,0.37 -3.598,0.64 -5.314,0.83 -1.715,0.19 -3.377,0.3 -5,0.35 -1.623,0.05 -3.201,0.03 -4.75,-0.03 -1.548,-0.07 -3.069,-0.17 -4.561,-0.32 -2.984,-0.28 -5.868,-0.69 -8.731,-1.08 -2.863,-0.4 -5.707,-0.78 -8.59,-1.01 -1.442,-0.12 -2.885,-0.2 -4.358,-0.22 -1.473,-0.03 -2.976,-0.01 -4.499,0.09 -1.522,0.1 -3.066,0.28 -4.655,0.54 -1.59,0.25 -3.217,0.59 -4.891,1.04 -1.674,0.45 -3.397,0.99 -5.173,1.67 -1.776,0.67 -3.606,1.48 -5.502,2.41 -1.896,0.93 -3.86,2.003 -5.894,3.228 -0.75,0.452 -1.565,1.033 -2.335,1.528 z"
+         id="path3682-7" />
+      <rect
+         style="opacity:0.98999999;fill:none;stroke:#fcaf3e;stroke-width:2.22799993;stroke-linejoin:round"
+         x="16.097"
+         y="-134.28999"
+         width="116.89"
+         height="45.806"
+         ry="8.2924004"
+         rx="8.2924004"
+         id="rect3656-6" />
+    </g>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot6459"
+       style="font-size:9px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       transform="translate(-3.0055584,-69.68218)"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><flowRegion
+         id="flowRegion6461"><rect
+           id="rect6463"
+           width="67.17514"
+           height="33.082508"
+           x="356.8364"
+           y="934.17432"
+           style="font-size:9px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans" /></flowRegion><flowPara
+         id="flowPara6467">Matrix </flowPara><flowPara
+         id="flowPara7101">block</flowPara></flowRoot>    <text
+       xml:space="preserve"
+       style="font-size:15px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Wingdings;-inkscape-font-specification:Wingdings"
+       x="361.66223"
+       y="947.07812"
+       id="text6604"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
+         sodipodi:role="line"
+         id="tspan6606"
+         x="361.66223"
+         y="947.07812">HDFS</tspan></text>
+    <image
+       width="65.370544"
+       height="65.370544"
+       xlink:href="data:image/png;base64,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 RK5CYII= "
+       id="image5745-1-9"
+       x="403.23145"
+       y="829.03296"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text5747-7-6"
+       y="869.79944"
+       x="424.80505"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       xml:space="preserve"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
+         y="869.79944"
+         x="424.80505"
+         id="tspan5749-0-4"
+         sodipodi:role="line">C</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="438.80505"
+       y="869.79944"
+       id="text5751-2-7"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/alessandro/git/bigdata-challenge/relazione/blockmultiplication.png"
+       inkscape:export-xdpi="87"
+       inkscape:export-ydpi="87"><tspan
+         sodipodi:role="line"
+         id="tspan5753-0-8"
+         x="438.80505"
+         y="869.79944">i,j</tspan></text>
   </g>
 </svg>
