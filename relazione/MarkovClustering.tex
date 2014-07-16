@@ -231,6 +231,22 @@ MatrixMultiplicationReducer(key, values):
 \caption{Reducer used in the block-wise matrix multiplication. It performs the usual row-by-column matrix multiplication algorithm. N is the size of the matrix, p is the number of splits}
 \label{fig:blockwisereduce}
 \end{figure}
+The second job needed to finally compute $\mathbf{C_{i,j}}$ is the one performing the sum over all partial matrices produced before, in order to achieve the real values in the computed block.
+This job has, in its configuration, the horizontal and vertical coordinates $i$ and $j$ of the output block. In its mapper of fig. \ref{fig:blocksummap}, it aggregates by block row id and block column id the elements, so that they can be subsequently summed in the reducer as of fig. \ref{fig:blocksumreduce}.
+This job is dependant of the previous ones, thus starts as soon as all the input data needed has been produced.
+
+The thread forked and running the JobControl containing all such "individual block" jobs running in parallel, is checked periodically by another thread for completion. When this phase terminates, another set of blocks of parametric size
+is calculated and the related multiplications are run.
+This approach of not running everything in parallel has been pursued in order to avoid disk space issues and also to be 
+able to avoid too much contention in the system.
+From experimental results, in fact, we were able to verify that the matrix multiplication can be made very fast by dividing
+initial matrices in 25 blocks and using partitions of size from 5 (corresponding approximately to an entire row).
+However this approach required of us to write some other modules, namely the ones responsible for the decomposition in blocks
+of the matrices and the ones responsible for the subsequent recomposition, as we wanted our procedure not to avoid
+the final matrix representation.
+
+These modules implementation is discussed in \ref{splitter} and \ref{recombiner}.
+Finally, the behaviour of the matrix multiplication by blocks is sketched in fig. \ref{fig:blockmultiplicationsketch}.
 
 \subsection{Inflation}
 
