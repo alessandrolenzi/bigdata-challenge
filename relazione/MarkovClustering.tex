@@ -275,6 +275,15 @@ the comprehensive driver of the matrix multiplication procedure that we finally 
 \label{fig:blockmultiplicationsketch}
 \end{figure}
 
+\begin{figure}
+\centering
+\includegraphics[scale=0.7]{matrixmultiplication.png}
+\caption{Whole matrix multiplication procedure in a block-wise fashion. S blocks of the matrix are calculated
+in parallel, while the others wait for the completion of the previous ones before going on.
+In the image, s is the maximum size of the partition, k is assumed as the number of partitions and Pi(n) is a function
+returning the index of the n-th block in partition Pi.In the image, the blue blocks titled after the matrix block they are used to compute represent the calculation shown in fig. \ref{fig:blockmultiplicationsketch}}
+\label{fig:matrixmultiplicationsketch}
+\end{figure}
 
 \subsection{Inflation}
 
