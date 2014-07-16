@@ -326,6 +326,7 @@ Inflation is implemented with a Map-Reduce job in the file Inflation.java,
 using mappers to select rows and the reducer to re-compute elements of each
 row.
 
+<<<<<<< Updated upstream
 \subsection{Convergency}
 The convergency checker is a simple map-reduce job. The mapper takes as input the two matrices, the one 
 newly calculated and the one calculated in the previous step. 
@@ -350,7 +351,6 @@ For this reason, we decided that 20 iterations were enough for our problem.
 
 
 \subsection{Driver}
-<<<<<<< Updated upstream
 The driver for the Markov Clustering algorithm that we implemented is thus composed of several phases.
 It takes as input parameters the following values:
 \begin{enumerate}
@@ -360,11 +360,6 @@ It takes as input parameters the following values:
 \item \textbf{Number of workers}, parameter used to decide how many matrix blocks multiplications should be computed in parallel.
 \end{enumerate}
 Starting from this phase, in the beginning the matrix is pre-processed and divided in blocks. The matrix is replicated on two different directories, that will be fetched in input to the first matrix multiplication phase.
-=======
-
-
-\subsection{Finding clusters}
->>>>>>> Stashed changes
 
 The matrix multiplication phase works operating on 3 directories. It rotates in modulo 3 wrt to iteration number, taking the first two as input and the last as output folder.
 However, the matrix multiplication writes on a temporary "inflate" directory. It will be the Inflation module responsible for filling the output dir of the phase with the ultimate result.
@@ -379,6 +374,7 @@ A sketch depicting the behaviour of the whole pipeline that we developed can be 
 \label{fig:completepipeline}
 \end{figure}
 \newpage
+
 \subsection{Finding clusters}
 By the definition given in the original paper, given a matrix
 multiplied until convergency is reached, the clusters are
