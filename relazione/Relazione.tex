@@ -29,20 +29,23 @@
 
 \begin{abstract}
 The aim of the project is to analyze and then visualize telecommunication data
-in order to discover real-world communities basing on the strength of connection
-between different geographical areas. We implemented a pipeline of
-map reduce job with the Hadoop distributed computation
-environment\footnote{http://hadoop.apache.org/}.
-In \ref{thedataset} and \ref{ds_analysis} of this report, we describe the original dataset
-and analyze its properties. Then in \ref{aggregation}
+in order to discover real-world communities basing on the number of mobile telecommunications (calls and text messages) 
+between different geographical areas. We design and implemented 
+a parallel computation as a pipeline of
+map reduce jobs onto the Hadoop distributed computation
+framewor and environment\footnote{http://hadoop.apache.org/}.
+In sections \ref{thedataset} and \ref{ds_analysis} of this report, we describe the original dataset
+and analyze its properties. Then in section \ref{aggregation}
 we explain how we rearranged the data in
 order to reduce the noise and improve the tractability and robustness of the
-community discovery phase. Sections \ref{approaches}, \ref{mcl} will then
+community discovery phase. Sections \ref{approaches} and \ref{mcl} will then
 briefly describe two different approaches for community discovery
 (finding strongly connected components and markovian clustering)
 and in detail describe strategy and implementation of the latter which has
 proved to give more significant results.
-Finally \ref{results} will collect results and conclusion of the developed project.
+Finally section \ref{results} will collect results and conclusion of the developed project.
+All the implementation code for the project can be found in this
+\href{''https://github.com/michele-carignani/hadoop-markov-clustering/''}{online repository}.
 \end{abstract}
 
 %% Dataset and analysis
@@ -239,10 +242,87 @@ the most probable destinations of the flux from each node.
 
 \input{MarkovClustering.tex}
 
-\section{Risultati}
+\section{Results}
 \label{results}
 
+We present here the results of the community discovery analysis
+over two aggregation periods: Mondays and Wednesdays mornings.
 
+This means that we launched the Aggregation module and 2 constructed 
+the average probability graphs, one with the connections strength
+calcolated as the average of all the 10-minutes intervals included in
+the hours 7-13 of all Mondays in November and December 2013. The other
+one with the same hours but belonging to all the Wednesdays contained
+in the observation period.
+
+We chose this 2 aggregation in order to find similarities among them and to
+identify ''work-related'' communities.
+
+The results are graphically shown in figures \ref{fig:patch_mon}, \ref{fig:patch_wed},
+\ref{fig:arcs_mon}, \ref{fig:arcs_wed}, firstly as a ''heat map'' over the grid
+(each color representing a differnt component) then by drawing all arcs (in
+order to identify the directions of calls).
+
+The heat maps clearly display that:
+\begin{itemize}
+\item the number of communities detected over our dataset population is about
+100 and this number seems acceptable (as an order of magnitude);
+\item Components are - in general - concentrated in the same geographical area;
+\item Components get smaller near the city centre and larger going toward the
+country-side and this seems reasonable given the different density of population
+between them;
+\item There is a dramatic difference w.r.t. the results of the discovery
+computed with the Tarjan algorithm in term of number and dimension of the
+respectively found components.
+\item Most of all: the communities discovered in different and independent
+analysis (such as the ones on Mondays and Wednesdays) look really similar
+in terms of distribution and size. This corroborates the goodness of the
+algorithm design and implementation as we could possibly be able to
+discover work-related communities.
+\end{itemize}
+
+In conclusion, the opinion of the authors is that community discovery
+onto a geographical area based on mobile telecommunication data
+is possible and that the Markovian random walk approach gives much better
+results than visit based approachies (even with different strategies applied)
+such as Tarjan's algorithm. This is probably due to the assence,
+in Markovian Clustering, of any bias w.r.t. how to and from where start
+and proceed in the visit. Therefore, also other biased machine learning
+approaches (such as K-Means) would not probably compete with Markov
+Clustering in terms of quality of the output, in this scenario.
+
+This work leaves the door open for more analysis, in particular to study
+different communities in different aggregation types, and the authors
+suggest this road to be covered in the future.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.4]{monday.png}
+\caption{}
+\label{fig:patch_mon}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.2]{clusters.png}
+\caption{}
+\label{fig:arcs_mon}
+\end{figure}
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.2]{wednesday.png}
+\caption{}
+\label{fig:patch_wed}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.2]{wednesday_arcs.png}
+\caption{}
+\label{fig:arcs_wed}
+\end{figure}
 
 
 \end{document}

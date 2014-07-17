@@ -48,7 +48,7 @@ to emit different values.
 The "first" matrix is fetched to the \texttt{OneStepRowMap} of fig. \ref{fig:onestepMaps} while the second to the \texttt{ColumnMap} of the same figure. In the pseudocode, there's no consideration for cases in which the value is 0, since the
 matrix is already memorized neglecting null values.
 The output of both mappers is fetched to \texttt{OneStepReduce} of fig. \ref{fig:onestepReduce}.
-\begin{figure}
+\begin{figure}[h]
 \begin{verbatim}
 OneStepRowMap(key, value):
     for k = 1 to N:
@@ -61,7 +61,7 @@ OneStepColumnMap(key, value)
 \label{fig:onestep}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \begin{verbatim}
 OneStepReduce(key, values):
     A[N] = {j: a_ij for (x, j, a_ij) in values if x == A}
@@ -108,7 +108,7 @@ In the mappers shown in fig. \ref{fig:twoStep1Map} used in the first step - agai
 In the reducer in fig. \ref{fig:twoStep1Reducer}the values of the row and column received are distinguished using the "A" and "B" flags. Subsequently,
 every row value is multiplied for every column value, and this multiplied values are emitted using as key
 the position of the value of the output matrix to which they will contribute. %todo: cec improbabol inglisc
-\begin{figure}
+\begin{figure}[h]
 \begin{verbatim}
 TwoStepRowMap(key, value):
     emit(value.row, ("A", value.column, value.probability))
@@ -119,7 +119,7 @@ TwoStepColumnMap(key, value):
 \caption{Mappers used in the first phase of the two-step matrix multiplication algorithm.}
 \label{fig:twoStep1Map}
 \end{figure}
-\begin{figure}
+\begin{figure}[h]
 \begin{verbatim}
 reduce(key, values):
     list_A = {(i, a_ij) for (M, i, a_ij) in values if M == "A"}
@@ -135,7 +135,7 @@ reduce(key, values):
 The second map-reduce phase of this algorithm implements the identity function in the mapper, and sums up all
 multiplicated values for a certain value of the final matrix in the reducer shown in fig. \ref{fig:twoStep2Reducer}
 
-\begin{figure}
+\begin{figure}[h]
 \begin{verbatim}
 reduce(key, values):
     result = 0
@@ -215,7 +215,7 @@ are written in output, as it is possible to see in fig. \ref{fig:blockwisereduce
 In the reducer, a slight optimization has been achieved by memorizing the second matrix (accessed k times) by column
 and not by row, to avoid jumps in memory and to exploit caches and memory in the best possible way.
 
-\begin{figure}
+\begin{figure}[h]
 \begin{verbatim}
 BlockRowMapper(key, value):
     emit(
@@ -224,13 +224,16 @@ BlockRowMapper(key, value):
     )
 
 BlockColumnMapper(key, value):
-    emit(value.blockHorizontalIndex, ('B', value.row_id, value.column_id, value.probability))
+    emit(
+        value.blockHorizontalIndex, 
+        ('B', value.row_id, value.column_id, value.probability)
+    )
 \end{verbatim}
 \caption{Mappers used in the block-wise matrix multiplication. The block $\mathbf{A_{i,k}}$ is managed by BlockRowMapper, while $\mathbf{B_{k,j}}$ by BlockColumnMapper. This names are given merely for consinstency wrt. previous algorithms} 
 \label{fig:blockwisemap}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \begin{verbatim}
 MatrixMultiplicationReducer(key, values):
     A[N/p][N/p]
@@ -254,7 +257,8 @@ MatrixMultiplicationReducer(key, values):
 The second job needed to finally compute $\mathbf{C_{i,j}}$ is the one performing the sum over all partial matrices produced before, in order to achieve the real values in the computed block.
 This job has, in its configuration, the horizontal and vertical coordinates $i$ and $j$ of the output block. In its mapper of fig. \ref{fig:blocksummap}, it aggregates by block row id and block column id the elements, so that they can be subsequently summed in the reducer as of fig. \ref{fig:blocksumreduce}.
 This job is dependant of the previous ones, thus starts as soon as all the input data needed has been produced.
-\begin{figure}
+
+\begin{figure}[h]
 \begin{verbatim}
 BlockSumMapper(key, value):
     emit((value.row_id, value.col_id), value.probability)
@@ -262,7 +266,8 @@ BlockSumMapper(key, value):
 \caption{The map function used to perform the sum over all partial matrices $\mathbf{A_{i,k}} \times \mathbf{B_{k,j}}$ and thus to calculate $\mathbf{C_{i,j}}$}
 \label{fig:blocksummap}
 \end{figure}
-\begin{figure}
+
+\begin{figure}[h]
 \begin{verbatim}
 BlockSumReducer(key, values):
     blockIdX = get(block.horizontal_coordinates)
@@ -288,14 +293,14 @@ These modules implementation is discussed in \ref{splitter} and \ref{recombiner}
 Finally, the behaviour of a single block multiplication is sketched in fig. \ref{fig:blockmultiplicationsketch}, while
 the comprehensive driver of the matrix multiplication procedure that we finally adopted is illustrated in fig. \ref{fig:matrixmultiplicationsketch}, and its source code can be seen on %todo: insert link.
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[scale=0.7]{blockmultiplication.png}
 \caption{Procedure followed to calculate a single $\mathbf{C_{i,j}}$.}
 \label{fig:blockmultiplicationsketch}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[scale=0.7]{matrixmultiplication.png}
 \caption{Whole matrix multiplication procedure in a block-wise fashion. S blocks of the matrix are calculated
@@ -326,7 +331,6 @@ Inflation is implemented with a Map-Reduce job in the file Inflation.java,
 using mappers to select rows and the reducer to re-compute elements of each
 row.
 
-<<<<<<< Updated upstream
 \subsection{Convergency}
 The convergency checker is a simple map-reduce job. The mapper takes as input the two matrices, the one 
 newly calculated and the one calculated in the previous step. 
@@ -346,10 +350,6 @@ However, in these iterations the number of non-converged values is already very 
 represents only the 0.2\% of the total values.
 For this reason, we decided that 20 iterations were enough for our problem.
 
-\subsection{Matrix splitter and recombiner}
-\label{splitter}
-
-
 \subsection{Driver}
 The driver for the Markov Clustering algorithm that we implemented is thus composed of several phases.
 It takes as input parameters the following values:
@@ -366,11 +366,21 @@ However, the matrix multiplication writes on a temporary "inflate" directory. It
 The convergency phase, instead, as previously explained, doesn't write down any information on the disk but merely exploits hadoop counters to understand the number of non converged values existing in the matrix.
 Finally, when the matrix converges or the number of maximum iterations has been reached, the matrix is recomposed and written in the output directory.
 
-A sketch depicting the behaviour of the whole pipeline that we developed can be seen in fig. \ref{fig:completepipeline}
+A sketch depicting the behaviour of the whole pipeline that we developed can be seen in Fig. \ref{fig:completepipeline}
 \newpage
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[scale=0.7]{completepipeline.png}
+\caption{Here we show the entire dataflow representation
+of the analysis. Each blue box represents one or more
+map-reduce computation. At the top the pre-processing
+phase is shown, i.e. the aggregated graphs generation,
+while below the entire Markov Clustering Algorithm implementation
+is shown. The green arrows represent data flows, while the blue
+arrow represent a control flow. Matrixes A and B are used
+to compute the multiplication: at each loop iteration,
+A represents the former and B represents the latter matrix
+calculated. After the inflation A and B are updated.}
 \label{fig:completepipeline}
 \end{figure}
 \newpage

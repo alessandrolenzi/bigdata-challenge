@@ -1,15 +1,16 @@
 \section{Data aggregation}
 \label{aggregation}
-The aim of this part of the project was to produce aggregated probability graphs as defined in \ref{AVGPG} .
+The aim of this part of the project was to produce aggregated probability graphs as defined in section \ref{AVGPG}.
 \\ 
-We developed a procedure composed by two consecutive logical map reduce computations executable within the Hadoop environment.
-The input of the \emph{Time Aggregation} phase is the raw dataset, while the output is a graph of probabilities of interaction between zones of the considered area
-over a certain period of interest.
+We developed a procedure composed by two consecutive logical map reduce computations executable onto the Hadoop environment.
+The input of the \emph{Time Aggregation} phase is the original dataset (as described in section \ref{thedataset}), while the output is a graph of probabilities of interaction between zones of the considered area
+over a certain period of interest, represented as a list of edges.
 \subsection{Average graph calculation}
 This logical phase aims to calculate several \emph{average graphs} for a given period of interest.
-We define an average graph as the graph in which the weight of every arc is the average of the detected strength in input. When no strength is detected in a given 10 minute period, the strength connecting the two areas is considered to be zero.
-This phase is composed of a map-reduce job, whose pseudo code can be seen in \ref{fig:filtermap} and \ref{fig:averagereduce} respectively.
-The mapper filters only the interesting entries in the dataset, and labels them with an appropriate identifier for the aggregation. The output key is composed by the  a triple \texttt{AggregationId,SourceId,DestId} while the key is the stength.\\
+We define an average graph as the graph in which the weight of every arc is the average of the detected strength in input. When no strength is detected in a given 10 minute period, the strength connecting the two areas is considered to be zero. Zero-valued
+edges are simply not stored since they would not affect the rest of the computation.
+This phase is composed of a map-reduce job, whose pseudo code can be seen in Fig. \ref{fig:filtermap} and Fig. \ref{fig:averagereduce} respectively.
+The mapper filters only the interesting entries in the dataset, and labels them with an appropriate identifier for the aggregation. The output key is composed by the  a triple \texttt{(AggregationId,SourceId,DestId)} while the key is the strength value.\\
 In the reducer, we calculate the sum of all such values and then divide it by the number of ten minutes slots in the aggregation.
 
 \begin{figure}
@@ -130,7 +131,8 @@ ProbabilityReduce(key, values):
 \label{fig:probabilityreduce}
 \end{figure}
 \subsection{Driver}
-The driver takes the following input parameters:
+The driver module - the one which creates and lanches the Hadoop
+map and reduce jobs - takes the following input parameters:
 \begin{enumerate}
 \item \textbf{Aggregation file}, the file containing the descriptions of the aggregations to be performed
 \item \textbf{Input directory}, the directory containing the files with the daily calls measurements
@@ -142,8 +144,9 @@ The driver reads the aggregation file, and then saves the aggregation representa
 Then there's an iteration in the files placed inside the input directory, adding files one by one until the size of the partition is met.
 Then a single job is executed, calculating the average graph for the given partition before a new partition is calculated and a new average graph calculation starts. \\
 Finally, when average graphs have been calculated for each partition, the second part takes all these files in input and proceeds to write in the output directory the average probability graph.
-A sketch depicting the driver logic in a dataflow fashion can be found in \ref{fig:aggregated}; the code is available at the following address \texttt{https://github.com/michele-carignani/hadoop-markov-clustering/tree/master/src/aggregation}.
-In particular, the driver is the file named \texttt{TimeAggregatedGraphs.java}.
+A sketch depicting the driver logic in a dataflow fashion can be found in Fig. \ref{fig:aggregated};
+The driver is implemented in the file named 
+\href{https://github.com/michele-carignani/hadoop-markov-clustering/blob/master/src/aggregation/TimeAggregatedGraphs.java}{TimeAggregatedGraphs.java}.
 \begin{figure}
 	\centering
     \includegraphics[scale=0.7]{aggregation.png}
