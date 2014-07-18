@@ -17,14 +17,13 @@ In the reducer, we calculate the sum of all such values and then divide it by th
 \begin{verbatim}
 FilterMap(key, value):
 // input takes in input all dataset files
+// key is bytes read, value is (timestamp,sourceNode,destNode,strength)
 // implementeted in aggregated_graphs.FilterMapper.java
-  d = parse(value)
-  for(interesting_period in all_periods)
-  if (d.timestamp belongs_to interesting_period)
-  	k = (interesting_period,d.sourceNode,d.destNode)
-  	v = d.value
-    emit(k, v)
-    return;
+    for(i in configuration.all_periods):
+        if (value.timestamp belongs_to i):
+  	        k = (i.id,i.num,d.sourceNode,d.destNode)
+  	        v = value.strength
+            emit(k, v)
 \end{verbatim}
 \caption{Filter Map pseudo-code}
 \label{fig:filtermap}
@@ -32,6 +31,8 @@ FilterMap(key, value):
 \begin{figure}
 \begin{verbatim}
 AverageReduce(key,values):
+// key is (aggregationId,aggregationLength,sourceNode,destNode), 
+// values are strengths
 // implemented in aggregated_graphs.AverageReducer.java
   sum = count = 0
   for v in values:
@@ -39,7 +40,7 @@ AverageReduce(key,values):
   	count++
   (id,num,source,dest) = parse(key)
   avg = sum / num
-  emit((id,source),(dest,value))
+  emit((id,source),(dest,avg))
 \end{verbatim}
 \caption{Average Reduce pseudo-code}
 \label{fig:averagereduce}
@@ -50,11 +51,12 @@ During the initial executions, our testing environment
 could not successfully compute aggregations over huge periods, because of \textbf{lack of free disk space}. \\
 The problem was due to the fact that, in the first map, even though the filter would reduce in general the size of the input data,
 this reduction was not enough to fit disks on certain nodes of the cluster before going on with the conseguent reduce phase.\\
-With a worst case calculation, in fact, an input split containing all nodes in a graph would produce a graph containing $100000000$ of arcs, each one with a weight which could be approximated to 24 Bytes, thus achieving approximately an output of $~$ 2GB. \\
+With a worst case calculation, in fact, an input split containing all nodes in a graph would produce a graph containing $100.000.000$ of arcs, each one with a weight which could be approximated to 24 Bytes, thus achieving approximately an output of $~$ 2GB. \\
 To cope with this issue, we went through a number of different approaches, to finally discover that a \emph{"classic"} splitting technique, along with the benefits provided by the combiner, would result in the best solution for our environment.
 \begin{enumerate}
 \item \textbf{Combiners} a combiner has been defined to shrink the first map output size. The combiner performs a sum over all strengths in the same aggregation period and, of course, with same source and destination. 
 The output of the combiner is a graph for each aggregation period in which the strength is the sum of all strength.
+
 This solution, for an aggregation with containing $n$ 10 minutes slots, could reduce the output of each map task up to $1/n$ of the original size without the combiner. 
 The pseudo-code of the combiner used is depicted below:
 \begin{verbatim}
