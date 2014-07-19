@@ -1,0 +1,87 @@
+
+Modern computer system is very complex: 
+Hundreds of millions of transistors
+Interconnected high-speed I/O devices
+Networking infrastructures
+Operating systems, libraries, applications
+Graphics and networking software
+
+
+To manage this complexity we use Levels of Abstractions which
+Allows implementation details at lower levels of design to be ignored or simplified,
+Each level is separated by well-defined interfaces, so
+that the design of a higher level can be decoupled
+from the lower levelsLayers of Abstraction
+
+
+Abstraction: used to manage complexity typically defined in layers (VM i ), each layer has its own language (L i ) and data structures (R i )   lowest layers implemented in hardware, higher layers implemented in
+software
+
+A Machine: denotes the system on which software is executed.
+
+Typical Layers are 
+VM 4 : Applications 
+VM 3 : Operating System
+VM 2 : Assembler Machine
+VM 1 : Firmware Machine
+VM 0 : Hardware Machine
+
+–  to an operating system this is generally the physical system
+–  to an application program a machine is defined by the combination of hardware and OS-implemented abstractions
+ 
+
+Abstraction layers have well defined interfaces
+–  A processors instruction set defines such an interface: IA-32, IBM
+PowerPC, ARM
+•  Instruction Set Architecture (ISA)
+–  defines hardware/software boundary
+–  user ISA: portion of architecture visible to an application program
+–  system ISA: portion of architecture visible to the supervisor software
+(e.g., OS)
+Applications
+Operating
+System
+system ISA
+user ISA
+Execution
+Hardware
+
+ISA
+
+Application Binary Interface (ABI): defines program interface to the hardware resources and services 
+user ISA
+system calls
+• 
+• 
+• 
+system instructions are not included in the ABI
+user instructions allow program direct access to hardware
+indirect interface for accessing shared system resources and services
+implemented by the supervisor software
+Application Programming Interface (API)
+– 
+– 
+– 
+defined in terms of a high-level language (HHL)
+typically implemented as a system library and defined at the source level (for example libc which is linked
+into programʼ’s address space)
+specifies operations available by system which are implemented by the operating system or other system
+software
+Applications
+API
+Library
+Operating
+System
+ABI
+Execution
+HardwareVirtualization
+
+What is Virtualization
+Linux
+Linux
+(devel)
+XP
+Vista
+Virtual Machine Monitor
+Hardware
+MacOS

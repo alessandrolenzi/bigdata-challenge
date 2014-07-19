@@ -1,0 +1,47 @@
+A Virtual Machine (VM) is a machine decoupled from the hardware, meaning that to the eyes of its user, it does not necessarily correspond to the hardware but may mimick a different behaviour. 
+Multiple Virtual Machines on the same physical host could share the underlying hardware.
+
+The usual software development cycle, in which executables of an application are compiled for a certain operative system and for a certain architecture, makes portability difficult and thus requires for mechanisms to allow portability.
+This is the main reason that led to the development of Virtual Machines concept, allowing a much higher degree of portability and flexibility.
+
+Basically, a virtual machine is implemented through an additional software layer which is placed on an execution platform to give it the appearence of a different platform or even of multiple platforms.
+In principle, all resources part of a computing system (including I/O devices, processors, memory and network resources) can be virtualized, making its state separate from a specific piece of physical hardware.
+
+The easiest example of a VM are the multiprogrammed machine. In fact, the conventional multiprogrammed approach give to every process the illusion of having a complete machine dedicated (with its own memory, processor and so on), while the operating system timesharing mechanism,
+along with hardware, make this possible. In this view, the OS provides a replicated VM for each of the applications executing in a certain system in a certain time instant.
+\\
+Several kinds of VM are available nowadays, and this technology, while considered promising for years, is now exploding due to the change in
+the whole computing paradigm, in which computing systems are often shared between a huge users possibly not trusting each other, as it happens
+in Clouds.
+Virtual Machines, in fact, provide not just portability of software, but also interesting features in the field of \emph{security}, since they provide natural isolation. Other clear advantages are:
+\begin{itemize}
+\item Increased isolation between different users, otherwise possibly exploiting "holes" in the OS to damage others
+\item Isolation wrt faults, software/versions, performances.
+\item Better hardware exploitation, by reducing the number of servers and allowing access to multiple users; this allows also to save in power and cooling.
+\item Better manageability in data centers, allowing applications to run seamless on different physical machines resources can be scheduled better and thus performance, power consumption and availability can be increased.
+\item Improvements in software development cycles, by making development faster (consider, as a simple example, the advantages brought by the JVM to developers) 
+\item Decreased complexity, by adding levels of abstraction to very complex computing system
+\end{itemize}
+
+In a modern computing system, a Virtual Machine can be seen as a mere abstraction level, that can be placed at higher or lower levels of the VM stack providing different virtualization techniques and different performances and features.
+In VM, we can distinguish between \emph{guest}, corresponding to a software artifact running on the VM, and the \emph{host}, which is the underlying platform. The software which performs the abstraction defined below, is usually referred as \emph{Virtual Machine Monitor} (VMM) or, in some cases, \emph{Hypervisor}.
+More formally, a virtual machine is defined as follows:
+\begin{definition}
+\textbf{Virtualization} is the construction of an isomorphism that maps a guest machine to an
+existing host machine such that:
+\begin{itemize}
+\item for any possible guest state $R_i$ (collection of guest virtualization objects), there's a state $R'_i$ onto which $R_i$ is mapped using a certain function $V$ 
+$$V(R_i) = R_i’$$
+\item for every policy $P()$ (i.e. a command) causing a transition of guest state $R_i$ to state $R_j$, there
+is a corresponding policy $P’()$ in the host that performs an equivalent modification of the host state
+$$P’  V(R i )=V  P(R i )$$
+\end{itemize}
+\end{definition}
+
+The main features required of virtual machines, according to Popek and Goldberg's 1974 paper %todo:insert ref
+are:
+\begin{enumerate}
+\item \emph{Fidelity}: the software executing on a virtual machine executes identically to its execution in hardware, except for timing effects
+\item \emph{Performance}: the majority of guest instructions are executed by the hardware without the intervention of the Virtual Machine Monitor
+\item \emph{Safety}: the Virtual Machine Monitor manages all hardware resources.
+\end{enumerate}

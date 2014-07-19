@@ -1,126 +1,38 @@
 %!TEX program = pdflatex
 \documentclass[10pt]{article}
-
+\usepackage{wrapfig}
 \title{Virtualization Technologies}
 \author{Michele Carignani, Alessandro Lenzi}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
 
+\newenvironment{proof}[1][Proof]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+      \ifdim\lastskip<1.5em \hskip-\lastskip
+      \hskip1.5em plus0em minus0.5em \fi \nobreak
+      \vrule height0.75em width0.5em depth0.25em\fi}
 \begin{document}
 
 \maketitle
 \tableofcontents
-
 \section{What is Machine Virtualization}
-
-A Virtual Machine (VM) is  machine decoupled from the hardware, i.e. does not necessarily correspond to the hardware. Multiple Virtual Machines on the same physical host could share the underlying hardware.
-
-The basic Idea is to share hardware resources across multiple machines May make sense for network attached storage, but what about processor, memory, etc.?
-
-Approach: Decouple machine from hardware Virtual Machine (VM) A machine decoupled from the hardware, i.e. does not necessarily correspond to the
-hardware, Multiple “Virtual Machines” on the same physical host could share the underlying hardware
-
-
+\input{WhatIs.tex}
 \subsection{What to virtualize: API,ABI,ISA}
-
-Modern computer system is very complex: 
-Hundreds of millions of transistors
-Interconnected high-speed I/O devices
-Networking infrastructures
-Operating systems, libraries, applications
-Graphics and networking software
-
-
-To manage this complexity we use Levels of Abstractions which
-Allows implementation details at lower levels of design to be ignored or simplified,
-Each level is separated by well-defined interfaces, so
-that the design of a higher level can be decoupled
-from the lower levelsLayers of Abstraction
-
-
-Abstraction: used to manage complexity typically defined in layers (VM i ), each layer has its own language (L i ) and data structures (R i )   lowest layers implemented in hardware, higher layers implemented in
-software
-
-A Machine: denotes the system on which software is executed.
-
-Typical Layers are 
-VM 4 : Applications 
-VM 3 : Operating System
-VM 2 : Assembler Machine
-VM 1 : Firmware Machine
-VM 0 : Hardware Machine
-
-–  to an operating system this is generally the physical system
-–  to an application program a machine is defined by the combination of hardware and OS-implemented abstractions
- 
-
-Abstraction layers have well defined interfaces
-–  A processors instruction set defines such an interface: IA-32, IBM
-PowerPC, ARM
-•  Instruction Set Architecture (ISA)
-–  defines hardware/software boundary
-–  user ISA: portion of architecture visible to an application program
-–  system ISA: portion of architecture visible to the supervisor software
-(e.g., OS)
-Applications
-Operating
-System
-system ISA
-user ISA
-Execution
-Hardware
-
-ISA
-
-Application Binary Interface (ABI): defines program interface to the hardware resources and services 
-user ISA
-system calls
-• 
-• 
-• 
-system instructions are not included in the ABI
-user instructions allow program direct access to hardware
-indirect interface for accessing shared system resources and services
-implemented by the supervisor software
-Application Programming Interface (API)
-– 
-– 
-– 
-defined in terms of a high-level language (HHL)
-typically implemented as a system library and defined at the source level (for example libc which is linked
-into programʼ’s address space)
-specifies operations available by system which are implemented by the operating system or other system
-software
-Applications
-API
-Library
-Operating
-System
-ABI
-Execution
-HardwareVirtualization
-
-What is Virtualization
-Linux
-Linux
-(devel)
-XP
-Vista
-Virtual Machine Monitor
-Hardware
-MacOS
+\input{WhatVirtualize.tex}
 
 \subsection{A formal definition}
 
 
-Construction of an isomorphism that maps a guest VM to an
-existing host VM such that maps the guest state $R_i$ (collection
-of guest virtualization objects) onto the host state $R_i’$ through some function V() such that 
-$$V(R_i) = R_i’$$
-for every policy $P()$ transforming the
-state $R_i$ in state $R_j$ in the guest, there
-is a corresponding policy $P’()$ in the
-host that performs an equivalent
-modification of the host state
-$$P’ ◦ V(R i )=V ◦ P(R i )$$
 
 \subsection{Virtualization Properties}
 
