@@ -1,0 +1,773 @@
+%!TEX program = pdflatex
+\documentclass[10pt]{article}
+
+\title{Virtualization Technologies}
+\author{Michele Carignani, Alessandro Lenzi}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{What is Machine Virtualization}
+
+A Virtual Machine (VM) is  machine decoupled from the hardware, i.e. does not necessarily correspond to the hardware. Multiple Virtual Machines on the same physical host could share the underlying hardware.
+
+The basic Idea is to share hardware resources across multiple machines May make sense for network attached storage, but what about processor, memory, etc.?
+
+Approach: Decouple machine from hardware Virtual Machine (VM) A machine decoupled from the hardware, i.e. does not necessarily correspond to the
+hardware, Multiple “Virtual Machines” on the same physical host could share the underlying hardware
+
+
+\subsection{What to virtualize: API,ABI,ISA}
+
+Modern computer system is very complex: 
+Hundreds of millions of transistors
+Interconnected high-speed I/O devices
+Networking infrastructures
+Operating systems, libraries, applications
+Graphics and networking software
+
+
+To manage this complexity we use Levels of Abstractions which
+Allows implementation details at lower levels of design to be ignored or simplified,
+Each level is separated by well-defined interfaces, so
+that the design of a higher level can be decoupled
+from the lower levelsLayers of Abstraction
+
+
+Abstraction: used to manage complexity typically defined in layers (VM i ), each layer has its own language (L i ) and data structures (R i )   lowest layers implemented in hardware, higher layers implemented in
+software
+
+A Machine: denotes the system on which software is executed.
+
+Typical Layers are 
+VM 4 : Applications 
+VM 3 : Operating System
+VM 2 : Assembler Machine
+VM 1 : Firmware Machine
+VM 0 : Hardware Machine
+
+–  to an operating system this is generally the physical system
+–  to an application program a machine is defined by the combination of hardware and OS-implemented abstractions
+ 
+
+Abstraction layers have well defined interfaces
+–  A processors instruction set defines such an interface: IA-32, IBM
+PowerPC, ARM
+•  Instruction Set Architecture (ISA)
+–  defines hardware/software boundary
+–  user ISA: portion of architecture visible to an application program
+–  system ISA: portion of architecture visible to the supervisor software
+(e.g., OS)
+Applications
+Operating
+System
+system ISA
+user ISA
+Execution
+Hardware
+
+ISA
+
+Application Binary Interface (ABI): defines program interface to the hardware resources and services 
+user ISA
+system calls
+• 
+• 
+• 
+system instructions are not included in the ABI
+user instructions allow program direct access to hardware
+indirect interface for accessing shared system resources and services
+implemented by the supervisor software
+Application Programming Interface (API)
+– 
+– 
+– 
+defined in terms of a high-level language (HHL)
+typically implemented as a system library and defined at the source level (for example libc which is linked
+into programʼ’s address space)
+specifies operations available by system which are implemented by the operating system or other system
+software
+Applications
+API
+Library
+Operating
+System
+ABI
+Execution
+HardwareVirtualization
+
+What is Virtualization
+Linux
+Linux
+(devel)
+XP
+Vista
+Virtual Machine Monitor
+Hardware
+MacOS
+
+\subsection{A formal definition}
+
+
+Construction of an isomorphism that maps a guest VM to an
+existing host VM such that maps the guest state $R_i$ (collection
+of guest virtualization objects) onto the host state $R_i’$ through some function V() such that 
+$$V(R_i) = R_i’$$
+for every policy $P()$ transforming the
+state $R_i$ in state $R_j$ in the guest, there
+is a corresponding policy $P’()$ in the
+host that performs an equivalent
+modification of the host state
+$$P’ ◦ V(R i )=V ◦ P(R i )$$
+
+\subsection{Virtualization Properties}
+
+•  Isolation
+•  Encapsulation
+•  InterpositionIsolation
+
+
+\paragraph{Fault Isolation}
+–  Fundamental property of virtualization
+•  Software Isolation
+–  Software versioning
+–  DLL Hell
+•  Performance Isolation
+–  Accomplished through scheduling and resource
+allocation
+
+\paragraph{Encapsulation}
+•  All VM state can be captured into a file
+–  Operate on VM by operating on file
+–  mv, cp, rm
+•  Complexity
+–  Proportional to virtual HW model
+–  Independent of guest software configuration
+
+\paragraph{Interposition}
+•  All guest actions go through monitor
+•  Monitor can inspect, modify, deny
+operations
+•  Examples:
+–  Compression
+–  Encryption
+–  Profiling
+–  Translation
+
+\paragraph{Concrete Perspectives}
+•  Process perspective: The system ABI defines the interface
+between the process and machine
+–  user-level hardware access: logical memory space, user-level
+registers and instructions
+–  OS mediated: Machine I/O or any shared resource or operations
+requiring system privilege.
+•  Operating system perspective: ISA defines the interface between
+OS and machine
+–  system is defined by the underlying machine
+–  direct access to all resources
+–  manage sharing
+•  Virtual machine executes software (process or operating system)
+in the same manner as target machine
+–  Implemented with both hardware and software
+–  VM resources may differ from that of the physical machine
+–  Generally not necessary for VM to have equivalent performace
+
+\paragraph{Where is the VM?}
+Process virtual machine: supports an individual process
+–  Emulates user-level instructions and operating system calls
+–  Virtualizing software placed at the ABI layer
+System Virtual Machines: emulates the target hardware ISA
+–  guest and host environment may use the same ISA
+Virtual Machines are implemented as combination of
+–  Real hardware
+–  Virtualizing software
+Process
+Virtualization Software
+Operating System
+ISA
+Applications
+Operating System
+Virtualization Software
+ISA
+
+
+\paragraph{Terminology}
+
+host environment: layers under the VM
+guest environment: layers above the VM
+runtime: virtualizing software in process VMs.
+virtual machine monitor (VMM): virtualizing software
+in system VMsVM Capabilities
+Virtual machines can provide emulation, optimization
+and replication
+•  emulation: cross platform compatibility
+•  optimization: by considering implementation specific
+information
+•  replication: making a single resource or platform appear as
+many
+Apps
+Apps
+OS
+Apps
+Apps
+OS
+OS
+Apps
+OS
+OS
+ISA ISA ISA
+Emulation Replication CompositionProcess VM Examples
+•  Same ISA
+–  Multiprogrammed Systems
+–  Binary Optimizers
+•  Different ISA
+–  Emulators \& Dynamic Binary Translators
+–  Higher Level Language (HLL) VMsSystem VM Examples
+•  Whole System
+–  Same/Different ISA
+–  Bare Hardware/Native/Bare Metal/Type 1
+–  Hosted/Type 2
+VM 1 VM 2
+OS OS
+VM 1 VM 2 OS OS Scheduler
+HW
+Drivers Scheduler
+Scheduler
+MMU
+VMM
+MMU
+VMM MMU
+OS HW
+Drivers
+Hardware Hardware
+Native Virtualization Hosted Virtualization
+•  Codesigned
+–  innovative ISAs and/or hardware implementations for
+improved performance, power efficiency, or both.
+
+
+\paragraph{Taxonomy}
+
+Process	VMs	
+	Same ISA	
+		Multiprogrammed	Systems	
+		Dynamic	binary optimizers
+	Different	 ISA	
+		Dynamic	Translators
+		HLL	 VMs	
+ 	 
+System	VMs	
+    Same ISA	
+    	Classic-­‐System
+    	Hosted VMs	
+  	Different ISA VMs	
+   		Whole-­‐System VMs	
+   		
+   		Codesigned VMs
+  
+\section{When}
+
+–  First VM: IBM System/360 Model 40 VM [1965]Why Virtualize?
+• First VM: IBM System/360 Model 40 VM [1965]
+
+\section{Why Virtualization}
+
+\paragraph{Consolidation}:
+save resources by sharing them. Servers are under-utilized
+because of over-provisioning approaches
+•  Consolidate resources
+–  Server consolidation
+–  Client consolidation
+–  reduce number of servers
+–  reduce space, power and cooling
+–  70-80% reduction numbers cited in industry
+•  Client consolidation
+–  developers: test multiple OS versions, distributed
+application configurations on a single machine
+–  end user: Windows on Linux, Windows on Mac
+–  reduce physical desktop space, avoid managing
+multiple physical computersImprove system management
+
+
+\paragraph{System management} 
+CLOUD
+–  For both hardware and software
+–  From the desktop to the data center
+•  Data center management
+–  VM portability and live migration a key enabler
+–  automate resource scheduling across a pool of
+servers
+–  optimize for performance and/or power consumption
+–  allocate resources for new applications on the fly
+–  add/remove servers without application downtime
+•  Desktop management
+–  centralize management of desktop VM images
+–  automate deployment and patching of desktop VMs
+–  run desktop VMs on servers or on client machines
+•  Industry-cited 10x increase in sysadmin
+efficiencyImprove the software lifecycle
+
+
+
+•  Improve the software lifecycle
+–  Develop, debug, deploy and maintain
+applications in virtual machines
+
+•  Increase application availability
+–  Fast, automated recoveryConsolidate resources
+
+
+•  Develop, debug, deploy and maintain
+applications in virtual machines
+•  Power tool for software developers
+–  record/replay application execution deterministically
+–  trace application behavior online and offline
+–  model distributed hardware for multi-tier applications
+•  Application and OS flexibility
+–  run any application or operating system
+•  Virtual appliances
+–  a complete, portable application execution
+environmentIncrease application availability
+•  Fast, automated recovery
+–  automated failover/restart within a cluster
+–  disaster recovery across sites
+–  VM portability enables this to work reliably across
+potentially different hardware configurations
+•  Fault tolerance
+–  hypervisor-based fault tolerance against hardware
+failures [Bressoud and Schneider, SOSP 1995]
+–  run two identical VMs on two different machines,
+backup VM takes over if primary VM’s hardware
+crashes
+–  commercial prototypes beginning to emerge (2008)
+
+Why?
+• Consolidate resources
+• Server consolidation
+• Client consolidation
+• Improve system management
+• For both hardware and software
+• From the desktop to the datacenter
+• Improve software lifecycle
+• Develop, debug, deploy and maintain applications in virtual
+machines
+• Increase application availability
+• Fast, automated recovery
+
+\section{How: Implementation techniques}
+
+Virtualization Implementations
+• Full Virtualization
+- Software Based
+- VMware and Microsoft
+• Para Virtualization
+- Cooperative virtualization
+- Modified guest OS
+- VMware, Xen
+• Hardware-assisted Virtualization
+- Unmodified guest OS
+- VMware and Xen on virtualization-aware hardware platforms
+
+\section{Memory virtualization}
+
+Memory Virtualization
+
+(based on Scott Devine slides by VMWare)
+
+
+Traditional Address Spaces
+0
+4GB
+Operating
+System
+Current Process
+0
+Virtual
+Address Space
+4GB
+RAM
+Frame
+Buffer
+Devices
+ROM
+Physical
+Address SpaceTraditional Address Spaces
+0
+4GB
+Process Virtual Address Space
+Background Process
+Background Process
+Operating
+Operating
+System
+System
+0
+4GB
+Operating
+System
+Current Process
+0
+Virtual
+Address Space
+4GB
+RAM
+Frame
+Buffer
+Devices
+ROM
+Physical
+Address SpaceMemory Management Unit (MMU)
+•  Virtual Address to Physical Address
+Translation
+–  Works in fixed-sized pages
+–  Page Protection
+•  Translation Look-aside Buffer
+–  TLB caches recently used Virtual to Physical
+mappings
+•  Control registers
+–  Page Table location
+–  Current ASID
+–  Alignment checkingTraditional Address Translation (I)
+1
+Virtual Address
+2
+TLB
+Physical AddressTraditional Address Translation (II)
+1
+4
+5
+TLB
+Virtual Address
+2
+Physical Address
+3
+Process
+Process
+Page
+Process
+Page
+Process
+Table
+Page
+Table
+Page
+Table
+TableTraditional Address Translation (III)
+1
+5
+8
+TLB
+Virtual Address
+6
+2
+Physical Address
+7
+Process
+Process
+Page
+Process
+Page
+Process
+Table
+Page
+Table
+Page
+Table
+Table
+4
+Page
+Fault
+Handler
+3Virtualized Address Spaces
+0
+4GB
+Current Guest Process
+Virtual
+Address Spaces
+Guest OS
+0
+4GB
+Virtual RAM
+Virtual
+Frame
+Buffer
+Virtual
+Devices
+0
+Virtual
+ROM
+Physical
+Address Space
+4GB
+RAM
+Frame
+Buffer
+Devices
+ROM
+Machine
+Address SpaceVirtualized Address Translation:
+TLB Emulation
+1
+6
+9
+TLB
+Virtual Address
+7
+2
+Machine Address
+5
+8
+Emulated
+TLB
+page
+fault
+VMM
+traps
+Guest
+Page
+Table
+hidden
+page
+fault
+4
+3
+true
+page
+fault
+Guest OS
+page fault
+handler
+4
+Physical
+Page
+TableIssues
+•  Guest page table consistency
+–  What happens when the guest changes an entry
+in its page table?
+–  What happens when the guest switches to a new
+page table on a process context switch?
+•  Performance
+–  Guest context switches flush entire software TLB
+–  Minimize hidden page faults
+–  Aggressive flushing will cause flood of hpfs every
+guest context switch
+–  Keep one shadow page table per guest processVirtualized Address Translation:
+Shadow Page Tables
+Virtual
+CR3
+Guest
+Guest
+Guest
+Page Table Page Table Page Table
+Shadow Shadow Shadow
+Real CR3
+Page Table
+Page Table
+Page TableGuest Write to CR3
+Virtual
+CR3
+Guest
+Guest
+Guest
+Page Table Page Table Page Table
+Shadow Shadow Shadow
+Real CR3
+Page Table
+Page Table
+Page TableGuest Write to CR3
+Virtual
+CR3
+Guest
+Guest
+Guest
+Page Table Page Table Page Table
+Shadow Shadow Shadow
+Real CR3
+Page Table
+Page Table
+Page TableUndiscovered Guest Page Table
+Virtual
+CR3
+Guest
+Guest
+Guest
+Page Table Page Table Page Table
+Shadow Shadow Shadow
+Real CR3
+Page Table
+Page Table
+Page Table
+Guest
+Page TableUndiscovered Guest Page Table
+Virtual
+CR3
+Guest
+Guest
+Guest
+Guest
+Page Table Page Table Page Table Page Table
+Shadow Shadow Shadow Shadow
+Real CR3
+Page Table
+Page Table
+Page Table
+Page TableVirtualized Address Translation:
+Shadow Page Table
+1
+6
+9
+TLB
+Virtual Address
+7
+2
+Machine Address
+5
+8
+Shadow
+Page
+Table
+page
+fault
+VMM
+traps
+Guest
+Page
+Table
+hidden
+page
+fault
+4
+3
+true
+page
+fault
+Guest OS
+page fault
+handler
+4
+Physical
+Page
+TableIssues
+•  Benefits
+–  Handle page faults in same way as Emulated TLB
+–  Fast guest context switching
+•  Page Table Consistency
+–  Guest may not need invalidate TLB on writes to
+off-line page tables
+–  Need to trace writes to shadow page tables to
+invalidate entries
+•  Memory Bloat
+–  Caching guest page tables takes memory
+–  Need to determine when guest has reused page
+tablesHardware-assisted Virtualization:
+Nested Page Tables
+•  Nested paging uses an additional nested page table (nPT) to translate guest
+physical addresses to system physical addresses
+•  The gPT maps guest linear addresses to guest physical addresses. Nested page
+tables (nPT) map guest physical addresses to system physical addresses.
+•  Guest and nested page tables are set up by the guest and hypervisor respectively.
+When a guest attempts to reference memory using a linear address and nested
+paging is enabled, the page walker performs a 2-dimensional walk using the gPT
+and nPT to translate the guest linear address to system physical address.
+•  Nested paging removes the overheads associated with shadow paging. Unlike
+shadow paging, once the nested pages are populated, the hypervisor does not
+need to intercept and emulate guest’s modification of gPT.
+•  However because nested paging introduces an additional level of translation, the
+TLB miss cost could be larger.Reclaiming Memory: ballooning
+inflate balloon
+(+ pressure)
+Guest OS
+may page out
+to virtual disk
+balloon
+Guest OS
+guest OS manages memory
+implicit cooperation
+balloon
+deflate balloon
+(– pressure)
+Guest OS
+may page in
+from virtual diskPage Sharing
+•  Motivation
+–  Multiple VMs running same OS, apps
+–  Deduplicate redundant copies of code, data,
+zeros
+•  Transparent page sharing
+–  Map multiple PPNs to single MPN copy-on-write
+–  Pioneered by Disco [Bugnion et al. SOSP ’97],
+but required guest OS hooks
+•  VMware content-based sharing
+–  General-purpose, no guest OS changes
+–  Background activity saves memory over timePage Sharing: Scan Candidate PPN
+011010
+110101
+010111
+101100
+VM 1
+VM 2
+hash page contents
+...2bd806af
+VM 3
+hint frame
+Machine
+Memory
+Hash:
+VM:
+PPN:
+MPN:
+...06af
+3
+43f8
+123b
+hash
+table
+
+
+
+\section{I/O VirtualizationType of devices}
+•  Dedicated Devices
+–  Monitor, keyboard, mouse
+–  No virtualization required, but VMM routing because guest
+OS runs in user mode
+–  Interrupt handled by VM on activation by VMM
+•  Partitioned Devices
+–  Disks
+–  VMM maintains a map of parameters and re-issues the
+requests to physical devices
+•  Shared Devices
+–  Network adapter
+–  VMM translates through a virtual device drivers
+•  Spooled Devices
+–  Printer
+•  Nonexistent Devices
+–  Comm networkPerforming I/O
+Applications
+system calls
+Operating System
+driver calls
+I/O Drivers
+I/O operations
+HardwareVirtualizing I/O
+•  I/O Operations level
+–  I/O runs in privileged mode
+–  Trap in user mode
+–  Difficult to reverse engineer a complete I/O action
+•  Device drivers level
+– 
+– 
+– 
+– 
+Needs virtual device drivers
+VMM intercepts calls to virtual device drivers
+Must know guest OS device driver implementation
+Real drivers needed for native VMMs
+•  System calls level
+–  Most efficient
+–  Must know guest OS ABI to I/O and rewrite it taking
+care of emulation of everything else not directly
+related to I/O.
+
+\end{document}
