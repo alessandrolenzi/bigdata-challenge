@@ -67,7 +67,8 @@ OneStepColumnMap(key, value)
 \begin{verbatim}
 OneStepReduce(key, values):
 //key is the coordinate of the element whose value is being calculated
-//value is 'A' or 'B' (to distinguish between rows and columns), row/column coordinate and probability
+//value is 'A' or 'B' (to distinguish between rows and columns), 
+//row/column coordinate and probability
     A[N] = {j: a_ij for (x, j, a_ij) in values if x == A}
     B[N] = {j: b_jk for (x, j, b_jk) in values if x == B}
     result = 0

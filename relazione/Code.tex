@@ -1,5 +1,5 @@
-The final code of the project is made available on a public \href{https://github.com/michele-carignani/hadoop-markov-clustering}{GitHub repository}, https://github.com/michele-carignani/hadoop-markov-clustering.
-The code is organized in two packages, one for the aggregation \texttt{aggregation} and one for the Markov Clustering procedure \texttt{markov_clustering}.
+The final code of the project is made available on a public \href{https://github.com/michele-carignani/hadoop-markov-clustering}{GitHub repository}, \\ https://github.com/michele-carignani/hadoop-markov-clustering.
+The code is organized in two packages, one for the aggregation \texttt{aggregation} and one for the Markov Clustering procedure \texttt{markov\_clustering}.
 
 \paragraph{Aggregation} package is composed of the following files:
 \begin{itemize}
@@ -15,7 +15,7 @@ The code is organized in two packages, one for the aggregation \texttt{aggregati
 \paragraph{Markov Clustering} package is composed of two subpackages. In \texttt{test} there are some utilities to check if the rows are stochastic, and is no longer used in the final project but has been used during the development.
 For the remaining part, we have:
 \begin{itemize}
-\item package \textttt{blockmultiplication}, with the following files
+\item package \texttt{blockmultiplication}, with the following files
 \begin{itemize}
 	\item \texttt{Block.java} represents a matrix block, and is used for partitioning the matrix
 	\item \texttt{BlockColumnMapper.java} is used to read the values of the second matrix in the multiplication
@@ -41,4 +41,4 @@ For the remaining part, we have:
 \item \texttt{SplitterMapper.java} map used in the splitting phase
 \item \texttt{SplitterReducer.java} reduce used in the splitting phase
 \item \texttt{RecomposerMapper.java} is used to recompose the matrix in the final step of the MCL algorithm
-\begin{itemize}
+\end{itemize}
