@@ -1,0 +1,44 @@
+The final code of the project is made available on a public \href{https://github.com/michele-carignani/hadoop-markov-clustering}{GitHub repository}, https://github.com/michele-carignani/hadoop-markov-clustering.
+The code is organized in two packages, one for the aggregation \texttt{aggregation} and one for the Markov Clustering procedure \texttt{markov_clustering}.
+
+\paragraph{Aggregation} package is composed of the following files:
+\begin{itemize}
+\item \texttt{Aggregator.java} comprises the logic for performing aggregations over periods of interest and labelling them.
+\item \texttt{AverageReducer.java} is the reducer used in the first job, calculating for each chunk of processed data the average strength revealed.
+\item \texttt{FilterCombiner.java} is the combiner used after the map in the first job to shrink the data.
+\item \texttt{FilterMapper.java} performs the filtering and labeling phase in the first job.
+\item \texttt{IdentityMapper.java} is used in the second job
+\item \texttt{ProbabilityReducer.java} evaluates the average probability graph for all the defined periods of interests
+\item \texttt{TimeAggregatedGraphs.java} is the driver defining the composition of all components.
+\end{itemize}
+
+\paragraph{Markov Clustering} package is composed of two subpackages. In \texttt{test} there are some utilities to check if the rows are stochastic, and is no longer used in the final project but has been used during the development.
+For the remaining part, we have:
+\begin{itemize}
+\item package \textttt{blockmultiplication}, with the following files
+\begin{itemize}
+	\item \texttt{Block.java} represents a matrix block, and is used for partitioning the matrix
+	\item \texttt{BlockColumnMapper.java} is used to read the values of the second matrix in the multiplication
+	\item \texttt{BlockMultiplier.java} handles the multiplication of a single block
+	\item \texttt{BlockRowMapper.java} is used to read the values of the first matrix for the multiplication
+	\item \texttt{BlockSumReducer.java} aggregates the partial matrix block products to produce a block
+	\item \texttt{BlockWiseMatrixMultiplication.java} deals with the partitioning of the matrix and starts their multiplication
+	\item \texttt{MatrixBlocks.java} represents a partition of matrix blocks to be calculated together
+	\item \texttt{MatrixMultiplicationReducer.java} is the reducer used to calculate the product of two blocks
+	\item \texttt{PartialSumMapper.java} aggregates the partial matrix block products to be summed in the following reducer
+\end{itemize}
+\item \texttt{Convergence.java} runs a convergency check job
+\item \texttt{ConvergenceMapper.java} mapper used in the convergency job
+\item \texttt{ConvergenceReducer.java} reducer used in the convergency job
+\item \texttt{DisjointComponentVisit.java} calcualates the components, performs the aggregations and writes in output the images
+\item \texttt{Driver.java} overall driver of the clustering computation; contains the convergency loop
+\item \texttt{Inflation.java} runs an inflation job.
+\item \texttt{InflationReducer.java} reducer used in the inflation phase
+\item \texttt{MatrixColumnMapper.java} not used
+\item \texttt{MatrixRecomposer.java} Used to recompose the matrix after the clustering
+\item \texttt{MatrixRowMapper.java} aggregates values by row; used in the inflation job
+\item \texttt{MatrixSplitter.java} used to divide the initial matrices into blocks
+\item \texttt{SplitterMapper.java} map used in the splitting phase
+\item \texttt{SplitterReducer.java} reduce used in the splitting phase
+\item \texttt{RecomposerMapper.java} is used to recompose the matrix in the final step of the MCL algorithm
+\begin{itemize}
