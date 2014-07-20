@@ -5,7 +5,7 @@ we defined a community as a set of individuals with close relationship, meaning 
 Since we're dealing with mobile telecommunications, the idea is that a community can be identified by the frequency of calls and text messages between members belonging
 to the same community.
 
-The idea behind this approach is that, since we're searching for a community, we don't care about their size (i.e. the probability for an individual to be in a certain ''community''), 
+The idea behind this approach is that, since we're searching for a community, we don't care about their size (i.e. the probability for an individual to be in a certain "community"), 
 but only the probability that two geographical areas (and thus, in our model, their inhabitants) can be correlated by their calls.
 
 The assumptions that we made are:
@@ -16,32 +16,25 @@ in the area taken into consideration. This allows to relate calls from certain g
 \item People call more often other people belonging to their community.
 \item Is not of major interest who is colling whom, since we only care about the existance of a ''binding'' between the two individuals.
 \item A person may belong to several communities, however depending on the day and on the time of the call, the probability of communicating with a certain community changes.
-As an example, during work hours it is more probable that calls will be addressed to people related to the working activity, while outside it will involve more probably family and friends.
-\footnote{Similarly, Telco operators have been known to distinguish between business traffic and residential traffic.} 
+As an example, during work hours it is more probable that calls will be addressed to people related to the working activity, while outside it will involve more probably family and friends
+\footnote{Similarly, Telco operators have been known to distinguish between business traffic and residential traffic.}.
 \end{itemize}
 
-This leads to a model in terms of probability of calls outgoing from a certain zone, thus, assuming $N_{u}$ as the total population considered, we assumed the strength $S_{i,j}$ connecting
-area $i$ and area $j$ in our dataset to be
-$$
-S_{i,j}  = P\{call(i,j)\} P\{a\ caller\ is\ in\ i\} N_{u}
-$$
+As it is possible to see, using the strengths as an indicator "as they are", zones with an higher population or with an higher concentration of calls could obfuscate the behaviour of less populated zones, justifying why the probabilistic approach has been followed.
+We can think of the initial dataset as composed of several graphs, one for each 10 minutes slots, in which the strengths connecting two areas are seen as weights of the arcs connecting them. We denote this strength, which is given in the
+dataset and is proportional to the amount of calls directed from a certain zone to another, with $S_{i,j}$. 
+Of course, whenever $S_{i,j}$ is not given in the dataset for a given ten-minutes graph, we will assume that its value is 0, and thus that no calls from $i$ to $j$ have been performed.
 
-As it is possible to see, using the strengths as an indicator ''as they are'', even though the $N_{u}$ factor will have no influence, 
-zones with an higher population or with an higher concentration of calls could obfuscate the behaviour of less populated zones, justifying 
-why the probability approach has been followed.
-
-The probability of one call between grid $i$ and grid $j$ can be thus extimated as
+The probability of one call between grid $i$ and grid $j$ is thus assumed by us to be: 
 $$
-P_{i,j} = P\{call(i,j\} = \frac{S_{i,j}}{\sum_{j}{}{S_{i,j}}}
+P_{i,j} = P\{call(i,j)\} = \frac{S_{i,j}}{\sum_{j}{}{S_{i,j}}}
 $$
+where $P\{call(i,j)\}$ indicates the probability of the event \emph{call(i,j)}, meaning that a call in grid $i$ is performed and addressed to grid $j$.
 
-We can think of the initial dataset as composed of several graphs, one for each 10 minutes slots, in which the strengths $S_{i,j}$ are seen as weights of the arcs connecting two zones $S_{i,j}$. 
-However notice that using a single 10 minutes graph is not particularly significative, as noise could change significantly the results.
-
+However notice that using a single 10 minutes graph is not particularly significative, as it could be possible to have spikes of traffics in some zones due to unpredictable events (i.e. a car accident, a demonstration, an exibition and so on) that we don't want to take into account for individuating stable communities.
 So, to get more realistic results and to deal with the very high level of noise in the dataset,
 we decided to gather and average the strength of interaction between couples of nodes in several 10-minutes periods
-considering a semantically meaningful aggregation in time (not alway contiguous, e.g. we aggregating all monday
-mornings periods), in which we assumed that the behaviour of commmunities would be more or less the same.
+considering a semantically meaningful aggregation in time (not alway contiguous, e.g. we aggregating all working hours in working days), in which we assumed that the behaviour of commmunities would be more or less the same.
 \label{AVGPG}
 We called these aggregations \emph{average probability graphs}, in which nodes are cells in the grid of our dataset, arcs represent interactions and, for each of them, the weight represents the average probability that such an interaction is established.
 
@@ -50,3 +43,4 @@ $$
 w_{id}(e) = \frac{\sum_{\substack{e' \in E_{id}}} w(e')}{k}
 $$
 
+In the following, we will show how we performed the calculation of these \emph{aggregated probability graphs} and how we used the produced results in order to find communities in the Milan Area.

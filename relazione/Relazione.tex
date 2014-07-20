@@ -8,7 +8,8 @@
 \usepackage{fullpage}
 \usepackage{hyperref}
 \usepackage{wrapfig}
-
+\usepackage{float}
+\restylefloat{figure}
 \usepackage{titling}
 \newcommand{\subtitle}[1]{%
   \posttitle{%
@@ -27,6 +28,7 @@
 
 \maketitle
 \tableofcontents
+\newpage
 
 \begin{abstract}
 The aim of the project is to analyze and then visualize telecommunication data
@@ -48,10 +50,10 @@ Finally section \ref{results} will collect results and conclusion of the develop
 All the implementation code for the project can be found in this
 \href{''https://github.com/michele-carignani/hadoop-markov-clustering/''}{online repository}.
 \end{abstract}
-
+\newpage
 %% Dataset and analysis
 \input{Dataset.tex}
-
+\newpage
 \input{Idea.tex}
 
 %% How aggregated graphs are generated
@@ -73,7 +75,6 @@ expected results, while the first will fail.
 Defining the communities as connected components onto the graph\footnote{A connected component
 in a graph $A = (N,E)$ is a subset of nodes $A' \in A$  s.t. each node in A' is connected to 
 all the other nodes in A' 
-%% todo: more formal definition?
 }, the first idea was to apply Tarjan's algorithm for connected components, whose pseudo code is in \ref{alg:tarjan}.
 
 
@@ -91,28 +92,28 @@ output: set of strongly connected components (sets of vertices)
 index := 0
 S := empty
 for each v in V do
-	if (v.index is undefined) then
-		strongconnect(v)
+    if (v.index is undefined) then
+        strongconnect(v)
 		
-function strongconnect(v)
-v.index := index
-v.lowlink := index
-index := index + 1
-S.push(v)
-for each (v, w) in E do
-	if (w.index is undefined) then
-		strongconnect(w)
-		v.lowlink := min(v.lowlink, w.lowlink)
-		else if (w is in S) then
-			v.lowlink := min(v.lowlink, w.index)
-if (v.lowlink = v.index) then
-	start a new strongly connected component
+function strongconnect(v):
+    v.index := index
+    v.lowlink := index
+    index := index + 1
+    S.push(v)
+    for each (v, w) in E:
+        if (w.index is undefined):
+            strongconnect(w)
+        v.lowlink := min(v.lowlink, w.lowlink)
+		else if (w is in S):
+            v.lowlink := min(v.lowlink, w.index)
+    
+    if (v.lowlink = v.index):
+        start a new strongly connected component
 	do
-		w := S.pop()
-		add w to current strongly connected component
-	until (w = v)
-	output the current strongly connected component
-end function
+        w := S.pop()
+        add w to current strongly connected component
+    until (w = v)
+    output the current strongly connected component
 \end{verbatim}
 \caption{Tarjan Strongly Connected Components algorithm}
 \label{alg:tarjan}

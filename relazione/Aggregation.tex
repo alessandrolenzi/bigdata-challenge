@@ -1,8 +1,17 @@
+\newpage
 \section{Data aggregation}
 \label{aggregation}
+\begin{figure}[H]
+	\centering
+    \includegraphics[scale=0.6]{aggregated.png}
+    \caption{Driver of the file performing the aggregation task in our work. As it is possible to see, on top
+    a partitioner divides in subsequent sequential processes the aggregation phase, which is then recomposed by the \texttt{Identity Mapper} before the final result is produced by the \texttt{Probability Reducer}.}
+    \label{fig:aggregated}
+\end{figure}
+
 The aim of this part of the project was to produce aggregated probability graphs as defined in section \ref{AVGPG}.
 \\ 
-We developed a procedure composed by two consecutive logical map reduce computations executable onto the Hadoop environment.
+We developed a procedure composed by two consecutive logical map reduce computations executable onto the Hadoop environment; the general scheme of the procedure can be seen in \ref{fig:aggregated} and is deeply explained in the following.
 The input of the \emph{Time Aggregation} phase is the original dataset (as described in section \ref{thedataset}), while the output is a graph of probabilities of interaction between zones of the considered area
 over a certain period of interest, represented as a list of edges.
 \subsection{Average graph calculation}
@@ -10,10 +19,7 @@ This logical phase aims to calculate several \emph{average graphs} for a given p
 We define an average graph as the graph in which the weight of every arc is the average of the detected strength in input. When no strength is detected in a given 10 minute period, the strength connecting the two areas is considered to be zero. Zero-valued
 edges are simply not stored since they would not affect the rest of the computation.
 This phase is composed of a map-reduce job, whose pseudo code can be seen in Fig. \ref{fig:filtermap} and Fig. \ref{fig:averagereduce} respectively.
-The mapper filters only the interesting entries in the dataset, and labels them with an appropriate identifier for the aggregation. The output key is composed by the  a triple \texttt{(AggregationId,SourceId,DestId)} while the key is the strength value.\\
-In the reducer, we calculate the sum of all such values and then divide it by the number of ten minutes slots in the aggregation.
-
-\begin{figure}
+\begin{figure}[H]
 \begin{verbatim}
 FilterMap(key, value):
 // input takes in input all dataset files
@@ -24,28 +30,31 @@ FilterMap(key, value):
   	        k = (i.id,i.num,d.sourceNode,d.destNode)
   	        v = value.strength
             emit(k, v)
+
 \end{verbatim}
-\caption{Filter Map pseudo-code}
+\caption{Filter Map pseudo-code. Every row of the initial timestamp is checked against the periods of interest defined
+as parameter of the computation configuration.all\_periods to understand if it belongs to it. In such case, it
+is emitted labeled with the identifier of the aggregation and the number of 10 minutes slots in the whole aggregation.}
 \label{fig:filtermap}
 \end{figure}
-\begin{figure}
+The mapper filters only the interesting entries in the dataset, and labels them with an appropriate identifier for the aggregation. The output key is composed by the  a triple \texttt{(AggregationId,SourceId,DestId)} while the key is the strength value.\\
+In the reducer, we calculate the sum of all such values and then divide it by the number of ten minutes slots in the aggregation.
+\begin{figure}[H]
 \begin{verbatim}
 AverageReduce(key,values):
 // key is (aggregationId,aggregationLength,sourceNode,destNode), 
 // values are strengths
 // implemented in aggregated_graphs.AverageReducer.java
-  sum = count = 0
-  for v in values:
-  	sum += v
-  	count++
-  (id,num,source,dest) = parse(key)
-  avg = sum / num
-  emit((id,source),(dest,avg))
+    sum = 0
+    for v in values:
+        sum += v
+        (id,num,source,dest) = parse(key)
+        avg = sum / num
+        emit((id,source),(dest,avg))
 \end{verbatim}
-\caption{Average Reduce pseudo-code}
+\caption{Average Reduce pseudo-code. Calculates for every aggregation period the average stength of connection between any pair of nodes.}
 \label{fig:averagereduce}
 \end{figure} 
-
 \subsubsection{Implementation details}
 During the initial executions, our testing environment
 could not successfully compute aggregations over huge periods, because of \textbf{lack of free disk space}. \\
@@ -60,11 +69,14 @@ The output of the combiner is a graph for each aggregation period in which the s
 This solution, for an aggregation with containing $n$ 10 minutes slots, could reduce the output of each map task up to $1/n$ of the original size without the combiner. 
 The pseudo-code of the combiner used is depicted below:
 \begin{verbatim}
-FilterCombine(key, value):
-	sum = 0;
-	for v in value
-		sum += v
-	context.write(key, sum)
+FilterCombine(key, values):
+//key is (aggregation.id,aggregation.num,sourceNode,destNode)
+//values is the list of strengths 
+//of the aggregation for the couple (sourceNode, destNode)
+    sum = 0
+    for v in values:
+        sum += v
+    context.write(key, sum)
 \end{verbatim}
 \item \textbf{GZip} another approach that we tried, and thereafter discarded, was to use GZip as compression codec for data going out of the map. From experimental results, we noticed that this approach, altough not providing enough benefits
 to cope with disk utilization issues, slowed down our computation significantly.
@@ -77,13 +89,11 @@ Sadly, the introduction of this "partitioning" has some drawbacks, since it will
 \item \textbf{Other attempts} we also went through several other ways, among which the decommissioning of the nodes (node 0, node 1 and node 2) with less space, trying to avoid to fill the disk completely.
 However, this solution (even impreved using the hadoop balancer) was very slow and, as obvious, led to a severe cluster underutilization that we didn't consider acceptable.
 \end{enumerate}
-We finally adopted a solution in which the split size was left to 128MB as in the default case, only a partition of files is processed in parallel and a combiner is used in the first phase to reduce both disk and network bandwidth utilization.
+We finally adopted a solution in which the split size has been set to 512MB to exploit better the combiner, only a partition of files is processed in parallel (to avoid balancing with 62 files we chose the size of the partition to be 11 files) and a combiner is used in the first phase to reduce both disk and network bandwidth utilization.
 Counterintuitively, the sequentialization performed with this approach, with an appropriate partition size allowing to exploit fully the parallelism degree of the environment, when operating with huge datasets led to benefits also in terms of completion time. 
 With smaller inputs, however, there's a degradation in terms of completion time (as shown in \ref{fig:partitioningtimes}), even though it is not drammatic.
-\\*
-Our hypothesis is that, after a certain (cluster-dependant) threshold in the size of data is met, the I/O and network bottleneck do not allow to grow in speed, while the huge number of tasks contending the resources would result in a severe slowdown.
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \begin{tabular}{| c | c | r |}
 \hline
@@ -96,10 +106,27 @@ Our hypothesis is that, after a certain (cluster-dependant) threshold in the siz
 9 Files & 1h 06' 2'' \\
 \hline
 \end{tabular}
-\caption{Execution times for generating the average probability graphs with different partition sizes over (about) 56GB of data in 9 files. 10 reducers have been used.}
+\caption{Execution times for generating the average probability graphs with different partition sizes over (about) 56GB of data in 9 files. All of these computation have been performed with 10 reducers.}
 \label{fig:partitioningtimes}
 \end{figure}
 
+Our hypothesis is that, after a certain (cluster-dependant) threshold in the size of data is met, the I/O and network bottleneck do not allow to grow in speed, while the huge number of tasks contending the resources would result in a severe slowdown.
+
+
+The choice of the number of reducers deserves an explanation.
+We choosed to perform all the benchmarks above using 10 reducers. 
+
+This number has been chosen for several reasons:
+\begin{itemize}
+\item It reduces data movement
+\item It reduces the completion time, by exploiting better the disks and the processors
+\item It allows, in case of failure, to perform the reduce again on a smaller amount of data with respect to the case with just one reducer
+\item The size of partitions produced by each mapper task will in general be reduced, allowing to use less disk space.
+\end{itemize}
+
+By experimental results, we noticed that the completion time decreased by incrementing the number of reducers up to 10, were substantially the same between 10 and 15, while with more than 15 reducers a small degradation could be observer. 
+
+Finally, the whole dataset aggregations have been performed with 12 reducers, this number seeming a suitable one because of the number of nodes (6) in our architecture. 
 
 \subsection{Probability graph calculation}
 The probability graph calculation follows immediately the phase of average graph calculation.\\
@@ -109,27 +136,33 @@ Also this phase is composed of a map-reduce job, whose pseudo code is shown in \
 
 The map is a mere identity, while the reduce calculates the total weight of the arcs belonging to the forward star of a single node, to then rescale in terms of probabilities every arc.
   
-\begin{figure}
+\begin{figure}[H]
 \begin{verbatim}
 IdentityMap(key, value):
-  emit(key, value)
+//key is aggregation.id, sourceNode
+//value is destNode, averageStrength
+    emit(key, value)
 \end{verbatim}
-\caption{Identity Map pseudo code}
+\caption{Identity Map pseudo code. In this case the key is the aggregation identifier and the source node, while the value is a couple destination, average strength}
 \label{fig:identitymap}
 \end{figure}
-\begin{figure}
+\begin{figure}[H]
 \begin{verbatim}
 ProbabilityReduce(key, values):
-  sum = 0
-  a_list = []
-  for v in values:
-    (dest, weight) = parse(v)
-    sum += weight
-  	a_list.append((dest,weight))
-  for a in a_list:
-    emit((key.src, a.dest), a.weight / sum)
+	//Key is aggregation.id, sourceNode
+	//values is a list of couples in the form (destinationNode, averageStrength)
+    sum = 0
+    a_list = []
+    for v in values:
+        (dest, weight) = parse(v)
+        sum += weight
+        a_list.append((dest,weight))
+  
+    for a in a_list:
+        emit((key.src, a.dest), a.weight / sum)
+
 \end{verbatim}
-\caption{Probability Reduce pseudo code}
+\caption{Probability Reduce pseudo code.}
 \label{fig:probabilityreduce}
 \end{figure}
 \subsection{Driver}
@@ -148,11 +181,6 @@ Then a single job is executed, calculating the average graph for the given parti
 Finally, when average graphs have been calculated for each partition, the second part takes all these files in input and proceeds to write in the output directory the average probability graph.
 A sketch depicting the driver logic in a dataflow fashion can be found in Fig. \ref{fig:aggregated};
 The driver is implemented in the file named 
-\href{https://github.com/michele-carignani/hadoop-markov-clustering/blob/master/src/aggregation/TimeAggregatedGraphs.java}{TimeAggregatedGraphs.java}.
-\begin{figure}
-	\centering
-    \includegraphics[scale=0.7]{aggregation.png}
-    \caption{TimeAggregatedGraphs.java logic}
-    \label{fig:aggregated}
-\end{figure}
+\href{https://github.com/michele-carignani/hadoop-markov-clustering/blob/master/src/aggregation/TimeAggregatedGraphs.java}{TimeAggregatedGraphs}.
+
 \newpage
