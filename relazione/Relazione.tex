@@ -209,6 +209,14 @@ by multiplying the adjancy matrix of the graph by itself until the number of
 non-null elements in each row is very low (reduce the number of edges) and with
 values probability weight close to 1 (taking the most probable connections).
 
+This algorithm is based on a random-walk view of the graph: the idea is that, being a community
+(or, to be more precise, a cluster) connected by more links and more strongly, when moving
+casually from one node to another the probability of staying in the cluster
+will be way higher than the one of going outside. 
+
+The classical algorithm requires to have self loops (which are naturally present in our dataset), in order to avoid that probability of staying in a node becomes zero on odd iterations, and the graph to be unidirected or at least with several reciprocal arcs between nodes.
+This prerequisite is matched by our graphs.
+
 Therefore, the pseudocode of the general algorithm is:
 \begin{figure}
 \begin{verbatim}
@@ -244,26 +252,138 @@ the most probable destinations of the flux from each node.
 
 \input{MarkovClustering.tex}
 
+\newpage
+
 \section{Results}
 \label{results}
 
 We present here the results of the community discovery analysis
-over two aggregation periods: Mondays and Wednesdays mornings.
+over different consecutive aggregations periods. We will discuss briefly the results
+achieved in the following.
 
-This means that we launched the Aggregation module and 2 constructed 
-the average probability graphs, one with the connections strength
-calcolated as the average of all the 10-minutes intervals included in
-the hours 7-13 of all Mondays in November and December 2013. The other
-one with the same hours but belonging to all the Wednesdays contained
-in the observation period.
+This means that we launched the Aggregation module and constructed 
+the following average probability graphs:
+\begin{enumerate}
+\item One for each of the working days (Monday-Friday) during working hours, meaning from 8 to 13 and from 15 to 17.
+\item \textbf{Friday evening and Saturday evening}, from 19 to 23.
+\item \textbf{Sunday} during the whole day, namely from 8 to 23.
+\end{enumerate}
+The aim of these aggregtions is to show the strict correlation of the communities found during working days, and how they change when, instead,
+non strictly work correlated aggregations are considered. 
 
-We chose this 2 aggregation in order to find similarities among them and to
-identify ''work-related'' communities.
+We show the results for each aggregation following two different formats.
+In the first, the area taken into consideration is plotted, using different colours and patterns in order to distinguish between different communities. Colours do not have to be considered indicative of any behaviour of the community: they are just assigned at random during the first aggregation and then kept stable in the others by assigning the color to the community in the next aggregations with the widest area in common with the previous one.
+The second approach to display communities reflects automatically the MCL algorithm, in which communities are established using links with common aggregators. In this case, we show how communities connect in each aggregation, separating them in three different images, showing
+respectively the small, the medium and the big communities.
 
-The results are graphically shown in figures \ref{fig:patch_mon}, \ref{fig:patch_wed},
-\ref{fig:arcs_mon}, \ref{fig:arcs_wed}, firstly as a ''heat map'' over the grid
-(each color representing a differnt component) then by drawing all arcs (in
-order to identify the directions of calls).
+In the following, we start by showing some statistics on the communities found on each day:
+
+\begin{figure}[H]
+\centering
+\begin{tabular}{| l | r | r | r |}
+\hline
+\textbf{Aggregation} & \textbf{Cluster Num.} & \textbf{Max.Cluster Size} & \textbf{Avg. Cluster Size} \\ \hline
+Monday & 98 & 1572 & 78 \\ \hline
+Tuesday & 101 & 1595 & 74 \\ \hline
+Wednesday & 106 & 1230  & 69 \\ \hline
+Thursday & 102 & 1557  & 76 \\ \hline
+Friday &  98 & 1140 & 78 \\ \hline
+Friday and Saturday Ev. & 111 & 951 & 64 \\ \hline
+Sunday & 104 & 1019 & 71 \\ \hline
+\end{tabular}
+\caption{Statistics on the clustering achieved on different average probability graph. The number of communities found
+in every graph oscillates near to 100. The minimum size of clusters (not shown) is 1 for all aggregations.}
+\label{fig:foundClusters}
+\end{figure}
+
+Referring to fig. \ref{fig:foundClusters}, it is possible to understand that few huge clusters exist, covering approximate $1/10$-th of the total area taken into consideration, while a wide amount of them is way smaller.
+By graphically checking also the image as of fig. \ref{fig:mondayworking}, we can see that in general huge communities are located in the outskirts of the city, where supposedly the population - expecially during working hours - is less dense. When focusing on the city center, the communities become way littler and exibit a less continuous behaviour. We interpretated this as an index of the different population density in every area.
+
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{week/1Mon.png}
+\label{fig:mondayworking}
+\caption{Communities during working hours of November and December Mondays. Clustering performed in 10 iterations.}
+\end{figure}
+
+Moreover, it is possible to see in figs. \\
+that usually the communities are geographically localized. Since the algorithm we used is not biased anyhow, we can see
+that this reflects the intuition that different communities also have a "predominant territory".
+
+Also, it is possible to notice in \ref{fig:mondayworking} that some zones are displayed in white. This means that in the final matrix calculated in the clustering procedure, there was not a clear predominance (that we remember, was set to 0.9 to establish a community link) between the possible community with whom they could have been clustered.
+
+In our opinion, they could represent a sort of "contended zone" in which no convergency can be found (or at least, not fast enough) since the population coming from different communities is almost balanced. This could be partially confirmed by the fact that, in our experiments,
+we were not able to find such zones in the middle of a geographically continuous community: these white zones appear almost solely on the border separating two communities.
+
+As an example, we can show the case of the nodes with id \texttt{2981}, which on the Monday aggregation, at 10th iteration shows a preference of $0.4999999999972814$ towards grid with id \texttt{3281} and one of $0.5000000000027186$ towards \texttt{3181}.
+A possible solution to this issue could be to "lower" the strength of connection required to a zone to join a community. This could work in case of too fast convergency, in which for example a community has a predominating weight in a certain zone, but not enough to make this stand out in just 10 iterations. In such cases, choosing the strongest outgoing arc and establishing a community link with it could be a possible solution. 
+
+This situation is clearly shown in fig. \ref{fig:fridayworking} and \ref{fig:party}, representing the communities found respectively in the Friday working hours aggregation and in the one for Friday and Saturday evenings. We can see that the amount of white zones decreases significantly if checked against all other aggregations. In our opinion, this doesn't depend on the different behaviour observed, but from the fact that for both these aggregation the clustering procedure went on for 20 iterations, as can be seen in fig. \ref{fig:convergency}, and though not much, the number of unassigned zones has decreased resulting in the assignment of such contended zones.
+
+However, in a worst case situation like the one of node \texttt{2981} above, if the two addressed nodes belong to different communities this could create some false assignment. Moreover, we considered interesting showing that some "contented" zones between communities could exist.
+
+In the following, we will discuss the temporal evolution along the days of the week in what can be considered "almost meaningful" different view of the same communities: to be more precise, we will discuss how communities found in the working hours evolve along different working days, and what happens of them when a transition to non working hours is condidered.
+
+To see in a faster way the evolution of communities, we recommend - when possible - to open the URL \href{http://sonasegaiodeh.com} where a simple GIF image regarding the working days is made available.
+
+As a general comment, we want to highlight the fact that the persistency of communities discussed below, between different interval, is for us a result of great interest, corroborating the goodness of the procedure followed.
+
+By checking the fig. \ref{fig:tuesdayworking} against \ref{fig:mondayworking}, as can be possibly done more easily using \ref{fig:allworking},
+we see that most of the communities experience only slight variations, either by shrinking or expanding with respect to the previous day.
+An interesting event is the absorption of the cluster in the top right corner from his neighbour.
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{week/2Tue.png}
+\label{fig:tuesdayworking}
+\caption{Communities during working hours of November and December Tuesdays. Clustering performed in 10 iterations.}
+\end{figure}
+We can see that the communities localized in that area show a great deal of variations, as the splitting re-appears in \ref{fig:wednesdayworking}.
+Moreover, while major changes can often be noticed in the suburbia, we can see how the central part of the city exibits a very stable behaviour, with just minor variations along different days of the week.
+The differency in the "variation speed" between the city center and the the outskirts could be possibly explained, once again, with the different density of population in the two zones.
+
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{week/3Wed.png}
+\label{fig:wednesdayworking}
+\caption{Communities during working hours of November and December Wednesdays. Clustering performed in 10 iterations.}
+\end{figure}
+
+
+In general, the behaviour doesn't change significantly also on Thursday, shown in fig. \ref{fig:thursdayworking}.
+
+However, even if the semantic aggregation should in our opinion be the same, the clustering process performed for the working hours of Friday shows biggest difference with respect to the previous other days of the working week. Possibly this could be due to the enneraring of the week end\footnote{Or, for all we know, to the effects of the upcoming saturday night fever}. This can be noticed by looking at fig. \ref{fig:fridayworking}.
+
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{week/4Thu.png}
+\label{fig:thursdayworking}
+\caption{Communities during working hours of November and December Thursdays. Clustering performed in 10 iterations.}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{week/5Fri.png}
+\caption{Communities found in the working hours of November and December Fridays. Clustering in 20 iterations. Notice that the number of white (unassigned) areas decreases thanks to the higher number of iterations performed, but still the main components body remains the same.}
+\label{fig:fridayworking}
+\end{figure}
+
+Still, when the semantic of the performed aggregation changes, like when dealing with Friday and Saturday evenings and thus with recreational communities, the shape of the communities changes even more significantly than in the previously explained case.
+First, as shown also in fig. \ref{fig:foundClusters}, the maximum size for the clusters is the smallest one revealed (951). Also the average decreases significantly, while the number of clusters is the highest one found.
+
+The communities found for this aggregation are thus smaller, and also their shape changes more than could have been observed in all the previous shown images, as can be seen in fig. \ref{fig:partyMap}. However, as one could imagine, the difference is smaller if the Friday working hours (fig. \ref{fig:fridayworking}) are considered instead.
+Among other changes that can be seen, we observed the expansion of some communities at expenses of others, while some others were shrinked or fragmentated by the change in the people behaviour. 
+
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{week/6Sat.png}
+\label{fig:wednesdayworking}
+\caption{Communities found during Friday and Saturday evenings in the months of November and December.}
+\end{figure}
+
+Finally, we show the communities found for Sunday in fig. \ref{fig:sunday}; in this case we can observe way more white spaces than in the previous cases.
+
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{week/7Sun.png}
+\label{fig:sunday}
+\caption{Communitites found during December and November Sundays. 10 Iterations of MCL have been performed.}
+\end{figure}
+
+Another feature that we noticed, looking at these images, is that changes are never very rough during the same semantic aggregation.
+For example, if we start consider the green-ish community in the top-left corner from Monday to Sunday, we can see that it shrinks gradually all along the week, until it reaches its minimum size on Sunday. The same can be noticed in other cases, observing the behaviour of a single community in time. 
 
 The heat maps clearly display that:
 \begin{itemize}
