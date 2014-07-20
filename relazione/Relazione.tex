@@ -110,7 +110,7 @@ function strongconnect(v):
     
     if (v.lowlink = v.index):
         start a new strongly connected component
-	do
+    do
         w := S.pop()
         add w to current strongly connected component
     until (w = v)
@@ -134,10 +134,10 @@ The visit has been performed with increasing hourly traffic and arcs selected wi
 The cut has been performed at value 0.05.}
 \label{fig:tarjan1}
 \end{figure}
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.6]{tarjanscc2.png}
-\caption{Stronglu connected components found with Tarjan Algorithms. From left to right, top to bottom the hours considered are 0, 1, 2 and 3.
+\caption{Strongly connected components found with Tarjan Algorithms. From left to right, top to bottom the hours considered are 0, 1, 2 and 3.
 The visits have been performed with increasing hourly traffic and arcs selected with increasing probability.
 Cut performed at value 0.05}
 \label{fig:tarjan2}
@@ -169,7 +169,7 @@ distribution has been calculated and only arc probabilities in a certain percent
 have been cutted as it was done before with a "static" threshold. This allows for a more fine-grained cutting, allowing
 to keep more arcs also in more trafficated hours of the day.
 
-\begin{figure}
+\begin{figure}[H]
 \includegraphics[scale=0.8]{tarjan3.png}
 \caption{Strongly connected components found cutting at the 99-th percentile. Hours depicted are, from left to right and from top to bottom, 12-17.}
 \label{fig:tarjan3}
@@ -218,8 +218,8 @@ will be way higher than the one of going outside.
 The classical algorithm requires to have self loops (which are naturally present in our dataset), in order to avoid that probability of staying in a node becomes zero on odd iterations, and the graph to be unidirected or at least with several reciprocal arcs between nodes.
 This prerequisite is matched by our graphs.
 
-Therefore, the pseudocode of the general algorithm is:
-\begin{figure}
+Therefore, the pseudocode of the general algorithm is the one shown in \ref{fig:mcl}
+\begin{figure}[H]
 \begin{verbatim}
    G is a graph
    r = 4
@@ -234,6 +234,7 @@ Therefore, the pseudocode of the general algorithm is:
    set CLUSTERING as the components of M_1
 \end{verbatim}
 \caption{Markov Clustering pseudocode}
+\label{fig:mcl}
 \end{figure}
 
 The algorithm is based on the assumption that $G$ is a graph
@@ -363,8 +364,8 @@ An interesting event is the absorption of the cluster in the top right corner fr
 \begin{subfigure}[b]{0.3\textwidth}
 \includegraphics[width=\textwidth]{weekDef/edges-2Tue-small.png}
 \end{subfigure}
-\label{fig:tuesdayworking}
 \caption{Communities during working hours of November and December Tuesdays. Clustering performed in 10 iterations.}
+\label{fig:tuesdayworking}
 \end{figure}
 We can see that the communities localized in that area show a great deal of variations, as the splitting re-appears in \ref{fig:wednesdayworking}.
 Moreover, while major changes can often be noticed in the suburbia, we can see how the central part of the city exibits a very stable behaviour, with just minor variations along different days of the week.
@@ -383,8 +384,8 @@ The differency in the "variation speed" between the city center and the the outs
 \begin{subfigure}[b]{0.3\textwidth}
 \includegraphics[width=\textwidth]{weekDef/edges-3Wed-small.png}
 \end{subfigure}
-\label{fig:wednesdayworking}
 \caption{Communities during working hours of November and December Wednesdays. Clustering performed in 10 iterations.}
+\label{fig:wednesdayworking}
 \end{figure}
 
 
@@ -405,8 +406,9 @@ However, even if the semantic aggregation should in our opinion be the same, the
 \begin{subfigure}[b]{0.3\textwidth}
 \includegraphics[width=\textwidth]{weekDef/edges-4Thu-small.png}
 \end{subfigure}
-\label{fig:thursdayworking}
+
 \caption{Communities during working hours of November and December Thursdays. Clustering performed in 10 iterations.}
+\label{fig:thursdayworking}
 \end{figure}
 
 \begin{figure}[H]
@@ -447,7 +449,7 @@ Among other changes that can be seen, we observed the expansion of some communit
 \includegraphics[width=\textwidth]{weekDef/edges-6Sat-small.png}
 \end{subfigure}
 \caption{Communities found during Friday and Saturday evenings in the months of November and December.}
-\label{fig:wednesdayworking}
+\label{fig:partyMap}
 \end{figure}
 
 Finally, we show the communities found for Sunday in fig. \ref{fig:sunday}; in this case we can observe way more white spaces than in the previous cases.
