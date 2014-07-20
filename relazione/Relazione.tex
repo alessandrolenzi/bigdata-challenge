@@ -73,7 +73,6 @@ As we will see, the second will give the
 expected results, while the first will fail.
 
 \subsection{Tarjan Connected Components algorithm}
-%todo: explain cuts
 Defining the communities as connected components onto the graph\footnote{A connected component
 in a graph $A = (N,E)$ is a subset of nodes $A' \in A$  s.t. each node in A' is connected to 
 all the other nodes in A' 
@@ -276,9 +275,11 @@ non strictly work correlated aggregations are considered.
 We show the results for each aggregation following two different formats.
 In the first, the area taken into consideration is plotted, using different colours and patterns in order to distinguish between different communities. Colours do not have to be considered indicative of any behaviour of the community: they are just assigned at random during the first aggregation and then kept stable in the others by assigning the filling to the community in the next aggregations with the widest area in common with the previous one.
 The second approach to display communities reflects automatically the MCL algorithm, in which communities are established using links with common aggregators. In this case, we show how communities connect in each aggregation, separating them in three different images, showing
-respectively the small, the medium and the big components.
+respectively the small, the medium and the big components. The division between small, medium and big components has been made with a fine tuning on the threshold.
 
-For the sake of simplicity, not all the images generated have been included in this section. However, more images, and specially the ones generated using the second approach, are attached in \ref{ap:images}.
+We thus came to considered \emph{small} communities whose average distance, defined as the distance between any arc composing the community divided by the number of areas in it, is at most 5. When this value is between 5 and 20, the community is considered to be medium, while from 21 on it is big.
+
+In the following, the two approaches are shown and commented together. Bigger images and other comparisons can be found on \ref{communities}. 
 
 In the following, we start by showing some statistics on the communities found on each day:
 
@@ -303,17 +304,31 @@ in every graph oscillates near to 100. The minimum size of clusters (not shown) 
 Referring to fig. \ref{fig:foundClusters}, it is possible to understand that few huge clusters exist, covering approximate $1/10$-th of the total area taken into consideration, while a wide amount of them is way smaller.
 By graphically checking also the image as of fig. \ref{fig:mondayworking}, we can see that in general huge communities are located in the outskirts of the city, where supposedly the population - expecially during working hours - is less dense. When focusing on the city center, the communities become way littler and exibit a less continuous behaviour. We interpretated this as an index of the different population density in every area.
 
+
 \begin{figure}[H]
-\includegraphics[width=\linewidth]{week/1Mon.png}
+\centering
+\includegraphics[width=0.8\linewidth]{weekDef/1Mon.png}
+\\*
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-1Mon-big.png}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-1Mon-mid.png}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-1Mon-small.png}
+\end{subfigure}
 \label{fig:mondayworking}
-\caption{Communities during working hours of November and December Mondays. Clustering performed in 10 iterations.}
+\caption{In a) we show the map of the communities during working hours of November and December Mondays. 
+In b) the same communities are shown but divided in big medium and small ones as the arcs connecting the various areas in the grid.
+The clustering was performed in 10 iterations, for the reasons explained in \ref{fig:convergencyGraph}}
 \end{figure}
 
 Moreover, it is possible to see in figs. \\
 that usually the communities are geographically localized. Since the algorithm we used is not biased anyhow, we can see
 that this reflects the intuition that different communities also have a "predominant territory".
 
-Also, it is possible to notice in \ref{fig:mondayworking} that some zones are displayed in white. This means that in the final matrix calculated in the clustering procedure, there was not a clear predominance (that we remember, was set to 0.9 to establish a community link) between the possible community with whom they could have been clustered.
+Also, it is possible to notice in \ref{fig:mondayworking} and in the following, that some zones are displayed in white. This means that in the final matrix calculated in the clustering procedure, there was not a clear predominance (that we remember, was set to 0.9 to establish a community link) between the possible community with whom they could have been clustered.
 
 In our opinion, they could represent a sort of "contended zone" in which no convergency can be found (or at least, not fast enough) since the population coming from different communities is almost balanced. This could be partially confirmed by the fact that, in our experiments,
 we were not able to find such zones in the middle of a geographically continuous community: these white zones appear almost solely on the border separating two communities.
@@ -327,7 +342,7 @@ However, in a worst case situation like the one of node \texttt{2981} above, if 
 
 In the following, we will discuss the temporal evolution along the days of the week in what can be considered "almost meaningful" different view of the same communities: to be more precise, we will discuss how communities found in the working hours evolve along different working days, and what happens of them when a transition to non working hours is condidered.
 
-To see in a faster way the evolution of communities, we recommend - when possible - to open the URL \href{http://sonasegaiodeh.com} where a simple GIF image regarding the working days is made available.
+To see in a faster way the evolution of communities, we recommend - when possible - to open the URL \href{http://s8.postimg.org/4cscwraxh/Week.gif} where a simple GIF image in which the previously aggregation are concatenated is shown.
 
 As a general comment, we want to highlight the fact that the persistency of communities discussed below, between different interval, is for us a result of great interest, corroborating the goodness of the procedure followed.
 
@@ -335,7 +350,18 @@ By checking the fig. \ref{fig:tuesdayworking} against \ref{fig:mondayworking}, a
 we see that most of the communities experience only slight variations, either by shrinking or expanding with respect to the previous day.
 An interesting event is the absorption of the cluster in the top right corner from his neighbour.
 \begin{figure}[H]
-\includegraphics[width=\linewidth]{week/2Tue.png}
+\centering
+\includegraphics[width=0.8\linewidth]{weekDef/2Tue.png}
+\\*
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-2Tue-big.png}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-2Tue-mid.png}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-2Tue-small.png}
+\end{subfigure}
 \label{fig:tuesdayworking}
 \caption{Communities during working hours of November and December Tuesdays. Clustering performed in 10 iterations.}
 \end{figure}
@@ -344,7 +370,18 @@ Moreover, while major changes can often be noticed in the suburbia, we can see h
 The differency in the "variation speed" between the city center and the the outskirts could be possibly explained, once again, with the different density of population in the two zones.
 
 \begin{figure}[H]
-\includegraphics[width=\linewidth]{week/3Wed.png}
+\centering
+\includegraphics[width=0.8\linewidth]{weekDef/3Wed.png}
+\\*
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-3Wed-big.png}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-3Wed-mid.png}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-3Wed-small.png}
+\end{subfigure}
 \label{fig:wednesdayworking}
 \caption{Communities during working hours of November and December Wednesdays. Clustering performed in 10 iterations.}
 \end{figure}
@@ -355,13 +392,36 @@ In general, the behaviour doesn't change significantly also on Thursday, shown i
 However, even if the semantic aggregation should in our opinion be the same, the clustering process performed for the working hours of Friday shows biggest difference with respect to the previous other days of the working week. Possibly this could be due to the enneraring of the week end\footnote{Or, for all we know, to the effects of the upcoming saturday night fever}. This can be noticed by looking at fig. \ref{fig:fridayworking}.
 
 \begin{figure}[H]
-\includegraphics[width=\linewidth]{week/4Thu.png}
+\centering
+\includegraphics[width=0.8\linewidth]{weekDef/4Thu.png}
+\\*
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-4Thu-big.png}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-4Thu-mid.png}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-4Thu-small.png}
+\end{subfigure}
 \label{fig:thursdayworking}
 \caption{Communities during working hours of November and December Thursdays. Clustering performed in 10 iterations.}
 \end{figure}
 
 \begin{figure}[H]
-\includegraphics[width=\linewidth]{week/5Fri.png}
+\centering
+\includegraphics[width=0.8\linewidth]{weekDef/5Fri.png}
+\\*
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-5Fri-big.png}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-5Fri-mid.png}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-5Fri-small.png}
+\end{subfigure}
+
 \caption{Communities found in the working hours of November and December Fridays. Clustering in 20 iterations. Notice that the number of white (unassigned) areas decreases thanks to the higher number of iterations performed, but still the main components body remains the same.}
 \label{fig:fridayworking}
 \end{figure}
@@ -373,17 +433,39 @@ The communities found for this aggregation are thus smaller, and also their shap
 Among other changes that can be seen, we observed the expansion of some communities at expenses of others, while some others were shrinked or fragmentated by the change in the people behaviour. 
 
 \begin{figure}[H]
-\includegraphics[width=\linewidth]{week/6Sat.png}
-\label{fig:wednesdayworking}
+\centering
+\includegraphics[width=0.8\linewidth]{weekDef/6Sat.png}
+\\*
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-6Sat-big.png}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-6Sat-mid.png}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-6Sat-small.png}
+\end{subfigure}
 \caption{Communities found during Friday and Saturday evenings in the months of November and December.}
+\label{fig:wednesdayworking}
 \end{figure}
 
 Finally, we show the communities found for Sunday in fig. \ref{fig:sunday}; in this case we can observe way more white spaces than in the previous cases.
 
 \begin{figure}[H]
-\includegraphics[width=\linewidth]{week/7Sun.png}
-\label{fig:sunday}
+\centering
+\includegraphics[width=\linewidth]{weekDef/7Sun.png}
+\\*
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-7Sun-big.png}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-7Sun-mid.png}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-7Sun-small.png}
+\end{subfigure}
 \caption{Communitites found during December and November Sundays. 10 Iterations of MCL have been performed.}
+\label{fig:sunday}
 \end{figure}
 
 Another feature that we noticed, looking at these images, is that changes are never very rough during the same semantic aggregation.
@@ -413,7 +495,7 @@ Clustering in terms of quality of the output, in this scenario.
 However, the Markovian Clustering has also some drawbacks, among which the slowness of the clustering procedure,
 imposing it to be performed offline and with somehow simplified data. 
 
-Possible future work could involve finding faster, yet unbiased, random walk based algorithms to perform
+Possible future work could involve trying faster, yet unbiased, random walk based algorithms to perform
 analysis on the fly on the traffic. Another study of interest, that we did not investigated in this work, could be
 measuring the locality of the communities, for example by analyzing the distribution of the distance between areas
 belonging to the same community.
@@ -422,30 +504,31 @@ This could possibly give some interesting implication on the amount of mobility 
 
 \appendix
 \section{Communities}
+\label{communities}
 For the sake of simplicity, some images haven't been attached when presenting the results. We provide now these images, with a short comment on them.
 First, we want to show in a aggregated manner the temporal evolution over the working days of the communities in Milan.
 
 \begin{figure}[H]
 \centering
 \begin{subfigure}[b]{0.30\textwidth}
-\includegraphics[width=\textwidth]{week/1Mon.png}
+\includegraphics[width=\textwidth]{weekDef/1Mon.png}
 \caption{Monday}
 \end{subfigure}
 \begin{subfigure}[b]{0.30\textwidth}
-\includegraphics[width=\textwidth]{week/2Tue.png}
+\includegraphics[width=\textwidth]{weekDef/2Tue.png}
 \caption{Tuesday}
 \end{subfigure}
 \begin{subfigure}[b]{0.30\textwidth}
-\includegraphics[width=\textwidth]{week/3Wed.png}
+\includegraphics[width=\textwidth]{weekDef/3Wed.png}
 \caption{Wednesday}
 \end{subfigure}
 \\
 \begin{subfigure}[b]{0.30\textwidth}
-\includegraphics[width=\textwidth]{week/4Thu.png}
+\includegraphics[width=\textwidth]{weekDef/4Thu.png}
 \caption{Thursday}
 \end{subfigure}
 \begin{subfigure}[b]{0.30\textwidth}
-\includegraphics[width=\textwidth]{week/5Fri.png}
+\includegraphics[width=\textwidth]{weekDef/5Fri.png}
 \caption{Friday}
 \end{subfigure}
 \end{figure}
@@ -456,11 +539,11 @@ What follows is the output of the Markov Clustering Procedure launched over a si
 
 \begin{figure}[H]
 \begin{subfigure}[b]{0.48\textwidth}
-\includegraphics[width=\textwidth]{OneWeek/MonM1.png}
+\includegraphics[width=\textwidth]{monDet/2MonM.png}
 \caption{Communities for the 2nd of December 2013 - Morning from 8 to 13}
 \end{subfigure}
 \begin{subfigure}[b]{0.48\textwidth}
-\includegraphics[width=\textwidth]{week/1Mon.png}
+\includegraphics[width=\textwidth]{monDet/1Mon.png}
 \caption{Communities of all Monday's working hours}
 \end{subfigure}
 \end{figure}
@@ -471,14 +554,104 @@ Results get better when comparing two aggregations, but on a wider number of day
 
 \begin{figure}[H]
 \begin{subfigure}[b]{0.48\textwidth}
-\includegraphics[width=\textwidth]{week/wed/WedMatrix2.png}
+\includegraphics[width=\textwidth]{wenDet/2WedMatrix.png}
 \caption{Communities on the average graph, calculated on all december and november Wednesday mornings}
 \end{subfigure}
 \begin{subfigure}[b]{0.48\textwidth}
-\includegraphics[width=\textwidth]{week/wed/Wed1.png}
+\includegraphics[width=\textwidth]{wenDet/1Wed.png}
 \caption{Communities on all working hours of Wednesday in December and November}
 \end{subfigure}
 \end{figure}
+
+In the image above, the total Wednesday aggregation are compared with a part, namely the morning working hours.
+As we can see, the two images are quite similar, thus indicating either an unlikely strong predominance of the morning over the afternon in the amount of traffic experienced or a similar behaviour of the communities in a semantically meaningful aggregation.
+
+In our opinion, another interesting view is the evolution of communities (seen as edges connecting the areas belonging to it) separated for their size, as it is shown below:
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-1Mon-big.png}
+\caption{Monday}
+\end{subfigure}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-2Tue-big.png}
+\caption{Tuesday}
+\end{subfigure}
+\\
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-3Wed-big.png}
+\caption{Wednesday}
+\end{subfigure}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-4Thu-big.png}
+\caption{Thursday}
+\end{subfigure}
+\\
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-5Fri-big.png}
+\caption{Friday (working hours)}
+\end{subfigure}
+
+\caption{Evolution of "big" communities in working days}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-1Mon-mid.png}
+\caption{Monday}
+\end{subfigure}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-2Tue-mid.png}
+\caption{Tuesday}
+\end{subfigure}
+\\
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-3Wed-mid.png}
+\caption{Wednesday}
+\end{subfigure}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-4Thu-mid.png}
+\caption{Thursday}
+\end{subfigure}
+\\
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-5Fri-mid.png}
+\caption{Friday (working hours)}
+\end{subfigure}
+
+\caption{Evolution of "medium" communities in working days}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-1Mon-small.png}
+\caption{Monday}
+\end{subfigure}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-2Tue-small.png}
+\caption{Tuesday}
+\end{subfigure}
+\\
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-3Wed-small.png}
+\caption{Wednesday}
+\end{subfigure}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-4Thu-small.png}
+\caption{Thursday}
+\end{subfigure}
+\\
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\textwidth]{weekDef/edges-5Fri-small.png}
+\caption{Friday (working hours)}
+\end{subfigure}
+
+\caption{Evolution of "small" communities in working days}
+\end{figure}
+
 
 \section{Code developed for this work}
 
