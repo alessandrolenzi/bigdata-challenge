@@ -429,10 +429,10 @@ but in a more slow fashion, arriving from 16th iteration on to decrease only of 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.8]{convergency.png}
-\caption{Number of non converged values for every iteration. The number of values is in logarithmic scale. We can see that, while in the beginning the number of non converged values is in the order of the matrix size, this number very rapidly decreases as the clustering iterations proceeds, to finally stabilize around 2000 from 10th iteration on.} %todo: describe well.
+\caption{Number of non converged values for every iteration. The number of values is in logarithmic scale. We can see that, while in the beginning the number of non converged values is in the order of the matrix size, this number very rapidly decreases as the clustering iterations proceeds, to finally stabilize around 2000 from 10th iteration on.}
 \label{fig:convergencyGraph}
 \end{figure}
-When we noticed this behaviour, we decided to switch from a 20-iteration clustering to a 10 iteration one. The idea is that, even though the number of non converged values will in general be higher than in the 20 iteration case, we prefer to have a faster computation even at the cost of precision, since further iterations won't significantly affect the quality of the cluster. Moreover, very probably, such values will be small ones that are already cutted of by the procedure searching for the components.
+When we noticed this behaviour, we decided to switch from a 20-iteration clustering to a 10 iteration one. The idea is that, even though the number of non converged values will in general be higher than in the 20 iteration case, we prefer to have a faster computation even at the cost of precision, since further iterations won't significantly affect the quality of the clusters.
 
 \subsection{Matrix splitter}
 \label{splitter}
@@ -480,7 +480,7 @@ SplitterReduce(jey, values)
 \subsection{Matrix recombiner}
 \label{recombiner}
 The matrix recombiner is the final step of our work to be performed using map-reduce. To be more precise, this job is composed only
-by a map, while there's no reduce phase. The aim of this part of our work is to gather all the blocks of the latest calculated matrix and recompose all values with global coordinates under a unique folder, preparing for the execution of the next phase, described in \ref{findingclusters}. 
+by a map, while there's no reduce phase. The aim of this part of our work is to gather all the blocks of the latest calculated matrix and recompose all values with global coordinates under a unique folder, preparing for the execution of the next phase, described in \ref{findingcluster}. 
 The pseudo-code of such mapper (which is kind of obvious) can be seen in fig. \ref{fig:recombiner}
 \begin{figure}[H]
 \begin{verbatim}
@@ -516,6 +516,7 @@ A sketch depicting the behaviour of the whole pipeline that we developed can be 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{completepipeline.png}
+\caption{Pipeline of the computation}
 \label{fig:completepipeline}
 \end{figure}
 \newpage

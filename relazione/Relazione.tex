@@ -318,14 +318,14 @@ By graphically checking also the image as of fig. \ref{fig:mondayworking}, we ca
 \begin{subfigure}[b]{0.3\textwidth}
 \includegraphics[width=\textwidth]{weekDef/edges-1Mon-small.png}
 \end{subfigure}
-\label{fig:mondayworking}
+
 \caption{In a) we show the map of the communities during working hours of November and December Mondays. 
 In b) the same communities are shown but divided in big medium and small ones as the arcs connecting the various areas in the grid.
 The clustering was performed in 10 iterations, for the reasons explained in \ref{fig:convergencyGraph}}
+\label{fig:mondayworking}
 \end{figure}
 
-Moreover, it is possible to see in figs. \\
-that usually the communities are geographically localized. Since the algorithm we used is not biased anyhow, we can see
+Moreover, it is possible to see in figs. \ref{fig:mondayworking} \ref{fig:tuesdayworking} \ref{fig:wednesdayworking} \ref{fig:thursdayworking} and \ref{fig:fridayworking}, that usually the communities are geographically localized. Since the algorithm we used is not biased anyhow, we can see
 that this reflects the intuition that different communities also have a "predominant territory".
 
 Also, it is possible to notice in \ref{fig:mondayworking} and in the following, that some zones are displayed in white. This means that in the final matrix calculated in the clustering procedure, there was not a clear predominance (that we remember, was set to 0.9 to establish a community link) between the possible community with whom they could have been clustered.
@@ -336,13 +336,14 @@ we were not able to find such zones in the middle of a geographically continuous
 As an example, we can show the case of the nodes with id \texttt{2981}, which on the Monday aggregation, at 10th iteration shows a preference of $0.4999999999972814$ towards grid with id \texttt{3281} and one of $0.5000000000027186$ towards \texttt{3181}.
 A possible solution to this issue could be to "lower" the strength of connection required to a zone to join a community. This could work in case of too fast convergency, in which for example a community has a predominating weight in a certain zone, but not enough to make this stand out in just 10 iterations. In such cases, choosing the strongest outgoing arc and establishing a community link with it could be a possible solution. 
 
-This situation is clearly shown in fig. \ref{fig:fridayworking} and \ref{fig:party}, representing the communities found respectively in the Friday working hours aggregation and in the one for Friday and Saturday evenings. We can see that the amount of white zones decreases significantly if checked against all other aggregations. In our opinion, this doesn't depend on the different behaviour observed, but from the fact that for both these aggregation the clustering procedure went on for 20 iterations, as can be seen in fig. \ref{fig:convergency}, and though not much, the number of unassigned zones has decreased resulting in the assignment of such contended zones.
 
 However, in a worst case situation like the one of node \texttt{2981} above, if the two addressed nodes belong to different communities this could create some false assignment. Moreover, we considered interesting showing that some "contented" zones between communities could exist.
 
+This situation is clearly shown in fig. \ref{fig:fridayworking} and \ref{fig:party}, representing the communities found respectively in the Friday working hours aggregation and in the one for Friday and Saturday evenings. We can see that the amount of white zones decreases significantly if checked against all other aggregations. In our opinion, this doesn't depend on the different behaviour observed, but from the fact that for both these aggregation the clustering procedure went on for 20 iterations, as can be seen in fig. \ref{fig:convergency}, and though not much, the number of unassigned zones has decreased resulting in the assignment of such contended zones.
+
 In the following, we will discuss the temporal evolution along the days of the week in what can be considered "almost meaningful" different view of the same communities: to be more precise, we will discuss how communities found in the working hours evolve along different working days, and what happens of them when a transition to non working hours is condidered.
 
-To see in a faster way the evolution of communities, we recommend - when possible - to open the URL \href{http://s8.postimg.org/4cscwraxh/Week.gif} where a simple GIF image in which the previously aggregation are concatenated is shown.
+To see in a faster way the evolution of communities, we recommend - when possible - to open the URL \href{http://s8.postimg.org/4cscwraxh/Week.gif}{http://s8.postimg.org/4cscwraxh/Week.gif} where a simple GIF image in which the previously aggregation are concatenated is shown.
 
 As a general comment, we want to highlight the fact that the persistency of communities discussed below, between different interval, is for us a result of great interest, corroborating the goodness of the procedure followed.
 
@@ -651,7 +652,7 @@ In our opinion, another interesting view is the evolution of communities (seen a
 
 \caption{Evolution of "small" communities in working days}
 \end{figure}
-
+\newpage
 
 \section{Code developed for this work}
 
