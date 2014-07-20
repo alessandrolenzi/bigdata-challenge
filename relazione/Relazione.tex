@@ -9,6 +9,8 @@
 \usepackage{hyperref}
 \usepackage{wrapfig}
 \usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
 \restylefloat{figure}
 \usepackage{titling}
 \newcommand{\subtitle}[1]{%
@@ -272,9 +274,11 @@ The aim of these aggregtions is to show the strict correlation of the communitie
 non strictly work correlated aggregations are considered. 
 
 We show the results for each aggregation following two different formats.
-In the first, the area taken into consideration is plotted, using different colours and patterns in order to distinguish between different communities. Colours do not have to be considered indicative of any behaviour of the community: they are just assigned at random during the first aggregation and then kept stable in the others by assigning the color to the community in the next aggregations with the widest area in common with the previous one.
+In the first, the area taken into consideration is plotted, using different colours and patterns in order to distinguish between different communities. Colours do not have to be considered indicative of any behaviour of the community: they are just assigned at random during the first aggregation and then kept stable in the others by assigning the filling to the community in the next aggregations with the widest area in common with the previous one.
 The second approach to display communities reflects automatically the MCL algorithm, in which communities are established using links with common aggregators. In this case, we show how communities connect in each aggregation, separating them in three different images, showing
-respectively the small, the medium and the big communities.
+respectively the small, the medium and the big components.
+
+For the sake of simplicity, not all the images generated have been included in this section. However, more images, and specially the ones generated using the second approach, are attached in \ref{ap:images}.
 
 In the following, we start by showing some statistics on the communities found on each day:
 
@@ -385,68 +389,97 @@ Finally, we show the communities found for Sunday in fig. \ref{fig:sunday}; in t
 Another feature that we noticed, looking at these images, is that changes are never very rough during the same semantic aggregation.
 For example, if we start consider the green-ish community in the top-left corner from Monday to Sunday, we can see that it shrinks gradually all along the week, until it reaches its minimum size on Sunday. The same can be noticed in other cases, observing the behaviour of a single community in time. 
 
-The heat maps clearly display that:
-\begin{itemize}
-\item the number of communities detected over our dataset population is about
-100 and this number seems acceptable (as an order of magnitude);
-\item Components are - in general - concentrated in the same geographical area;
-\item Components get smaller near the city centre and larger going toward the
-country-side and this seems reasonable given the different density of population
-between them;
-\item There is a dramatic difference w.r.t. the results of the discovery
-computed with the Tarjan algorithm in term of number and dimension of the
-respectively found components.
-\item Most of all: the communities discovered in different and independent
-analysis (such as the ones on Mondays and Wednesdays) look really similar
-in terms of distribution and size. This corroborates the goodness of the
-algorithm design and implementation as we could possibly be able to
-discover work-related communities.
-\end{itemize}
+\subsection{Some possible applications}
+Several possible applications are possible for the procedure illustrated in this work. We will present some of the most immediate in the following.
+
+The very first idea that can come to mind is an analysis of the population with pubblicitary purposes: by knowing that some zones are mainly populated by a certain community, probably sharing some socio-economic status, instruction and tastes, a campaign manager could use this highly specific information in order to better manage his campaign.
+
+Another possible application of such an analysis is understanding events and their relevancy to the local population by observing the changes in communities. Under the assumption that events - either periodical and expected or unforeseen and occasional - could change the shape in traffic proportionally to their impact on the perception of the population, by using the steady state as measurement is possible to understand which events of interest happened in certain zones, and possibly which events they were.
+Of course this approach could not work with our clustering technique unless on really powerful machines, because of the long time required to perform the analysis.
+\newpage
+
+\section{Conclusion and final remarks}
 
 In conclusion, the opinion of the authors is that community discovery
 onto a geographical area based on mobile telecommunication data
-is possible and that the Markovian random walk approach gives much better
-results than visit based approachies (even with different strategies applied)
-such as Tarjan's algorithm. This is probably due to the assence,
-in Markovian Clustering, of any bias w.r.t. how to and from where start
+is possible and that the Markovian random walk approach is capable of giving much better
+results than visit based approaches (even with different strategies applied) such as Tarjan's algorithm. 
+
+This is probably due to the assence, in Markovian Clustering, of any bias w.r.t. how to and from where start
 and proceed in the visit. Therefore, also other biased machine learning
 approaches (such as K-Means) would not probably compete with Markov
 Clustering in terms of quality of the output, in this scenario.
 
-This work leaves the door open for more analysis, in particular to study
-different communities in different aggregation types, and the authors
-suggest this road to be covered in the future.
+However, the Markovian Clustering has also some drawbacks, among which the slowness of the clustering procedure,
+imposing it to be performed offline and with somehow simplified data. 
 
-\begin{figure}[h]
+Possible future work could involve finding faster, yet unbiased, random walk based algorithms to perform
+analysis on the fly on the traffic. Another study of interest, that we did not investigated in this work, could be
+measuring the locality of the communities, for example by analyzing the distribution of the distance between areas
+belonging to the same community.
+This could possibly give some interesting implication on the amount of mobility and the spreadness of communities.
+\newpage
+
+\appendix
+\section{Communities}
+For the sake of simplicity, some images haven't been attached when presenting the results. We provide now these images, with a short comment on them.
+First, we want to show in a aggregated manner the temporal evolution over the working days of the communities in Milan.
+
+\begin{figure}[H]
 \centering
-\includegraphics[scale=0.4]{monday.png}
-\caption{}
-\label{fig:patch_mon}
-
-
-
-
-\includegraphics[scale=0.2]{clusters.png}
-\caption{}
-\label{fig:arcs_mon}
-
-
-
-
-\includegraphics[scale=0.2]{wednesday.png}
-\caption{}
-\label{fig:patch_wed}
+\begin{subfigure}[b]{0.30\textwidth}
+\includegraphics[width=\textwidth]{week/1Mon.png}
+\caption{Monday}
+\end{subfigure}
+\begin{subfigure}[b]{0.30\textwidth}
+\includegraphics[width=\textwidth]{week/2Tue.png}
+\caption{Tuesday}
+\end{subfigure}
+\begin{subfigure}[b]{0.30\textwidth}
+\includegraphics[width=\textwidth]{week/3Wed.png}
+\caption{Wednesday}
+\end{subfigure}
+\\
+\begin{subfigure}[b]{0.30\textwidth}
+\includegraphics[width=\textwidth]{week/4Thu.png}
+\caption{Thursday}
+\end{subfigure}
+\begin{subfigure}[b]{0.30\textwidth}
+\includegraphics[width=\textwidth]{week/5Fri.png}
+\caption{Friday}
+\end{subfigure}
 \end{figure}
 
-\begin{figure}[h]
-\centering
-\includegraphics[scale=0.2]{wednesday_arcs.png}
-\caption{}
-\label{fig:arcs_wed}
+Several other analysis have been performed on different intervals. In order to grant organicity of the tractation in the previous part, they have not been included.
+Still, we want to show such results.
+What follows is the output of the Markov Clustering Procedure launched over a single week (the first of december) on different days. On the left, we show the behaviour for a single day, while on the right we show the communities found for the correlated semantic aggregation.
+
+\begin{figure}[H]
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\textwidth]{OneWeek/MonM1.png}
+\caption{Communities for the 2nd of December 2013 - Morning from 8 to 13}
+\end{subfigure}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\textwidth]{week/1Mon.png}
+\caption{Communities of all Monday's working hours}
+\end{subfigure}
 \end{figure}
 
-\
+Above, we can recognize a somewhat similar shape in communities, however we can see that in (a) the shapes of communities are less clear and seem more noisy than in (b).
 
+Results get better when comparing two aggregations, but on a wider number of days.
+
+\begin{figure}[H]
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\textwidth]{week/wed/WedMatrix2.png}
+\caption{Communities on the average graph, calculated on all december and november Wednesday mornings}
+\end{subfigure}
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\textwidth]{week/wed/Wed1.png}
+\caption{Communities on all working hours of Wednesday in December and November}
+\end{subfigure}
+\end{figure}
+
+\section{Code developed for this work}
 
 \end{document}
-\begin{figure}
