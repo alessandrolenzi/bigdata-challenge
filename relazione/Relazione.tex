@@ -104,8 +104,8 @@ function strongconnect(v):
     for each (v, w) in E:
         if (w.index is undefined):
             strongconnect(w)
-        v.lowlink := min(v.lowlink, w.lowlink)
-		else if (w is in S):
+            v.lowlink := min(v.lowlink, w.lowlink)
+        else if (w is in S):
             v.lowlink := min(v.lowlink, w.index)
     
     if (v.lowlink = v.index):
@@ -148,7 +148,7 @@ of the analysis. As it is possible to notice by looking to \ref{fig:analysis}, i
 these hours arcs values are very concentrated near the mean, and thus most of them will be cutted out, making
 most of the strongly connected components to disappear in the most trafficated hours of the day.
 The results are slightly better in less trafficated hours as shown in \ref{fig:tarjan2}, in which the variance is higher and thus a wider number
-of arcs will "save himself" from the performed cutting.
+of arcs will be left in the graph after the cut.
 In other attempts, we tried to modify the threshold so that it would save more arcs for the computation,
 but we have not been able to find an appropriate threshold leading to a large enough number of clusters
 and with an acceptable size.\\
@@ -282,8 +282,7 @@ In the first, the whole geographic area taken into consideration is plotted in
 in a map. Colours do not have to be considered indicative of any properties of the community: they are just assigned at random to the first map and then kept stable in the others by assigning the filling to the community in the next aggregations with the widest area in common with the previous one.
 
 The second approach to display communities reflects automatically the MCL algorithm, in which communities are shown using links. In this view, we show how communities connect in each map, separating them in three different images, showing
-respectively the small, the medium and the big components where the definition
-is not on the number of nodes in a component but on the average length of edges. The division between small, medium and big components has been made with an experimental fine tuning on the separating thresholds.
+respectively the small, the medium and the big components. Elements are separated using the average length of edges. The division between small, medium and big components has been performed with an experimental fine tuning on the separating thresholds.
 
 %%  todo: with common aggregators aka super nodes
 
@@ -319,7 +318,7 @@ The minimum size of clusters (not shown) is 1 for all aggregations.}
 \end{figure}
 
 Referring to fig. \ref{fig:foundClusters}, it is possible to understand that few huge clusters exist, covering approximate $1/10$-th of the total area taken into consideration, while a wide amount of them is way smaller.
-By graphically checking also the image as of fig. \ref{fig:mondayworking}, we can see that in general huge communities are located in the outskirts of the city, where supposedly the population - expecially during working hours - is less dense. When focusing on the city center, the communities become way littler and exibit a less continuous behaviour (among different periods). We read this as an index of the different population density in every area.
+By graphically checking also the image as of fig. \ref{fig:mondayworking}, we can see that in general huge communities are located in the outskirts of the city, where supposedly the population - expecially during working hours - is less dense. When focusing on the city center, the communities become way littler and stabler. We read this as an index of the different population density in every area.
 
 \begin{figure}[H]
 \begin{subfigure}[b]{\textwidth}
@@ -357,15 +356,15 @@ In our opinion, they could represent a sort of ''contended zone'' in which no co
 we were not able to find such zones in the middle of a geographically continuous community: these white zones appear almost solely on the border separating two communities.
 
 \paragraph{As an example,} we can show the case of the nodes with id \texttt{2981}, which on the Monday aggregation, at 10th iteration shows a preference of $0.4999999999972814$ towards grid with id \texttt{3281} and one of $0.5000000000027186$ towards \texttt{3181}.
-A possible solution to this issue could be to ''lower'' the strength of connection required to a zone to join a community. This could work in case of too fast convergency, in which for example a community has a predominant weight in a certain zone, but not enough to make this stand out in just 10 iterations. In such cases, choosing the strongest outgoing arc and establishing a community link with it could be a possible solution. 
+A possible solution to this issue could be to ''lower'' the strength of connection required to a zone to join a community. This could work when dealing with a too small number of iteration, in which for example a community has a predominant weight in a certain zone, but not enough to make this stand out in just 10 iterations. In such cases, choosing the strongest outgoing arc and establishing a community link with it could be a possible solution. 
 
 However, in a worst case situation like the one of node \texttt{2981} above, if the two addressed nodes belong to different communities this could create some false assignment. Moreover, we considered interesting showing that some ''contented'' zones between communities could exist.
 
-This situation is clearly shown in fig. \ref{fig:fridayworking} and \ref{fig:party}, representing the communities found respectively in the Friday working hours aggregation and in the one for Friday and Saturday evenings. We can see that the amount of white zones decreases significantly if checked against all other aggregations. In our opinion, this doesn't depend on the different behaviour observed, but from the fact that for both these aggregation the clustering procedure went on for 20 iterations, as can be seen in fig. \ref{fig:convergency}, and even if not completely, the number of unassigned zones has decreased resulting in the assignment of such contended zones.
+This situation is clearly shown in fig. \ref{fig:fridayworking} and \ref{fig:partyMap}, representing the communities found respectively in the Friday working hours aggregation and in the one for Friday and Saturday evenings. We can see that the amount of white zones decreases significantly if checked against all other aggregations. In our opinion, this doesn't depend on the different behaviour observed, but from the fact that for both these aggregation the clustering procedure went on for 20 iterations, as can be seen in fig. \ref{fig:convergencyGraph}, and even if not completely, the number of unassigned zones has decreased resulting in the assignment of such contended zones.
 
 We will now discuss the \textbf{temporal evolution} along the days of the week in what can be considered ''almost meaningful'' different view of the same communities: to be more precise, we will discuss how communities found in the working hours evolve along different working days, and what happens of them when a transition to non working hours is condidered.
 
-To see in a faster way the evolution of communities, we recommend - when possible - to open the URL \href{http://s8.postimg.org/4cscwraxh/Week.gif}{http://s8.postimg.org/4cscwraxh/Week.gif} where a simple GIF image in which the previously aggregation are concatenated is shown.
+To see in a faster way the evolution of communities, we recommend - when possible - to open the URL \href{http://s8.postimg.org/4cscwraxh/Week.gif}{http://s8.postimg.org/4cscwraxh/Week.gif} where a simple GIF image in which the previously aggregation are concatenated is shown. Images are shown from Monday to Sunday.
 
 As a general comment, we want to highlight the fact that the persistency of communities discussed below, between different intervals, is for us a result of great interest, corroborating the goodness of the procedure followed.
 
@@ -561,6 +560,8 @@ First, we want to show in a aggregated manner the temporal evolution over the wo
 \includegraphics[width=\textwidth]{weekDef/5Fri.png}
 \caption{Friday}
 \end{subfigure}
+\caption{Communities evolution along working days.}
+\label{fig:allworking}
 \end{figure}
 
 Several other analysis have been performed on different intervals. In order to grant organicity of the tractation in the previous part, they have not been included.
@@ -684,5 +685,6 @@ In our opinion, another interesting view is the evolution of communities (seen a
 \newpage
 
 \section{Overview of code developed for this work}
+\label{code}
 \input{Code.tex}
 \end{document}

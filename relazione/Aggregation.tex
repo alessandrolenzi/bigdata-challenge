@@ -124,7 +124,7 @@ This number has been chosen for several reasons:
 \item The size of partitions produced by each mapper task will in general be reduced, allowing to use less disk space.
 \end{itemize}
 
-By experimental results, we noticed that the completion time decreased by incrementing the number of reducers up to 10, were substantially the same between 10 and 15, while with more than 15 reducers a small degradation could be observer. 
+By experimental results, we noticed that the completion time decreased by incrementing the number of reducers up to 10, were substantially the same between 10 and 15, while with more than 15 reducers a small degradation could be observed. 
 
 Finally, the whole dataset aggregations have been performed with 12 reducers, this number seeming a suitable one because of the number of nodes (6) in our architecture. 
 
@@ -134,7 +134,8 @@ In this phase we calculate a probability graph in which an arc represents the pr
 This is an average probability in our specific case, since it is achieved receiving as input an average graph.
 Also this phase is composed of a map-reduce job, whose pseudo code is shown in \ref{fig:identitymap} and \ref{fig:probabilityreduce}.
 
-The map is a mere identity, while the reduce calculates the total weight of the arcs belonging to the forward star of a single node, to then rescale in terms of probabilities every arc.
+The map is a mere identity, while the reduce calculates the total weight of the arcs belonging to the forward star of a single node, to then rescale in terms of probabilities every arc. The reduce explots \texttt{MultipleInputs} in order for the procedure to be able to operate on several aggregations with different outputs: the produced graph will be written in a subfolder whose name is calculated from the
+label assigned to the aggregation from which it has been calculated.
   
 \begin{figure}[H]
 \begin{verbatim}
@@ -159,7 +160,7 @@ ProbabilityReduce(key, values):
         a_list.append((dest,weight))
   
     for a in a_list:
-        emit((key.src, a.dest), a.weight / sum)
+        emit((key.src, a.dest), a.weight / sum) on file(key.aggregation)
 
 \end{verbatim}
 \caption{Probability Reduce pseudo code.}

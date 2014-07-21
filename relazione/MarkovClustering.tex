@@ -45,7 +45,7 @@ has been readapted and implemented starting from this website: http://importantf
 In this case, we have two different Map functions for two different files. To implement this in Map-Reduce, we exploited
 the MultipleInputs function provided by the framework indicating for the two matrices a different mapper able
 to emit different values.
-The "first" matrix is fetched to the \texttt{OneStepRowMap} of fig. \ref{fig:onestepMaps} while the second to the \texttt{ColumnMap} of the same figure. In the pseudocode, there's no consideration for cases in which the value is 0, since the
+The "first" matrix is fetched to the \texttt{OneStepRowMap} of fig. \ref{fig:onestep} while the second to the \texttt{ColumnMap} of the same figure. In the pseudocode, there's no consideration for cases in which the value is 0, since the
 matrix is already memorized neglecting null values.
 The output of both mappers is fetched to \texttt{OneStepReduce} of fig. \ref{fig:onestepReduce}.
 \begin{figure}[H]
@@ -96,11 +96,11 @@ of spare secondary memory when the spills (after the map) were produced.
 The second approach has been the one of decomposing the computation further, trying to avoid
 the explosion of data emitted caused by the algorithm discussed before.
 
-In this approach, we have two map reduce steps.\footnote{Once again, this algorithmhas been readapted and implemented
+In this approach, we have two map reduce steps.\footnote{Once again, this algorithm has been readapted and implemented
 following the post available at http://importantfish.com/two-step-matrix-multiplication-with-hadoop/}
 
 In the mappers shown in fig. \ref{fig:twoStep1Map} used in the first step - again we distinguished between the two matrices using MultipleInputs - rows and columns values are emitted using their index as key.
-In the reducer in fig. \ref{fig:twoStep1Reducer}the values of the row and column received are distinguished using the "A" and "B" flags. Subsequently,
+In the reducer in fig. \ref{fig:twoStep1Reducer} the values of the row and column received are distinguished using the "A" and "B" flags. Subsequently,
 every row value is multiplied for every column value, and this multiplied values are emitted using as key
 the position of the value of the output matrix to which they will contribute. %todo: cec improbabol inglisc
 \begin{figure}[H]
@@ -186,6 +186,7 @@ as input of this phase - has been implemented in three different way:
 \end{enumerate}
 
 The approach that we finally decided to follow is very efficient for several resons.
+
 Consider the case in which the number of partitions is 10, thus achieving 100 blocks for each of the two multiplied matrices.
 The blocks will contain, in a worst case approximaton, $10^6$ doubles, meaning that a block multiplication will fit in memory and thus result in better performances, since also the output of each block-by-block multiplication will have size of approximately 32MB each, considering also the indexes.
 
@@ -299,8 +300,7 @@ initial matrices in 25 blocks and using partitions of size from 5 (corresponding
 The drawback of this approach is that some others modules - for decomposing and recomposing the matrix - must be executed, as we wanted our procedure not to affect the final matrix representation.
 These modules implementation is discussed in \ref{splitter} and \ref{recombiner}.
 Finally, the behaviour of a single block multiplication is sketched in fig. \ref{fig:blockmultiplicationsketch}, while
-the comprehensive driver of the matrix multiplication procedure that we finally adopted is illustrated in fig. \ref{fig:matrixmultiplicationsketch}, and its source code can be seen on %todo: insert link.
-
+the comprehensive driver of the matrix multiplication procedure that we finally adopted is illustrated in fig. \ref{fig:matrixmultiplicationsketch}, and its source code can be seen on \href{https://github.com/michele-carignani/hadoop-markov-clustering/tree/master/src/markov\_clustering/blockmultiplication}{https://github.com/michele-carignani/hadoop-markov-clustering/tree/master/src/markov\_clustering/blockmultiplication} \footnote{Please refer to \ref{code} for the file descriptions}.
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{blockmultiplication.png}
@@ -373,7 +373,7 @@ InflationReduce(key, values):
             inflatedV
         )
 \end{verbatim}
-\caption{}
+\caption{Reducer used in the inflation phase. The values are once again divided in blocks by this phase.}
 \label{fig:inflationReduce}
 \end{figure}
 
@@ -449,7 +449,7 @@ This can be seen in \ref{fig:splitterMap}
 \begin{verbatim}
 //value is a matrix element, with row, column and probability
 SplitterMap(key, value):
-	splitSize = N/p
+    splitSize = N/p
     blockX = floor(value.row/splitSize)
     localRow = value.row % splitSize
     blockY = floor(value.column/splitSize)
@@ -471,8 +471,8 @@ to which the values and their coordinates will be written will be function of th
 //key is the coordinate of the block to which the value belong
 //value is composed by local row and column id and by the value.
 SplitterReduce(jey, values)
-	for v in values:
-		emit(key, v) on file(key)
+    for v in values:
+        emit(key, v) on file(key)
 \end{verbatim}
 \caption{Reducer used in the matrix splitting procedure. This reducer uses MultipleOutputs in order to write different blocks on different folders (represented by \texttt{file(key)} in the pseudocode), allowing to operate seamlessly in parallel on several blocks in the consecutive steps.}
 \label{fig:splitterReduce}
@@ -541,13 +541,14 @@ After Markov Clustering is applied for a proper number of iterations,
 the resulting final matrix contains values that are 1s or 0s 
 (and also, in case convergence is not fully reached, values very close to 1 and
 values very close to 0).
-Since Markov matrixes are stochastic, this means that for each row
+Since Markov matrices are stochastic by row, this means that for each row
 at most one value is different from zero.
 
 This, in turn, means that our aim of reduce the graph density toward
 a linear number of edges, w.r.t the number of nodes, were  actually reached.
 In other words, for all the connections a node had we derived the best one
 that is: for every node we found the one which is its ''closest node''.
+
 
 In order to compute the partition starting from the matrix resulting from MCL algorithm, we implemented a module of our application (to be the last of the pipeline), 
 named \textbf{DisjointComponentVisit}.
@@ -593,8 +594,8 @@ We applied a very simple, yet powerful technique:
 \item The first assignment is random (guaranteeing  
 that no clusters have same color and pattern).
 \item For the others, each cluster is assigned the color and
-pattern of the cluster, in the precedent graph, which
-has the largest (in terms of numer of elements) intersection.
+pattern of the cluster in the previous plot with
+the largest intersection in terms of number of elements.
 \item The select cluster is removed in order not to be used
 by other clusters.
 \item if no cluster can be found, a random color (among the free ones)
